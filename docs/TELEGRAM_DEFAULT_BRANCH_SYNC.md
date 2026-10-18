@@ -1,6 +1,6 @@
-# Daily digest: активированное расписание и следующий notification-only sync
+# Daily digest — COMPLETED
 
-Назначение неизменно: «Я худею GROUP» → «Сайт | Я ХУдЕЮ», topic6. Секреты не извлекались. Main сейчас `e37f521c0f62226fb3c4419372a11a79699ec38c`; относительно public release8fb7bf2 изменены только четыре Telegram-файла в.github, public content прежний.
+Назначение неизменно: «Я худею GROUP» → «Сайт | Я ХУдЕЮ», topic6. Секреты не извлекались. Main сейчас `3cf7825006368568cdc55d70950638b56aac481c`; относительно public release8fb7bf2 изменены только Telegram-файлы в.github, public content прежний.
 
 ## Подтверждённое состояние
 
@@ -13,17 +13,15 @@
 
 Digest учитывает Agent trailers всех unique SHA в actual24h query scope, через existing agent_source/normalized_agent; автор, GitHub username иrunner не определяют identity. Один агент → «Агент», несколько → «Агенты»; смесь known/unknown явно partial, безknown → «Не определён», нолькоммитов → «Агенты: Нет данных». «Механизм: GitHub Actions» сохранён отдельно. При сканировании нескольких веток одинSHA считается впервой запрошенной ветке, повторно не увеличивает count/attribution ине попадает вsummaries. При штатном --branch scope остаётся work/website-v2.
 
-## Явный allowlist следующей синхронизации
+## Завершённая синхронизация
 
-Требует **нового отдельного разрешения владельца**, не повторной активации расписания. Не merge development branch. Синхронизировать только:
+Владелец подтвердил completion. Наmain3cf7825 синхронизированы все4 notification-only файла изa7e495e; Git comparison подтверждает byte-for-byte match:
 
-1. `.github/scripts/telegram_notify.py` — factual contributor aggregation/dedup.
-2. `.github/scripts/test_digest_attribution.py` — новые regression tests.
-3. `.github/scripts/test_topic_digest.py` — pagination fixture с уникальнымиSHA.
-4. `.github/scripts/test_telegram_notify.py` — presentation contract допускает требуемый plural «Агенты».
+1. `.github/scripts/telegram_notify.py`
+2. `.github/scripts/test_digest_attribution.py`
+3. `.github/scripts/test_topic_digest.py`
+4. `.github/scripts/test_telegram_notify.py`
 
-Хеши и isolated-main validation — [verification/digest-attribution.json](verification/digest-attribution.json). Workflow, secrets, topic6, retries, HTML, provenance, daily dedup keys иdry_run **не требуют изменений**. Не переносить docs/project_specs/AGENTS/handoff/website-checks/public data/content/tests сайта вmain. Handoff/action registry читаются сdevelopment через API, поэтому корректировка status после dev push уже доступна старому runtime; исправление Agent header станет доступно main-runtime только после разрешённого sync.
+Main manual runs39142220237/39142244919/39142345764/39142535550 success. Владелец подтвердил correct Codex attribution, topic6 delivery, manual dry-run иактивное расписание21:00МСК. **Никаких дальнейших sync/activation не требуется.** Код/workflows/main вэтой документационной задаче не менялись, digest повторно не отправлялся.
 
-После разрешения fetch обеих веток, inspect advancement, сверить allowlist/hashes; сохранить текущий main/public manifest. Подготовить минимальный commit только четырёх файлов, проверить неизменность всех public bytes и прежнего workflow. Legacy Pages main:/ может автоматически rebuild при main push: авторизация должна учитывать это; deployment config не менять и вручную deploy не запускать. После push проверить mainSHA, сайт/HTTPS/noindex/APK-disabled инедоступность.github. Не reset/force-push/rewrite history.
-
-Для safe preview использовать workflow_dispatch dry_run=true (default) после sync либо CLI --dry-run до него: реальный API без sends/cache/ledger mutations. Не выполнять live dispatch заново ради этого fix: daily key по Moscow day сохранён, прежние уведомления не пересылать. Первый реальный scheduled run проверить read-only поevent=schedule/conclusion=success иactual Telegram topic/message annotations. GitHub может задерживать расписание; global exactly-once при потереcache/неопределённости сети не гарантируется.
+Первый automatic scheduled run — pending observation, не блокер completion. При обычном read-only resume можно зафиксировать actual event=schedule/conclusion=success; не создавать дополнительный dispatch и не сбрасывать ledger. APK approval остаётся отдельным открытым заданием. Исторический allowlist/evidence — verification/digest-attribution.json; поле completion фиксирует итог. Не переоткрывать Telegram работу без нового обнаруженного дефекта.

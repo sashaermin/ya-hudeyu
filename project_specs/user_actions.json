@@ -64,7 +64,7 @@
       ],
       "blocked": "Блокер активации устранён. Первый автоматический scheduled run пока не подтверждён; это наблюдение QA, а не незавершённая активация.",
       "can_continue": "Да: исправление attribution вdevelopment и последующая отдельно разрешённая синхронизация notification-only runtime/tests. APK approval остаётся отдельным открытым действием.",
-      "resolution": "18.10.2026: main e37f521c0f62226fb3c4419372a11a79699ec38c, workflow388551143 active/cron18:00UTC. Manual runs39141327550 и39141381414 success; actual digest check117716359241 вернул Telegram topic6/message28, доставка также подтверждена владельцем. В доступной API-истории только workflow_dispatch: первый автоматический schedule ещё не проверен."
+      "resolution": "18.10.2026: main e37f521c0f62226fb3c4419372a11a79699ec38c, workflow388551143 active/cron18:00UTC. Manual runs39141327550 и39141381414 success; actual digest check117716359241 вернул Telegram topic6/message28, доставка также подтверждена владельцем. В доступной API-истории только workflow_dispatch: первый автоматический schedule ещё не проверен. Итог: все4 notification-only файла изa7e495e синхронизированы наmain3cf7825; владелец подтвердил Codex/topic6/manual dry-run+delivery. Telegram COMPLETED, новых sync/activation не требуется. Первый automatic run pending observation не блокирует completion."
     },
     {
       "id": "site-first-website-release-policy",

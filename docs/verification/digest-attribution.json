@@ -45,7 +45,32 @@
     },
     "live_api_dry_run": "Codex header observed; no Telegram send or ledger mutation"
   },
-  "future_main_allowlist": [
+  "owner_actions": {
+    "site_digest_default_branch_activation": "resolved",
+    "site_approved_android_release": "open"
+  },
+  "pending": "Only first automatic scheduled run observation; does not block COMPLETED. APK approval remains separate and open.",
+  "completion": {
+    "status": "COMPLETED",
+    "main_commit": "3cf7825006368568cdc55d70950638b56aac481c",
+    "source_commit": "a7e495e460b6fbda845ac078a2073143a1b826f3",
+    "all_four_files_byte_identical": true,
+    "owner_confirmed": [
+      "Codex attribution",
+      "Telegram topic6 delivery",
+      "daily21:00 Moscow active",
+      "manual dry-run and delivery complete"
+    ],
+    "manual_success_runs": [
+      39142220237,
+      39142244919,
+      39142345764,
+      39142535550
+    ],
+    "first_automatic_scheduled_run": "pending observation; not a completion blocker",
+    "further_sync_or_activation_required": false
+  },
+  "synchronized_notification_files": [
     {
       "path": ".github/scripts/telegram_notify.py",
       "sha256": "bdf025346e9b62175ca5018e6604df31e09b53599f5edb0a1ea7ea372f3fa068"
@@ -62,10 +87,5 @@
       "path": ".github/scripts/test_telegram_notify.py",
       "sha256": "9ff996f52b54f2885deccfdb0b09f7713f9ec859422a4b9d714c8d0d4505b6db"
     }
-  ],
-  "owner_actions": {
-    "site_digest_default_branch_activation": "resolved",
-    "site_approved_android_release": "open"
-  },
-  "pending": "Separate owner authorization to sync only these four notification files. First scheduled run still awaits independent read-only verification."
+  ]
 }
