@@ -21,7 +21,7 @@ def https(value):
 
 def asset(value):
     path = Path(value)
-    if not value.startswith('assets/') or '..' in path.parts or not (ROOT / path).is_file():
+    if not value.startswith('assets/') or '..' in path.parts or not (ROOT / path).is_file() or not (ROOT / path).resolve().is_relative_to((ROOT / 'assets').resolve()):
         raise ValueError(f'Missing or unsafe asset: {value}')
     return escape(value)
 
@@ -33,6 +33,8 @@ def validate(site, release, production=False):
         raise ValueError('Unknown release status')
     verified = release['status'] == 'verified'
     if verified:
+        if release.get('approved_for_distribution') is not True or not release.get('approval_reference'):
+            raise ValueError('Owner approval for APK distribution required')
         for key in ('version', 'date', 'size_bytes', 'min_android', 'source_commit', 'verification_note', 'sha256', 'url'):
             if not release.get(key):
                 raise ValueError(f'Missing verified release field: {key}')
@@ -71,6 +73,12 @@ def render(site, release, production=False):
                   features_intro='Возможности подтверждены для указанной ниже версии приложения.' if site['features'] else 'Здесь появятся возможности, подтверждённые в сборке для скачивания.',
                   screens_intro='Настоящие экраны версии ' + escape(release['version']) + '.' if site['screenshots'] else 'Только настоящие экраны приложения. Без нарисованных интерфейсов.',
                   release_summary='Проверенный файл и сведения о выпуске — в одном месте.' if verified else 'Готовим сведения о проверенном выпуске. Ссылка появится после проверки APK.')
+    mascot = '<img class="hero-cat" src="assets/brand/originals/mascot_calm.webp" width="440" height="512" alt="Рыжий котик — маскот Я ХУдЕЮ" fetchpriority="high">'
+    if site['screenshots']:
+        first = site['screenshots'][0]
+        values['hero_visual'] = '<div class="hero-art with-screen"><div class="mascot-field" aria-hidden="true"></div><div class="phone-frame"><img src="' + asset(first['src']) + '" alt="' + escape(first['alt']) + '" width="' + str(first['width']) + '" height="' + str(first['height']) + '" fetchpriority="high"></div>' + mascot + '</div>'
+    else:
+        values['hero_visual'] = '<div class="hero-art"><div class="mascot-field" aria-hidden="true"></div><span class="art-orbit" aria-hidden="true">✦</span>' + mascot + '<div class="art-note"><strong>Большие перемены<br>начинаются с малого.</strong>По одному шагу за раз.</div></div>'
     if site['features']:
         values['features'] = '<div class="feature-grid">' + ''.join(
             '<article class="panel">' + (f'<img class="feature-icon" src="{asset(f["icon"])}" alt="" width="52" height="52" loading="lazy">' if f.get('icon') else '') +
@@ -87,7 +95,10 @@ def render(site, release, production=False):
         values['release'] = '<div class="release-status"><span class="status-label">Проверенный APK</span><dl class="release-data">' + ''.join(f'<dt>{escape(k)}</dt><dd>{escape(v)}</dd>' for k, v in fields) + f'</dl><a class="button" href="{escape(https(release["url"]))}" rel="noopener noreferrer">Скачать для Android ↓</a>' + ('<h3>Что нового</h3><ul>' + ''.join('<li>'+escape(c)+'</li>' for c in release.get('changes', [])) + '</ul>' if release.get('changes') else '') + '</div>'
     else:
         values['release'] = '<div class="release-status"><span class="status-label">Релиз ещё не подключён</span><h3>APK пока недоступен</h3><p>Когда файл будет проверен, здесь появятся ссылка, версия, размер, требования к Android и контрольная сумма.</p><p><a href="mailto:' + escape(site['support']) + '">Связаться с поддержкой ↗</a></p></div>'
-    values['faq'] = ''.join(f'<details><summary>{escape(f["question"])}</summary><p>{escape(f["answer"])}</p></details>' for f in site['faq'])
+    faq = list(site['faq'])
+    if verified:
+        faq[0] = dict(question='Где скачать приложение?', answer='Проверенный Android APK доступен в разделе загрузки. Сверьте версию и контрольную сумму файла перед установкой.')
+    values['faq'] = ''.join(f'<details><summary>{escape(f["question"])}</summary><p>{escape(f["answer"])}</p></details>' for f in faq)
     # No ratings, price, release version, or unverified platform compatibility in structured data.
     application = {'@context': 'https://schema.org', '@type': 'SoftwareApplication', 'name': site['name'], 'operatingSystem': 'Android', 'url': site['domain'] + '/'}
     if verified:
@@ -103,6 +114,8 @@ def build(output, production=False):
     site = json.loads((ROOT / 'data/site.json').read_text())
     release = json.loads((ROOT / 'data/release.json').read_text())
     page = render(site, release, production)
+    if output.is_symlink():
+        raise ValueError('Symlink output is not allowed')
     output = output.resolve()
     if output == ROOT or ROOT.is_relative_to(output) or output.name != '_site':
         raise ValueError('Output must be a dedicated directory named _site')
@@ -111,7 +124,7 @@ def build(output, production=False):
     files = ['privacy.html', 'CNAME', 'styles/site.css', 'scripts/site.js', 'scripts/theme.js',
              'assets/brand/originals/logo_wordmark_green_light.png', 'assets/brand/originals/logo_wordmark_green_dark.png',
              'assets/brand/originals/mascot_calm.webp', 'assets/brand/originals/ic_launcher_green.png',
-             'assets/fonts/onest_regular.ttf', 'assets/fonts/onest_semibold.ttf', 'assets/fonts/unbounded_semibold.ttf',
+             'assets/fonts/onest_regular.woff2', 'assets/fonts/onest_semibold.woff2', 'assets/fonts/unbounded_semibold.woff2',
              'assets/fonts/Onest-OFL.txt', 'assets/fonts/Unbounded-OFL.txt']
     files += [f['icon'] for f in site['features'] if f.get('icon')]
     files += [s['src'] for s in site['screenshots']]

@@ -31,3 +31,5 @@
 - Первый Chromium 1440px: pageerror 0, scrollWidth = viewport, fonts loaded; снимок временный `/tmp/website-first-desktop.png`, итоговые screenshots будут сохранены в Git на этапе 4.
 - W1 первоначальная адаптация Android notification tests: 31 test, 4 failure и 3 skip. Причины: ожидавшиеся старые названия сообщений/путь HANDOFF.md и отсутствующие новые регистры. Ожидания адаптированы к сайту, регистры добавлены; повторный запуск обязателен. Не считать этот run успешным.
 - Build regression tests: 10/10 PASS (блокировка неподтверждённых APK/функций/screens, HTTPS/path safety, экранирование и повторяемость сборки).
+
+- W1 checkpoint `227ab74` подтверждён на remote. Этап 3A: WOFF2 178264 bytes вместо 563240 bytes TTF (−68%); оригиналы и лицензии сохранены. Build/workflow 12/12 PASS; explicit owner approval требуется отдельно от status verified. RELEASE_CONTENT/README добавлены; реальный APK остаётся pending.

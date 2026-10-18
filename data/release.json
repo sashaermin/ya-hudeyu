@@ -8,5 +8,7 @@
   "min_android": null,
   "source_commit": null,
   "verification_note": null,
-  "changes": []
+  "changes": [],
+  "approved_for_distribution": false,
+  "approval_reference": null
 }

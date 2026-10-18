@@ -30,8 +30,8 @@
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="#top" aria-label="Я ХУдЕЮ — в начало">
-        <img class="wordmark-light" src="assets/brand/originals/logo_wordmark_green_light.png" width="1000" height="361" alt="Я ХУдЕЮ">
-        <img class="wordmark-dark" src="assets/brand/originals/logo_wordmark_green_dark.png" width="1000" height="361" alt="Я ХУдЕЮ">
+        <img class="wordmark-light" src="assets/brand/originals/logo_wordmark_green_light.png" width="1000" height="360" alt="Я ХУдЕЮ">
+        <img class="wordmark-dark" src="assets/brand/originals/logo_wordmark_green_dark.png" width="1000" height="360" alt="Я ХУдЕЮ">
       </a>
       <nav class="nav" id="navigation" aria-label="Основная навигация">
         <a href="#features">Возможности</a><a href="#screenshots">Скриншоты</a><a href="#start">Как начать</a><a href="#faq">Вопросы и ответы</a>
@@ -56,11 +56,7 @@
         <div class="hero-actions"><a class="button" href="#download">{{download_label}} <span aria-hidden="true">↗</span></a><a class="button secondary" href="#features">Посмотреть возможности</a></div>
         <p class="micro">{{hero_release_note}}</p>
       </div>
-      <div class="hero-art">
-        <div class="mascot-field" aria-hidden="true"></div><span class="art-orbit" aria-hidden="true">✦</span>
-        <img class="hero-cat" src="assets/brand/originals/mascot_calm.webp" width="440" height="504" alt="Рыжий котик — маскот Я ХУдЕЮ" fetchpriority="high">
-        <div class="art-note"><strong>Большие перемены<br>начинаются с малого.</strong>По одному шагу за раз.</div>
-      </div>
+      {{hero_visual}}
     </section>
     <section class="section wrap" id="features" aria-labelledby="features-title">
       <div class="section-head"><div><span class="section-number">01 / ВОЗМОЖНОСТИ</span><h2 id="features-title">Ближе к себе,<br>день за днём</h2></div><p>{{features_intro}}</p></div>
@@ -87,7 +83,7 @@
     </section>
   </main>
   <footer class="site-footer"><div class="wrap">
-    <div class="footer-top"><a class="brand" href="#top" aria-label="Я ХУдЕЮ — в начало"><img class="wordmark-light" src="assets/brand/originals/logo_wordmark_green_light.png" width="1000" height="361" alt="Я ХУдЕЮ" loading="lazy"><img class="wordmark-dark" src="assets/brand/originals/logo_wordmark_green_dark.png" width="1000" height="361" alt="Я ХУдЕЮ" loading="lazy"></a><div class="footer-links"><a href="privacy.html">Конфиденциальность</a><a href="mailto:{{support}}">Поддержка</a><a href="#top">Наверх ↑</a></div></div>
+    <div class="footer-top"><a class="brand" href="#top" aria-label="Я ХУдЕЮ — в начало"><img class="wordmark-light" src="assets/brand/originals/logo_wordmark_green_light.png" width="1000" height="360" alt="Я ХУдЕЮ" loading="lazy"><img class="wordmark-dark" src="assets/brand/originals/logo_wordmark_green_dark.png" width="1000" height="360" alt="Я ХУдЕЮ" loading="lazy"></a><div class="footer-links"><a href="privacy.html">Конфиденциальность</a><a href="mailto:{{support}}">Поддержка</a><a href="#top">Наверх ↑</a></div></div>
     <div class="footer-bottom"><p>© 2026 Я ХУдЕЮ</p><p>Маленькие шаги к большим изменениям.</p></div>
   </div></footer>
   <dialog class="viewer" id="viewer" aria-labelledby="viewer-title"><div class="viewer-header"><h2 id="viewer-title" style="font:600 18px Onest;margin:0">Экран приложения</h2><button class="icon-button" id="viewer-close" type="button" aria-label="Закрыть просмотр">×</button></div><img id="viewer-image" alt=""><p class="viewer-caption" id="viewer-caption" aria-live="polite"></p><p class="error-note" id="viewer-error" role="alert" hidden>Не удалось загрузить изображение. Попробуйте открыть его снова.</p><div class="viewer-controls"><button class="button secondary" id="viewer-prev" type="button" aria-label="Предыдущий скриншот">← Назад</button><button class="button secondary" id="viewer-next" type="button" aria-label="Следующий скриншот">Далее →</button></div></dialog>

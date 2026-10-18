@@ -66,8 +66,13 @@ class BuildTests(unittest.TestCase):
             self.assertEqual((ROOT/'CNAME').read_bytes(), (output/'CNAME').read_bytes())
 
     def test_verified_metadata_requires_checksum_and_proof(self):
-        self.release['status'] = 'verified'
+        self.release.update(status='verified', approved_for_distribution=True, approval_reference='TEST fixture, never an actual authorization')
         with self.assertRaisesRegex(ValueError, 'Missing verified release field'):
+            build.render(self.site, self.release)
+
+    def test_verified_status_cannot_bypass_owner_approval(self):
+        self.release['status'] = 'verified'
+        with self.assertRaisesRegex(ValueError, 'Owner approval'):
             build.render(self.site, self.release)
 
     def test_support_and_domain_cannot_inject_attributes(self):
