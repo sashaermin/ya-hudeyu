@@ -380,5 +380,42 @@ class WebsiteContractTest(unittest.TestCase):
             self.assertEqual(send.call_count,1)
 
 
+class AutonomousDigestTest(unittest.TestCase):
+    def test_config_probe_reports_names_without_values(self):
+        output=io.StringIO()
+        with mock.patch.dict(os.environ,{},clear=True),mock.patch("sys.stdout",output):
+            self.assertEqual(1,tn.main(["check-config"]))
+        self.assertIn("Missing Telegram binding",output.getvalue())
+        output=io.StringIO()
+        with mock.patch.dict(os.environ,{"TELEGRAM_BOT_TOKEN":"sensitive-test-value", "TELEGRAM_CHAT_ID":"private-test-id"},clear=True),mock.patch("sys.stdout",output):
+            self.assertEqual(0,tn.main(["check-config"]))
+        self.assertNotIn("sensitive-test-value",output.getvalue());self.assertNotIn("private-test-id",output.getvalue())
+
+    def test_digest_completion_uses_verified_shared_events_only(self):
+        since=tn.dt.datetime(2026,10,17,18,tzinfo=tn.dt.timezone.utc);now=since+tn.dt.timedelta(days=1)
+        recent=ev("recent",typ="stage_completed",at="2026-10-18T10:00:00Z")
+        old=ev("old",at="2026-10-10T10:00:00Z")
+        no_proof=ev("no-proof",at="2026-10-18T10:00:00Z",verified="")
+        future=ev("future",at="2026-10-20T10:00:00Z")
+        malformed=ev("bad-time",at="invalid")
+        result=tn.completed_events_since(evfile(recent,old,no_proof,future,malformed),since,now)
+        self.assertEqual(["recent"],[x["id"] for x in result])
+
+    def test_quiet_branch_still_reports_handoff_and_daily_rerun_sends_once(self):
+        class GH:
+            def get(self,path,params=None):return [] if path.endswith("/commits") else {"workflow_runs":[]}
+            def file_at(self,path,ref):
+                if path=="AGENT_HANDOFF.md":return "**Next:** Continue browser QA"
+                if path==tn.ACTIONS_FILE:return alert()
+                return None
+        with tempfile.TemporaryDirectory() as folder:
+            ledger=os.path.join(folder,"digest.txt");output=io.StringIO()
+            variables={"GITHUB_REPOSITORY":"o/r", "TELEGRAM_BOT_TOKEN":"test-only", "TELEGRAM_CHAT_ID":"test-only"}
+            with mock.patch.dict(os.environ,variables),mock.patch.object(tn,"GitHub",return_value=GH()),mock.patch.object(tn,"send") as send,mock.patch("sys.stdout",output):
+                for _ in range(2):self.assertEqual(0,tn.main(["digest","--branch","work/website-v2","--ledger",ledger]))
+            self.assertEqual(1,send.call_count);text=send.call_args.args[2]
+            self.assertIn("Continue browser QA",text);self.assertIn("Ждут вашего действия",text)
+
+
 if __name__ == "__main__":
     unittest.main()

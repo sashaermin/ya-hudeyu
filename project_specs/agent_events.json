@@ -54,6 +54,25 @@
       "checkpoint": "65f94102eb79fbba5084478863276024fbfc09e3",
       "done": "Исправлены focus trap/performance; сохранены 4 screenshots, измерения и ограничения. Main/privacy/CNAME сохранены.",
       "next": "После применения сетевого черновика — Firefox/WebKit/API QA; после разрешения APK — релизный контент."
+    },
+    {
+      "id": "site-w2a-digest-infra-20261018",
+      "at": "2026-10-18T07:07:02Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "W2",
+          "A"
+        ],
+        "title": "Автономные инструкции, диагностика notify и daily digest"
+      },
+      "verified": "36 notification tests, 13 build/workflow tests, YAML parse PASS; настоящий GitHub API digest dry-run PASS, без Telegram отправки.",
+      "status": "Продолжается; расписание требует отдельного разрешения на default branch",
+      "checkpoint": "cf7814fc5ff60caf0de480aa50c288de5404472a",
+      "done": "Сохранены инструкции; сеть подтверждена; подготовлен digest 21:00 МСК, Actions probe и закреплённые upstream action refs.",
+      "next": "Проверить новый Actions run и продолжить Firefox/WebKit QA."
     }
   ]
 }

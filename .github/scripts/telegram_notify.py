@@ -38,6 +38,7 @@ ACTIONS_FILE = "project_specs/user_actions.json"
 EVENTS_FILE = "project_specs/agent_events.json"
 ACTION_FIELDS = ("id", "status", "task", "subtask", "what", "steps", "blocked", "can_continue")
 STATUS_TITLES = {
+    "checkpoint_verified": "проверено в указанном объёме",
     "software_complete": "завершён программно (проверки на устройстве не завершены)",
     "hardware_pending": "завершён, ожидает проверки на реальном устройстве",
     "fully_verified": "полностью проверен",
@@ -492,7 +493,7 @@ def run_commits(args) -> int:
     with open(env("GITHUB_EVENT_PATH"), encoding="utf-8") as f:
         event = json.load(f)
     repo = env("GITHUB_REPOSITORY"); branch = os.environ.get("GITHUB_REF_NAME", "")
-    gh = GitHub(repo, os.environ.get("GITHUB_TOKEN"), os.environ.get("GITHUB_API_URL", "https://api.github.com"))
+    gh = GitHub(repo, os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN"), os.environ.get("GITHUB_API_URL", "https://api.github.com"))
     server = os.environ.get("GITHUB_SERVER_URL", "https://github.com")
     token, chat = env("TELEGRAM_BOT_TOKEN"), env("TELEGRAM_CHAT_ID")
     commits, warnings = pushed_commits(event, gh)
@@ -596,20 +597,50 @@ def run_ci_report(args) -> int:
     return 0
 
 
+def run_check_config() -> int:
+    """Names/presence only. Emits check-run annotations, never secret values."""
+    missing = [name for name in ("TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID") if not os.environ.get(name, "").strip()]
+    for name in missing:
+        print(f"::error title=Missing Telegram binding::{name} is not configured for this workflow; add the existing bot/chat in repository Actions secrets.")
+    if not missing:
+        print("Telegram bindings present: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (values hidden; delivery not yet verified)")
+    return 1 if missing else 0
+
+
+def completed_events_since(text, since, now):
+    result = []
+    for event in load_events(text):
+        if event_problem(event) or event.get("type") not in {"task_completed", "stage_completed", "task_transition", "stage_transition", "roadmap_completed"}:
+            continue
+        try:
+            at = dt.datetime.fromisoformat(event.get("at", "").replace("Z", "+00:00"))
+            if at.tzinfo is None or not since <= at <= now:
+                continue
+        except (ValueError, TypeError):
+            continue
+        result.append({"id": event["id"], "title": _label(event["from"]), "status": "checkpoint_verified", "note": event["verified"]})
+    return result
+
+
 def run_digest(args) -> int:
     repo = env("GITHUB_REPOSITORY")
-    gh = GitHub(repo, os.environ.get("GITHUB_TOKEN"), os.environ.get("GITHUB_API_URL", "https://api.github.com"))
+    gh = GitHub(repo, os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN"), os.environ.get("GITHUB_API_URL", "https://api.github.com"))
     now = dt.datetime.now(dt.timezone.utc); since = now - dt.timedelta(hours=24)
     missing: list[str] = []
     branch_commits: dict[str, int] = {}
     recent: list[tuple[str, str]] = []
     seen_milestones: dict[str, dict] = {}
-    try:
-        branches = gh.get(f"/repos/{repo}/branches", {"per_page": 100})
-    except Exception as e:
-        branches = []; missing.append(f"список веток недоступен ({type(e).__name__})")
+    selected_branch = getattr(args, "branch", "")
+    if selected_branch:
+        branches = [{"name": selected_branch}]
+    else:
+        try:
+            branches = gh.get(f"/repos/{repo}/branches", {"per_page": 100})
+        except Exception as error:
+            branches = []; missing.append(f"список веток недоступен ({type(error).__name__})")
     for b in branches:
         name = b["name"]
+        recent.append(("", name))
         try:
             commits = gh.get(f"/repos/{repo}/commits", {"sha": name, "since": since.isoformat(), "per_page": 100})
         except Exception:
@@ -618,14 +649,11 @@ def run_digest(args) -> int:
             branch_commits[name] = len(commits)
             at = commits[0]["commit"]["committer"]["date"]
             recent.append((at, name))
-            oldest_parent = (commits[-1].get("parents") or [{}])[0].get("sha")
-            try:
-                new = gh.file_at(MILESTONE_FILE, commits[0]["sha"])
-                old = gh.file_at(MILESTONE_FILE, oldest_parent) if oldest_parent else None
-                for m in milestone_transitions(old, new):
-                    seen_milestones[f"{m.get('id')}:{m.get('status')}"] = m
-            except Exception:
-                missing.append(f"реестр этапов ветки {name}")
+        try:
+            for item in completed_events_since(gh.file_at(EVENTS_FILE, name), since, now):
+                seen_milestones[item["id"]] = item
+        except Exception as error:
+            missing.append(f"журнал проверенных событий ветки {name} ({type(error).__name__})")
     failures = []
     try:
         runs = gh.get(f"/repos/{repo}/actions/runs", {"status": "failure", "created": f">={since:%Y-%m-%dT%H:%M:%SZ}", "per_page": 50})
@@ -651,10 +679,17 @@ def run_digest(args) -> int:
                           os.environ.get("GITHUB_SERVER_URL", "https://github.com"), open_actions or [])
     if args.dry_run:
         print(text); return 0
+    ledger = getattr(args, "ledger", ".telegram-ledger/digest.txt")
+    moscow_day = now.astimezone(dt.timezone(dt.timedelta(hours=3))).date().isoformat()
+    key = f"digest:{repo}:{selected_branch}:{moscow_day}"
+    if key in load_ledger(ledger):
+        print("Дайджест за этот день уже отправлен"); return 0
     try:
         send(env("TELEGRAM_BOT_TOKEN"), env("TELEGRAM_CHAT_ID"), text)
     except RuntimeError as e:
         print(f"::error::Не удалось отправить дайджест: {e}"); return 1
+    with open(ledger, "a", encoding="utf-8") as stream:
+        stream.write(key + "\n")
     print("Дайджест отправлен"); return 0
 
 
@@ -720,7 +755,8 @@ def main(argv=None) -> int:
     c = sub.add_parser("commits"); c.add_argument("--ledger", default=".telegram-ledger/sent.txt")
     r = sub.add_parser("ci-report"); r.add_argument("--workflow", required=True); r.add_argument("--status", required=True)
     r.add_argument("--junit", default=""); r.add_argument("--notify-success", action="store_true"); r.add_argument("--ledger", default=".telegram-ledger/sent.txt")
-    d = sub.add_parser("digest"); d.add_argument("--dry-run", action="store_true")
+    d = sub.add_parser("digest"); d.add_argument("--dry-run", action="store_true"); d.add_argument("--branch", default=""); d.add_argument("--ledger", default=".telegram-ledger/digest.txt")
+    sub.add_parser("check-config")
     v = sub.add_parser("actions"); v.add_argument("--file", default=ACTIONS_FILE)
     ev = sub.add_parser("event"); ev.add_argument("--file", default=EVENTS_FILE)
     ev.add_argument("--type", required=True, choices=sorted(EVENT_TYPES)); ev.add_argument("--source", required=True, choices=[SOURCE_CLAUDE, SOURCE_CODEX, SOURCE_OTHER, SOURCE_UNKNOWN])
@@ -730,6 +766,8 @@ def main(argv=None) -> int:
         ev.add_argument(name, default="")
     evs = sub.add_parser("events"); evs.add_argument("--file", default=EVENTS_FILE)
     a = p.parse_args(argv)
+    if a.cmd == "check-config":
+        return run_check_config()
     if a.cmd == "event":
         return run_add_event(a)
     if a.cmd == "events":
@@ -742,6 +780,8 @@ def main(argv=None) -> int:
     if a.cmd == "ci-report":
         os.makedirs(os.path.dirname(a.ledger) or ".", exist_ok=True)
         return run_ci_report(a)
+    if not a.dry_run:
+        os.makedirs(os.path.dirname(a.ledger) or ".", exist_ok=True)
     return run_digest(a)
 
 

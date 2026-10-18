@@ -41,3 +41,9 @@
 - 18.10.2026 09:48 МСК: сетевые browser downloads попробованы и получили 403; сохранён config draft с start_skill и additive domains. Новое owner action site-network-crossbrowser-qa. Проверено npm ci (202 packages); provenance bytes/полный cmap WOFF2 PASS. Проверка фактического Actions run, environment activation/new-task restore не выполнялась.
 
 Итоговый проверенный implementation checkpoint этапа 4A: `b3ffaf9ceb9d7f998e673468bfb4a0718393b961` (remote подтверждён). Разрешённая независимая работа выполнена; продолжение — сетевой доступ/оставшиеся браузеры и утверждённый APK/screens. Этапы 2–4 частично открыты по release/owner/device критериям; этап 5 не разрешён и не начат.
+
+## Новый автономный цикл: W2 и 4B
+
+Инструкция владельца сохранена в project_specs/AUTONOMOUS_EXECUTION_2026-10-18.txt. Сеть разблокирована для CDN/домена/API; прежний network action resolved, успешный Chromium QA не повторяется. Первая задача: определить причину notify failure по Actions evidence, подготовить обязательный daily digest 21:00 МСК без записи в main; параллельно установить доступные браузеры и продолжить 4B. verify run 39105427770 success, notify failure; metadata secrets 403 по integration permissions.
+
+W2A проверен: автономная инструкция сохранена; сеть CDN/API/домена подтверждена, старый action resolved. Официальные Firefox153/WebKit26.5 скачаны. Notification probe + digest workflow подготовлены; 36 notification и 13 build/workflow tests PASS, YAML parsed; dry-run настоящего GitHub API без Telegram отправки PASS. Workflow actions v5 refs сверены с upstream и закреплены SHA. Daily schedule не активирован: main permission action site-digest-default-branch-activation. Pages API подтвердил legacy deployment из main:/; production не меняется.

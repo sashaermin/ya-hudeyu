@@ -23,7 +23,7 @@
       "opened": "2026-10-18",
       "task": "Сайт · уведомления",
       "subtask": "Проверить Actions secrets и первый запуск уведомлений",
-      "what": "Локальные tests используют mocks. GitHub API в облаке отвечает 403, поэтому наличие repository secrets и фактическая доставка не проверены. Это не доказательство отсутствия секретов.",
+      "what": "GitHub Actions API теперь доступен: verify run 39105427770 успешен, notify завершился failure. Secrets metadata возвращает Resource not accessible by integration (403), что не доказывает отсутствие secret bindings. Live delivery не подтверждена; продолжается точная диагностика.",
       "steps": [
         "Откройте sashaermin/ya-hudeyu → Settings → Secrets and variables → Actions.",
         "Только если отсутствуют TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID, добавьте значения существующего бота «Я ХУдЕЮ | Dev Reports» и чата через защищённые поля GitHub. Не отправляйте значения в чат.",
@@ -35,7 +35,7 @@
     },
     {
       "id": "site-network-crossbrowser-qa",
-      "status": "open",
+      "status": "resolved",
       "source": "Codex",
       "opened": "2026-10-18",
       "task": "Сайт · завершающий QA",
@@ -47,7 +47,22 @@
         "Продолжите задачу: агент повторит затронутые операции, проверит API/доставку и запустит оставшийся browser QA; разрешать main/deploy для этого не нужно."
       ],
       "blocked": "Firefox/WebKit QA, read-only проверка production HTTPS и подтверждение GitHub Actions из этой среды.",
-      "can_continue": "Chromium QA, разработка и shared checkpoints выполнены независимо. Внешние операции возобновить после применения настроек."
+      "can_continue": "Chromium QA, разработка и shared checkpoints выполнены независимо. Внешние операции возобновить после применения настроек.",
+      "resolution": "При возобновлении проверено: official CDN HEAD 200, yahudeyu-app.ru HEAD 200, GitHub Actions API читается. Настройки уже применены; download/install и оставшийся QA продолжаются. Нового действия для этих доменов не требуется."
+    },
+    {
+      "id": "site-digest-default-branch-activation",
+      "status": "open",
+      "source": "Codex",
+      "task": "Сайт · обязательный daily digest",
+      "subtask": "Разрешение включить расписание в default branch",
+      "what": "Готов и локально проверен workflow website-digest.yml на 21:00 МСК. GitHub не запускает schedule из development branch. Main изменять запрещено без отдельного разрешения, поэтому активация ещё не выполнена.",
+      "steps": [
+        "Проверьте подготовленный файл .github/workflows/website-digest.yml в work/website-v2: только чтение API, тесты и Telegram, без deploy.",
+        "Если согласны включить daily digest, отдельно разрешите перенести только этот workflow в main. Релиз сайта и APK этим не разрешаются."
+      ],
+      "blocked": "Только автоматический запуск ежедневного дайджеста. Подготовка и dry-run проверены.",
+      "can_continue": "Да: browser QA, диагностика notify, инфраструктура release; main/Pages не меняются."
     }
   ]
 }

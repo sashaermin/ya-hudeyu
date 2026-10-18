@@ -1,0 +1,331 @@
+Continue developing the official «Я ХУдЕЮ» website in FULL AUTONOMOUS EXECUTION MODE.
+
+
+Repository: sashaermin/ya-hudeyu
+Development branch: work/website-v2
+Last reported verified checkpoint: cf7814f
+
+
+These instructions are permanent and apply equally to Codex, Claude Code, and all future coding agents.
+
+
+1. Preserve existing work
+
+
+Fetch the remote repository and identify the latest valid pushed checkpoint.
+
+
+Preserve all completed and verified work.
+
+
+Do not restart development, recreate completed stages, or reset to an older commit.
+
+
+The latest reported progress includes:
+
+
+- Branded website draft
+- Shared agent instructions
+- Persistent handoff documentation
+- Telegram workflow
+- 45 passing tests
+- 16 viewport/theme combinations checked
+- Zero reported axe accessibility violations
+- Lighthouse 96/100/100
+- SEO 69 due to intentional noindex
+
+
+Treat these as reported results and preserve their verification records.
+
+
+Do not redo successful verification without a relevant reason.
+
+
+2. Full autonomous execution
+
+
+You are authorized to independently complete every approved stage of the website master specification.
+
+
+Do not ask permission before:
+
+
+- Implementing approved features
+- Improving the UI
+- Fixing bugs
+- Running tests
+- Installing permitted dependencies
+- Updating documentation
+- Creating commits
+- Pushing checkpoints
+- Continuing to the next stage
+
+
+Work continuously through the approved roadmap within the available session.
+
+
+Routine reports are informational, not requests for permission.
+
+
+Do not stop after completing one stage.
+
+
+3. Immediate environment issue
+
+
+The previous report indicated that a network environment draft must be saved and activated through the environment settings.
+
+
+Investigate whether this can be completed using your available tools.
+
+
+If the platform requires an explicit user action, record the blocker once with clear instructions.
+
+
+Do not repeatedly request the same action.
+
+
+Continue all independent website work.
+
+
+Activating the development environment must not deploy or modify the production website.
+
+
+Never confuse environment publication with production deployment.
+
+
+4. Telegram notifications
+
+
+Use the existing «Я ХУдЕЮ | Dev Reports» bot.
+
+
+Every website notification must be labeled:
+
+
+САЙТ «Я ХУдЕЮ»
+
+
+Implement and verify notifications for:
+
+
+- Verified GitHub commits
+- Stage completion
+- Stage transitions
+- Build and test failures
+- USER ACTION REQUIRED
+- USER ACTION RESOLVED
+- Daily digest at 21:00 Moscow time
+
+
+Inspect the current GitHub Actions implementation.
+
+
+Verify workflow syntax and event registration.
+
+
+Check whether the required repository secrets are configured, using available metadata without exposing secret values.
+
+
+If secrets are missing, record the requirement and continue other work.
+
+
+If delivery cannot be tested safely without user action, mark it as unverified.
+
+
+Never report successful Telegram delivery without evidence.
+
+
+Avoid duplicate notifications.
+
+
+5. Mandatory development cycle
+
+
+For each stage:
+
+
+1. Read the shared instructions and current handoff.
+2. Identify the first unfinished approved task.
+3. Implement it.
+4. Run focused tests.
+5. Perform broader QA when appropriate.
+6. Fix failures.
+7. Update progress and handoff documentation.
+8. Commit and push.
+9. Verify the remote checkpoint.
+10. Register notification events.
+11. Continue automatically.
+
+
+Use small, independently verifiable checkpoints.
+
+
+Do not waste resources repeating unchanged tests.
+
+
+6. Remaining website work
+
+
+Continue the approved roadmap, including:
+
+
+- Remaining browser compatibility checks
+- Responsive layout refinements
+- Light and dark theme consistency
+- Real Android visual fidelity
+- Verified application feature descriptions
+- Authentic screenshot gallery
+- FAQ
+- Accessibility
+- Performance
+- SEO readiness
+- Release content preparation
+- Download section readiness
+- Final pre-release QA
+
+
+Use the Android repository strictly as a read-only reference.
+
+
+Do not modify Android or Windows projects.
+
+
+Do not invent unreleased features.
+
+
+7. APK restriction
+
+
+No APK is currently approved for public website distribution.
+
+
+Keep APK download actions disabled.
+
+
+Do not select or publish an APK independently.
+
+
+Prepare all release infrastructure that does not require the final APK.
+
+
+Maintain intentional noindex until production publication is explicitly authorized.
+
+
+Do not treat the resulting SEO score reduction as a bug requiring premature indexing.
+
+
+Request the approved APK and authentic release screenshots only when they become necessary for the next blocked release stage.
+
+
+Continue unrelated work automatically.
+
+
+8. Cross-agent continuity
+
+
+Maintain:
+
+
+- [AGENTS.md](http://agents.md/)
+- [CLAUDE.md](http://claude.md/)
+- AGENT_HANDOFF.md
+- IMPLEMENTATION_PROGRESS.md
+- AGENT_NOTIFICATION_PROTOCOL.md
+
+
+Use [AGENTS.md](http://agents.md/) as the authoritative shared instruction source.
+
+
+Ensure Claude Code can continue the same project without reconstructing the previous Codex conversation.
+
+
+GitHub is the source of truth.
+
+
+Only one agent may actively write to the shared development branch at a time.
+
+
+Never overwrite another agent's uncommitted work.
+
+
+9. Short Russian reporting
+
+
+Use:
+
+
+Сделано: ...
+Проверено: ...
+Далее: ...
+Требуется от меня: ... (only when genuinely necessary)
+
+
+Keep reports short and factual.
+
+
+Report real verification results, not assumptions.
+
+
+Do not ask whether to continue.
+
+
+10. User intervention policy
+
+
+Only interrupt me when:
+
+
+- A credential or secret is required.
+- An external platform requires manual authorization.
+- An irreversible action needs approval.
+- A genuine product decision cannot be resolved from the approved specification.
+- All reasonable independent alternatives have been exhausted.
+
+
+If one task is blocked, continue other independent tasks.
+
+
+Do not stop the entire project.
+
+
+11. Production safety
+
+
+Do not:
+
+
+- Modify or merge into main
+- Create pull requests
+- Deploy to production
+- Change the live domain
+- Enable public APK downloads
+- Remove production noindex restrictions prematurely
+- Publish unapproved release content
+
+
+These actions require separate explicit authorization.
+
+
+12. Start immediately
+
+
+Resume from the latest valid remote checkpoint.
+
+
+Investigate the environment configuration blocker.
+
+
+Verify Telegram infrastructure as far as possible.
+
+
+Continue the remaining browser QA and approved website stages.
+
+
+Commit, push, verify, provide a short Russian report, and automatically proceed to the next stage.
+
+
+Persist these instructions in the repository.
+
+
+Do not wait for another user message.
