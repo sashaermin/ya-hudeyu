@@ -4,7 +4,7 @@
 
 ## Что уже работает в development
 
-Push запускает прежний website-checks pipeline и затем отправляет все commit/event/action/failure сообщения через единый sender с topic6. Без TELEGRAM_MESSAGE_THREAD_ID sender сохраняет прежний JSON без message_thread_id; неправильное непустое значение блокирует запрос, без fallback в общую тему. Retry, HTML escaping и dedup keys сохранены; старые сообщения не переотправляются из-за смены назначения. Подтверждение реального topic возможно по `Telegram topic confirmed`: sender записывает его только если Telegram API вернул соответствующий message_thread_id в Message, вместе с message_id. `Telegram accepted` без такого подтверждения не доказывает тему.
+Push запускает прежний website-checks pipeline и затем отправляет все commit/event/action/failure сообщения через единый sender с topic6. Без TELEGRAM_MESSAGE_THREAD_ID sender сохраняет прежний JSON без message_thread_id; неправильное непустое значение блокирует запрос, без fallback в общую тему. Retry, HTML escaping и dedup keys сохранены; старые сообщения не переотправляются из-за смены назначения. Run39140904178/notify117715065966 реально подтвердил topic6/message23(commit)/24(stage); source e34c458. Общее правило подтверждения: `Telegram topic confirmed`: sender записывает его только если Telegram API вернул соответствующий message_thread_id в Message, вместе с message_id. `Telegram accepted` без такого подтверждения не доказывает тему.
 
 ## Что ждёт отдельной авторизации
 

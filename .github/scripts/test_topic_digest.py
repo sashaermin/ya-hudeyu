@@ -13,7 +13,7 @@ class TopicRoutingTest(unittest.TestCase):
     def payload(self, value):
         response = mock.MagicMock()
         response.__enter__.return_value.read.return_value = b'{"ok":true,"result":{"message_id":42,"message_thread_id":6}}'
-        with mock.patch.dict(os.environ, {'TELEGRAM_MESSAGE_THREAD_ID': value}), mock.patch.object(tn.urllib.request, 'urlopen', return_value=response) as call:
+        with mock.patch('sys.stdout', io.StringIO()), mock.patch.dict(os.environ, {'TELEGRAM_MESSAGE_THREAD_ID': value}), mock.patch.object(tn.urllib.request, 'urlopen', return_value=response) as call:
             self.assertEqual(42, tn.send('TEST_TOKEN', 'TEST_CHAT', '<b>Report</b>'))
         return json.loads(call.call_args.args[0].data)
 
@@ -40,7 +40,7 @@ class TopicRoutingTest(unittest.TestCase):
     def test_retry_keeps_topic_and_payload(self):
         response = mock.MagicMock()
         response.__enter__.return_value.read.return_value = b'{"ok":true,"result":{"message_id":42,"message_thread_id":6}}'
-        with mock.patch.dict(os.environ, {'TELEGRAM_MESSAGE_THREAD_ID': '6'}), mock.patch.object(tn.time, 'sleep'), mock.patch.object(tn.urllib.request, 'urlopen', side_effect=[tn.urllib.error.URLError('test'), response]) as call:
+        with mock.patch('sys.stdout', io.StringIO()), mock.patch.dict(os.environ, {'TELEGRAM_MESSAGE_THREAD_ID': '6'}), mock.patch.object(tn.time, 'sleep'), mock.patch.object(tn.urllib.request, 'urlopen', side_effect=[tn.urllib.error.URLError('test'), response]) as call:
             self.assertEqual(42, tn.send('TEST_TOKEN', 'TEST_CHAT', 'text'))
         self.assertEqual(2, call.call_count)
         self.assertEqual(call.call_args_list[0].args[0].data, call.call_args_list[1].args[0].data)

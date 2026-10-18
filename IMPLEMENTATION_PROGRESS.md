@@ -42,7 +42,7 @@ Owner-authorized UI fixes из0b706e3 опубликованы public-only8fb7bf
 
 ## Telegram topic6 / daily digest · разрешённый development этап
 
-Optional TELEGRAM_MESSAGE_THREAD_ID подключён вобщем sender, env6 вnotify/digest направляет commits/events/failures/actions в «Сайт | Я ХУдЕЮ». Verification pipeline/preview/production protections прежние. Digest расширен actual24h summaries/Actions statuses, explicit completed events, user-action blockers; cron21:00МСК прежний, dispatch dry_run=true добавлен.59notification+27website tests PASS,2YAML parsed, actual API dry-run иisolated main allowlist simulation59/57PASS/2expected skips. Evidence telegram-topic-digest.json; actual topic delivery проверяется после push, не inferred.
+Optional TELEGRAM_MESSAGE_THREAD_ID подключён вобщем sender, env6 вnotify/digest направляет commits/events/failures/actions в «Сайт | Я ХУдЕЮ». Verification pipeline/preview/production protections прежние. Digest расширен actual24h summaries/Actions statuses, explicit completed events, user-action blockers; cron21:00МСК прежний, dispatch dry_run=true добавлен.59notification+27website tests PASS,2YAML parsed, actual API dry-run иisolated main allowlist simulation59/57PASS/2expected skips. Evidence telegram-topic-digest.json; Actual topic6 delivery подтверждена notify check117715065966/run39140904178 success: commit message23, stage24; не mock tests. Preview22files/4views/hash995ef47b unchanged.
 
 Расписание ещё не активно: workflow отсутствует наdefaultmain, owner authorization дляTelegram-only4file sync не дана. План docs/TELEGRAM_DEFAULT_BRANCH_SYNC.md включает possible legacy Pages rebuild/public-hash verification, без merge/unrelated files. Existing owner action остаётся open. Production иполный master checklist не меняются.
 
