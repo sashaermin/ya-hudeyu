@@ -1,0 +1,61 @@
+# Prepared on the development branch. GitHub schedules activate only on default branch.
+# Do not move this workflow into main without the owner's separate authorization.
+name: САЙТ — ежедневный отчёт
+on:
+  schedule:
+    - cron: '0 18 * * *' # 21:00 Europe/Moscow (UTC+3); GitHub may delay scheduled jobs.
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Показать отчёт без отправки в Telegram и без изменения ledger'
+        type: boolean
+        required: false
+        default: true
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: website-daily-digest
+  cancel-in-progress: false
+jobs:
+  digest:
+    env:
+      TELEGRAM_MESSAGE_THREAD_ID: '6'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Test deterministic digest and notification code
+        run: python3 -m unittest discover -s .github/scripts -p 'test_*.py' -v
+      - name: Check Telegram bindings
+        if: github.event_name != 'workflow_dispatch' || !inputs.dry_run
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python3 .github/scripts/telegram_notify.py check-config
+      - if: github.event_name != 'workflow_dispatch' || !inputs.dry_run
+        uses: actions/cache/restore@caa296126883cff596d87d8935842f9db880ef25 # v5
+        with:
+          path: .telegram-ledger
+          key: website-digest-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: website-digest-
+      - name: Send website digest
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_TOKEN: ${{ github.token }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            python3 .github/scripts/telegram_notify.py digest --branch work/website-v2 --dry-run
+          else
+            python3 .github/scripts/telegram_notify.py digest --branch work/website-v2 --ledger .telegram-ledger/digest.txt
+          fi
+      - uses: actions/cache/save@caa296126883cff596d87d8935842f9db880ef25 # v5
+        if: always() && (github.event_name != 'workflow_dispatch' || !inputs.dry_run)
+        with:
+          path: .telegram-ledger
+          key: website-digest-${{ github.run_id }}-${{ github.run_attempt }}
