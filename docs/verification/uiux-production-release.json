@@ -1,5 +1,5 @@
 {
-  "status": "DEPLOYED; extended live verification pending",
+  "status": "VERIFIED: published UI/UX release, Pages and normal-TLS live QA PASS",
   "approved_development_commit": "0b706e3cdec864afe589e02b4c45986ac559e854",
   "prepared_production_commit": "8fb7bf2920a89f39e1ed3a56d53ada91f468b715",
   "rollback_commit": "9b39ffaf35c48973b8115b630ba0d06165ad09a4",
@@ -163,5 +163,129 @@
   "initial_https_probe": {
     "status": 200,
     "index_sha256": "e2cd7f460ea040c4030c69cb8b7bf9a765348c98338b3a2b43f2a027b7104ebc"
-  }
+  },
+  "verified_at": "2026-10-18T12:56:46.393637+00:00",
+  "live_verification": {
+    "run": 39129135130,
+    "source_commit": "d62679f2b30e4156f5c3a28310b139a7a4b40650",
+    "conclusion": "success",
+    "check_run": 117680491190,
+    "unit_tests": 78,
+    "public_files_verified": 22,
+    "internal_paths_404": 16,
+    "main_layout_cases": 16,
+    "uiux": {
+      "production_commit": "8fb7bf2920a89f39e1ed3a56d53ada91f468b715",
+      "privacy_matrix": 16,
+      "nojs_cases": 6,
+      "legal_text_unchanged": true,
+      "keyboard_focus": [
+        "Keyboard open focuses first link; Tab traverses nav; Escape restores trigger; selection focuses target; hidden-nav resize restores trigger"
+      ],
+      "gallery_theme_cases": 2,
+      "axe_runs": 12,
+      "axe_violations": 0,
+      "gallery_scope": "Browser-only mascot fixtures with actual deployed JS/assets, not published Android screenshots"
+    },
+    "notices": [
+      {
+        "title": "Production Lighthouse measured",
+        "message": "{\"url\": \"https://yahudeyu-app.ru/\", \"fetched_at\": \"2026-10-18T12:53:56.512Z\", \"lighthouse_version\": \"12.8.2\", \"form_factor\": \"mobile\", \"scores\": {\"performance\": 99, \"accessibility\": 100, \"best-practices\": 100, \"seo\": 69}, \"targets\": {\"performance\": 90, \"accessibility\": 95, \"best-practices\": 95, \"seo\": 95}, \"metrics\": {\"first-contentful-paint\": 842.565, \"largest-contentful-paint\": 1993.565, \"speed-index\": 842.565, \"total-blocking-time\": 0, \"cumulative-layout-shift\": 5.770945705108072e-05}, \"below_target\": [\"seo\"], \"run_warnings\": [], \"failed_audits\": [{\"id\": \"largest-contentful-paint\", \"title\": \"Largest Contentful Paint\", \"score\": 0.97}, {\"id\": \"interactive\", \"title\": \"Time to Interactive\", \"score\": 0.99}, {\"id\": \"uses-long-cache-ttl\", \"title\": \"Serve static assets with an efficient cache policy\", \"score\": 0.5}, {\"id\": \"is-crawlable\", \"title\": \"Page is blocked from indexing\", \"score\": 0}, {\"id\": \"cache-insight\", \"title\": \"Use efficient cache lifetimes\", \"score\": 0}, {\"id\": \"image-delivery-insight\", \"title\": \"Improve image delivery\", \"score\": 0}, {\"id\": \"network-dependency-tree-insight\", \"title\": \"Network dependency tree\", \"score\": 0}], \"limitation\": \"One simulated mobile lab run on GitHub runner; not real-user/device metrics. SEO below target is expected while intentional noindex is retained; do not enable indexing solely to improve the score.\"}"
+      },
+      {
+        "title": "Production website verified",
+        "message": "commit 8fb7bf2920a89f39e1ed3a56d53ada91f468b715; public_files 22; internal_404 16; browser_matrix 16; noindex=true; APK=false; TLS=true; page_errors=0"
+      },
+      {
+        "title": "Production UI UX verified",
+        "message": "{\"production_commit\": \"8fb7bf2920a89f39e1ed3a56d53ada91f468b715\", \"privacy_matrix\": 16, \"nojs_cases\": 6, \"legal_text_unchanged\": true, \"keyboard_focus\": [\"Keyboard open focuses first link; Tab traverses nav; Escape restores trigger; selection focuses target; hidden-nav resize restores trigger\"], \"gallery_theme_cases\": 2, \"axe_runs\": 12, \"axe_violations\": 0, \"gallery_scope\": \"Browser-only mascot fixtures with actual deployed JS/assets, not published Android screenshots\"}"
+      },
+      {
+        "title": "Website review archive verified",
+        "message": "source d62679f2b30e4156f5c3a28310b139a7a4b40650; archive_sha256 995ef47b8eec4b636aefbdc6b46b5bdd01b4d9227be82299bbcea61b5d77c43f; files 22; rendered 4; noindex=true; APK=false; page_errors=0"
+      }
+    ],
+    "tls_verification": true,
+    "telegram_notices": [
+      {
+        "title": "Telegram accepted",
+        "message": "commit d62679f2b30e4156f5c3a28310b139a7a4b40650 message_id 288"
+      }
+    ]
+  },
+  "lighthouse": {
+    "url": "https://yahudeyu-app.ru/",
+    "fetched_at": "2026-10-18T12:53:56.512Z",
+    "lighthouse_version": "12.8.2",
+    "form_factor": "mobile",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 69
+    },
+    "targets": {
+      "performance": 90,
+      "accessibility": 95,
+      "best-practices": 95,
+      "seo": 95
+    },
+    "metrics": {
+      "first-contentful-paint": 842.565,
+      "largest-contentful-paint": 1993.565,
+      "speed-index": 842.565,
+      "total-blocking-time": 0,
+      "cumulative-layout-shift": 5.770945705108072e-05
+    },
+    "below_target": [
+      "seo"
+    ],
+    "run_warnings": [],
+    "failed_audits": [
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.97
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.99
+      },
+      {
+        "id": "uses-long-cache-ttl",
+        "title": "Serve static assets with an efficient cache policy",
+        "score": 0.5
+      },
+      {
+        "id": "is-crawlable",
+        "title": "Page is blocked from indexing",
+        "score": 0
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ],
+    "limitation": "One simulated mobile lab run on GitHub runner; not real-user/device metrics. SEO below target is expected while intentional noindex is retained; do not enable indexing solely to improve the score."
+  },
+  "rollback_used": false,
+  "critical_regressions_found": false,
+  "remaining_limitations": [
+    "No approved APK or release screenshots; downloads remain disabled",
+    "Gallery tests use browser-only original-mascot fixtures with deployed JS, not publicly released screenshots",
+    "Physical Android/iOS/Safari, actual screen reader/native zoom and WebKit native swipe not verified",
+    "SEO69 is intentional noindex policy, not an indexing authorization"
+  ]
 }

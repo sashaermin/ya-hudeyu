@@ -1,8 +1,9 @@
 {
-  "scope": "U2 UI/UX development review; not authorized for production",
+  "scope": "Audited U2 UI/UX bytes authorized and deployed in production8fb7bf2; not permission for future source changes",
   "source_base_checkpoint": "2981a4578f7514d9d14cc08c4fcc033aaa06e816",
   "archive_sha256": "995ef47b8eec4b636aefbdc6b46b5bdd01b4d9227be82299bbcea61b5d77c43f",
   "site_index_sha256": "e2cd7f460ea040c4030c69cb8b7bf9a765348c98338b3a2b43f2a027b7104ebc",
-  "production_commit_unchanged": "9b39ffaf35c48973b8115b630ba0d06165ad09a4",
-  "qa_evidence": "docs/verification/uiux-u2.json"
+  "qa_evidence": "docs/verification/uiux-u2.json",
+  "production_commit": "8fb7bf2920a89f39e1ed3a56d53ada91f468b715",
+  "publication_evidence": "docs/verification/uiux-production-release.json"
 }

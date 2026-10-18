@@ -2,7 +2,7 @@
 
 Единственная общая дорожная карта Codex / Claude Code / других агентов. Основание: неизменённый [мастер-ТЗ](project_specs/WEBSITE_MASTER_TZ_2026-10-18.md). Общие правила — AGENTS.md, текущее продолжение — AGENT_HANDOFF.md.
 
-**Актуальный срез R7/R8:** первый coming-soon website release опубликован и проверен: production9b39ffa, Pages39114713056 success, live browser39125147955 PASS. Это **не завершение мастер-ТЗ**. Исторические записи ниже — журнал, текущее состояние и независимые next tasks определяет следующая таблица. APK не блокирует уже опубликованный сайт; только соответствующие пункты deferred. Production без новой авторизации не менять.
+**Исторический срез R7/R8 (актуальный U3 ниже):** первый coming-soon website release опубликован и проверен: production9b39ffa, Pages39114713056 success, live browser39125147955 PASS. Это **не завершение мастер-ТЗ**. Исторические записи ниже — журнал, текущее состояние и независимые next tasks определяет следующая таблица. APK не блокирует уже опубликованный сайт; только соответствующие пункты deferred. Production без новой авторизации не менять.
 
 | Этап ТЗ | Текущее состояние | Проверенные критерии и незавершённое |
 |---|---|---|
@@ -29,6 +29,10 @@
 | §7.8 screenshots/visual acceptance | Первый coming-soon кандидат принят | Снимки4тем/ширин сохранены; release-specific full UI сравнение и приёмка после настоящих screens. |
 | §8 final full release | Deferred: release content/приёмка + новая production authorization | Первый coming-soon не закрывает требования APK/download и не разрешает следующий production push. |
 | Shared notifications21:00 МСК | Prepared; owner main-workflow authorization required | Digest schedule default branch ещё не активен; не менять production/main для этого без отдельного разрешения. |
+
+## Актуальный production срез U3
+
+Owner-authorized UI fixes из0b706e3 опубликованы public-only8fb7bf2 (4 files,22file allowlist), Pages39129023427 success. Normal-TLS live39129135130 success:78unit,22public hashes/16private404,16main+16privacy layouts,6noJS/keyboard focus/legal-text/gallery loading/error/retry/reopen,12axe0violations. Lighthouse mobile99/100/100/69; intentional noindex сохранён, APK disabled. Rollback9b39ffa/tag website-uiux-release-2026-10-18 истарый9a0857c доступны. Подробный manifest/notices — docs/verification/uiux-production-release.json. Полный master не закрыт: UI audit35 complete/7releaseblocked/2manual; дальнейшие inputs иограничения остаются вчеклисте. Никакого дополнительного release/редизайна/digest этим разрешением не начато.
 
 ## Дополнительный разрешённый этап W1 — общая работа агентов и уведомления
 
@@ -194,3 +198,5 @@ U2 remote6798295/run39127437892 success:78 active unit tests, actual stored prev
 Owner отдельно разрешил выпуск0b706e3 (только audit fixes). Main9b39ffa/Pages legacy main:/ и22 actual HTTPS hashes verified; rollback tag website-uiux-release-2026-10-18 сохранён. Prepared main child8fb7bf2:4 changed public paths,22file allowlist, no docs/tests/workflows/data. Production build с настоящим approval_reference кновому owner instruction побайтно совпал с audit ZIP995ef47b; source UI/build/site/release unchanged sinceapproved0b. Legal text/CNAME/noindex/APK-disabled сохранены. Fresh27unit/16main+16privacy layouts/12axe0violations/noJS6/focus/gallery2themes PASS; прежние4-engine audit proofs валидны, inputs public не менялись. Related existing live workflow/helper расширен для current manifest/privacy/nav/gallery/a11y, normal TLS. Следующее: readiness CI, controlled main push, actual Pages иliveverification; не объявлять deployment completed до факта.
 
 U3 Pages deployment выполнен: readiness105a8dc/run39128881988 success, approved public commit8fb7bf2 отправлен/main SHA независимо подтверждён; Pages39129023427 success. HTTPS indexSHAe2cd7f46 совпал, Pages configuration preserved. Расширенный live QA pending в текущем normal-TLS verify; повторно deployment не запускать. Исторический main9b39ffa доступен rollback-tag.
+
+U3 final verification success: live39129135130/normalTLS actual published8fb7bf2/22files/16private404/32layouts/6noJS/12axe0violations/gallery2themes. Freshmobile Lighthouse99/100/100/69,FCP843ms/LCP1994ms/TBT0/CLS0.000058,warnings0. Pagesconfig/CNAME/legalcontent/noindex/comingsoon/APK-disabled unchanged. No critical regression, rollback unused. Следующий independently executable task не найден без новых входов; после finaldocs remote+Telegram proof сохранить handoff ине redeploy.

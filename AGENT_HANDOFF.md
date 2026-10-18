@@ -3,15 +3,15 @@
 ## Текущее состояние и точка продолжения
 
 - Проект: официальный сайт «Я ХУдЕЮ», repository `sashaermin/ya-hudeyu`, branch `work/website-v2`.
-- Последний независимо verified remote **до этого documentation checkpoint**: `105a8dce49cce87931eb8604cd59fc8b20b91e23` (run39128881988 success/readiness archive995ef47b). Фактический последний SHA всегда получить через fetch/ls-remote; файл не содержит собственный будущий SHA.
+- Последний независимо verified remote **до этого documentation checkpoint**: `d62679f2b30e4156f5c3a28310b139a7a4b40650` (run39129135130 success/normal-TLS live UI QA). Фактический последний SHA всегда получить через fetch/ls-remote; файл не содержит собственный будущий SHA.
 - Последний ответственный агент: Codex, 18.10.2026 11:51 МСК. Другой активный website writer не известен; эта историческая запись не доказывает отсутствия активной сессии при takeover. Только один писатель ветки, Android Claude Code не затрагивать.
 - Стадия: первый инкрементальный website-кандидат **подготовлен к приёмке**, с «Скоро для Android», независимо от APK. Первый принятый coming-soon выпуск опубликован и проверен; мастер-ТЗ не завершено. Исторические ограничения ниже действуют вне этой узкой авторизации.
 
-**Exact next:** проверить extended live QA текущего checkpoint с Verify-Live-Production: true; production уже обновлён8fb7bf2920a89f39e1ed3a56d53ada91f468b715, Pages39129023427 success, HTTPS index hash совпал, config preserved. Не push/deploy повторно. Current manifest docs/verification/uiux-production-release.json, actual old rollback9b39ffa/tag website-uiux-release-2026-10-18. CI запускает normal-TLS HTTP22hash/16private404, main16/privacy16/noJS/focus/legal-text/gallery2theme и12axe плюс Lighthouse. Fixtures только browser-local сdeployed JS, реальных APK/screens нет. После actual success сохранить notices/Telegram/документы и остановиться по remaining master inputs. При confirmed critical regression — разрешённый revert к9b39ffa иverification. APK approval остаётся false, indexing_approved=false; future/unrelated releases/digest/redesign не разрешены.
+**Exact next:** UI/UX release U3 завершён и live-verified: production8fb7bf2920a89f39e1ed3a56d53ada91f468b715, Pages39129023427 success; live39129135130 success/78unit/22public hashes/16private404/main16+privacy16/noJS6/focus/gallery2themes/12axe0violations/normal TLS. Не redeploy неизменённый сайт. После текущего documentation checkpoint подтвердить remote/обычный Telegram accepted без повторного live/Lighthouse. Далее только реальные inputs remaining master: approved APK/release screens (7 blocked UI items), physical device/Safari/AT/native zoom (2 manual); independent UI задачи выполнены. Старое разрешение U3 использовано только для этого release, будущие production/main changes требуют нового explicit owner permission. Rollback9b39ffa/tag website-uiux-release-2026-10-18 сохранён; при confirmed critical regression данного release разрешён documented revert сverification. APK approval остаётся false, indexing_approved=false. Digest/unrelated workflows/redesign не активировать.
 
 ## Что предъявлено владельцу
 
-- Действующий production: https://yahudeyu-app.ru/ на9b39ffa; Pages/live browser verified. Старые review artifacts ниже — история приёмки, не текущая просьба одобрить уже выпущенный сайт.
+- Действующий production: https://yahudeyu-app.ru/ на8fb7bf2; audited UI fixes опубликованы ипроверены, предыдущий9b39ffa — rollback; Pages/live browser verified. Старые review artifacts ниже — история приёмки, не текущая просьба одобрить уже выпущенный сайт.
 
 - Проверенный [review artifact](https://github.com/sashaermin/ya-hudeyu/actions/runs/39114231216/artifacts/12131711410) из run39114231216, source `70527d0`, attempt1. Это ZIP для локального просмотра, **не hosted preview URL**.
 - Внешнего безопасного preview-hosting tool нет. Инструкция просмотра, предмет решения, безопасная публикация и rollback: `docs/FIRST_RELEASE.md`.
@@ -53,7 +53,7 @@
 
 ## Неприкосновенное
 
-Main/production `9b39ffaf35c48973b8115b630ba0d06165ad09a4`; rollback `9a0857ce260540ad604f344565d535a8d47b2fa0`; Pages source legacy main:/. CNAME/privacy побайтно равны исходному main, DNS/Pages config не менялись; первый deployment отдельно разрешён и завершён. Нельзя main update/merge/PR/deploy, public APK, изменение gates или снятие draft noindex без соответствующего явного разрешения. Не менять Android/другие клиентские репозитории/сессии. Весь существенный контекст, evidence и точный next находятся в Git; /tmp не единственный источник. При следующей сессии fetch/status/AGENTS/handoff/progress/latest verified remote обязательны.
+Main/production `8fb7bf2920a89f39e1ed3a56d53ada91f468b715`; current rollback `9b39ffaf35c48973b8115b630ba0d06165ad09a4`, older rollback `9a0857ce260540ad604f344565d535a8d47b2fa0`; Pages source legacy main:/. CNAME/privacy побайтно равны исходному main, DNS/Pages config не менялись; первый deployment отдельно разрешён и завершён. Нельзя main update/merge/PR/deploy, public APK, изменение gates или снятие draft noindex без соответствующего явного разрешения. Не менять Android/другие клиентские репозитории/сессии. Весь существенный контекст, evidence и точный next находятся в Git; /tmp не единственный источник. При следующей сессии fetch/status/AGENTS/handoff/progress/latest verified remote обязательны.
 
 ## P1 · постоянная совместимость агентов и русские Telegram-отчёты
 
@@ -118,3 +118,8 @@ U2 remote6798295 verified, run39127437892 success:78 unit tests, stored archive2
 
 
 U3 deployment: readiness105a8dc/run39128881988 success; controlled FF main9b39ffa→8fb7bf2 выполнен после gate проверки. Pages39129023427 реально success, HTTPS newindexe2cd7f46 совпал. CNAME/Pages/source/HTTPS configuration unchanged. Live UI verification запускается текущим checkpoint, pending до actual notices. Main/public tree4filediff, новые assets/docs/workflows не опубликованы.
+
+
+## U3 · production verification завершена
+
+Public-only8fb7bf2,4changed files/22allowlisted; production artifact побайтно равен audited995ef47b. Pages39129023427 success; live39129135130/78tests/22hashes/16internal404/32layouts/6noJS/focus/legal-text/gallery2/12axe PASS, normal TLS. Lighthouse99/100/100/69 (SEO fromintentional noindex), no run warnings. Old9b39ffa verified backup tag retained; first rollback9a0857c retained. CNAME/DNS/HTTPS/Pages/legal text/comingsoon/APK-disabled/noindex preserved. No critical regression, rollback notused. Exact API notices/metrics/manifest/rollback refs — uiux-production-release.json; historical first-release/previousUIaudit evidence не переписаны. Final Telegram report — текущий documentation checkpoint, не отдельный deployment.

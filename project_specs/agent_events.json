@@ -415,6 +415,25 @@
       "done": "Закрыт loading gap, сохранены legal text, визуальное направление и production9b39ffa. Audit35 complete/0partial/0missing/7releaseblocked/2manual из44.",
       "next": "Remote CI/Telegram proof и review нового development candidate. Остаток только approved APK/screens и реальные device/AT/native zoom checks; публикация требует отдельного решения.",
       "status": "Независимые UI fixes выполнены; весь master не закрыт; production не меняется"
+    },
+    {
+      "id": "site-uiux-production-release-u3-20261018",
+      "at": "2026-10-18T12:57:34.485776Z",
+      "type": "stage_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Production release",
+          "U3"
+        ],
+        "title": "Разрешённая публикация UI UX исправлений"
+      },
+      "checkpoint": "8fb7bf2920a89f39e1ed3a56d53ada91f468b715",
+      "verified": "Pages39129023427 иliveCI39129135130 success;78unit tests,22public hashes/16private404,main16+privacy16/noJS6/focus/gallery2themes/12axe0violations,normal TLS. Lighthouse99/100/100/69.",
+      "done": "Опубликованы только4 audited public changes наhttps://yahudeyu-app.ru/. Privacy legal text,CNAME,Pages,HTTPS,noindex,comingsoon/APK disabled сохранены; rollback9b39ffa verified ине понадобился.",
+      "next": "Стабильный production без повторного deployment. Остатокmaster:approved APK/screens иmanual devices/AT/native zoom; будущие production updates только по отдельному разрешению.",
+      "status": "Production VERIFIED; критических регрессий не выявлено; full master не закрыт"
     }
   ]
 }

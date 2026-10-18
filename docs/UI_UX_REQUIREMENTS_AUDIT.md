@@ -106,3 +106,8 @@ U22: доступный loading status, aria-busy, отсутствие stale im
 ## Удалённое подтверждение
 
 [U1 commit](https://github.com/sashaermin/ya-hudeyu/commit/2981a4578f7514d9d14cc08c4fcc033aaa06e816), [U2 commit](https://github.com/sashaermin/ya-hudeyu/commit/6798295a2d39ded17f0465348601f2793c1eb615): remote проверены, оба CI success. Последний run39127437892:78 active unit tests и реальный stored archive22files/4render views/noindex/noAPK PASS. Exact notices в uiux-u2.json. [Review ZIP](https://github.com/sashaermin/ya-hudeyu/actions/runs/39127437892/artifacts/12135589715) хранится7дней, не является размещённым preview. Для распаковки/локального просмотра — docs/FIRST_RELEASE.md; production9b39ffa не содержит этих изменений и не трогался.
+
+
+## U3 · публикация по отдельному разрешению владельца
+
+После завершённого audit владелец отдельно разрешил выпуск именно этих fixes. Они опубликованы8fb7bf2 (approved source0b706e3), Pages39129023427 иnormal-TLS live39129135130 success:22file hashes/16internal404,main16+privacy16 layouts/noJS6/focus/gallery2themes/12axe0violations. [Production proof](verification/uiux-production-release.json). Классификация44UI требований не изменена:35complete/7releaseblocked/2manual; новые непроверенные claims/screens/APK не добавлены. Фразы онеизменённом production выше относятся кпериоду аудита до отдельной авторизации U3. Rollback9b39ffa сохранён; будущие production updates требуют нового owner решения.
