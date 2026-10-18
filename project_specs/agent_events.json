@@ -206,6 +206,25 @@
       "done": "Coming-soon copy, review ZIP/manifest и CI artifact packaging,4 screenshots, безопасная процедура публикации/отката. APK и publication gates неизменны.",
       "next": "Скачать remote CI artifact, проверить source/digest и реальную архивную страницу.",
       "status": "Подготовка продолжается; публикация не разрешена"
+    },
+    {
+      "id": "site-first-release-r2-20261018",
+      "at": "2026-10-18T08:15:53Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Первый релиз",
+          "R2"
+        ],
+        "title": "Реальный download и rendered проверка review artifact"
+      },
+      "verified": "Run39110644873 success; notice117625868753:clean source/digest,22files,4renderedviews,noindex=true,APK=false,page_errors0. Telegram109.",
+      "checkpoint": "0b4eb540b57db5ca5900de6649b9154324001448",
+      "done": "CI round-trip прошёл без ожидания cloud storage egress. Проверенный website artifact и proof сохранены; publication gates неизменны.",
+      "next": "Неприменённый coming-soon policy diff с isolated tests для конкретного owner review.",
+      "status": "Подготовка продолжается; публикация не выполнялась"
     }
   ]
 }

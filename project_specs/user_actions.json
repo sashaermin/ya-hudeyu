@@ -71,13 +71,14 @@
       "source": "Codex",
       "task": "Сайт · первый инкрементальный релиз",
       "subtask": "Приёмка кандидата и отдельная coming-soon политика публикации",
-      "what": "Владелец разрешил готовить первый website-релиз без APK, одновременно запретив менять publication gates без отдельной авторизации. Кандидат с «Скоро» подготовлен независимо от APK; действующий --production по-прежнему требует APK/screens. Нужна отдельная узкая gate-авторизация перед будущим выпуском, без обхода через draft. Предмет решения и процедура/rollback: docs/FIRST_RELEASE.md.",
+      "what": "Владелец разрешил готовить первый website-релиз без APK, одновременно запретив менять publication gates без отдельной авторизации. Кандидат с «Скоро» подготовлен независимо от APK; действующий --production по-прежнему требует APK/screens. Нужна отдельная узкая gate-авторизация перед будущим выпуском, без обхода через draft. Предмет решения и процедура/rollback: docs/FIRST_RELEASE.md. CI round-trip реально прошёл: run39110644873,22files/4renderedviews; owner review artifact доступен по link. Прямой cloud download403 не блокирует подтверждённую проверку на runner.",
       "steps": [
         "Посмотрите проверенный website-preview artifact и снимки; подтвердите визуальную и юридическую приёмку или укажите замечания.",
         "Отдельно разрешите coming-soon политику production validation без APK, с сохранением site approval/noindex draft/запрета непроверенных функций и скачивания; после её реализации и проверки потребуется отдельное разрешение публикации конкретного SHA/артефакта."
       ],
       "blocked": "Только фактический первый website release и изменение gate, не разработка/приёмка кандидата.",
-      "can_continue": "Да: упаковка, artifact verification, локальный rendered preview, QA и документация без APK/main/deploy."
+      "can_continue": "Да: упаковка, artifact verification, локальный rendered preview, QA и документация без APK/main/deploy.",
+      "link": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39110644873/artifacts/12130197561"
     }
   ]
 }

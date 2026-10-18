@@ -193,3 +193,7 @@ Firefox/WebKit используют те же runtime environment variables и e
 Кандидат для визуальной приёмки: [390 light](screenshots/rc-390-light.png), [390 dark](screenshots/rc-390-dark.png), [1440 light](screenshots/rc-1440-light.png), [1440 dark](screenshots/rc-1440-dark.png). Галерея не имитирует Android UI, функции не выдуманы, download отсутствует, дата выпуска не обещана. noindex/robots Disallow и data approvals сохранены.
 
 Архив проверен на повторяемость и allowlist, включая неизменённые CNAME/privacy и отсутствие внутренних docs/config/APK. Local manifest честно помечает dirty tree; окончательный CI source/digest проверяется отдельно вR2. Публикация/изменение production gate не выполнялись. [Приёмка, разрешения и план отката](FIRST_RELEASE.md).
+
+## R2 · фактический CI artifact
+
+[Verified artifact](https://github.com/sashaermin/ya-hudeyu/actions/runs/39110644873/artifacts/12130197561), source0b4eb54. Run39110644873 success: upload→download реального artifact, clean source/digest/22file manifests PASS, actual Chrome rendering390/1440×2themes PASS, noindex/noAPK/page_errors0. Отдельный notice117625868753 — доказательство выполнения, не только success job. [Evidence](verification/review-artifact-status.json); Telegram109. Прямое cloud скачивание403 остаётся отдельным ограничением среды, local rehearsal не подменяет remote proof; remote proof получен на GitHub runner. Это архив для просмотра, не hosted preview/production publication.
