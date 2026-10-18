@@ -1,0 +1,64 @@
+name: САЙТ — проверки и Telegram
+on:
+  push:
+    branches: ['work/**']
+permissions:
+  contents: read
+concurrency:
+  group: website-checks-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify notification script
+        run: python3 -m unittest discover -s .github/scripts -p 'test_*.py' -v
+      - name: Validate registries
+        run: |
+          python3 .github/scripts/telegram_notify.py actions
+          python3 .github/scripts/telegram_notify.py events
+      - name: Website build
+        run: python3 tools/build.py
+      - name: Website regression tests
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - name: JavaScript syntax
+        run: |
+          node --check scripts/theme.js
+          node --check scripts/site.js
+  notify:
+    needs: verify
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/cache/restore@v4
+        with:
+          path: .telegram-ledger
+          key: website-telegram-${{ github.ref }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: website-telegram-${{ github.ref }}-
+      - name: Report verified commits and registered events
+        if: needs.verify.result == 'success'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 .github/scripts/telegram_notify.py commits --ledger .telegram-ledger/sent.txt
+      - name: Report meaningful verification failure
+        if: needs.verify.result != 'success'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          WEBSITE_CHECK_STATUS: ${{ needs.verify.result }}
+        run: python3 .github/scripts/telegram_notify.py ci-report --workflow 'САЙТ — проверки' --status "$WEBSITE_CHECK_STATUS"
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: .telegram-ledger
+          key: website-telegram-${{ github.ref }}-${{ github.run_id }}-${{ github.run_attempt }}

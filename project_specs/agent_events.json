@@ -1,0 +1,21 @@
+{
+  "about": "Append-only события сайта. Не дублировать состояние roadmap: канон IMPLEMENTATION_PROGRESS.md.",
+  "events": [
+    {
+      "id": "site-w1-infrastructure-verified-20261018",
+      "at": "2026-10-18T06:37:17Z",
+      "type": "stage_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "W1"
+        ],
+        "title": "Общие инструкции, handoff и Telegram-инфраструктура"
+      },
+      "verified": "Локально: 30 notification tests PASS, 11 build/workflow tests PASS; workflow YAML parsed. Фактическая доставка и Actions run не подтверждены (API 403).",
+      "status": "Независимая разработка продолжается; Telegram delivery pending",
+      "checkpoint": "24ca8d51ec4c194ee84d72392194b923a843cbb7"
+    }
+  ]
+}

@@ -1,3 +1,5 @@
 _site/
 __pycache__/
 .test-results/
+
+.telegram-ledger/
