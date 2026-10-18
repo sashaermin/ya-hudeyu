@@ -137,3 +137,10 @@ Firefox default content sandbox не может создать nested uid_map в
 GitHub Pages API теперь подтвердил `build_type: legacy`, source `main:/`, status built. Read-only HTTPS-проверки `/` и `/privacy.html`: HTTP 200 и полное побайтное соответствие текущему origin/main. Production не менялся.
 
 Actions run [39106472358](https://github.com/sashaermin/ya-hudeyu/actions/runs/39106472358): verify success (36 notify + 13 build/workflow tests); notify failure на новом check-config. Check-run annotations однозначно указывают на отсутствующие TELEGRAM_BOT_TOKEN и TELEGRAM_CHAT_ID для workflow. Metadata secrets API по-прежнему запрещён integration scope, значения не извлекались. Доставка **не проверена/не работает до настройки bindings**. Existing registry обновлён, повторный alert с новым id не создавался.
+
+
+## W2B · доставка после настройки bindings
+
+40/40 notification tests PASS, без skip: recovery старых неизменённых action/event records, отложенное resolved, partial failure/retry и dedup предупреждений. Предыдущие успешные checks не заменялись, новые проверки добавлены по конкретному найденному случаю: secret bindings отсутствуют, поэтому diff-only sender терял бы уведомления об уже существующих blockers/events после настройки.
+
+Реальный notify пока не успешен: отсутствуют два Actions bindings. Новые check-run notices содержат message_id только после реального Telegram ok=true; будущий агент проверяет annotations, а не предполагает доставку по наличию workflow. Package versions/SHA для QA runtime дополнительно сохранены в [linux-qa-packages.json](verification/linux-qa-packages.json), бинарные архивы в Git не добавлялись.

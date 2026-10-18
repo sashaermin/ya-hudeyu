@@ -111,6 +111,25 @@
       "checkpoint": "46b824dd99c3c516fd2c2bb679f8a8fc72e1426d",
       "done": "Publication gate default false; production indexing requires separate site approval. JSON-LD round-trip fixed; current UI artifact unchanged.",
       "next": "Восстановление неотправленных action/event records после настройки Telegram bindings."
+    },
+    {
+      "id": "site-w2b-notification-recovery-20261018",
+      "at": "2026-10-18T07:19:54Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "W2",
+          "B"
+        ],
+        "title": "Recovery пропущенных уведомлений и проверяемый delivery ack"
+      },
+      "verified": "40 notification tests PASS, включая unchanged backlog, resolved recovery, partial retry и duplicate warning.",
+      "status": "Независимые задачи выполнены; внешние prerequisites зафиксированы",
+      "checkpoint": "237fc81f4f4e97da471a511b79471cb2072c6ec7",
+      "done": "Sender восстанавливает недоставленные open/resolved actions и явные events; ledger не повторяет delivered keys и warnings. Успешный Telegram ответ даёт message_id notice.",
+      "next": "Проверить Actions checkpoint; после настройки bindings подтвердить Telegram accepted. Release content ждёт утверждённого APK."
     }
   ]
 }

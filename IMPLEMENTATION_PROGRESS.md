@@ -8,7 +8,7 @@
 | 1. Дизайн-основа | Оригинальный бренд, CSS-токены и обе темы, адаптивный каркас | Реализован `356eaef` | Сверены оригинальные ресурсы; node syntax PASS. Браузерная матрица/контраст — этап 4. |
 | 2. Контент / секции | Hero, возможности, gallery, установка, FAQ, footer | Каркас и взаимодействия `24ca8d5`; релизный контент частично заблокирован | Draft build PASS; JS syntax PASS; CNAME/privacy побайтно сохранены. Реальные скриншоты, публичные функции и hero screenshot не добавлены без подтверждённой сборки. |
 | 3. Загрузка / SEO | Проверенный APK, checksum/версия/совместимость, метатеги, performance | В работе | Download gate реализован, draft noindex, production build блокируется. Gate tests PASS, WOFF2/SEO/релизная документация реализованы (`a14a2c6`); APK ожидает утверждения. |
-| 4. QA | 8 ширин × 2 темы; клавиатура, touch, ссылки, axe/Lighthouse, screenshots | В работе | 16/16 Chromium viewport/theme PASS, 4 axe runs 0 violations, keyboard/touch/gallery PASS. Lighthouse 96/100/100/69 (draft noindex); 4 screenshots сохранены. Остальные браузеры/устройства и release content pending. См. docs/QA.md. |
+| 4. QA | 8 ширин × 2 темы; клавиатура, touch, ссылки, axe/Lighthouse, screenshots | В работе | 16/16 Chromium viewport/theme PASS, 4 axe runs 0 violations, keyboard/touch/gallery PASS. Lighthouse 96/100/100/69 (draft noindex); 4 screenshots сохранены. Firefox/WebKit также проверены (4B); физические устройства, отдельные Edge/Safari и release content pending. См. docs/QA.md. |
 | 5. Публикация | Одобрение владельца, main/deploy, HTTPS/APK/rollback | Не разрешена, не начата | Нельзя менять main, PR/merge/deploy/publish APK без отдельного разрешения. |
 
 ## Дополнительный разрешённый этап W1 — общая работа агентов и уведомления
@@ -21,8 +21,8 @@
 
 - APK не утверждён (прямое подтверждение владельца 18.10.2026); registry `site-approved-android-release`.
 - Нет подтверждённых release screenshots; не подменять интерфейс.
-- Наличие Telegram Actions secrets/доставка неизвестны из-за API 403; registry `site-telegram-settings-verification`.
-- Digest 21:00 МСК опционально отложен: требует default-branch workflow, main не разрешён.
+- Отсутствие двух Telegram bindings подтверждено Actions probe; доставка заблокирована, registry `site-telegram-settings-verification`.
+- Digest 21:00 МСК обязателен и подготовлен в website-digest.yml; активация требует разрешения на default-branch workflow, main не разрешён.
 - Визуальное сходство подтверждает владелец на этапе приёмки, юридические изменения согласуются отдельно.
 
 ## Журнал проверок
@@ -51,3 +51,5 @@ W2A проверен: автономная инструкция сохранен
 4B завершён в доступном объёме: Firefox153/WebKit26.5 по16 ширин/тем, по4 axe runs (0 violations), keyboard/focus/theme/gallery/no-JS PASS; runtime helper и engine QA recipes проверены. Firefox touch и WebKit native swipe/device Safari/Edge остаются отдельными непроведёнными checks. Production HTTPS побайтно равен main; Pages legacy source main:/ подтверждён read-only. Доставка Telegram теперь конкретно блокируется missing bindings по check-run annotations39106472358.
 
 3B: отдельный gate site-publication (data/publication.json=false) и независимые APK/site approval tests реализованы. 17 build/workflow tests PASS; исходный draft HTML сохраняется побайтно, browser/Lighthouse QA не повторялся. JSON-LD escaping исправлен и подтверждён round-trip test. Main/deploy/noindex/download статусы не менялись.
+
+W2B: восстановление пропущенных action/event records с ledger + dedup API warnings реализовано; 40 notification tests PASS. Итог текущих focused unit suites: 40 notification + 17 build/workflow = 57 PASS (на актуальных затронутых inputs). Browser artifact после3B побайтно прежний, поэтому 48 viewport/theme runs и12 axe runs валидны без повторения. Остаток: настройкиbindings, разрешениеdigestmain, APK/screens и owner/device release acceptance.

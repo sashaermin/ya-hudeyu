@@ -503,9 +503,14 @@ def run_commits(args) -> int:
     # USER ACTION REQUIRED alerts go out before anything else in the push.
     if after != ZERO_SHA and before != ZERO_SHA:
         try:
-            opened, resolved = action_transitions(gh.file_at(ACTIONS_FILE, before), gh.file_at(ACTIONS_FILE, after))
+            current_actions = load_actions(gh.file_at(ACTIONS_FILE, after))
+            # Recover records missed while bindings/delivery were unavailable. Stable ledger
+            # keys, not only the previous commit diff, decide whether a record was delivered.
+            opened = [item for item in current_actions.values() if item["status"] == "open"]
+            resolved = [item for item in current_actions.values() if item["status"] == "resolved"]
         except Exception as e:
-            opened, resolved = [], []; print(f"::warning::Не удалось прочитать реестр действий: {type(e).__name__}")
+            failures += 1
+            opened, resolved = [], []; print(f"::error::Не удалось прочитать реестр действий: {type(e).__name__}")
         for a, kind in [(a, "open") for a in opened] + [(a, "resolved") for a in resolved]:
             key = f"action:{branch}:{a['id']}:{kind}"
             if key in ledger:
@@ -530,20 +535,26 @@ def run_commits(args) -> int:
             with open(args.ledger, "a", encoding="utf-8") as f:
                 f.write(key + "\n")
             print(f"Отправлено: {c['sha'][:7]} (message_id {message_id})")
+            if message_id is not None:
+                print(f"::notice title=Telegram accepted::commit {c['sha']} message_id {message_id}")
         except RuntimeError as e:
             failures += 1
             print(f"::error::Не удалось отправить уведомление о коммите {c['sha'][:7]}: {e}")
-    if warnings and commits:
+    warning_key = f"warning:{branch}:{after}"
+    if warnings and commits and warning_key not in ledger:
         try:
             send(token, chat, fit(f"<b>⚠️ {esc(PROJECT)}</b>: " + esc(" ".join(warnings)) + f"\n<b>Источник:</b> {SOURCE_ACTIONS}\n<b>Ветка:</b> <code>{esc(branch)}</code>"))
+            with open(args.ledger, "a", encoding="utf-8") as stream:
+                stream.write(warning_key + "\n")
         except RuntimeError as e:
             failures += 1; print(f"::error::Не удалось отправить предупреждение: {e}")
     # Task / roadmap transition events recorded in this push (explicit agent state, never inferred).
     if after != ZERO_SHA and before != ZERO_SHA:
         try:
-            events = new_events(gh.file_at(EVENTS_FILE, before), gh.file_at(EVENTS_FILE, after))
+            events = new_events(None, gh.file_at(EVENTS_FILE, after))
         except Exception as e:
-            events = []; print(f"::warning::Не удалось прочитать журнал событий: {type(e).__name__}")
+            failures += 1
+            events = []; print(f"::error::Не удалось прочитать журнал событий: {type(e).__name__}")
         head_source = agent_source(commits[-1]["message"], commits[-1]["author"]) if commits else SOURCE_UNKNOWN
         for ev in events:
             key = f"event:{ev['id']}"

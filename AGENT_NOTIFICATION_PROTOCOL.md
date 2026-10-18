@@ -6,7 +6,7 @@
 
 `.github/workflows/website-checks.yml` на push `work/**` выполняет тесты и сборку. Только после успешных проверок уведомляет о коммитах, действиях и явно зарегистрированных этапах. При провале проверок отправляет отдельный отчёт об ошибке; непроверенный коммит не называется проверенным. Отправитель — `.github/scripts/telegram_notify.py`, stdlib Python. Все сообщения содержат **САЙТ «Я ХУдЕЮ»**. Android не затрагивается.
 
-GitHub Actions получает repository secrets `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` (тот же бот/чат) и временный `github.token` с `contents:read`. Значения не читать и не выводить. Облачные локальные переменные не заменяют Actions secrets. Имена секретов пытались проверить через `gh api …/actions/secrets`: API запретил доступ (403). Существование/работоспособность bindings поэтому пока **не подтверждены**, а не объявлены отсутствующими. Доставка и CI должны проверяться в GitHub Actions, когда есть доступ.
+GitHub Actions получает repository secrets `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` (тот же бот/чат) и временный `github.token` с `contents:read`. Значения не читать и не выводить. Облачные локальные переменные не заменяют Actions secrets. Metadata API списка секретов возвращает 403 Resource not accessible by integration. Однако probe внутри Actions run 39106472358 подтвердил отсутствие обоих bindings для workflow: TELEGRAM_BOT_TOKEN и TELEGRAM_CHAT_ID. Verify успешен, notify заблокирован до их настройки в репозитории сайта. Значения не извлекались, доставка не подтверждена.
 
 ## Единые записи
 
@@ -45,3 +45,10 @@ Cache — вспомогательное хранилище, не вечная �
 Эта проверка не блокирует сайт. Не просить новый токен только из-за недоступности API или отсутствия локальных переменных.
 
 Формат stage report: заголовок «САЙТ «Я ХУдЕЮ»», событие, агент, этап from/to, `Сделано` (поле done), `Проверено` (verified), `Далее` (next или to.title), статус и commit/checkpoint ссылки. CLI `event` поддерживает `--done` и `--next`; для новых событий заполнять их конкретно.
+
+
+## Recovery после отсутствующих bindings / частичного сбоя
+
+На каждом успешном verify sender читает текущие action/event records, а ledger решает, что уже доставлено. Неотправленные open/resolved действия и валидные явно зарегистрированные этапы восстанавливаются, даже если их JSON не менялся в последнем commit. Повторный run пропускает delivered keys; частичный сбой оставляет failed item для следующей попытки, сохраняя успешные items. Полный API-сбой чтения реестра делает notify job неуспешным, не скрывается как успешная доставка.
+
+Повторные API fallback warnings также имеют ledger key branch/head. После реального Telegram ok=true ответ message_id для commit появляется как check-run notice `Telegram accepted`; это проверяемое подтверждение приёма Telegram, не доказательство прочтения человеком. Локальные tests полностью mock, никаких сообщений из cloud-сессии агент не отправляет. Старые commit-сообщения прошлых failed runs автоматически не backfill-ятся; сохраняются актуальные commit notifications и backlog явных event/action records. Ledger cache ограничения описаны выше.

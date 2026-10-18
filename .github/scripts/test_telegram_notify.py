@@ -417,5 +417,55 @@ class AutonomousDigestTest(unittest.TestCase):
             self.assertIn("Continue browser QA",text);self.assertIn("Ждут вашего действия",text)
 
 
+class NotificationRecoveryTest(unittest.TestCase):
+    def run_recovery(self,folder,actions,events,fail_first=False):
+        event_path=os.path.join(folder,"event.json");ledger=os.path.join(folder,"sent.txt")
+        with open(event_path,"w") as stream:json.dump({"before":"b"*40,"after":"e"*40,"commits":[]},stream)
+        gh=FakeGitHub({("b"*40,"e"*40):[api_commit("1"*40,"checkpoint\n\nAgent: Codex")]},
+          {(tn.ACTIONS_FILE,ref):actions for ref in ["b"*40,"e"*40]})
+        for ref in ["b"*40,"e"*40]:gh.files[(tn.EVENTS_FILE,ref)]=events
+        sent=[]
+        def sender(token,chat,text):
+            if fail_first and "ТРЕБУЕТСЯ ВАШЕ ДЕЙСТВИЕ" in text:raise RuntimeError("fixture delivery failure")
+            sent.append(text);return len(sent)
+        variables={"GITHUB_EVENT_PATH":event_path,"GITHUB_REPOSITORY":"o/r","GITHUB_REF_NAME":"work/website-v2","TELEGRAM_BOT_TOKEN":"test-only","TELEGRAM_CHAT_ID":"test-only"}
+        with mock.patch.dict(os.environ,variables),mock.patch.object(tn,"GitHub",return_value=gh),mock.patch.object(tn,"send",side_effect=sender),mock.patch("sys.stdout",io.StringIO()):
+            result=tn.main(["commits","--ledger",ledger])
+        return result,sent
+
+    def test_api_fallback_warning_is_not_resent_on_rerun(self):
+        with tempfile.TemporaryDirectory() as folder:
+            event_path=os.path.join(folder,'event.json');ledger=os.path.join(folder,'sent.txt')
+            with open(event_path,'w') as stream:json.dump(dict(before='b'*40,after='e'*40,commits=[dict(id='1'*40,message='fixture',author={'name':'test'})]),stream)
+            gh=FakeGitHub(fail_compare=True);variables=dict(GITHUB_EVENT_PATH=event_path,GITHUB_REPOSITORY='o/r',GITHUB_REF_NAME='work/website-v2',TELEGRAM_BOT_TOKEN='test-only',TELEGRAM_CHAT_ID='test-only')
+            with mock.patch.dict(os.environ,variables),mock.patch.object(tn,'GitHub',return_value=gh),mock.patch.object(tn,'send',return_value=1) as send,mock.patch('sys.stdout',io.StringIO()):
+                self.assertEqual(0,tn.main(['commits','--ledger',ledger]));self.assertEqual(2,send.call_count)
+                send.reset_mock();self.assertEqual(0,tn.main(['commits','--ledger',ledger]));self.assertEqual(0,send.call_count)
+
+    def test_old_unchanged_action_and_event_are_recovered_once(self):
+        with tempfile.TemporaryDirectory() as folder:
+            events=evfile(ev("missed-stage",typ="stage_completed"))
+            result,sent=self.run_recovery(folder,alert(),events)
+            self.assertEqual(0,result);self.assertEqual(3,len(sent))
+            self.assertIn("ТРЕБУЕТСЯ ВАШЕ ДЕЙСТВИЕ",sent[0]);self.assertIn("missed-stage",sent[2])
+            result,sent=self.run_recovery(folder,alert(),events)
+            self.assertEqual(0,result);self.assertEqual([],sent)
+
+    def test_missed_resolution_is_recovered_without_duplicate(self):
+        with tempfile.TemporaryDirectory() as folder:
+            actions=alert(status="resolved",resolution="Resolved fixture")
+            result,sent=self.run_recovery(folder,actions,evfile())
+            self.assertEqual(0,result);self.assertEqual(2,len(sent));self.assertIn("Resolved fixture",sent[0])
+            self.assertEqual((0,[]),self.run_recovery(folder,actions,evfile()))
+
+    def test_partial_delivery_retries_only_failed_action(self):
+        with tempfile.TemporaryDirectory() as folder:
+            events=evfile(ev("stage",typ="stage_completed"))
+            result,sent=self.run_recovery(folder,alert(),events,fail_first=True)
+            self.assertEqual(1,result);self.assertEqual(2,len(sent))
+            result,sent=self.run_recovery(folder,alert(),events)
+            self.assertEqual(0,result);self.assertEqual(1,len(sent));self.assertIn("ТРЕБУЕТСЯ ВАШЕ ДЕЙСТВИЕ",sent[0])
+
+
 if __name__ == "__main__":
     unittest.main()

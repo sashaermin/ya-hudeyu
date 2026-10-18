@@ -1,0 +1,52 @@
+[
+  {
+    "file": "libcairo-script-interpreter2_1.18.4-1+b1_amd64.deb",
+    "metadata": "Package: libcairo-script-interpreter2\nVersion: 1.18.4-1+b1\nArchitecture: amd64",
+    "sha256": "52b45eb6e49c53c0a35ef45555a9457b094482eafef27d27cd777b916a2f06de"
+  },
+  {
+    "file": "libgles2_1.7.0-1+b2_amd64.deb",
+    "metadata": "Package: libgles2\nVersion: 1.7.0-1+b2\nArchitecture: amd64",
+    "sha256": "e12c18aa77939d122ee1dea520ba0440b97dc19200b7396e03dff03a3ece74c1"
+  },
+  {
+    "file": "libglvnd0_1.7.0-1+b2_amd64.deb",
+    "metadata": "Package: libglvnd0\nVersion: 1.7.0-1+b2\nArchitecture: amd64",
+    "sha256": "887f74008166549ce9e100c906aa937e95d6e5ce1c8d86efe8c95fd953359b9c"
+  },
+  {
+    "file": "libgraphene-1.0-0_1.10.8-5_amd64.deb",
+    "metadata": "Package: libgraphene-1.0-0\nVersion: 1.10.8-5\nArchitecture: amd64",
+    "sha256": "ddcf98f17f6c0a7c76974d7238be1468e59c186034c1b806638d32d9f446ea6e"
+  },
+  {
+    "file": "libgtk-4-1_4.18.6+ds-2_amd64.deb",
+    "metadata": "Package: libgtk-4-1\nVersion: 4.18.6+ds-2\nArchitecture: amd64",
+    "sha256": "51ab1114a57702e703cce745c24caf5bd31ec1d2a900c72fd15fe47c6c030e68"
+  },
+  {
+    "file": "libharfbuzz-icu0_10.2.0-1+deb13u1_amd64.deb",
+    "metadata": "Package: libharfbuzz-icu0\nVersion: 10.2.0-1+deb13u1\nArchitecture: amd64",
+    "sha256": "0b45d951629e98673c0da73b2bcd0886a467d833bb3b7499892a168f247165d2"
+  },
+  {
+    "file": "libhidapi-hidraw0_0.14.0-1+b2_amd64.deb",
+    "metadata": "Package: libhidapi-hidraw0\nVersion: 0.14.0-1+b2\nArchitecture: amd64",
+    "sha256": "89c546cb55be403ce63fe668baff2515979100a30fa07e2b97de186b9c07f01e"
+  },
+  {
+    "file": "libhyphen0_2.8.8-7+b2_amd64.deb",
+    "metadata": "Package: libhyphen0\nVersion: 2.8.8-7+b2\nArchitecture: amd64",
+    "sha256": "fa9dca7b8cf1381fd52800c44a385c5725a78a88bd705f7c39b1046a5293435e"
+  },
+  {
+    "file": "liblzo2-2_2.10-3+b1_amd64.deb",
+    "metadata": "Package: liblzo2-2\nVersion: 2.10-3+b1\nArchitecture: amd64",
+    "sha256": "f3032201fe2928a87e13f05ce256ff3ac2a7860c7e594dc51ae6d7348a4466ce"
+  },
+  {
+    "file": "libmanette-0.2-0_0.2.12-1_amd64.deb",
+    "metadata": "Package: libmanette-0.2-0\nVersion: 0.2.12-1\nArchitecture: amd64",
+    "sha256": "98841a467692c46fd1870275113235691ebbfe71a3524f6b2a0fa7e9c33c6e56"
+  }
+]
