@@ -25,7 +25,7 @@ def legal_hash(text):
 
 def run(base, output, engine="chromium", executable=None):
     output.mkdir(parents=True,exist_ok=True)
-    result={'scope':'Local development UI audit only; production unchanged','privacy_matrix':[], 'nojs':[], 'focus':[], 'privacy_axe':[], 'privacy_text_adaptation':[], 'page_errors':[]}
+    result={'scope':'Live production HTTPS UI verification' if base.startswith('https://yahudeyu-app.ru/') else 'Local development UI audit only; production unchanged','privacy_matrix':[], 'nojs':[], 'focus':[], 'privacy_axe':[], 'privacy_text_adaptation':[], 'page_errors':[]}
     assert legal_hash((ROOT/'privacy.html').read_text())==json.loads((ROOT/'docs/verification/uiux-before.json').read_text())['legal_content_sha256']
     result['legal_content_unchanged']=True
     with sync_playwright() as p:

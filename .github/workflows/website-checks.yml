@@ -58,15 +58,16 @@ jobs:
         if: "contains(github.event.head_commit.message, 'Verify-Live-Production: true')"
         run: |
           production_browser=$(command -v google-chrome || command -v google-chrome-stable || command -v chromium)
-          .test-results/preview-qa-venv/bin/python tests/production_qa.py --executable "$production_browser"
+          npm ci --prefix tools/qa --ignore-scripts --no-audit --no-fund
+          .test-results/preview-qa-venv/bin/python tests/production_qa.py --executable "$production_browser" --manifest docs/verification/uiux-production-release.json --uiux
       - name: Measure mobile production Lighthouse (read-only)
         if: "contains(github.event.head_commit.message, 'Verify-Live-Production: true')"
         run: |
-          npm ci --prefix tools/qa --ignore-scripts --no-audit --no-fund
           production_browser=$(command -v google-chrome || command -v google-chrome-stable || command -v chromium)
           CHROME_PATH="$production_browser" tools/qa/node_modules/.bin/lighthouse https://yahudeyu-app.ru/ --chrome-flags="--headless --no-sandbox" --only-categories=performance,accessibility,best-practices,seo --output=json --output-path=.test-results/production/lighthouse.json --quiet
           python3 tools/qa/summarize_lighthouse.py .test-results/production/lighthouse.json
       - name: Save review verification evidence
+        if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, Node24
         with:
           name: website-preview-verification-${{ github.sha }}-attempt-${{ github.run_attempt }}
@@ -74,6 +75,10 @@ jobs:
             .test-results/review-artifact.json
             .test-results/production/production-results.json
             .test-results/production/browser-results.json
+            .test-results/production/uiux/uiux-results.json
+            .test-results/production/uiux/*.png
+            .test-results/production/gallery/gallery-loading-results.json
+            .test-results/production/gallery/*.png
             .test-results/production/lighthouse.json
             .test-results/production/lighthouse.summary.json
           include-hidden-files: true

@@ -15,6 +15,8 @@ import urllib.error
 import urllib.request
 
 import browser_qa
+import uiux_qa
+import gallery_loading_qa
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = 'https://yahudeyu-app.ru/'
@@ -22,7 +24,10 @@ PRIVATE = ['AGENTS.md', 'AGENT_HANDOFF.md', 'AGENT_DEVELOPMENT_PROTOCOL.md',
            'docs/FIRST_RELEASE.md', 'data/publication.json', 'data/release.json',
            'project_specs/WEBSITE_MASTER_TZ_2026-10-18.md',
            '.github/workflows/website-checks.yml', 'tools/build.py',
-           'tests/test_build.py', '.git/config', 'README.md']
+           'tests/test_build.py', '.git/config', 'README.md',
+           'docs/UI_UX_REQUIREMENTS_AUDIT.md',
+           'project_specs/UIUX_PRODUCTION_AUTHORIZATION_2026-10-18.md',
+           'gallery-loading-fixture', 'gallery-qa-fixture']
 
 
 def fetch(path):
@@ -37,8 +42,8 @@ def fetch(path):
         return dict(path=path, status=error.code)
 
 
-def run(executable, output):
-    manifest = json.loads((ROOT/'docs/verification/first-production-release.json').read_text())
+def run(executable, output, manifest_path=None, detailed_ui=False):
+    manifest = json.loads((manifest_path or ROOT/'docs/verification/uiux-production-release.json').read_text())
     records = manifest['files']
     expected_commit = manifest['prepared_production_commit']
     result = dict(checked_at=datetime.now(timezone.utc).isoformat(), base=BASE,
@@ -63,10 +68,21 @@ def run(executable, output):
             assert 'downloadUrl' not in page
         with urllib.request.urlopen(BASE+'robots.txt', timeout=30) as response:
             assert response.read() == b'User-agent: *\nDisallow: /\n'
-        browser_qa.run(BASE, output, None, executable=executable)
+        axe = str(ROOT/'tools/qa/node_modules/axe-core/axe.min.js') if detailed_ui else None
+        browser_qa.run(BASE, output, axe, executable=executable)
         browser = json.loads((output/'browser-results.json').read_text())
         assert len(browser['matrix']) == 16
         assert not browser['page_errors'] and not browser['failed_requests']
+        if detailed_ui:
+            uiux_qa.run(BASE, output/'uiux', executable=executable)
+            gallery_loading_qa.run(BASE, output/'gallery', executable=executable)
+            ui = json.loads((output/'uiux/uiux-results.json').read_text())
+            gallery = json.loads((output/'gallery/gallery-loading-results.json').read_text())
+            result['uiux'] = dict(privacy_matrix=len(ui['privacy_matrix']), nojs_cases=len(ui['nojs']),
+                                  legal_text_unchanged=ui['legal_content_unchanged'],
+                                  keyboard_focus=ui['focus'], gallery_theme_cases=len(gallery),
+                                  axe_runs=len(browser['axe'])+len(ui['privacy_axe'])+len(gallery)*2,
+                                  axe_violations=0, gallery_scope='Browser-only mascot fixtures with actual deployed JS/assets, not published Android screenshots')
         result.update(status='PASS', public_files_verified=len(records),
                       private_paths_404=len(PRIVATE), browser_version=browser['browser_version'],
                       matrix_runs=16, interactions=browser['interactions'],
@@ -77,6 +93,8 @@ def run(executable, output):
     finally:
         (output/'production-results.json').write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n')
     if os.environ.get('GITHUB_ACTIONS') == 'true':
+        if detailed_ui:
+            print('::notice title=Production UI UX verified::' + json.dumps(dict(production_commit=expected_commit, **result['uiux']), ensure_ascii=False))
         print(f'::notice title=Production website verified::commit {expected_commit}; '
               f'public_files {len(records)}; internal_404 {len(PRIVATE)}; '
               'browser_matrix 16; noindex=true; APK=false; TLS=true; page_errors=0')
@@ -86,5 +104,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--executable', required=True)
     parser.add_argument('--output', type=Path, default=ROOT/'.test-results/production')
+    parser.add_argument('--manifest', type=Path)
+    parser.add_argument('--uiux', action='store_true', help='Also verify audited privacy/navigation and browser-only gallery loading fixtures')
     args = parser.parse_args()
-    run(args.executable, args.output)
+    run(args.executable, args.output, args.manifest, args.uiux)

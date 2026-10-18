@@ -66,3 +66,8 @@ Actual Pages/HTTPS/22 public hashes/12 internal404/live16 browser cases подт
 
 
 Production Lighthouse verified в run39125369226: mobile99/100/100/69; первые3 targets достигнуты, SEO69 вызван сохранённым noindex. [Actual evidence](verification/production-lighthouse.json). Это один lab run, не physical-device/real-user метрика. Новых production defects не найдено; ничего повторно не deploy. Первое website-owner действие resolved, APK/download и manual/device требования полного master остаются отдельно открыты.
+
+
+## Авторизованный UI/UX update U3
+
+Новый конкретный scope — [разрешение владельца](../project_specs/UIUX_PRODUCTION_AUTHORIZATION_2026-10-18.md): publish audited UI from0b706e3, без дополнительного подтверждения. [Manifest](verification/uiux-production-release.json), [rollback](verification/uiux-production-rollback.json); прежняя first-release evidence неизменна. Prepared public-only main commit8fb7bf2 меняет4paths, текущий rollback9b39ffa. Production build сновым approval_reference равен audited ZIP995ef47b; noindex/coming-soon/APK disabled/legal text сохранены. Это не merge dev branch и не изменение deployment configuration. Readiness CI обязателен до main push; расширенный normal-TLS live QA после completed Pages. Только confirmed critical regression допускает согласованный revert к9b39ffa (новый commit с parent=публикационный SHA/tree=rollback tree, без reset/force-push); после revert проверить Pages/HTTPS/hashes изаписать failure evidence. Старый rollback9a0857c не удалять.

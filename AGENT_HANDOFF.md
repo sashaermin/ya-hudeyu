@@ -3,11 +3,11 @@
 ## Текущее состояние и точка продолжения
 
 - Проект: официальный сайт «Я ХУдЕЮ», repository `sashaermin/ya-hudeyu`, branch `work/website-v2`.
-- Последний независимо verified remote **до этого documentation checkpoint**: `6798295a2d39ded17f0465348601f2793c1eb615` (run39127437892 success; archive/Telegram notices вuiux-u2.json). Фактический последний SHA всегда получить через fetch/ls-remote; файл не содержит собственный будущий SHA.
+- Последний независимо verified remote **до этого documentation checkpoint**: `0b706e3cdec864afe589e02b4c45986ac559e854` (run39127601754 success/Telegram270). Фактический последний SHA всегда получить через fetch/ls-remote; файл не содержит собственный будущий SHA.
 - Последний ответственный агент: Codex, 18.10.2026 11:51 МСК. Другой активный website writer не известен; эта историческая запись не доказывает отсутствия активной сессии при takeover. Только один писатель ветки, Android Claude Code не затрагивать.
 - Стадия: первый инкрементальный website-кандидат **подготовлен к приёмке**, с «Скоро для Android», независимо от APK. Первый принятый coming-soon выпуск опубликован и проверен; мастер-ТЗ не завершено. Исторические ограничения ниже действуют вне этой узкой авторизации.
 
-**Exact next:** UI/UX-аудит U0–U2 завершён с verified remote6798295/run39127437892 success. Не повторять исправления/неизменённые suites. Для дальнейших неполных требований нужны approved APK/screens (7 UI items) или actual manual device/Safari/AT/native zoom session (2 items); точные deficiency/impact/acceptance — docs/UI_UX_REQUIREMENTS_AUDIT.md. Независимых разрешённых UI defects больше не выявлено. Новый development candidate для owner review: artifact12135589715/run39127437892 (7дней), снимки before/after в docs/screenshots/uiux; это ZIP, не hosted preview. Production9b39ffa без нового разрешения не менять, old approval не разрешает эти UI changes; APK approval остаётся false, indexing_approved=false. Перед окончанием текущего doc checkpoint подтвердить remote/CI/Telegram, не создавать endless docs commits ради собственного SHA.
+**Exact next:** завершить явно авторизованный UI/UX production release. Approved source0b706e3, prepared public-only commit8fb7bf2920a89f39e1ed3a56d53ada91f468b715 (parent/current main9b39ffa), ровно index.html/privacy.html/scripts/site.js/styles/site.css. Проверить readiness CI текущего checkpoint; затем сверить main и push подготовленного commit, дождаться actual Pages. После deployment — read-only расширенный live QA через существующий workflow с trailer Verify-Live-Production: true, manifest docs/verification/uiux-production-release.json; обычный TLS runner, никаких CA changes. Scope — project_specs/UIUX_PRODUCTION_AUTHORIZATION_2026-10-18.md, дополнительное подтверждение не требуется. Rollback9b39ffa/tag rollback/website-uiux-release-2026-10-18 verified22HTTPSfiles. При confirmed critical regression — разрешённый rollback/revert public commit и verification. APK approval остаётся false, indexing_approved=false. Никаких future/unrelated releases/digest/редизайна; full master7releaseblocked/2manual остаётся открытым.
 
 ## Что предъявлено владельцу
 
@@ -110,3 +110,8 @@ UI QA server: python3 -m http.server 8012 --bind 127.0.0.1 --directory _site (з
 
 
 U2 remote6798295 verified, run39127437892 success:78 unit tests, stored archive22files/4views/noindex/noAPK/page_errors0. Exact archive/Telegram notices иreview artifact URL сохранены в uiux-u2.json. Production HTTPS200/index hash af74145d прежний, main9b39ffa. Никаких дополнительных manual/device/AT PASS не заявлять. Все independently executable UI requirements закрыты, полный master частично открыт по указанным реальным зависимостям.
+
+
+## U3 · UI/UX release авторизован, подготовлен
+
+Новая прямая owner authorization покрывает audited UI corrections, не новые features. Remote0b706e3/main9b39ffa сверены; Pages legacy main:/, cname/HTTPS unchanged. Backup22 Git/HTTPS hashes иremote rollback tag verified. Production build прошёл existing gates; все22 public bytes равны approved preview995ef47b; изменены только4 разрешённых public paths. Source UI/build/site/release/CNAME равны approved0b. Legal text/hash прежний. Fresh preflight27unit/32 layouts/12axe0violations/6noJS/focus/gallery2themes PASS. Related live helper/workflow расширен для manifest текущего выпуска и уже существующих UI/generic-gallery suites, normal TLS/no deployment. Before push main дождаться readiness verify; после push смотреть actual Pages/live proof, не выдавать prepared state за success.

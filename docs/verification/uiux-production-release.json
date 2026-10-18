@@ -1,0 +1,144 @@
+{
+  "status": "PREPARED, not deployed",
+  "approved_development_commit": "0b706e3cdec864afe589e02b4c45986ac559e854",
+  "prepared_production_commit": "8fb7bf2920a89f39e1ed3a56d53ada91f468b715",
+  "rollback_commit": "9b39ffaf35c48973b8115b630ba0d06165ad09a4",
+  "rollback_tag": "rollback/website-uiux-release-2026-10-18",
+  "public_tree": "f87a87233bc83beef38a944cefebb381c686d178",
+  "approved_archive_sha256": "995ef47b8eec4b636aefbdc6b46b5bdd01b4d9227be82299bbcea61b5d77c43f",
+  "approved_archive_matches_production_files": true,
+  "changed_public_files": [
+    "index.html",
+    "privacy.html",
+    "scripts/site.js",
+    "styles/site.css"
+  ],
+  "files": [
+    {
+      "path": ".nojekyll",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "CNAME",
+      "sha256": "2a3a70232a30a4dcda28add45328c10e982ca1acf67d56e4f73f4e77a97aac77",
+      "size": 15
+    },
+    {
+      "path": "assets/brand/originals/ic_launcher_green.png",
+      "sha256": "b19aa5fead4918a270e312d4d86e39c0d0f52838e22b2d52040e315b7d4c1d23",
+      "size": 11233
+    },
+    {
+      "path": "assets/brand/originals/mascot_calm.webp",
+      "sha256": "eb132957731427d11da8048befd4a872da0e0ec4af612f8286e3e05fcd23cb3e",
+      "size": 43770
+    },
+    {
+      "path": "assets/brand/web/wordmark-dark-160.webp",
+      "sha256": "ef3577d99e4370d9545e4dcc9d7d18bf16073da548506cc7713b7a8685a46d6b",
+      "size": 9718
+    },
+    {
+      "path": "assets/brand/web/wordmark-dark-320.webp",
+      "sha256": "0527bbd97549f89b2bbc15c10dded393f1fd71683236e906b5a384f28f87aa22",
+      "size": 22604
+    },
+    {
+      "path": "assets/brand/web/wordmark-dark-480.webp",
+      "sha256": "fbb5d9e8472405e0017fe8b080ee930f6ab8ea41475cdbcc7aa5742f8e352fc4",
+      "size": 36008
+    },
+    {
+      "path": "assets/brand/web/wordmark-light-160.webp",
+      "sha256": "44e79df96c62e5cbedb9e59103c419d7fc62a2e3f02e94a08371e3fdf62a172f",
+      "size": 9634
+    },
+    {
+      "path": "assets/brand/web/wordmark-light-320.webp",
+      "sha256": "687f2003cd77d4f4d67f8d716bfdb6bd1fcb35b6d99b0d9e2aa425ce7991872e",
+      "size": 22228
+    },
+    {
+      "path": "assets/brand/web/wordmark-light-480.webp",
+      "sha256": "a39f7ab2a11842bf34789d352afaed053492fb1e76ddf854caf0ad1fc75b573a",
+      "size": 35506
+    },
+    {
+      "path": "assets/fonts/Onest-OFL.txt",
+      "sha256": "00ef123e979c8657a8b3e453736649a4ebe5926ff17c232106b987199987eaef",
+      "size": 4384
+    },
+    {
+      "path": "assets/fonts/Unbounded-OFL.txt",
+      "sha256": "4e13f7ff626e0ba79cfed3882539c9a5ec4e22af6e9ab64f4ef7af961f0287b4",
+      "size": 4392
+    },
+    {
+      "path": "assets/fonts/onest_regular.woff2",
+      "sha256": "d72b7b71008accef7565318691819c1ec3b1133b035d6cf6feb19d2a5de8fbbd",
+      "size": 35792
+    },
+    {
+      "path": "assets/fonts/onest_semibold.woff2",
+      "sha256": "1a1fb2eadc50dd78afe7982119b2ad34d614df0543f02bd4e1fea99e78882285",
+      "size": 37912
+    },
+    {
+      "path": "assets/fonts/unbounded_semibold.woff2",
+      "sha256": "93e7424d209cd12e74832985d7ef48fc09a09159b119fb4bd10b884e207aa19b",
+      "size": 104560
+    },
+    {
+      "path": "index.html",
+      "sha256": "e2cd7f460ea040c4030c69cb8b7bf9a765348c98338b3a2b43f2a027b7104ebc",
+      "size": 28635
+    },
+    {
+      "path": "privacy.html",
+      "sha256": "75f092afe2a0f9c51120abf61d8fbcb70dde6e83fb78b4e2633e232ea049481d",
+      "size": 3836
+    },
+    {
+      "path": "robots.txt",
+      "sha256": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1",
+      "size": 26
+    },
+    {
+      "path": "scripts/site.js",
+      "sha256": "1c7f6338081e95b2a9fe36c5acadaf28831d2f8e1a034a7485666e61b10477d8",
+      "size": 7257
+    },
+    {
+      "path": "scripts/theme.js",
+      "sha256": "f7b304c9bb0855b5583980e89922887a0d5efd566771da1e34e815fc5c4eba2f",
+      "size": 719
+    },
+    {
+      "path": "sitemap.xml",
+      "sha256": "35bb9a30eaca52143f8878bd998d51fa7da264239f56e5111f6d24947547a87f",
+      "size": 213
+    },
+    {
+      "path": "styles/site.css",
+      "sha256": "9bb9401ae93ab79540e7f7b8a727335453915c5a7d17428063e32dff74520126",
+      "size": 13515
+    }
+  ],
+  "noindex": true,
+  "apk_download": false,
+  "privacy_legal_content_sha256": "c69aef2ed970eaf64d7825492ae308a810d312243d80b51e9d9e3021b513c5cc",
+  "approval_reference": "project_specs/UIUX_PRODUCTION_AUTHORIZATION_2026-10-18.md",
+  "preflight": {
+    "unit_tests": 27,
+    "main_layout_cases": 16,
+    "privacy_layout_cases": 16,
+    "axe_runs": 12,
+    "axe_violations": 0,
+    "nojs_cases": 6,
+    "gallery_theme_cases": 2,
+    "legal_text_unchanged": true,
+    "status": "PASS",
+    "scope": "Fresh representative pre-release checks; audited64+64/48axe evidence retained separately"
+  }
+}
