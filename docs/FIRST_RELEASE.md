@@ -63,3 +63,6 @@ R4 [retry evidence](verification/artifact-retry.json): обе попытки suc
 ## Завершение production verification
 
 Actual Pages/HTTPS/22 public hashes/12 internal404/live16 browser cases подтверждены в docs/verification/first-production-release.json и production-http.json. Rollback tag rollback/website-first-release-2026-10-18 указывает на9a0857c. Cloud Chromium упёрся в proxy CA trust; persistent import отклонён automatic approval review и не выполнен. Безопасная проверка сделана на GitHub runner со штатным TLS trust, не отключая сертификаты. Для повторного read-only CI QA при реальной необходимости добавить Verify-Live-Production: true в final commit trailer block; это не разрешение и не запуск deployment. Полный master остаётся частично открытым, см. IMPLEMENTATION_PROGRESS.md.
+
+
+Production Lighthouse verified в run39125369226: mobile99/100/100/69; первые3 targets достигнуты, SEO69 вызван сохранённым noindex. [Actual evidence](verification/production-lighthouse.json). Это один lab run, не physical-device/real-user метрика. Новых production defects не найдено; ничего повторно не deploy. Первое website-owner действие resolved, APK/download и manual/device требования полного master остаются отдельно открыты.

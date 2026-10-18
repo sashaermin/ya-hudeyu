@@ -3,13 +3,15 @@
 ## Текущее состояние и точка продолжения
 
 - Проект: официальный сайт «Я ХУдЕЮ», repository `sashaermin/ya-hudeyu`, branch `work/website-v2`.
-- Последний независимо verified remote **до этого documentation checkpoint**: `31c0112e8a6f36faedbbd4f2bcfd5359e4df61f1` (run39125147955 success/live production PASS). Фактический последний SHA всегда получить через fetch/ls-remote; файл не содержит собственный будущий SHA.
+- Последний независимо verified remote **до этого documentation checkpoint**: `2d7f3cf3e37e1d9f543db6008a2591f49473c27b` (run39125369226 success/live QA/Lighthouse/Telegram240). Фактический последний SHA всегда получить через fetch/ls-remote; файл не содержит собственный будущий SHA.
 - Последний ответственный агент: Codex, 18.10.2026 11:51 МСК. Другой активный website writer не известен; эта историческая запись не доказывает отсутствия активной сессии при takeover. Только один писатель ветки, Android Claude Code не затрагивать.
 - Стадия: первый инкрементальный website-кандидат **подготовлен к приёмке**, с «Скоро для Android», независимо от APK. Первый принятый coming-soon выпуск опубликован и проверен; мастер-ТЗ не завершено. Исторические ограничения ниже действуют вне этой узкой авторизации.
 
-**Exact next:** проверить mobile production Lighthouse в текущем development CI (явный trailer Verify-Live-Production: true включает только read-only QA). Первый coming-soon release9b39ffaf35c48973b8115b630ba0d06165ad09a4 VERIFIED: Pages39114713056, live browser39125147955/16 cases,22 public hashes/12 internal404 PASS, TLS normal. Не redeploy неизменённый сайт. После Lighthouse сохранить actual scores/причины отклонений и продолжить единственный master checklist в IMPLEMENTATION_PROGRESS.md. APK approval остаётся false, indexing_approved=false; noindex остаётся. Main/production без нового разрешения не менять; deferred redesign не начинать. Rollback9a0857c/tag verified. Независимые maintenance/QA разрешены, APK/screens/manual-device проверки требуют соответствующих входов.
+**Exact next:** продолжить первый незавершённый пункт полного master checklist в IMPLEMENTATION_PROGRESS.md, когда появятся необходимые входы: выбранный/явно approved APK и реальные release screens для §3/4.1–4.7/7.2–3, либо доступ к physical Android/iOS/Safari/screen reader для ручной QA. На текущих входах все независимые approved задачи выполнены; не выдумывать функции, не повторять неизменённый QA. Первый coming-soon production9b39ffaf35c48973b8115b630ba0d06165ad09a4 VERIFIED, полный master не завершён. CI39125369226: live16 cases/22files/12internal404, Lighthouse mobile99/100/100/69; SEO69 из intentional noindex. Main/production не redeploy и не менять без новой отдельной авторизации, deferred redesign не начинать. Publication approved=true только для сохранённого первого release, indexing_approved=false; APK approval остаётся false. Digest default-branch activation требует отдельного разрешения; его отсутствие не открывает новую development задачу. После текущего documentation checkpoint проверить remote/CI/Telegram ack, не создавать бесконечных commits ради собственного SHA.
 
 ## Что предъявлено владельцу
+
+- Действующий production: https://yahudeyu-app.ru/ на9b39ffa; Pages/live browser verified. Старые review artifacts ниже — история приёмки, не текущая просьба одобрить уже выпущенный сайт.
 
 - Проверенный [review artifact](https://github.com/sashaermin/ya-hudeyu/actions/runs/39114231216/artifacts/12131711410) из run39114231216, source `70527d0`, attempt1. Это ZIP для локального просмотра, **не hosted preview URL**.
 - Внешнего безопасного preview-hosting tool нет. Инструкция просмотра, предмет решения, безопасная публикация и rollback: `docs/FIRST_RELEASE.md`.
@@ -24,12 +26,12 @@
 
 - Этапы0/1: read-only Android audit, исходный бренд/котик/шрифты/токены обеих тем, адаптивный каркас. Provenance `docs/ASSET_SOURCES.json`, Android SHA `874de91cb626b6f0e78532963b378d86901b97d9`. Не повторять аудит неизменённых входов.
 - Этап2: секции/навигация/FAQ/темы/галерея/ошибки; R1 — пользовательское coming-soon состояние. Реальные APK features/screens — deferred инкремент, не fabricated UI. Hero пока оригинальный маскот.
-- Этап3: allowlisted stdlib build, SEO/fonts, noindex draft; независимые APK/site approvals. Actual `data/publication.json=false`, `data/release.json=unverified`. Validate/full-release guard сохранён; render изменён только согласованным coming-soon patch. Mode по умолчанию full, отдельное website approval обязательно.
+- Этап3: allowlisted stdlib build, SEO/fonts, noindex draft; независимые APK/site approvals. Actual `data/publication.json=true/coming-soon/indexing_approved=false`, `data/release.json=unverified`. Validate/full-release guard сохранён; render изменён только согласованным coming-soon patch. Mode по умолчанию full, отдельное website approval обязательно.
 - Этап4: исправлены gallery focus trap, skip target (`tabindex=-1`) и переполнение200% текста (`overflow-wrap:anywhere`). 4D baseline:64 viewport/theme runs в Chromium/Firefox/WebKit/Edge,16 axe0violations. После coming-soon copy R1:Chromium16/16+4axe0violations,48 text resize/spacing cases в4браузерах PASS. Не выдавать старую полную матрицу за новый запуск на новом copy. CSS text simulation — не native zoom/screen reader/device test.
 - R2/R5: настоящий CI upload→download artifact; clean source/SHA/22file manifests и Chrome rendering390/1440×2темы PASS, noindex=true/APK=false/page_errors0. Текущие58 unit tests (40 notify+18 build/workflow/package) PASS в CI. Code/UI не менялся послеR1, повторные matrices не нужны.
 - R4: run39110987166 attempts1/2 success, оба archive round-trip notices; Telegram127 толькоattempt1, повторного commit notice вattempt2 нет. `artifact-retry.json` честно фиксирует API404 старых IDs; global exactly-once не обещать.
 - R5: current official Node24 upload7.0.2/download8.0.2 pinned SHAs, compatible inputs сверены. Run39111335266 success; verify117627928319 с `Website review archive verified`, notify117628076983 с accepted138. Node20 annotation отсутствует. `docs/verification/artifact-node24.json`.
-- Lighthouse96/100/100/69 — исторический локальный4A, SEO69 из intentional noindex; не новый production замер. Физические Android/iOS/Safari, screen reader, native WebKit swipe, owner visual/legal acceptance остаются открыты. Движковая эмуляция их не заменяет.
+- Lighthouse96/100/100/69 — исторический локальный4A, SEO69 из intentional noindex; не новый production замер. Физические Android/iOS/Safari, screen reader, native WebKit swipe, полная release-specific visual/device acceptance остаётся открытой; первый coming-soon кандидат принят владельцем. Движковая эмуляция их не заменяет.
 
 ## Незакрытые решения и ограничения
 
@@ -51,7 +53,7 @@
 
 ## Неприкосновенное
 
-Main `9a0857ce260540ad604f344565d535a8d47b2fa0`; production Pages source legacy main:/. CNAME/privacy побайтно равны исходному main, DNS/Pages/deploy не менялись. Нельзя main update/merge/PR/deploy, public APK, изменение gates или снятие draft noindex без соответствующего явного разрешения. Не менять Android/другие клиентские репозитории/сессии. Весь существенный контекст, evidence и точный next находятся в Git; /tmp не единственный источник. При следующей сессии fetch/status/AGENTS/handoff/progress/latest verified remote обязательны.
+Main/production `9b39ffaf35c48973b8115b630ba0d06165ad09a4`; rollback `9a0857ce260540ad604f344565d535a8d47b2fa0`; Pages source legacy main:/. CNAME/privacy побайтно равны исходному main, DNS/Pages config не менялись; первый deployment отдельно разрешён и завершён. Нельзя main update/merge/PR/deploy, public APK, изменение gates или снятие draft noindex без соответствующего явного разрешения. Не менять Android/другие клиентские репозитории/сессии. Весь существенный контекст, evidence и точный next находятся в Git; /tmp не единственный источник. При следующей сессии fetch/status/AGENTS/handoff/progress/latest verified remote обязательны.
 
 ## P1 · постоянная совместимость агентов и русские Telegram-отчёты
 
@@ -84,3 +86,6 @@ Remote main9b39ffa и devcf277fb подтверждены, Pages run39114713056 
 
 
 R7 завершён: production9b39ffa Pages39114713056 success; live browser/HTTP CI39125147955 PASS со штатным trust GitHub runner, без CA import/TLS bypass. Дополнительный production QA теперь только по явному commit trailer Verify-Live-Production: true, чтобы не повторять дорогие live suites на documentation checkpoints. Proof first-production-release.json; точный scope mocked gallery/browser interactions описан в tests/browser_qa.py, публичных Android screens нет. Следующий independent master QA — production Lighthouse.
+
+
+R8 завершён: actual production Lighthouse12.8.2 mobile99/100/100/69, FCP1052ms/LCP1952ms/TBT0/CLS0.000058; no run warnings. Targets90/95/95 достигнуты; SEO69 документирован из intentional noindex (§6 допускает документированную причину отклонения). Не менять indexing/cache/Pages ради score. Evidence production-lighthouse.json содержит exact API summary, diagnostic audits и ограничения one lab run. Cloud persistent NSS import по-прежнему отклонён и не выполнен, TLS не ослабляли; нормальное TLS на GitHub runner полностью проверило production. Все существенные proofs и master checklist в Git, не только в/tmp. После полного сопоставления новые independent approved задачи не найдены; конкретные неполные требования/входы перечислены в master checklist.

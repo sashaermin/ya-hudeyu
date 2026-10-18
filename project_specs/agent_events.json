@@ -358,6 +358,25 @@
       "done": "Опубликован https://yahudeyu-app.ru/ из публичного allowlist. Темы, меню, FAQ и no-JS проверены. CNAME/privacy/Pages сохранены; rollback9a0857c доступен.",
       "next": "Production Lighthouse и remaining master checklist; APK только после отдельного approval, физические devices требуют ручной проверки.",
       "status": "Первый выпуск проверен; мастер-ТЗ частично открыто; production повторно не менять"
+    },
+    {
+      "id": "site-production-lighthouse-r8-20261018",
+      "at": "2026-10-18T12:01:23.954500Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Полное мастер-ТЗ",
+          "R8"
+        ],
+        "title": "Production Lighthouse и проверка остатка ТЗ"
+      },
+      "checkpoint": "2d7f3cf3e37e1d9f543db6008a2591f49473c27b",
+      "verified": "CI39125369226 success:78 unit tests, live16 cases/22 files/12 internal404, normal TLS. Production Lighthouse mobile99/100/100/69; SEO69 из intentional noindex.",
+      "done": "Первый production https://yahudeyu-app.ru/ на9b39ffa проверен, rollback9a0857c сохранён. Полный master checklist содержит все незавершённые пункты и конкретные зависимости.",
+      "next": "APK-зависимые требования после утверждённого артефакта/screens; manual device QA при наличии устройств. Без новых входов independent approved задач больше нет.",
+      "status": "Первый release завершён; master частично открыт. Noindex и запрет APK сохранены; production не redeploy."
     }
   ]
 }

@@ -140,7 +140,28 @@
   "remaining_limitations": [
     "Physical Android/iOS/Safari and screen-reader checks not performed",
     "Indexing intentionally disabled; SEO threshold needs policy exception",
-    "APK/features/screenshots deferred until owner approves an artifact",
-    "Mobile production Lighthouse measurement is next independent task"
+    "APK/features/screenshots deferred until owner approves an artifact"
+  ],
+  "production_lighthouse": {
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 69
+    },
+    "ci_run": 39125369226,
+    "evidence": "docs/verification/production-lighthouse.json"
+  },
+  "final_live_notices": [
+    {
+      "title": "Production website verified",
+      "message": "commit 9b39ffaf35c48973b8115b630ba0d06165ad09a4; public_files 22; internal_404 12; browser_matrix 16; noindex=true; APK=false; TLS=true; page_errors=0"
+    }
+  ],
+  "report_delivery": [
+    {
+      "title": "Telegram accepted",
+      "message": "commit 2d7f3cf3e37e1d9f543db6008a2591f49473c27b message_id 240"
+    }
   ]
 }
