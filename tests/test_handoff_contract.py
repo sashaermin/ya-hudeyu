@@ -29,4 +29,5 @@ class HandoffContractTests(unittest.TestCase):
             self.assertIn(fact,text)
         self.assertRegex(text,r'`[0-9a-f]{40}`')
         self.assertIn('patch применён',text)
-        self.assertIn('publication/APK approvals остаются false',text)
+        self.assertIn('APK approval остаётся false',text)
+        self.assertIn('indexing_approved=false',text)

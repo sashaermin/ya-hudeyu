@@ -1,4 +1,4 @@
-"""REVIEW-ONLY proposed tests. Activate only with owner-authorized policy patch."""
+"""Approved coming-soon publication gates and independent indexing control."""
 import json
 from pathlib import Path
 import unittest
@@ -42,3 +42,21 @@ class ComingSoonPolicyTests(unittest.TestCase):
         fixture.setUp(); fixture.ready_fixture()
         with self.assertRaisesRegex(ValueError, 'must not contain an APK'):
             build.render(fixture.site, fixture.release, production=True, publication=self.publication)
+
+    def test_production_can_preserve_noindex_without_bypassing_site_approval(self):
+        self.publication['indexing_approved'] = False
+        page = build.render(self.site, self.release, production=True, publication=self.publication)
+        self.assertIn('content="noindex,nofollow"', page)
+        self.assertNotIn('downloadUrl', page)
+        self.publication['approved'] = False
+        with self.assertRaisesRegex(ValueError, 'Separate website publication approval'):
+            build.render(self.site, self.release, production=True, publication=self.publication)
+
+    def test_indexing_flag_requires_true_boolean_and_never_indexes_draft(self):
+        for flag in [False, None, 'true', 1]:
+            with self.subTest(flag=flag):
+                pub = dict(self.publication, indexing_approved=flag)
+                self.assertIn('content="noindex,nofollow"', build.render(self.site, self.release, True, pub))
+        pub = dict(self.publication, indexing_approved=True)
+        self.assertIn('content="index,follow"', build.render(self.site, self.release, True, pub))
+        self.assertIn('content="noindex,nofollow"', build.render(self.site, self.release, False, pub))

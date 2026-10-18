@@ -1,4 +1,6 @@
 {
-  "approved": false,
-  "approval_reference": null
+  "approved": true,
+  "approval_reference": "project_specs/FIRST_WEBSITE_RELEASE_AUTHORIZATION_2026-10-18.md — owner accepted candidate b12b0b0; first production release authorized",
+  "release_mode": "coming-soon",
+  "indexing_approved": false
 }

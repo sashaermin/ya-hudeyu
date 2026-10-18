@@ -21,13 +21,15 @@
 
 Инструмента безопасного внешнего изолированного preview-hosting в текущей среде нет. Не создавать публичный tunnel, сторонний hosting или Pages deployment, не менять DNS/CNAME под видом preview. Скриншоты кандидата и проверенные результаты — docs/QA.md и docs/verification/release-candidate.json (QA выполнен).
 
-## Что требует отдельного решения владельца
+## Текущее разрешение первого выпуска
 
-**Текущее разрешение — подготовка, без публикации.** Реальные data/publication.json=false и data/release.json=unverified остаются неизменными. Существующий `--production` всё ещё требует APK/features/screens и отдельное разрешение сайта. Его обход через загрузку draft не является допустимой процедурой.
+Владелец принял кандидат b12b0b0 и явно разрешил первый production release по существующему Pages main:/ и rollback при неуспехе. Область сохранена в [авторизации](../project_specs/FIRST_WEBSITE_RELEASE_AUTHORIZATION_2026-10-18.md). data/publication.json: approved=true, release_mode=coming-soon; APK остаётся unverified/approved_for_distribution=false. Реальный production build проходит согласованные gates без APK и запрещает features/screens/verified APK.
 
-Для первого релиза без APK владелец отдельно разрешил применение конкретного [diff](proposals/first-release-coming-soon.patch), SHA-256 `cefd3cc1b1440efa0f09c67b557570e5c9a4f89d0b7f0c63df7b8b407f38fd03`. Он применён без изменений после проверки совместимости с remote8a0e726. Builder поддерживает явный `release_mode: coming-soon` с отдельным site approval, запрещая APK/features/screens; default full-release gates сохранены. Реальный config не переключён: approved=false, release_mode отсутствует (default full). Draft всегда noindex. Это авторизация только реализации политики, не выпуска и не снятия noindex. 25 site/build/workflow/handoff tests PASS; исходный proposal содержит историческое REVIEW-ONLY описание тестов, теперь активированных по разрешению. APK не нужен для приёмки текущего кандидата.
+Индексирование не требуется для serving, отдельного безусловного разрешения нет: indexing_approved=false сохраняет noindex/nofollow и robots Disallow даже в валидированной production-сборке. Draft по-прежнему noindex независимо от настроек. Это не обход gate загрузкой draft; production build выполнен с --production и действительным approval_reference. Изменение indexing и любые следующие релизы требуют отдельного решения; digest/main workflow не входит в разрешение.
 
-После приёмки кандидата требуются: визуальное/юридическое подтверждение, явное разрешение публикации конкретного website-SHA/артефакта и согласованного способа Pages. Разрешение также должно определить индексирование и право отката; нельзя молча снимать noindex. Отдельный digest-main workflow не включён в такое разрешение автоматически.
+### История policy diff
+
+[Исходный patch](proposals/first-release-coming-soon.patch) SHA-256 cefd3cc1b1440efa0f09c67b557570e5c9a4f89d0b7f0c63df7b8b407f38fd03 был разрешён и применён в70527d0; теперь активные5 policy tests и2 дополнительных indexing tests проверяют approved coming-soon gate. Не применять proposal повторно.
 
 ## Подготовленная безопасная процедура публикации
 
@@ -49,18 +51,8 @@
 
 Из cloud прямое скачивание artifact12130660202 получило403 на storage host. Дополнительный домен сохранён в черновике среды (не активирован); при необходимости прямого cloud download надо сохранить настройки и опубликовать **среду**, не сайт. Альтернативный CI round-trip не требует этого действия. Статус и доказательства — docs/verification/review-artifact-status.json. Ни локальная rehearsal, ни наличие artifact сами по себе не доказывают успешного remote download/render.
 
-## Предмет разрешения: неприменённый policy diff
-
-[Точный patch](proposals/first-release-coming-soon.patch), [проверки](verification/first-release-policy-proposal.json). SHA-256 patch указан в evidence. Активный tools/build.py и реальные approval-файлы **не изменены**. Patch проверен через git apply --check и применение только во временном git archive экспорте:15 существующих build tests +5 новых proposed policy tests PASS.
-
-Предлагаемое поведение: default mode `full` сохраняет существующие APK/features/screens gates. Только явно выбранный `publication.release_mode=coming-soon` вместе с настоящим отдельным site approval и непустой approval_reference допускает первый production-кандидат без APK. В этом режиме запрещены verified APK, функции и скриншоты; неизвестные modes отклоняются. Draft всегда noindex. Реальные mode/approval не выставлены, индексирование/публикация/main этим review не разрешаются.
-
-Предмет ближайшего решения владельца — **разрешить применение именно этого patch**, либо дать замечания. Это не разрешение main/deploy/APK/снятия noindex в текущем draft. После применения и проверок публикация конкретного SHA/артефакта согласуется отдельно.
-
-Воспроизведение proposal tests: экспортировать текущий Git checkpoint во временную папку, применить patch там через `git apply --no-index --check` и `git apply --no-index`, выполнить `python3 -m unittest discover -s tests -p test_build.py -v` и `python3 -m unittest discover -s tests -p test_coming_soon_policy.py -v`. Не применять patch к активной ветке без указанной авторизации. TEST ONLY approvals существуют лишь в isolated test fixtures.
-
 Имена новых artifacts включают `run_attempt`, чтобы попытка была явно видна; upload/download используют одно имя. Реальный retry прошёл, но preservation прежних artifact IDs **не подтверждён**: после rerun API возвращает404 для attempt1 IDs. Ссылки на artifacts не вечные, retention7дней; при необходимости восстановить кандидат из source и сверить известный inner ZIP SHA. Исторические artifacts доR4 имеют прежнее имя без suffix.
 
 R4 [retry evidence](verification/artifact-retry.json): обе попытки successful, round-trip/render прошёл повторно, commit Telegram127 принят вattempt1 и не повторён вattempt2. Исходная гипотеза о name collision не выдаётся за воспроизведённый дефект; фактически доказаны успешный retry и явная attempt provenance. Обещание сохранности старых IDs снято по результату проверки.
 
-Последняя verified review ссылка и digest: [Node24 proof](verification/artifact-node24.json), artifact12131711410/source70527d0. GitHub artifacts ограничены retention и rerun lifecycle, при их недоступности сверяйте восстановленный inner ZIP с зафиксированным SHA. Текущие76 unit tests прошли в CI R6; историческое число58 относится к R5;20 policy proposal tests — отдельная изолированная проверка неприменённого diff.
+Последняя verified review ссылка и digest: [Node24 proof](verification/artifact-node24.json), artifact12131711410/source70527d0. GitHub artifacts ограничены retention и rerun lifecycle, при их недоступности сверяйте восстановленный inner ZIP с зафиксированным SHA. Текущие76 unit tests прошли в CI R6; историческое число58 относится к R5;20 policy proposal tests — историческая изолированная проверка до применения diff.

@@ -78,7 +78,7 @@ def render(site, release, production=False, publication=None):
     values = {key: escape(site[key]) for key in ('description', 'domain', 'support')}
     values['theme_init'] = '<script>' + (ROOT / 'scripts/theme.js').read_text() + '</script>'
     values['stylesheet'] = '<style>' + (ROOT / 'styles/site.css').read_text() + '</style>'
-    values.update(robots='index,follow' if production else 'noindex,nofollow',
+    values.update(robots='index,follow' if production and publication.get('indexing_approved', True) is True else 'noindex,nofollow',
                   download_label='Скачать для Android' if verified else 'О выпуске для Android',
                   hero_release_note=f'Android · Версия {escape(release["version"])}' if verified else 'Скоро для Android. Дата выпуска пока не объявлена.',
                   features_intro='Возможности подтверждены для указанной ниже версии приложения.' if site['features'] else 'Знакомство с возможностями — вместе с доступной версией приложения.',
@@ -153,7 +153,7 @@ def build(output, production=False):
         shutil.copyfile(ROOT / name, dest)
     (output / 'index.html').write_text(page)
     (output / '.nojekyll').touch()
-    (output / 'robots.txt').write_text('User-agent: *\n' + ('Allow: /\nSitemap: '+site['domain']+'/sitemap.xml\n' if production else 'Disallow: /\n'))
+    (output / 'robots.txt').write_text('User-agent: *\n' + ('Allow: /\nSitemap: '+site['domain']+'/sitemap.xml\n' if production and publication.get('indexing_approved', True) is True else 'Disallow: /\n'))
     (output / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + ''.join('<url><loc>'+escape(site['domain']+path)+'</loc></url>' for path in ['/', '/privacy.html']) + '</urlset>\n')
     print(f'Built {output} ({"production" if production else "draft, noindex"})')
 
