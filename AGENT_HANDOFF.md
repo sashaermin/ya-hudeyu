@@ -4,10 +4,10 @@
 
 - Repository: `sashaermin/ya-hudeyu`; development branch: `work/website-v2`.
 - Последний независимо подтверждённый **implementation checkpoint**: `ad7c5a043d45f31cbc0a4ab6f489592ae14622d2` (W2B). Последующий documentation checkpoint получать из Git: файл не может содержать собственный будущий SHA.
-- Последний ответственный писатель: Codex, 18.10.2026 10:22 МСК. Другой активный website writer не известен; это историческая запись, не доказательство отсутствия активной сессии при будущем takeover. Android Claude Code не затрагивался.
+- Последний ответственный писатель: Codex, 18.10.2026 10:47 МСК. Другой активный website writer не известен; это историческая запись, не доказательство отсутствия активной сессии при будущем takeover. Android Claude Code не затрагивался.
 - Состояние: независимые задачи W2A / 4B / 3B / W2B выполнены и проверены. Открытые release/device/owner критерии сохранены в IMPLEMENTATION_PROGRESS.md и docs/QA.md. Сайт **не готов к публикации**, она не разрешена.
 
-**Next:** После подтверждённой настройки двух Actions bindings существующего бота в репозитории сайта повторить failed notify job и проверить check-config + Telegram accepted/message_id annotations. Без изменения bindings не повторять тот же неуспешный run и не просить значения в чат. Daily digest требует отдельного разрешения на подготовленный default-branch workflow с учётом legacy Pages side effect; main не менять до этого. Когда владелец выберет и разрешит конкретный APK/реальные screenshots, выполнить docs/RELEASE_CONTENT.md, заполнить version-matched контент и проверить затронутые сценарии. Не выбирать APK самостоятельно и не напоминать повторно об уже зарегистрированных неизменившихся blockers.
+**Next:** Telegram проверен и не требует настройки: run39107499146 attempt2, accepted message_id67. Сохранить текущий verification checkpoint и проверить его remote SHA/новый notify ack. Далее остаются ранее зарегистрированные внешние release prerequisites: daily default-branch authorization и утверждённый APK/screens; текущий пользователь запретил любые изменения main/production/deployment/publication gate. Не запрашивать повторно Telegram secrets и не запускать идентичный тест без причины.
 
 ## Авторитетные общие документы
 
@@ -34,7 +34,7 @@ AGENTS.md — общие правила; CLAUDE.md ведёт к ним же. У
 
 ## Внешние prerequisites — зарегистрированы один раз
 
-1. `site-telegram-settings-verification`: probe Actions доказал отсутствие TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID для workflow сайта. Вводятся только в защищённых GitHub repository Actions settings существующего бота «Я ХУдЕЮ | Dev Reports». Metadata API secrets ограничен integration scope. Не извлекать секреты Android или значения из логов. После meaningful change — retry, доказательство Telegram ok=true/message_id, затем action resolved.
+1. `site-telegram-settings-verification` **resolved**: run39107499146 attempt2 подтвердил оба bindings и Telegram accepted message_id67. Metadata API secrets всё ещё ограничен integration scope, но это не блокирует проверенную доставку. Не извлекать значения и не запрашивать новые секреты.
 2. `site-digest-default-branch-activation`: `.github/workflows/website-digest.yml` готов (UTC18:00 = МСК21:00), unit/YAML/live API dry-run проверены. Расписание не активно вне default branch. Для активации нужно отдельное разрешение только на этот infrastructure workflow в main; Pages legacy main:/ может автоматически rebuild-иться, поэтому разрешение должно учитывать побочный эффект. Workflow не переносит v2 сайт/не публикует APK. Без разрешения ничего в main не делать.
 3. `site-approved-android-release`: владелец явно не утвердил APK. Download action выключен. Не добавлять dev screenshots как релизные, не рекламировать код разработки как выпущенные функции. Реальные feature cards/gallery/hero screenshot ожидают проверенной сборки.
 
@@ -43,3 +43,7 @@ AGENTS.md — общие правила; CLAUDE.md ведёт к ним же. У
 Main SHA `9a0857ce260540ad604f344565d535a8d47b2fa0` сохранялся; Pages API подтвердил legacy source main:/. Read-only HTTPS `/` и `/privacy.html`: HTTP200 и bytes равны origin/main. CNAME/privacy в development не изменены. Не делать main update, merge, PR, deployment, public APK download или снятие noindex без соответствующего отдельного разрешения. Не трогать Android/другие клиентские проекты и активные сессии. Сайт только для Android.
 
 Все существенные инструкции и evidence находятся в Git; /tmp не единственный источник состояния. Перед продолжением fetch/status/remote inspection и проверка активного писателя обязательны. Историю не переписывать, чужую работу не перезаписывать.
+
+## Приоритетная проверка Telegram · 18.10.2026 10:47 МСК
+
+Владелец явно запросил безопасный повторный тест; выполнен `gh run rerun 39107499146 --failed`, без изменения workflow/code. Attempt2 завершился success, check-config подтвердил доступность обоих bindings. Check-run117620640488 содержит Telegram accepted: commit87fd265846a415e9e0d53cf7e4dee4ca2d5fe25c message_id67. Это реальный API acknowledgement, не mock или просто exit0. Evidence docs/verification/telegram-delivery-2026-10-18.json; прежний failed evidence сохранён отдельно. Существующий action закрыт, notification-side code fixes не потребовались. Main/publication gate не менялись.

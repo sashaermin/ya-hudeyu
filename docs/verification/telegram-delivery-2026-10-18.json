@@ -1,0 +1,119 @@
+{
+  "verified_at_utc": "2026-10-18T07:47:34Z",
+  "telegram_status": "DELIVERED",
+  "mechanism": "Existing GitHub Actions notify job; failed jobs rerun explicitly requested by owner",
+  "run": {
+    "conclusion": "success",
+    "head_sha": "87fd265846a415e9e0d53cf7e4dee4ca2d5fe25c",
+    "html_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39107499146",
+    "id": 39107499146,
+    "run_attempt": 2,
+    "status": "completed"
+  },
+  "jobs": [
+    {
+      "conclusion": "success",
+      "id": 117620640488,
+      "name": "notify",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09"
+        },
+        {
+          "conclusion": "success",
+          "name": "Check Telegram bindings without exposing values"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/cache/restore@caa296126883cff596d87d8935842f9db880ef25"
+        },
+        {
+          "conclusion": "success",
+          "name": "Report verified commits and registered events"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Report meaningful verification failure"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/cache/save@caa296126883cff596d87d8935842f9db880ef25"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job"
+        }
+      ]
+    },
+    {
+      "conclusion": "success",
+      "id": 117620668839,
+      "name": "verify",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09"
+        },
+        {
+          "conclusion": "success",
+          "name": "Verify notification script"
+        },
+        {
+          "conclusion": "success",
+          "name": "Validate registries"
+        },
+        {
+          "conclusion": "success",
+          "name": "Website build"
+        },
+        {
+          "conclusion": "success",
+          "name": "Website regression tests"
+        },
+        {
+          "conclusion": "success",
+          "name": "JavaScript syntax"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job"
+        }
+      ]
+    }
+  ],
+  "annotations": [
+    {
+      "annotation_level": "notice",
+      "message": "commit 87fd265846a415e9e0d53cf7e4dee4ca2d5fe25c message_id 67",
+      "title": "Telegram accepted"
+    }
+  ],
+  "bindings": {
+    "TELEGRAM_BOT_TOKEN": "available to workflow; value not inspected",
+    "TELEGRAM_CHAT_ID": "available to workflow; value not inspected"
+  },
+  "receipt": {
+    "message_id": 67,
+    "source_check_run": 117620640488,
+    "meaning": "Telegram sendMessage returned ok=true and message_id; does not establish that a human read the message"
+  },
+  "repository_changes_required": "No notification code fix needed; previous binding blocker resolved",
+  "protected_scope": "main, production, deployment settings and data/publication.json unchanged"
+}

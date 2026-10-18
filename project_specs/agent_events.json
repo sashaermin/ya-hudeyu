@@ -130,6 +130,25 @@
       "checkpoint": "237fc81f4f4e97da471a511b79471cb2072c6ec7",
       "done": "Sender восстанавливает недоставленные open/resolved actions и явные events; ledger не повторяет delivered keys и warnings. Успешный Telegram ответ даёт message_id notice.",
       "next": "Проверить Actions checkpoint; после настройки bindings подтвердить Telegram accepted. Release content ждёт утверждённого APK."
+    },
+    {
+      "id": "site-telegram-delivery-confirmed-20261018",
+      "at": "2026-10-18T07:48:23Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Telegram",
+          "Delivery"
+        ],
+        "title": "Приоритетная проверка фактической доставки"
+      },
+      "verified": "Run39107499146 attempt2 success; Telegram accepted message_id67, check-run117620640488. Main/publication gate unchanged.",
+      "status": "Telegram DELIVERED; код отправителя не требовал исправления",
+      "checkpoint": "87fd265846a415e9e0d53cf7e4dee4ca2d5fe25c",
+      "done": "Existing Actions notify rerun подтвердил оба bindings и реальную отправку; прежний secret blocker закрыт без чтения значений.",
+      "next": "Сохранить и подтвердить verification checkpoint; остальные release prerequisites без изменения приоритета."
     }
   ]
 }

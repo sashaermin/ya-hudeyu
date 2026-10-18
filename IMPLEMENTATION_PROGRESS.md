@@ -65,3 +65,7 @@ W2B: восстановление пропущенных action/event records с
 | W2B `ad7c5a0` | 40 notification tests PASS; backlog recovery, partial retry, dedup/ack | Два Telegram bindings отсутствуют; реальная доставка не подтверждена |
 
 Run39107259552: verify success, notify failure (missing TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID). Workflow целиком не прошёл, deployment в нём нет. Network action resolved по фактическому доступу, нового действия с настройками сети не требуется. Следующие незавершённые approved задачи зависят от перечисленных внешних prerequisites; повторный запрос тех же неизменившихся действий не нужен. Мастер-ТЗ целиком не закрыто: релизные функции/screens, визуальное/юридическое/device принятие и отдельная публикация ещё впереди.
+
+## Telegram priority verification · 18.10.2026 10:47 МСК
+
+По прямому запросу владельца повторён existing notify mechanism: run39107499146 attempt2 success; check-config success; Telegram accepted message_id67 для87fd265. **Telegram: DELIVERED** в смысле подтверждённой отправки Telegram, без утверждения о прочтении человеком. Missing bindings action resolved, код исправлять не потребовалось. Сохранены live jobs/annotations/evidence и прежний failed snapshot. Scope main/production/deployment/publication gate сохранён. Остальные owner gates не считаются снятыми.

@@ -18,7 +18,7 @@
     },
     {
       "id": "site-telegram-settings-verification",
-      "status": "open",
+      "status": "resolved",
       "source": "Codex",
       "opened": "2026-10-18",
       "task": "Сайт · уведомления",
@@ -31,7 +31,8 @@
       ],
       "blocked": "Подтверждение фактической доставки Telegram, не разработка сайта.",
       "can_continue": "Да: вся независимая разработка и локальные проверки.",
-      "link": "https://github.com/sashaermin/ya-hudeyu/settings/secrets/actions"
+      "link": "https://github.com/sashaermin/ya-hudeyu/settings/secrets/actions",
+      "resolution": "18.10.2026 10:47 МСК: run39107499146 attempt2, check-config success, notify success; Telegram accepted message_id67 (check-run117620640488). Оба bindings доступны. Значения не читались. Для Telegram действий владельца больше не требуется."
     },
     {
       "id": "site-network-crossbrowser-qa",

@@ -6,7 +6,7 @@
 
 `.github/workflows/website-checks.yml` на push `work/**` выполняет тесты и сборку. Только после успешных проверок уведомляет о коммитах, действиях и явно зарегистрированных этапах. При провале проверок отправляет отдельный отчёт об ошибке; непроверенный коммит не называется проверенным. Отправитель — `.github/scripts/telegram_notify.py`, stdlib Python. Все сообщения содержат **САЙТ «Я ХУдЕЮ»**. Android не затрагивается.
 
-GitHub Actions получает repository secrets `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` (тот же бот/чат) и временный `github.token` с `contents:read`. Значения не читать и не выводить. Облачные локальные переменные не заменяют Actions secrets. Metadata API списка секретов возвращает 403 Resource not accessible by integration. Однако probe внутри Actions run 39106472358 подтвердил отсутствие обоих bindings для workflow: TELEGRAM_BOT_TOKEN и TELEGRAM_CHAT_ID. Verify успешен, notify заблокирован до их настройки в репозитории сайта. Значения не извлекались, доставка не подтверждена.
+GitHub Actions получает repository secrets `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` (тот же бот/чат) и временный `github.token` с `contents:read`. Значения не читать и не выводить. Облачные локальные переменные не заменяют Actions secrets. Metadata API списка секретов возвращает 403 Resource not accessible by integration. Исторический probe run39106472358 показал отсутствие bindings. При новой проверке 18.10.2026 10:47 МСК run39107499146 attempt2 подтвердил: оба bindings доступны, notify success, Telegram accepted message_id67. Значения не извлекались. Блокер настройки закрыт; повторно запрашивать секреты не нужно.
 
 ## Единые записи
 
@@ -54,3 +54,5 @@ Cache — вспомогательное хранилище, не вечная �
 Повторные API fallback warnings также имеют ledger key branch/head. После реального Telegram ok=true ответ message_id для commit появляется как check-run notice `Telegram accepted`; это проверяемое подтверждение приёма Telegram, не доказательство прочтения человеком. Локальные tests полностью mock, никаких сообщений из cloud-сессии агент не отправляет. Старые commit-сообщения прошлых failed runs автоматически не backfill-ятся; сохраняются актуальные commit notifications и backlog явных event/action records. Ledger cache ограничения описаны выше.
 
 Уточнение после чтения Pages API: source сайта — legacy main:/. Хотя digest workflow не содержит deploy, сам update main может запустить действующий legacy Pages build. До main update разрешение должно учитывать этот побочный эффект. Не переносить в main workflow по одному лишь общему разрешению разработки; v2 сайт и APK остаются вне разрешения.
+
+Проверенная live-доставка: docs/verification/telegram-delivery-2026-10-18.json. GitHub status success сам по себе недостаточен: здесь сохранён отдельный notice Telegram accepted с message_id67 из фактического sendMessage. Повторять тот же run без причины не нужно; ledger предотвращает повторные уведомления.
