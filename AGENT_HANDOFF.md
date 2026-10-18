@@ -3,7 +3,7 @@
 ## Текущее состояние и точка продолжения
 
 - Проект: официальный сайт «Я ХУдЕЮ», repository `sashaermin/ya-hudeyu`, branch `work/website-v2`.
-- Последний независимо verified remote **до этого documentation checkpoint**: `88888182d41273cf1bf9d9327dbdd410cd8a68ee` (run39112501232 success). Фактический последний SHA всегда получить через fetch/ls-remote; файл не содержит собственный будущий SHA.
+- Последний независимо verified remote **до этого documentation checkpoint**: `674e5f5def19ec5299617d80e2240a2821e5e8fd` (run39113063235 success/Telegram165). Фактический последний SHA всегда получить через fetch/ls-remote; файл не содержит собственный будущий SHA.
 - Последний ответственный агент: Codex, 18.10.2026 11:51 МСК. Другой активный website writer не известен; эта историческая запись не доказывает отсутствия активной сессии при takeover. Только один писатель ветки, Android Claude Code не затрагивать.
 - Стадия: первый инкрементальный website-кандидат **подготовлен к приёмке**, с «Скоро для Android», независимо от APK. Не опубликован и не одобрен для публикации. Независимых approved задач с текущими входами больше не выявлено.
 
@@ -64,3 +64,5 @@ P1 remote verification:24c5102/run39112341703 success,47+20 tests и actual arch
 ## T1 · единая визуальная иерархия Telegram
 
 Новое указание принято после safe remote checkpoint8888818 и successful CI. Все существующие Telegram message types используют общий presentation: bold project/event header, metadata и section titles, blank paragraphs, descriptive HTTPS links, code branch/hash/IDs. Escaping включает quote-safe attributes; общий truncator сохраняет balanced HTML/entities и footer links. Единственная спецификация — AGENT_NOTIFICATION_PROTOCOL.md, AGENTS ссылается на неё. 51 notification tests PASS, включая parser validation всех типов/опасных URL/длинных сообщений; прежняя дедупликация/ошибки покрыты. Workflow файл/triggers/secrets и send/ledger routing не менялись. После checkpoint проверить CI/обычный accepted notice, затем прежний exact next; новые approvals/gate permissions не предоставлены.
+
+T1 remote verification завершена:674e5f5 independently confirmed; run39113063235 verify/notify success,71 tests и actual archive22files/4views/noindex/noAPK PASS; Telegram accepted165. Exact notices сохранены в telegram-presentation.json. Дополнительных живых test sends/Telegram UI screenshot не было. Задача оформления завершена; следующий approved website action остаётся exact next выше и зависит от ранее зарегистрированного owner decision. Новое указание не разрешает gate patch/main/deploy, независимых незавершённых задач с текущими inputs не найдено. Передача следующему агенту — по AGENT_DEVELOPMENT_PROTOCOL.md; текущий собственный SHA проверять через Git/Actions, не создавать endless doc commits.

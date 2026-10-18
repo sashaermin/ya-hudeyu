@@ -211,3 +211,5 @@ P1 live confirmation: run39112341703 success/Telegram157, [evidence](verificatio
 ## T1 · единая HTML-иерархия всех Telegram сообщений
 
 51 notification tests и20 site/workflow/handoff tests PASS. [Mock examples/evidence](verification/telegram-presentation.json): commit/milestone/CI/action/resolution/stage/preview/digest проверены HTML parser на balanced tags, безопасные href/quoted attrs, headers/metadata/paragraph spacing. Long messages сохраняют whole entities/closing tags/footer; malicious URLs отвергаются без эха credentials. Существующие retry/dedup/source/token-safety проверки сохранены. Это не скриншот Telegram UI и не дополнительная живая отправка. Whole workflow/protected files и delivery/ledger functions сравнялись с8888818; draft HTML прежний. Полная browser матрица без изменений сайта не повторялась.
+
+T1 live proof: run39113063235 success,51+20 tests, actual archive/noindex/noAPK PASS; Telegram accepted165 через обычный commit. Exact notices в [telegram-presentation.json](verification/telegram-presentation.json). Проверена API-приёмка HTML-сообщения и локальная markup структура, не screenshot реальных Telegram/Android/Windows clients.

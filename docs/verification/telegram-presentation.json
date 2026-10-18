@@ -17,5 +17,33 @@
     "preview": "<b>САЙТ «Я ХУдЕЮ» — архив для просмотра готов (не онлайн-превью)</b>\n\n<b>Проект:</b> САЙТ «Я ХУдЕЮ»\n<b>Агент:</b> Claude Code\n<b>Ветка:</b> <code>work/&lt;unsafe&gt;&amp;&quot;</code>\n<b>Коммит:</b> <code>aaaaaaa</code>\n<b>Событие:</b> <code>preview</code>\n<b>Контрольная точка:</b> <code>abc1234</code>\n\n<b>Артефакт:</b>\n<code>Task03</code> › <code>G</code> — Share Studio &lt;2.0&gt;\n\n<b>Проверено:</b>\nJVM 856/0\n\n<b>Далее:</b>\nСравнение\n\n<b>Статус:</b>\nразработка продолжается\n\n<a href=\"https://github.com/sashaermin/ya-hudeyu/actions/runs/1/artifacts/2\">Скачать архив для локального просмотра</a>\n<a href=\"https://github.com/sashaermin/ya-hudeyu/commit/abc1234\">Открыть проверенную контрольную точку</a>\n<a href=\"https://github.com/sashaermin/ya-hudeyu/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\">Открыть коммит с записью события</a>",
     "digest": "<b>САЙТ «Я ХУдЕЮ» — итоги дня</b>\n\n<b>Проект:</b> САЙТ «Я ХУдЕЮ»\n<b>Агент:</b> Не определён\n<b>Механизм:</b> GitHub Actions\n<b>Период:</b> 24 часа до 18.10.2026 21:00 МСК\n\n<b>Коммиты:</b>\n• <code>work/&lt;unsafe&gt;&amp;&quot;</code>: 1\n\n<b>Завершённые этапы:</b>\nНет записанных завершений.\n\n<b>Неуспешные проверки GitHub Actions:</b>\n• <a href=\"https://github.com/o/r/actions/runs/1?a=1&amp;b=2\">Открыть проверку: Проверка &lt;script&gt;</a> · <code>work/&lt;unsafe&gt;&amp;&quot;</code>\n\n<b>Текущий этап (по handoff):</b>\nДалее &lt;iframe&gt; (<code>work/&lt;unsafe&gt;&amp;&quot;</code>)\n\n<b>Ждут вашего действия:</b>\n• Секрет &lt;bot&gt; (<code>tok</code>)\n\n<b>Нет данных:</b>\nНет &lt;данных&gt;\n\n<a href=\"https://github.com/o/r/commits\">Открыть историю коммитов на GitHub</a>\n<i>Ссылка недоступна: требуется корректный HTTPS URL</i>"
   },
-  "safe_checkpoint_before_work": "88888182d41273cf1bf9d9327dbdd410cd8a68ee"
+  "safe_checkpoint_before_work": "88888182d41273cf1bf9d9327dbdd410cd8a68ee",
+  "live_confirmation": {
+    "checkpoint": "674e5f5def19ec5299617d80e2240a2821e5e8fd",
+    "run_id": 39113063235,
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 117633090239,
+        "name": "verify",
+        "conclusion": "success"
+      },
+      {
+        "id": 117633197371,
+        "name": "notify",
+        "conclusion": "success"
+      }
+    ],
+    "telegram_notice": {
+      "title": "Telegram accepted",
+      "message": "commit 674e5f5def19ec5299617d80e2240a2821e5e8fd message_id 165"
+    },
+    "archive_notice": {
+      "title": "Website review archive verified",
+      "message": "source 674e5f5def19ec5299617d80e2240a2821e5e8fd; archive_sha256 7877e610d11a5a3d84b708864e0b5eae7c6c1b2ab263daeb77f7fc0cdd23c6e5; files 22; rendered 4; noindex=true; APK=false; page_errors=0"
+    },
+    "verified_at_moscow": "2026-10-18T11:53:50+03:00",
+    "method": "Normal verified checkpoint notification; no extra test sends",
+    "telegram_ui_screenshot_tested": false
+  }
 }
