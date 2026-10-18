@@ -15,7 +15,7 @@
 3. Распаковать внутренний `website-preview.zip` в отдельную локальную папку и запустить `python3 -m http.server 8002 --bind 127.0.0.1 --directory <эта папка>`.
 4. Открыть `http://127.0.0.1:8002/`. Проверить светлую/тёмную тему, mobile menu/FAQ, поддержку, privacy и «Скоро». Это loopback на компьютере, где запущен сервер; ссылка облачного localhost не доступна владельцу извне.
 
-Инструмента безопасного внешнего изолированного preview-hosting в текущей среде нет. Не создавать публичный tunnel, сторонний hosting или Pages deployment, не менять DNS/CNAME под видом preview. Скриншоты кандидата и проверенные результаты — docs/QA.md и docs/verification/release-candidate.json после завершения QA.
+Инструмента безопасного внешнего изолированного preview-hosting в текущей среде нет. Не создавать публичный tunnel, сторонний hosting или Pages deployment, не менять DNS/CNAME под видом preview. Скриншоты кандидата и проверенные результаты — docs/QA.md и docs/verification/release-candidate.json (QA выполнен).
 
 ## Что требует отдельного решения владельца
 
@@ -38,3 +38,9 @@
 ## План отката
 
 В разрешении выпуска заранее согласовать rollback именно этого публикационного commit. При проблеме сохранить evidence, выполнить разрешённый revert публикационного commit (без reset/force-push/переписывания истории), дождаться legacy Pages build, сравнить главную/privacy с сохранённой production-копией, проверить HTTPS/CNAME и отсутствие побочного APK/deploy. Если rollback отдельно не разрешён — подготовить конкретный revert для решения владельца. Android/другие клиентские репозитории не затрагивать.
+
+## Проверка сохранённого архива
+
+После upload в verify job тот же workflow скачивает artifact через pinned download-artifact v4. `tests/review_artifact_qa.py` требует совпадения source SHA/clean tree/ZIP SHA с утверждаемым candidate digest, проверяет manifest каждого файла, распаковывает безопасные пути во временную папку и реально открывает этот архив в Chrome на loopback:390/1440px ×2темы, coming-soon/noindex/no download/menu/FAQ/privacy/resources. Успех создаёт notice `Website review archive verified` и отдельный verification artifact. Это реальный round-trip, не повторный render из checkout. Для ручного запуска на скачанном ZIP: `python3 tests/review_artifact_qa.py <archive.zip> --checkpoint <SHA> --executable <Chrome path>`.
+
+Из cloud прямое скачивание artifact12130660202 получило403 на storage host. Дополнительный домен сохранён в черновике среды (не активирован); при необходимости прямого cloud download надо сохранить настройки и опубликовать **среду**, не сайт. Альтернативный CI round-trip не требует этого действия. Статус и доказательства — docs/verification/review-artifact-status.json. Ни локальная rehearsal, ни наличие artifact сами по себе не доказывают успешного remote download/render.

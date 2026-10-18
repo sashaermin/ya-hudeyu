@@ -1,0 +1,63 @@
+{
+  "at_utc": "2026-10-18T08:13:46Z",
+  "status": "LOCAL_REHEARSAL_PASS_REMOTE_ROUND_TRIP_PENDING",
+  "candidate_commit": "52ba269d0aa1b18eac5c4d4ef239694b241cc4cf",
+  "run_id": 39110310967,
+  "artifact": {
+    "id": 12130660202,
+    "name": "website-preview-52ba269d0aa1b18eac5c4d4ef239694b241cc4cf",
+    "digest": "sha256:1f591298b6f123897d0ef545bcd083bd1ded8006fef841f5e7a17b5110fe28a3",
+    "html_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39110310967/artifacts/12130660202"
+  },
+  "cloud_download": {
+    "status": "BLOCKED",
+    "http_status": 403,
+    "host": "productionresultssa15.blob.core.windows.net",
+    "signed_url_saved": false,
+    "network_draft_status": "saved, requires_publish=true; not activated"
+  },
+  "local_rehearsal": {
+    "source_commit": "52ba269d0aa1b18eac5c4d4ef239694b241cc4cf",
+    "archive_sha256": "7877e610d11a5a3d84b708864e0b5eae7c6c1b2ab263daeb77f7fc0cdd23c6e5",
+    "source_worktree_dirty": true,
+    "archive_files_verified": 22,
+    "rendered": [
+      {
+        "width": 390,
+        "theme": "light",
+        "status": "PASS",
+        "coming_soon": true,
+        "apk_download": false,
+        "noindex": true
+      },
+      {
+        "width": 390,
+        "theme": "dark",
+        "status": "PASS",
+        "coming_soon": true,
+        "apk_download": false,
+        "noindex": true
+      },
+      {
+        "width": 1440,
+        "theme": "light",
+        "status": "PASS",
+        "coming_soon": true,
+        "apk_download": false,
+        "noindex": true
+      },
+      {
+        "width": 1440,
+        "theme": "dark",
+        "status": "PASS",
+        "coming_soon": true,
+        "apk_download": false,
+        "noindex": true
+      }
+    ],
+    "page_errors": [],
+    "scope": "Local archive rehearsal only",
+    "browser_version": "154.0.8037.57"
+  },
+  "next": "CI will download its stored artifact and run actual 4-view browser rendering; local rehearsal is not remote verification"
+}

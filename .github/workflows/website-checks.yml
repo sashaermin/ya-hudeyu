@@ -41,6 +41,25 @@ jobs:
           if-no-files-found: error
           include-hidden-files: true # Only the two explicit review files above.
           retention-days: 7
+      - name: Download the stored review artifact for round-trip verification
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: website-preview-${{ github.sha }}
+          path: .test-results/downloaded-preview
+      - name: Verify stored archive and actual rendered candidate
+        run: |
+          python3 -m venv .test-results/preview-qa-venv
+          .test-results/preview-qa-venv/bin/python -m pip install --disable-pip-version-check 'playwright==1.62.0'
+          preview_browser=$(command -v google-chrome || command -v google-chrome-stable || command -v chromium)
+          .test-results/preview-qa-venv/bin/python tests/review_artifact_qa.py .test-results/downloaded-preview/website-preview.zip --checkpoint '${{ github.sha }}' --executable "$preview_browser" --output .test-results/review-artifact.json
+      - name: Save review verification evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: website-preview-verification-${{ github.sha }}
+          path: .test-results/review-artifact.json
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
   notify:
     needs: verify
     if: always()
