@@ -1,0 +1,36 @@
+{
+  "checked_at": "2026-10-18T13:05:46.448229+00:00",
+  "development_checkpoint": "44b532316d6e10eec944ee03cf260029cac09e4d",
+  "production_commit": "8fb7bf2920a89f39e1ed3a56d53ada91f468b715",
+  "production_https_public_hashes_matched": 22,
+  "production_hash_manifest": "docs/verification/uiux-production-release.json",
+  "fixture_checks": {
+    "download_url": true,
+    "metadata": true,
+    "changelog": true,
+    "hero_screen": true,
+    "feature_cards": true,
+    "gallery": true,
+    "screen_asset_copied": true,
+    "noindex": true,
+    "private_data_excluded": true,
+    "coming_soon_rejects_apk": true
+  },
+  "fixture_scope": "Isolated temporary copy, TEST ONLY metadata and original mascot as QA fixture; no APK downloaded, approved or published; actual data unchanged.",
+  "unit_tests": {
+    "command": "python3 -m unittest discover -s tests -p 'test_*.py' -q",
+    "passed": 27
+  },
+  "remaining_ui_audit": {
+    "COMPLETE": 35,
+    "PARTIAL": 0,
+    "MISSING": 0,
+    "BLOCKED_BY_RELEASE_CONTENT": 7,
+    "REQUIRES_MANUAL_VERIFICATION": 2
+  },
+  "limitations": [
+    "No physical-device, screen-reader or native zoom verification performed.",
+    "No actual release APK or release screenshots approved.",
+    "No new browser matrix: website bytes unchanged."
+  ]
+}

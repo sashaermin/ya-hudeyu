@@ -434,6 +434,25 @@
       "done": "Опубликованы только4 audited public changes наhttps://yahudeyu-app.ru/. Privacy legal text,CNAME,Pages,HTTPS,noindex,comingsoon/APK disabled сохранены; rollback9b39ffa verified ине понадобился.",
       "next": "Стабильный production без повторного deployment. Остатокmaster:approved APK/screens иmanual devices/AT/native zoom; будущие production updates только по отдельному разрешению.",
       "status": "Production VERIFIED; критических регрессий не выявлено; full master не закрыт"
+    },
+    {
+      "id": "site-post-release-apk-readiness-20261018",
+      "at": "2026-10-18T13:06:39.280044+00:00",
+      "type": "stage_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Maintenance",
+          "APK readiness"
+        ],
+        "title": "Проверка production и готовности к APK"
+      },
+      "checkpoint": "44b532316d6e10eec944ee03cf260029cac09e4d",
+      "verified": "27 unit tests PASS;22 HTTPS public hashes совпали с8fb7bf2;Pages built;rollback9b39ffa доступен;10 isolated full-release fixture checks PASS.",
+      "done": "Исправлены устаревшие инструкции подключения APK и handoff. Production/код/data неизменны. Конфигурация поддерживает APK/version/features/screens без перестройки; noindex и disabled download сохранены.",
+      "next": "Независимых approved задач нет. Нужны утверждённый APK/реальные release screens/evidence и physical-device/AT/native zoom QA. Full master остаётся частично заблокирован.",
+      "status": "Production стабилен; UI35complete/7releaseblocked/2manual; новые публикации не разрешены"
     }
   ]
 }

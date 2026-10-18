@@ -34,6 +34,12 @@
 
 Owner-authorized UI fixes из0b706e3 опубликованы public-only8fb7bf2 (4 files,22file allowlist), Pages39129023427 success. Normal-TLS live39129135130 success:78unit,22public hashes/16private404,16main+16privacy layouts,6noJS/keyboard focus/legal-text/gallery loading/error/retry/reopen,12axe0violations. Lighthouse mobile99/100/100/69; intentional noindex сохранён, APK disabled. Rollback9b39ffa/tag website-uiux-release-2026-10-18 истарый9a0857c доступны. Подробный manifest/notices — docs/verification/uiux-production-release.json. Полный master не закрыт: UI audit35 complete/7releaseblocked/2manual; дальнейшие inputs иограничения остаются вчеклисте. Никакого дополнительного release/редизайна/digest этим разрешением не начато.
 
+## Post-release maintenance · APK readiness
+
+На verified remote44b5323 проверены актуальные Pages built/main8fb7bf2 и22 actual HTTPS public hashes; rollback9b39ffa/tag доступен.27 existing tests PASS. Изолированная полная сборка с TEST ONLY metadata/mascot fixture подтвердила10 условий: URL/metadata/changelog, hero/features/gallery, asset copy, noindex/Disallow, private-data exclusion и rejection APK вcoming-soon. Реальные data/public files не менялись. Evidence — docs/verification/apk-readiness.json.
+
+Исправлены фактически устаревшие инструкции RELEASE_CONTENT: текущий coming-soon/site approval, независимая индексация, legal-body preservation и точный будущий переход наfull сновой авторизацией. Код/production unchanged, переработка компонентов дляAPK не требуется. UI35complete/7releaseblocked/2manual unchanged; все независимо исполнимые требования завершены. Следующие действия только по реальным APK/screens/evidence, physical-device/AT inputs либо отдельному разрешению digest; не выдумывать дальнейшие задачи и не считать full master завершённым.
+
 ## Дополнительный разрешённый этап W1 — общая работа агентов и уведомления
 
 Объём: общие инструкции, handoff, прогресс, сохранение оригинального ТЗ, сайт-специфичный Telegram через Actions, стабильные event/action IDs. Без Android-записи и без default-branch schedule.
