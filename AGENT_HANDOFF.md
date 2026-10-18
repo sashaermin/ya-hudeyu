@@ -7,7 +7,7 @@
 - Последний ответственный писатель: Codex, 18.10.2026 11:02 МСК. Другой активный website writer не известен; это историческая запись, не доказательство отсутствия активной сессии при будущем takeover. Android Claude Code не затрагивался.
 - Состояние: независимые задачи W2A / 4B / 3B / W2B / 4C / 4D выполнены и проверены. Открытые release/device/owner критерии сохранены в IMPLEMENTATION_PROGRESS.md и docs/QA.md. Сайт **не готов к публикации**, она не разрешена.
 
-**Next:** R2 завершён: CI39110644873 success; notice117625868753 подтверждает скачанный artifact/22files/4renderedviews/noindex/noAPK/page_errors0; Telegram109. Verified remote0b4eb54. Следующая независимая подготовка — review-only diff coming-soon policy с isolated tests, **без применения к активным gates**. Затем предъявить владельцу конкретный предмет решения, записать owner next и сохранить final handoff. APK не блокирует website-кандидат; main/production/deployment/indexing/download разрешения не менялись.
+**Next:** R3 review-only coming-soon patch подготовлен, не применён:15 existing+5 proposed tests PASS в изолированном экспорте; owner action содержит точный digest/предмет разрешения. Следующая независимая задачаR4 — исправить immutable artifact name collision при rerun: upload/download/verification names должны включать run_attempt. После push проверить реальный безопасный rerun, archive proof и Telegram dedup, затем сохранить final verified handoff. APK не blocker website readiness; production/gates/main неизменны.
 
 ## Авторитетные общие документы
 
@@ -73,3 +73,7 @@ Cloud onboarding draft: storage host добавлен к прежним4custom d
 ## R2 · проверка завершена
 
 Run39110644873: verify/notify success. Check-run117625868753 notice Website review archive verified подтверждает настоящий round-trip сохранённого artifact, clean source0b4eb54, inner ZIP SHA7877e610…,22files/4Chromeviews, noindex=true/APK=false/page_errors0. Artifact12130197561 (website ZIP+manifest), verification artifact12130182655. Telegram accepted109. Evidence docs/verification/review-artifact-status.json. Cloud direct download остаётся403; это не препятствует CI proof, не требовать смены credentials. Нет hosted preview URL; доступен review artifact. Next — неприменённый proposed policy diff для предметного owner review.
+
+## R3 · concrete owner review
+
+Неприменённый diff docs/proposals/first-release-coming-soon.patch и evidence docs/verification/first-release-policy-proposal.json сохранены. Активный tools/build.py/data approvals не менялись. Proposal apply-check/isolated apply и20 tests PASS (15 existing+5new). Предмет решения — этот patch; publication конкретного SHA позже и отдельно. Оставшийся независимо исправимый infrastructure issue — retry collision новых immutable artifacts; продолжитьR4.

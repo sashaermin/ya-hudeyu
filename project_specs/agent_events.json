@@ -225,6 +225,25 @@
       "done": "CI round-trip прошёл без ожидания cloud storage egress. Проверенный website artifact и proof сохранены; publication gates неизменны.",
       "next": "Неприменённый coming-soon policy diff с isolated tests для конкретного owner review.",
       "status": "Подготовка продолжается; публикация не выполнялась"
+    },
+    {
+      "id": "site-first-release-r3-20261018",
+      "at": "2026-10-18T08:18:48Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Первый релиз",
+          "R3"
+        ],
+        "title": "Конкретный review-only diff первого website-релиза"
+      },
+      "verified": "Patch apply-check/isolated apply PASS;15 existing+5 proposed tests PASS. Active builder/approval configs unchanged.",
+      "checkpoint": "676919e88daab57176ec4a55c4aa7d3df0b5b173",
+      "done": "Подготовлен неприменённый coming-soon mode с обязательным site approval и сохранением default full gates. Owner action содержит patch digest.",
+      "next": "Retry-safe artifact names и реальная rerun/dedup проверка без deploy.",
+      "status": "Подготовка продолжается; gate patch не применён"
     }
   ]
 }

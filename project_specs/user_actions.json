@@ -71,13 +71,14 @@
       "source": "Codex",
       "task": "Сайт · первый инкрементальный релиз",
       "subtask": "Приёмка кандидата и отдельная coming-soon политика публикации",
-      "what": "Владелец разрешил готовить первый website-релиз без APK, одновременно запретив менять publication gates без отдельной авторизации. Кандидат с «Скоро» подготовлен независимо от APK; действующий --production по-прежнему требует APK/screens. Нужна отдельная узкая gate-авторизация перед будущим выпуском, без обхода через draft. Предмет решения и процедура/rollback: docs/FIRST_RELEASE.md. CI round-trip реально прошёл: run39110644873,22files/4renderedviews; owner review artifact доступен по link. Прямой cloud download403 не блокирует подтверждённую проверку на runner.",
+      "what": "Первый coming-soon website-кандидат подготовлен независимо от APK и прошёл реальный CI archive round-trip/rendering. Existing production gate менять без отдельной авторизации запрещено. Конкретный неприменённый patch docs/proposals/first-release-coming-soon.patch (SHA-256 cefd3cc1b1440efa0f09c67b557570e5c9a4f89d0b7f0c63df7b8b407f38fd03) сохраняет full-release gates и требует отдельный site approval для явного coming-soon mode;15 existing+5 proposed tests PASS в изолированном экспорте. Active code/config не изменены.",
       "steps": [
-        "Посмотрите проверенный website-preview artifact и снимки; подтвердите визуальную и юридическую приёмку или укажите замечания.",
-        "Отдельно разрешите coming-soon политику production validation без APK, с сохранением site approval/noindex draft/запрета непроверенных функций и скачивания; после её реализации и проверки потребуется отдельное разрешение публикации конкретного SHA/артефакта."
+        "Посмотрите проверенный review artifact по link и4 candidate screenshots в docs/QA.md; подтвердите визуальную/юридическую приёмку или укажите замечания.",
+        "Отдельно разрешите применение конкретного review-only patch docs/proposals/first-release-coming-soon.patch (SHA-256 cefd3cc1b144…), либо укажите правки. Это разрешение не включает main/deploy/публикацию/распространение APK.",
+        "После авторизованного применения и проверок будет предъявлен точный website-SHA/артефакт для отдельного разрешения публикации и согласованного rollback."
       ],
       "blocked": "Только фактический первый website release и изменение gate, не разработка/приёмка кандидата.",
-      "can_continue": "Да: упаковка, artifact verification, локальный rendered preview, QA и документация без APK/main/deploy.",
+      "can_continue": "Review-only patch и кандидат уже готовы; отдельная проверка retry-safe artifact workflow продолжается. APK остаётся независимым deferred task.",
       "link": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39110644873/artifacts/12130197561"
     }
   ]
