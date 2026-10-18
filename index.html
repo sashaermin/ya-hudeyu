@@ -1,53 +1,95 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Я ХУдЕЮ</title>
-  <meta name="description" content="Официальная страница приложения Я ХУдЕЮ">
-  <style>
-    body {
-      font-family: system-ui, sans-serif;
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 48px 24px;
-      line-height: 1.6;
-      color: #202124;
-    }
-    h1 { color: #6750A4; font-size: 42px; margin-bottom: 8px; }
-    h2 { margin-top: 36px; }
-    .subtitle { font-size: 20px; color: #5f6368; }
-    a { color: #6750A4; }
-    footer { margin-top: 48px; color: #777; font-size: 14px; }
-  </style>
+  <title>Я ХУдЕЮ — маленькие шаги к большим изменениям</title>
+  <meta name="description" content="{{description}}">
+  <meta name="robots" content="{{robots}}">
+  <link rel="canonical" href="{{domain}}/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Я ХУдЕЮ — маленькие шаги к большим изменениям">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:url" content="{{domain}}/">
+  <meta property="og:image" content="{{domain}}/assets/brand/originals/ic_launcher_green.png">
+  <meta property="og:image:alt" content="Значок приложения Я ХУдЕЮ">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Я ХУдЕЮ для Android">
+  <meta name="twitter:description" content="{{description}}">
+  <meta name="twitter:image" content="{{domain}}/assets/brand/originals/ic_launcher_green.png">
+  <meta name="theme-color" content="#F7F4EF">
+  <link rel="icon" type="image/png" href="assets/brand/originals/ic_launcher_green.png">
+  <script src="scripts/theme.js"></script>
+  <link rel="stylesheet" href="styles/site.css">
+  <script src="scripts/site.js" defer></script>
+  {{structured_data}}
 </head>
-<body>
-  <h1>Я ХУдЕЮ</h1>
-  <p class="subtitle">Приложение для контроля питания, веса и активности.</p>
-
-  <h2>О приложении</h2>
-  <p>
-    «Я ХУдЕЮ» помогает вести дневник питания, отслеживать вес,
-    физическую активность, тренировки и прогресс.
-  </p>
-
-  <h2>Облачное хранение</h2>
-  <p>
-    Пользователь может подключить свой Google-аккаунт для сохранения
-    и синхронизации данных приложения.
-  </p>
-
-  <h2>Конфиденциальность</h2>
-  <p>
-    <a href="privacy.html">Политика конфиденциальности</a>
-  </p>
-
-  <h2>Поддержка</h2>
-  <p>
-    По вопросам работы приложения обращайтесь:
-    <a href="mailto:sashaermin@gmail.com">sashaermin@gmail.com</a>
-  </p>
-
-  <footer>© 2026 Я ХУдЕЮ</footer>
+<body id="top">
+  <a class="skip" href="#main">Перейти к содержимому</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Я ХУдЕЮ — в начало">
+        <img class="wordmark-light" src="assets/brand/originals/logo_wordmark_green_light.png" width="1000" height="361" alt="Я ХУдЕЮ">
+        <img class="wordmark-dark" src="assets/brand/originals/logo_wordmark_green_dark.png" width="1000" height="361" alt="Я ХУдЕЮ">
+      </a>
+      <nav class="nav" id="navigation" aria-label="Основная навигация">
+        <a href="#features">Возможности</a><a href="#screenshots">Скриншоты</a><a href="#start">Как начать</a><a href="#faq">Вопросы и ответы</a>
+      </nav>
+      <div class="header-actions">
+        <a class="button header-download" href="#download">{{download_label}}</a>
+        <button class="icon-button" id="theme-toggle" type="button" aria-label="Тема: системная. Переключить тему" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4M5.6 18.4 7 17m10-10 1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg>
+        </button>
+        <button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-controls="navigation" aria-expanded="false" aria-label="Открыть меню" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Я ХУдЕЮ · Для Android</p>
+        <h1 id="hero-title">Маленькие шаги<br>к <span>большим изменениям</span></h1>
+        <p class="lead">С заботой о себе. В своём ритме.<br>Знакомьтесь с «Я ХУдЕЮ» — приложением для Android.</p>
+        <div class="hero-actions"><a class="button" href="#download">{{download_label}} <span aria-hidden="true">↗</span></a><a class="button secondary" href="#features">Посмотреть возможности</a></div>
+        <p class="micro">{{hero_release_note}}</p>
+      </div>
+      <div class="hero-art">
+        <div class="mascot-field" aria-hidden="true"></div><span class="art-orbit" aria-hidden="true">✦</span>
+        <img class="hero-cat" src="assets/brand/originals/mascot_calm.webp" width="440" height="504" alt="Рыжий котик — маскот Я ХУдЕЮ" fetchpriority="high">
+        <div class="art-note"><strong>Большие перемены<br>начинаются с малого.</strong>По одному шагу за раз.</div>
+      </div>
+    </section>
+    <section class="section wrap" id="features" aria-labelledby="features-title">
+      <div class="section-head"><div><span class="section-number">01 / ВОЗМОЖНОСТИ</span><h2 id="features-title">Ближе к себе,<br>день за днём</h2></div><p>{{features_intro}}</p></div>
+      {{features}}
+    </section>
+    <section class="section wrap" id="screenshots" aria-labelledby="screens-title">
+      <div class="section-head"><div><span class="section-number">02 / ВНУТРИ ПРИЛОЖЕНИЯ</span><h2 id="screens-title">Знакомый ритм.<br>Свой характер.</h2></div><p>{{screens_intro}}</p></div>
+      {{gallery}}
+    </section>
+    <section class="section wrap" id="start" aria-labelledby="start-title">
+      <div class="section-head"><div><span class="section-number">03 / КАК НАЧАТЬ</span><h2 id="start-title">Первый шаг — простой</h2></div><p>Порядок установки, когда проверенный Android APK будет доступен.</p></div>
+      <ol class="steps-grid">
+        <li class="panel step"><h3>Скачайте APK</h3><p>Используйте ссылку из раздела загрузки. Перед установкой сверьте версию и сведения о файле.</p></li>
+        <li class="panel step"><h3>Установите на Android</h3><p>Откройте скачанный файл на телефоне и следуйте системным подсказкам.</p></li>
+        <li class="panel step"><h3>Настройте приложение</h3><p>Откройте «Я ХУдЕЮ» и следуйте инструкциям вашей версии приложения.</p></li>
+      </ol>
+      <p class="install-note">Android может запросить разрешение на установку из выбранного источника. Разрешайте его только тому приложению, через которое открываете проверенный APK. Не отключайте общую защиту устройства.</p>
+    </section>
+    <section class="section wrap" id="download" aria-labelledby="download-title">
+      <div class="release"><div><span class="section-number">04 / ANDROID</span><h2 id="download-title">Ваш следующий<br>маленький шаг</h2><p>{{release_summary}}</p></div>{{release}}</div>
+    </section>
+    <section class="section wrap" id="faq" aria-labelledby="faq-title">
+      <div class="faq-layout"><div class="faq-intro"><span class="section-number">05 / ЕСТЬ ВОПРОС?</span><h2 id="faq-title">Давайте разберёмся</h2><p>Не нашли ответ?<br><a href="mailto:{{support}}">Напишите в поддержку ↗</a></p></div><div>{{faq}}</div></div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="wrap">
+    <div class="footer-top"><a class="brand" href="#top" aria-label="Я ХУдЕЮ — в начало"><img class="wordmark-light" src="assets/brand/originals/logo_wordmark_green_light.png" width="1000" height="361" alt="Я ХУдЕЮ" loading="lazy"><img class="wordmark-dark" src="assets/brand/originals/logo_wordmark_green_dark.png" width="1000" height="361" alt="Я ХУдЕЮ" loading="lazy"></a><div class="footer-links"><a href="privacy.html">Конфиденциальность</a><a href="mailto:{{support}}">Поддержка</a><a href="#top">Наверх ↑</a></div></div>
+    <div class="footer-bottom"><p>© 2026 Я ХУдЕЮ</p><p>Маленькие шаги к большим изменениям.</p></div>
+  </div></footer>
+  <dialog class="viewer" id="viewer" aria-labelledby="viewer-title"><div class="viewer-header"><h2 id="viewer-title" style="font:600 18px Onest;margin:0">Экран приложения</h2><button class="icon-button" id="viewer-close" type="button" aria-label="Закрыть просмотр">×</button></div><img id="viewer-image" alt=""><p class="viewer-caption" id="viewer-caption" aria-live="polite"></p><p class="error-note" id="viewer-error" role="alert" hidden>Не удалось загрузить изображение. Попробуйте открыть его снова.</p><div class="viewer-controls"><button class="button secondary" id="viewer-prev" type="button" aria-label="Предыдущий скриншот">← Назад</button><button class="button secondary" id="viewer-next" type="button" aria-label="Следующий скриншот">Далее →</button></div></dialog>
 </body>
 </html>
