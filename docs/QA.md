@@ -1,8 +1,10 @@
-# QA черновика · этапы 4A–4D
+# QA сайта · draft и первый кандидат
 
 Проверки выполнены 18.10.2026; сохранение отчёта 09:42 МСК (06:42 UTC). Это локальный draft, **не проверка production и не разрешение выпуска**. Последние изменения ресурсов/галереи проверены после оптимизации. Итоговый checkpoint указан в IMPLEMENTATION_PROGRESS.md и Git-истории.
 
-## Фактические результаты
+Текущий кандидат: R1 copy/snapshots, R2/R5 actual CI archive/render proof. Последнее подтверждение — [artifact-node24.json](verification/artifact-node24.json), run39111335266 success,22files/4renderedviews/noindex/noAPK, Telegram138. [Просмотр и приёмка](FIRST_RELEASE.md). Подробные исторические проверки ниже сохраняют точную область применимости.
+
+## Исторический срез 4A
 
 | Проверка | Результат | Область |
 |---|---|---|
@@ -197,3 +199,5 @@ Firefox/WebKit используют те же runtime environment variables и e
 ## R2 · фактический CI artifact
 
 [Verified artifact](https://github.com/sashaermin/ya-hudeyu/actions/runs/39110644873/artifacts/12130197561), source0b4eb54. Run39110644873 success: upload→download реального artifact, clean source/digest/22file manifests PASS, actual Chrome rendering390/1440×2themes PASS, noindex/noAPK/page_errors0. Отдельный notice117625868753 — доказательство выполнения, не только success job. [Evidence](verification/review-artifact-status.json); Telegram109. Прямое cloud скачивание403 остаётся отдельным ограничением среды, local rehearsal не подменяет remote proof; remote proof получен на GitHub runner. Это архив для просмотра, не hosted preview/production publication.
+
+R5 current artifact pipeline: native Node24 official upload7.0.2/download8.0.2 pinned refs проверены статически и live CI. Run39111335266 success, notice117627928319 подтверждает22files/4views, Telegram138; Node20 warning отсутствует. 58 current unit tests CI PASS. Результат rerun R4 и ограничение старых artifact IDs — [artifact-retry.json](verification/artifact-retry.json). Proposal policy20 tests проверены только в изолированном экспорте, **не применены** к active code; это не новая фактическая авторизация.

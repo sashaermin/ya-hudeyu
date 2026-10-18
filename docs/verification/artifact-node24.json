@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "verified_at_utc": "2026-10-18T08:26:25Z",
+  "run_id": 39111335266,
+  "head_sha": "fec5137920b3871bbd67487b37ac1400d634b5f1",
+  "run_attempt": 1,
+  "jobs": [
+    {
+      "id": 117627928319,
+      "name": "verify",
+      "conclusion": "success"
+    },
+    {
+      "id": 117628076983,
+      "name": "notify",
+      "conclusion": "success"
+    }
+  ],
+  "archive_notice": {
+    "title": "Website review archive verified",
+    "message": "source fec5137920b3871bbd67487b37ac1400d634b5f1; archive_sha256 7877e610d11a5a3d84b708864e0b5eae7c6c1b2ab263daeb77f7fc0cdd23c6e5; files 22; rendered 4; noindex=true; APK=false; page_errors=0"
+  },
+  "telegram_notice": {
+    "title": "Telegram accepted",
+    "message": "commit fec5137920b3871bbd67487b37ac1400d634b5f1 message_id 138"
+  },
+  "node20_deprecation_present": false,
+  "artifact": {
+    "id": 12130497934,
+    "name": "website-preview-fec5137920b3871bbd67487b37ac1400d634b5f1-attempt-1",
+    "digest": "sha256:33058bfa3f1dcdaae69f04cbb68bdc30ec738275b5a9dfc25fbd471f8c80d4e3",
+    "size_in_bytes": 386156,
+    "expired": false,
+    "expires_at": "2026-10-25T08:24:52Z"
+  },
+  "artifact_html_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39111335266/artifacts/12130497934",
+  "active_safety_checks": {
+    "validate_function_AST_unchanged_since_22ac98a": true,
+    "render_publication_guard_AST_unchanged_since_22ac98a": true,
+    "actual_publication_approved": false,
+    "actual_release_status": "unverified",
+    "CNAME_and_privacy_equal_original_main": true
+  }
+}

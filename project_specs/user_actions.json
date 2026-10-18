@@ -78,8 +78,8 @@
         "После авторизованного применения и проверок будет предъявлен точный website-SHA/артефакт для отдельного разрешения публикации и согласованного rollback."
       ],
       "blocked": "Только фактический первый website release и изменение gate, не разработка/приёмка кандидата.",
-      "can_continue": "Review-only patch и кандидат уже готовы; отдельная проверка retry-safe artifact workflow продолжается. APK остаётся независимым deferred task.",
-      "link": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39110644873/artifacts/12130197561"
+      "can_continue": "Кандидат, review-only patch, actual archive round-trip, retry/dedup и Node24 pipeline проверены. Других независимых задач с текущими inputs не найдено; продолжение — замечания/приёмка и отдельное разрешение конкретного patch. APK — deferred независимая задача.",
+      "link": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39111335266/artifacts/12130497934"
     }
   ]
 }

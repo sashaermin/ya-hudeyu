@@ -263,6 +263,25 @@
       "done": "Attempt-specific names и успешный retry подтверждены; ограничение retention сохранено честно. Второго commit notification не было.",
       "next": "Проверить Node24 artifact Actions на новом live CI round-trip.",
       "status": "Продолжается; first-release policy patch не применён"
+    },
+    {
+      "id": "site-first-release-r5-20261018",
+      "at": "2026-10-18T08:28:09Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Первый релиз",
+          "R5"
+        ],
+        "title": "Проверенный кандидат и итоговый общий handoff"
+      },
+      "verified": "Run39111335266 success; Node24 actual archive22files/4views/noindex/noAPK;58 unit tests CI PASS; Telegram138. Active gate AST и protected files unchanged.",
+      "checkpoint": "fec5137920b3871bbd67487b37ac1400d634b5f1",
+      "done": "Кандидат готов к приёмке независимо от APK. Проверены archive pipeline/retry/commit dedup; подготовлен неприменённый policy diff20isolated tests PASS; handoff сохранён.",
+      "next": "Владелец: приёмка кандидата и отдельное решение по конкретному review-only patch. Затем продолжить по этому решению; публикация отдельно.",
+      "status": "Независимые approved задачи завершены; production/main/gates не менялись"
     }
   ]
 }
