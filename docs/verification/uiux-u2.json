@@ -1655,5 +1655,25 @@
     "conclusion": "success",
     "telegram_message_id": 261
   },
-  "test_harness_note": "Gallery native close event is asynchronous: aria-busy checks now wait for the semantic attribute. Early cancellation warnings were from pending test routes on abort; final suites completed without pending routes. Rapid-reopen guard prevents queued close from clearing a newer image request."
+  "test_harness_note": "Gallery native close event is asynchronous: aria-busy checks now wait for the semantic attribute. Early cancellation warnings were from pending test routes on abort; final suites completed without pending routes. Rapid-reopen guard prevents queued close from clearing a newer image request.",
+  "remote_verification": {
+    "commit": "6798295a2d39ded17f0465348601f2793c1eb615",
+    "run": 39127437892,
+    "conclusion": "success",
+    "unit_tests": 78,
+    "artifact_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39127437892/artifacts/12135589715",
+    "artifact_retention_days": 7,
+    "archive_notices": [
+      {
+        "title": "Website review archive verified",
+        "message": "source 6798295a2d39ded17f0465348601f2793c1eb615; archive_sha256 995ef47b8eec4b636aefbdc6b46b5bdd01b4d9227be82299bbcea61b5d77c43f; files 22; rendered 4; noindex=true; APK=false; page_errors=0"
+      }
+    ],
+    "telegram_notices": [
+      {
+        "title": "Telegram accepted",
+        "message": "commit 6798295a2d39ded17f0465348601f2793c1eb615 message_id 267"
+      }
+    ]
+  }
 }

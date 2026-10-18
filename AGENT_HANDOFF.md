@@ -3,11 +3,11 @@
 ## Текущее состояние и точка продолжения
 
 - Проект: официальный сайт «Я ХУдЕЮ», repository `sashaermin/ya-hudeyu`, branch `work/website-v2`.
-- Последний независимо verified remote **до этого documentation checkpoint**: `2981a4578f7514d9d14cc08c4fcc033aaa06e816` (run39126874190 success/Telegram261). Фактический последний SHA всегда получить через fetch/ls-remote; файл не содержит собственный будущий SHA.
+- Последний независимо verified remote **до этого documentation checkpoint**: `6798295a2d39ded17f0465348601f2793c1eb615` (run39127437892 success; archive/Telegram notices вuiux-u2.json). Фактический последний SHA всегда получить через fetch/ls-remote; файл не содержит собственный будущий SHA.
 - Последний ответственный агент: Codex, 18.10.2026 11:51 МСК. Другой активный website writer не известен; эта историческая запись не доказывает отсутствия активной сессии при takeover. Только один писатель ветки, Android Claude Code не затрагивать.
 - Стадия: первый инкрементальный website-кандидат **подготовлен к приёмке**, с «Скоро для Android», независимо от APK. Первый принятый coming-soon выпуск опубликован и проверен; мастер-ТЗ не завершено. Исторические ограничения ниже действуют вне этой узкой авторизации.
 
-**Exact next:** проверить remote CI U2/обычный Telegram accepted, сохранить proof и актуальный review artifact URL без повторного дорогого QA. docs/UI_UX_REQUIREMENTS_AUDIT.md:35 COMPLETE/0 PARTIAL/0 MISSING/7 BLOCKED_BY_RELEASE_CONTENT/2 REQUIRES_MANUAL_VERIFICATION; все независимо исполнимые UI corrections по новому заданию сделаны. Дальше — замечания/отдельное разрешение публикации именно нового UI candidate, approved APK/screens для release-specific пунктов либо manual physical device/AT/native zoom inputs. Production9b39ffa не менять. Новый development preview не утверждён, old publication approval относится только к первому release; APK approval остаётся false, indexing_approved=false. Не делать deferred redesign/вне-ТЗ features, не подменять manual verification автоматикой.
+**Exact next:** UI/UX-аудит U0–U2 завершён с verified remote6798295/run39127437892 success. Не повторять исправления/неизменённые suites. Для дальнейших неполных требований нужны approved APK/screens (7 UI items) или actual manual device/Safari/AT/native zoom session (2 items); точные deficiency/impact/acceptance — docs/UI_UX_REQUIREMENTS_AUDIT.md. Независимых разрешённых UI defects больше не выявлено. Новый development candidate для owner review: artifact12135589715/run39127437892 (7дней), снимки before/after в docs/screenshots/uiux; это ZIP, не hosted preview. Production9b39ffa без нового разрешения не менять, old approval не разрешает эти UI changes; APK approval остаётся false, indexing_approved=false. Перед окончанием текущего doc checkpoint подтвердить remote/CI/Telegram, не создавать endless docs commits ради собственного SHA.
 
 ## Что предъявлено владельцу
 
@@ -107,3 +107,6 @@ Loading/status/aria-busy/stale-image/error/retry/cancel/rapid-reopen прове�
 
 
 UI QA server: python3 -m http.server 8012 --bind 127.0.0.1 --directory _site (запущен только для этого audit).8002 возвращал RemoteDisconnected; прежние чужие процессы не трогались. Localhost не является owner preview URL. Инструкции воспроизведения UI suites — docs/QA.md; будущая сессия должна стартовать собственный корректный server или использовать правильный existing.
+
+
+U2 remote6798295 verified, run39127437892 success:78 unit tests, stored archive22files/4views/noindex/noAPK/page_errors0. Exact archive/Telegram notices иreview artifact URL сохранены в uiux-u2.json. Production HTTPS200/index hash af74145d прежний, main9b39ffa. Никаких дополнительных manual/device/AT PASS не заявлять. Все independently executable UI requirements закрыты, полный master частично открыт по указанным реальным зависимостям.
