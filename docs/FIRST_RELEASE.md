@@ -55,4 +55,6 @@
 
 Воспроизведение proposal tests: экспортировать текущий Git checkpoint во временную папку, применить patch там через `git apply --no-index --check` и `git apply --no-index`, выполнить `python3 -m unittest discover -s tests -p test_build.py -v` и `python3 -m unittest discover -s tests -p test_coming_soon_policy.py -v`. Не применять patch к активной ветке без указанной авторизации. TEST ONLY approvals существуют лишь в isolated test fixtures.
 
-Имена новых artifacts включают `run_attempt`: повторный запуск не конфликтует с уже сохранёнными immutable artifacts и не удаляет предыдущий проверенный архив. Upload/download используют одно имя, verification evidence также имеет attempt suffix. Исторические artifacts доR4 имеют прежнее имя без suffix.
+Имена новых artifacts включают `run_attempt`, чтобы попытка была явно видна; upload/download используют одно имя. Реальный retry прошёл, но preservation прежних artifact IDs **не подтверждён**: после rerun API возвращает404 для attempt1 IDs. Ссылки на artifacts не вечные, retention7дней; при необходимости восстановить кандидат из source и сверить известный inner ZIP SHA. Исторические artifacts доR4 имеют прежнее имя без suffix.
+
+R4 [retry evidence](verification/artifact-retry.json): обе попытки successful, round-trip/render прошёл повторно, commit Telegram127 принят вattempt1 и не повторён вattempt2. Исходная гипотеза о name collision не выдаётся за воспроизведённый дефект; фактически доказаны успешный retry и явная attempt provenance. Обещание сохранности старых IDs снято по результату проверки.

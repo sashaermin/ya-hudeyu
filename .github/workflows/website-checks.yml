@@ -32,7 +32,7 @@ jobs:
       - name: Package protected draft for review
         run: python3 tools/package_preview.py
       - name: Save review archive (no website deployment)
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, Node24
         with:
           name: website-preview-${{ github.sha }}-attempt-${{ github.run_attempt }}
           path: |
@@ -42,7 +42,7 @@ jobs:
           include-hidden-files: true # Only the two explicit review files above.
           retention-days: 7
       - name: Download the stored review artifact for round-trip verification
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2, Node24
         with:
           name: website-preview-${{ github.sha }}-attempt-${{ github.run_attempt }}
           path: .test-results/downloaded-preview
@@ -53,7 +53,7 @@ jobs:
           preview_browser=$(command -v google-chrome || command -v google-chrome-stable || command -v chromium)
           .test-results/preview-qa-venv/bin/python tests/review_artifact_qa.py .test-results/downloaded-preview/website-preview.zip --checkpoint '${{ github.sha }}' --executable "$preview_browser" --output .test-results/review-artifact.json
       - name: Save review verification evidence
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, Node24
         with:
           name: website-preview-verification-${{ github.sha }}-attempt-${{ github.run_attempt }}
           path: .test-results/review-artifact.json

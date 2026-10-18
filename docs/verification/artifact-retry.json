@@ -1,0 +1,79 @@
+{
+  "run_id": 39110987166,
+  "head_sha": "3480db81e197bc19aa8c51c134414efa1d39a231",
+  "attempt1": {
+    "conclusion": "success",
+    "verify_check_run": 117626942950,
+    "notify_check_run": 117627047150,
+    "archive_notices": [
+      {
+        "title": "Website review archive verified",
+        "message": "source 3480db81e197bc19aa8c51c134414efa1d39a231; archive_sha256 7877e610d11a5a3d84b708864e0b5eae7c6c1b2ab263daeb77f7fc0cdd23c6e5; files 22; rendered 4; noindex=true; APK=false; page_errors=0"
+      }
+    ],
+    "telegram_notices": [
+      {
+        "title": "Telegram accepted",
+        "message": "commit 3480db81e197bc19aa8c51c134414efa1d39a231 message_id 127"
+      }
+    ]
+  },
+  "at_utc": "2026-10-18T08:24:39Z",
+  "status": "RETRY_AND_COMMIT_DEDUP_PASS_WITH_ARTIFACT_RETENTION_LIMITATION",
+  "attempt2": {
+    "conclusion": "success",
+    "verify_check_run": 117627220248,
+    "notify_check_run": 117627307184,
+    "archive_notices": [
+      {
+        "title": "Website review archive verified",
+        "message": "source 3480db81e197bc19aa8c51c134414efa1d39a231; archive_sha256 7877e610d11a5a3d84b708864e0b5eae7c6c1b2ab263daeb77f7fc0cdd23c6e5; files 22; rendered 4; noindex=true; APK=false; page_errors=0"
+      }
+    ],
+    "telegram_commit_notices": [],
+    "meaning": "notify success and no second Telegram accepted commit notice; does not promise globally exactly-once delivery"
+  },
+  "artifacts_attempt1": [
+    {
+      "id": 12130706450,
+      "name": "website-preview-verification-3480db81e197bc19aa8c51c134414efa1d39a231-attempt-1",
+      "digest": "sha256:d7cd746ba1dd66391b2146df5c4427625984bc6348bede9167abca272c7193c0"
+    },
+    {
+      "id": 12130467475,
+      "name": "website-preview-3480db81e197bc19aa8c51c134414efa1d39a231-attempt-1",
+      "digest": "sha256:ef7daf96da97ea706de483b707d71808c6eaee999e3c1444b6d10c18cf6bad5a"
+    }
+  ],
+  "artifacts_attempt2": [
+    {
+      "id": 12130736418,
+      "name": "website-preview-verification-3480db81e197bc19aa8c51c134414efa1d39a231-attempt-2",
+      "digest": "sha256:cf479049c9a2d980ac2c7322919b400ae7dd87b5d194f6e989dbc4b9b887c5ef",
+      "expired": false,
+      "expires_at": "2026-10-25T08:21:24Z"
+    },
+    {
+      "id": 12130338025,
+      "name": "website-preview-3480db81e197bc19aa8c51c134414efa1d39a231-attempt-2",
+      "digest": "sha256:a463d627e6d6bdf4d2747221620ec952daf478b4f20adf6188c1dc43f163c5bc",
+      "expired": false,
+      "expires_at": "2026-10-25T08:21:07Z"
+    }
+  ],
+  "retention_check": {
+    "attempt1_ids": [
+      12130706450,
+      12130467475
+    ],
+    "direct_metadata_api_status": 404,
+    "meaning": "Old artifact IDs unavailable after rerun; do not promise preservation or permanent URLs. Rebuild source with verified inner ZIP digest if needed."
+  },
+  "checks": {
+    "both_attempts_success": true,
+    "actual_archive_round_trip_on_both": true,
+    "attempt_specific_name_verified": true,
+    "commit_notification_dedup": true,
+    "old_artifact_preservation_confirmed": false
+  }
+}

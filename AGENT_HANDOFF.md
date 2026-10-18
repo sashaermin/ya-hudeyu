@@ -7,7 +7,7 @@
 - Последний ответственный писатель: Codex, 18.10.2026 11:02 МСК. Другой активный website writer не известен; это историческая запись, не доказательство отсутствия активной сессии при будущем takeover. Android Claude Code не затрагивался.
 - Состояние: независимые задачи W2A / 4B / 3B / W2B / 4C / 4D выполнены и проверены. Открытые release/device/owner критерии сохранены в IMPLEMENTATION_PROGRESS.md и docs/QA.md. Сайт **не готов к публикации**, она не разрешена.
 
-**Next:** R4 retry-safe artifact names реализованы; после push дождаться первого successful CI/notice/Telegram ack, затем один безопасный полный rerun того же Actions run. Проверить attempt2 success, distinct artifact ids/names, повторный actual archive notice и отсутствие повторного commit Telegram accepted (ledger dedup). Это обоснованная проверка нового retry поведения, не повтор исходных browser matrices. После неё сохранить final handoff/owner review; gates/main/deploy не менялись.
+**Next:** R4 retry/Telegram dedup подтверждены в run39110987166 attempt2, но старые artifact IDs недоступны404 — не обещать их сохранность. R5 обновляет только review artifact Actions до upstream stable Node24 upload7.0.2/download8.0.2, source SHA/совместимые inputs проверены. После push проверить actual round-trip notice, artifact metadata, отсутствие Node20 annotation и Telegram ack; затем сохранить компактный final handoff. Publication gate patch остаётся неприменённым, owner review конкретен; APK независим, main/production/gates не менялись.
 
 ## Авторитетные общие документы
 

@@ -244,6 +244,25 @@
       "done": "Подготовлен неприменённый coming-soon mode с обязательным site approval и сохранением default full gates. Owner action содержит patch digest.",
       "next": "Retry-safe artifact names и реальная rerun/dedup проверка без deploy.",
       "status": "Подготовка продолжается; gate patch не применён"
+    },
+    {
+      "id": "site-first-release-r4-20261018",
+      "at": "2026-10-18T08:24:39Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Первый релиз",
+          "R4"
+        ],
+        "title": "Реальный retry review workflow и commit dedup"
+      },
+      "verified": "Run39110987166 attempts1/2 success; оба archive notices22files/4views; Telegram127 толькоattempt1. Старые artifact IDs после rerun404, сохранность не обещается.",
+      "checkpoint": "3480db81e197bc19aa8c51c134414efa1d39a231",
+      "done": "Attempt-specific names и успешный retry подтверждены; ограничение retention сохранено честно. Второго commit notification не было.",
+      "next": "Проверить Node24 artifact Actions на новом live CI round-trip.",
+      "status": "Продолжается; first-release policy patch не применён"
     }
   ]
 }
