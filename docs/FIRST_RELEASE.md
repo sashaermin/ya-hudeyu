@@ -11,7 +11,7 @@
 ## Как посмотреть
 
 1. Открыть последний успешный «САЙТ — проверки и Telegram» для нужного SHA в [Actions](https://github.com/sashaermin/ya-hudeyu/actions/workflows/website-checks.yml).
-2. Скачать artifact `website-preview-<полный SHA>` (GitHub может требовать вход). Сверить ZIP с SHA-256 в соседнем manifest; manifest `source_commit` должен совпасть с проверенным SHA, `source_worktree_dirty` — false.
+2. Скачать artifact `website-preview-<полный SHA>-attempt-<номер попытки>` (GitHub может требовать вход). Сверить ZIP с SHA-256 в соседнем manifest; manifest `source_commit` должен совпасть с проверенным SHA, `source_worktree_dirty` — false.
 3. Распаковать внутренний `website-preview.zip` в отдельную локальную папку и запустить `python3 -m http.server 8002 --bind 127.0.0.1 --directory <эта папка>`.
 4. Открыть `http://127.0.0.1:8002/`. Проверить светлую/тёмную тему, mobile menu/FAQ, поддержку, privacy и «Скоро». Это loopback на компьютере, где запущен сервер; ссылка облачного localhost не доступна владельцу извне.
 
@@ -54,3 +54,5 @@
 Предмет ближайшего решения владельца — **разрешить применение именно этого patch**, либо дать замечания. Это не разрешение main/deploy/APK/снятия noindex в текущем draft. После применения и проверок публикация конкретного SHA/артефакта согласуется отдельно.
 
 Воспроизведение proposal tests: экспортировать текущий Git checkpoint во временную папку, применить patch там через `git apply --no-index --check` и `git apply --no-index`, выполнить `python3 -m unittest discover -s tests -p test_build.py -v` и `python3 -m unittest discover -s tests -p test_coming_soon_policy.py -v`. Не применять patch к активной ветке без указанной авторизации. TEST ONLY approvals существуют лишь в isolated test fixtures.
+
+Имена новых artifacts включают `run_attempt`: повторный запуск не конфликтует с уже сохранёнными immutable artifacts и не удаляет предыдущий проверенный архив. Upload/download используют одно имя, verification evidence также имеет attempt suffix. Исторические artifacts доR4 имеют прежнее имя без suffix.

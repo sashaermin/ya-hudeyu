@@ -7,7 +7,7 @@
 - Последний ответственный писатель: Codex, 18.10.2026 11:02 МСК. Другой активный website writer не известен; это историческая запись, не доказательство отсутствия активной сессии при будущем takeover. Android Claude Code не затрагивался.
 - Состояние: независимые задачи W2A / 4B / 3B / W2B / 4C / 4D выполнены и проверены. Открытые release/device/owner критерии сохранены в IMPLEMENTATION_PROGRESS.md и docs/QA.md. Сайт **не готов к публикации**, она не разрешена.
 
-**Next:** R3 review-only coming-soon patch подготовлен, не применён:15 existing+5 proposed tests PASS в изолированном экспорте; owner action содержит точный digest/предмет разрешения. Следующая независимая задачаR4 — исправить immutable artifact name collision при rerun: upload/download/verification names должны включать run_attempt. После push проверить реальный безопасный rerun, archive proof и Telegram dedup, затем сохранить final verified handoff. APK не blocker website readiness; production/gates/main неизменны.
+**Next:** R4 retry-safe artifact names реализованы; после push дождаться первого successful CI/notice/Telegram ack, затем один безопасный полный rerun того же Actions run. Проверить attempt2 success, distinct artifact ids/names, повторный actual archive notice и отсутствие повторного commit Telegram accepted (ledger dedup). Это обоснованная проверка нового retry поведения, не повтор исходных browser matrices. После неё сохранить final handoff/owner review; gates/main/deploy не менялись.
 
 ## Авторитетные общие документы
 

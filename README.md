@@ -58,4 +58,4 @@ GitHub Pages подтверждён read-only API: legacy source main:/. Пер�
 
 ## Первый релиз и просмотр кандидата
 
-[Процедура приёмки, публикации и отката](docs/FIRST_RELEASE.md). `python3 tools/package_preview.py` готовит noindex ZIP/manifest без deploy. После успешного CI архив доступен в Actions artifact `website-preview-<SHA>` на7дней. Это скачиваемый review bundle, не размещённый preview URL. Кандидат и его QA не требуют APK; действующие production gates остаются без изменений до отдельного разрешения.
+[Процедура приёмки, публикации и отката](docs/FIRST_RELEASE.md). `python3 tools/package_preview.py` готовит noindex ZIP/manifest без deploy. После успешного CI архив доступен в Actions artifact `website-preview-<SHA>-attempt-<N>` на7дней. Это скачиваемый review bundle, не размещённый preview URL. Кандидат и его QA не требуют APK; действующие production gates остаются без изменений до отдельного разрешения.
