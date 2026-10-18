@@ -544,9 +544,26 @@ def next_action(handoff: str | None) -> str | None:
     return m.group(1).strip() if m else None
 
 
+def digest_agent_metadata(agent_counts: dict[str, int] | None) -> tuple:
+    """Development contributors from unique in-window commits, never the report runner."""
+    if agent_counts is None:
+        return ('Агент', SOURCE_UNKNOWN, False)
+    total = sum(agent_counts.values())
+    if not total:
+        return ('Агенты', 'Нет данных', False)
+    known = [source for source in (SOURCE_CODEX, SOURCE_CLAUDE, SOURCE_OTHER) if agent_counts.get(source, 0)]
+    if not known:
+        return ('Агент', SOURCE_UNKNOWN, False)
+    value = ', '.join(known)
+    unknown = agent_counts.get(SOURCE_UNKNOWN, 0)
+    if unknown:
+        value += f'; частичная атрибуция: без надёжной подписи {unknown} из {total} коммитов'
+    return ('Агенты' if len(known) > 1 else 'Агент', value, False)
+
+
 def digest_message(repo: str, now: dt.datetime, branch_commits: dict[str, int], milestones: list[dict], failures: list[dict],
                    active: str | None, active_branch: str | None, missing: list[str], server: str = "https://github.com",
-                   open_actions: list[dict] | None = None, recent_commits: list[dict] | None = None, verification_runs: list[dict] | None = None) -> str:
+                   open_actions: list[dict] | None = None, recent_commits: list[dict] | None = None, verification_runs: list[dict] | None = None, agent_counts: dict[str, int] | None = None) -> str:
     msk = now.astimezone(dt.timezone(dt.timedelta(hours=3)))
     sections = [section('Коммиты', '\n'.join(f'• <code>{esc(b)}</code>: {n}' for b, n in sorted(branch_commits.items(), key=lambda item: -item[1])) or 'Коммитов не было.')]
     if recent_commits:
@@ -559,7 +576,7 @@ def digest_message(repo: str, now: dt.datetime, branch_commits: dict[str, int], 
     if open_actions:
         sections.append(section('Ждут вашего действия', '\n'.join('• ' + esc(a['subtask']) + ' (<code>' + esc(a['id']) + '</code>)' + (' — ' + esc(a['blocked']) if a.get('blocked') else '') for a in open_actions)))
     if missing: sections.append(section('Нет данных', esc('; '.join(missing))))
-    return presentation('итоги дня', [('Агент', SOURCE_UNKNOWN, False), ('Механизм', SOURCE_ACTIONS, False),
+    return presentation('итоги дня', [digest_agent_metadata(agent_counts if agent_counts is not None else ({} if not branch_commits else None)), ('Механизм', SOURCE_ACTIONS, False),
                         ('Период', f'24 часа до {msk:%d.%m.%Y %H:%M} МСК', False)], sections,
                         [(f'{server}/{repo}/commits', 'Открыть историю коммитов на GitHub'),
                          (f'{server}/{repo}/blob/{active_branch or "work/website-v2"}/AGENT_HANDOFF.md', 'Открыть текущий handoff')])
@@ -736,6 +753,8 @@ def run_digest(args) -> int:
     missing: list[str] = []
     branch_commits: dict[str, int] = {}
     commit_details: list[dict] = []
+    seen_commit_shas: set[str] = set()
+    agent_counts: dict[str, int] = {}
     recent: list[tuple[str, str]] = []
     seen_milestones: dict[str, dict] = {}
     selected_branch = getattr(args, "branch", "")
@@ -761,8 +780,20 @@ def run_digest(args) -> int:
         except Exception:
             missing.append(f"коммиты ветки {name}"); continue
         if commits:
-            branch_commits[name] = len(commits)
-            for c in commits[:6]:
+            unique_commits = []
+            for commit in commits:
+                sha = commit["sha"]
+                if sha in seen_commit_shas:
+                    continue
+                seen_commit_shas.add(sha)
+                unique_commits.append(commit)
+                source = agent_source(commit["commit"].get("message", ""))
+                agent_counts[source] = agent_counts.get(source, 0) + 1
+            # Each SHA belongs to the first queried branch containing it, so displayed
+            # counts, contributor attribution and summaries use the same unique scope.
+            if unique_commits:
+                branch_commits[name] = len(unique_commits)
+            for c in unique_commits[:6]:
                 msg = c["commit"].get("message", "")
                 summary = report_field(msg, "report-summary", msg.splitlines()[0] if msg else "Коммит", 180)
                 commit_details.append({"sha": c["sha"], "summary": summary, "url": f"https://github.com/{repo}/commit/{c['sha']}"})
@@ -815,7 +846,7 @@ def run_digest(args) -> int:
     if open_actions is None:
         missing.append("реестр действий владельца")
     text = digest_message(repo, now, branch_commits, sorted(seen_milestones.values(), key=lambda item: item["at"], reverse=True), failures, active, active_branch, missing,
-                          os.environ.get("GITHUB_SERVER_URL", "https://github.com"), open_actions or [], commit_details, verification_runs)
+                          os.environ.get("GITHUB_SERVER_URL", "https://github.com"), open_actions or [], commit_details, verification_runs, agent_counts)
     if args.dry_run:
         print(text); return 0
     ledger = getattr(args, "ledger", ".telegram-ledger/digest.txt")

@@ -59,7 +59,7 @@ class DailyDigestTest(unittest.TestCase):
                 self.calls.append((path,params))
                 if path.endswith('/commits'):
                     item={'sha':'a'*40,'commit':{'committer':{'date':'2026-10-18T13:00:00Z'},'message':'subject\n\nReport-Summary: Реальное <изменение> & проверка\nAgent: Codex'}}
-                    return [item]*100 if params['page']==1 else [dict(item,sha='b'*40)]
+                    return [dict(item,sha=f'{i:040x}') for i in range(100)] if params['page']==1 else [dict(item,sha='b'*40)]
                 item={'name':'Проверка <HTML>', 'html_url':'https://github.com/o/r/actions/runs/1', 'head_branch':'work/website-v2','conclusion':'success'}
                 return {'workflow_runs':[item,dict(item,conclusion='failure'),dict(item,conclusion=None,status='in_progress')]}
             def file_at(self,path,ref):

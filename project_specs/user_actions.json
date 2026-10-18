@@ -53,17 +53,18 @@
     },
     {
       "id": "site-digest-default-branch-activation",
-      "status": "open",
+      "status": "resolved",
       "source": "Codex",
       "task": "Сайт · обязательный daily digest",
       "subtask": "Разрешение включить расписание в default branch",
-      "what": "Workflow website-digest.yml на21:00 МСК подготовлен и проверен в development. GitHub schedule из development не работает. Первый website release опубликован9b39ffa, но его авторизация прямо не включает unrelated workflows/main changes. Pages source остаётся legacy main:/; добавление workflow в main может вызвать Pages rebuild и требует отдельного разрешения.",
+      "what": "Default-branch синхронизация выполнена: main e37f521 содержит active website-digest.yml с cron0 18 * * * (21:00 МСК). Ручные workflow_dispatch39141327550 и39141381414 завершены success; владелец подтвердил фактическую доставку.",
       "steps": [
         "Проверьте .github/workflows/website-digest.yml в work/website-v2: только API read, проверки и Telegram, без deployment.",
         "Если нужно включить расписание, отдельно разрешите ограниченный main update для существующей notification инфраструктуры с учётом возможного legacy Pages rebuild. Это не входит в уже завершённый website release."
       ],
-      "blocked": "Только автоматический запуск ежедневного дайджеста. Подготовка и dry-run проверены.",
-      "can_continue": "Да: browser QA, диагностика notify, инфраструктура release; main/Pages не меняются."
+      "blocked": "Блокер активации устранён. Первый автоматический scheduled run пока не подтверждён; это наблюдение QA, а не незавершённая активация.",
+      "can_continue": "Да: исправление attribution вdevelopment и последующая отдельно разрешённая синхронизация notification-only runtime/tests. APK approval остаётся отдельным открытым действием.",
+      "resolution": "18.10.2026: main e37f521c0f62226fb3c4419372a11a79699ec38c, workflow388551143 active/cron18:00UTC. Manual runs39141327550 и39141381414 success; actual digest check117716359241 вернул Telegram topic6/message28, доставка также подтверждена владельцем. В доступной API-истории только workflow_dispatch: первый автоматический schedule ещё не проверен."
     },
     {
       "id": "site-first-website-release-policy",

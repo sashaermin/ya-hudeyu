@@ -49,7 +49,7 @@
 
 Проверять блокер настроек среды доступными tools; сохраняемый draft и его фактическая активация — разные операции. Не считать публикацию среды deployment сайта. Если платформа требует действие владельца, зарегистрировать его один раз и продолжать независимые задачи. Не спрашивать заново о неизменившемся блокере.
 
-Daily digest в **21:00 Europe/Moscow теперь обязателен** (раньше был опциональным). Реализовать и проверить всё доступное в рабочей ветке; запуск GitHub schedule из default branch по-прежнему требует отдельного разрешения на main. Нельзя скрывать этот неустранённый предел или обещать работу неактивного расписания.
+Daily digest в **21:00 Europe/Moscow обязателен**. Активация выполнена наdefaultmain e37f521: workflow active, manual runs success/owner delivery confirmation; первый автоматический schedule пока не подтверждён. Будущие main sync требуют нового явного разрешения; не просить повторно об уже выполненной активации.
 
 Сохранять intentional noindex до **отдельного разрешения публикации сайта**, независимо от утверждения APK. Скачивание APK остаётся выключенным, пока владелец не выбрал и явно не разрешил конкретный артефакт. Подтверждённые тесты не повторять без изменившихся входов или новой диагностики. Не трогать Android/другие клиентские проекты. GitHub остаётся единственным общим источником состояния, допускается только один активный писатель сайта.
 
@@ -87,4 +87,4 @@ U3 исполнен иverified: production8fb7bf2/Pages39129023427/live391291351
 
 ### Telegram routing и расписание
 
-Текущее назначение website notifications: «Я худею GROUP» → «Сайт | Я ХУдЕЮ», `TELEGRAM_MESSAGE_THREAD_ID=6` в обоих workflow jobs. Не менять secrets и не переотправлять историю для нового topic. Sender поддерживает прежний режим без thread ID; вся доставка через existing Actions. Daily21:00МСК иdispatch dry_run описаны в AGENT_NOTIFICATION_PROTOCOL.md и docs/TELEGRAM_DEFAULT_BRANCH_SYNC.md. Изменение development разрешено; активация на default main требует отдельной авторизации, включая возможный rebuild legacy Pages. Не выполнять подготовленный sync автоматически.
+Текущее назначение website notifications: «Я худею GROUP» → «Сайт | Я ХУдЕЮ», `TELEGRAM_MESSAGE_THREAD_ID=6` в обоих workflow jobs. Не менять secrets и не переотправлять историю для нового topic. Sender поддерживает прежний режим без thread ID; вся доставка через existing Actions. Daily21:00МСК активирован наmain; manual runs/Telegram подтверждены, automatic schedule ещё не verified. Attribution digest — только Agent trailers уникальных24h SHA, generator GitHub Actions указывается отдельно. Будущий notification-only sync исправления требует отдельной авторизации, включая возможный legacy Pages rebuild; не выполнять его автоматически. Детали — AGENT_NOTIFICATION_PROTOCOL.md и docs/TELEGRAM_DEFAULT_BRANCH_SYNC.md.

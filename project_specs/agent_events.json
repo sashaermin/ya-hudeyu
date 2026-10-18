@@ -472,6 +472,25 @@
       "done": "Optional thread ID иenv6 длявсех website notifications;24h actual commit summaries/Actions statuses/completed stages/open blockers;dispatch dry_run=true. Production иmain неизменны.",
       "next": "Подтвердить actual topic6 delivery послеpush. Daily21:00МСК ждёт отдельного разрешения Telegram-only sync наdefaultmain поdocs/TELEGRAM_DEFAULT_BRANCH_SYNC.md; не выполнять main/deploy автоматически.",
       "status": "Development готов; default-branch schedule не активен без owner authorization"
+    },
+    {
+      "id": "site-digest-attribution-status-20261018",
+      "at": "2026-10-18T15:45:01.604529+00:00",
+      "type": "stage_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Telegram",
+          "Digest attribution"
+        ],
+        "title": "Достоверная атрибуция и актуальный статус расписания"
+      },
+      "checkpoint": "8bf7f541b4cd0c29457440a6631814021429eab3",
+      "verified": "68 notification+27website tests PASS;2workflow YAML;actual API dry-run показываетCodex;isolated main allowlist66PASS/2expected registry skips;main workflow active/manual success/topic6 message28.",
+      "done": "Агенты изtrusted trailers всех unique24h SHA; partial/unknown/no-commits состояния. Activation action resolved;APK approval untouched. Первый автоматический schedule не заявлен verified.",
+      "next": "Remote/CI/Telegram proof; затем только отдельно разрешённый4file notification sync наmain. Не повторять digest и не менять production/workflows.",
+      "status": "Development fix готов; active schedule/manual delivery confirmed; automatic schedule пока не verified"
     }
   ]
 }

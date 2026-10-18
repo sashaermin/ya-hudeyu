@@ -1,32 +1,29 @@
-# Изолированное включение daily digest — план, не разрешение
+# Daily digest: активированное расписание и следующий notification-only sync
 
-Текущая рабочая ветка — `work/website-v2`, default branch — `main`. Цель: Telegram-группа «Я худею GROUP», тема «Сайт | Я ХУдЕЮ», `message_thread_id=6`. Владелец сообщил об обновлении repository secret TELEGRAM_CHAT_ID; значение не извлекалось. Routing ID не является секретом и явно задан в обоих notification jobs. Bot/token и существующие secrets сохранены.
+Назначение неизменно: «Я худею GROUP» → «Сайт | Я ХУдЕЮ», topic6. Секреты не извлекались. Main сейчас `e37f521c0f62226fb3c4419372a11a79699ec38c`; относительно public release8fb7bf2 изменены только четыре Telegram-файла в.github, public content прежний.
 
-## Что уже работает в development
+## Подтверждённое состояние
 
-Push запускает прежний website-checks pipeline и затем отправляет все commit/event/action/failure сообщения через единый sender с topic6. Без TELEGRAM_MESSAGE_THREAD_ID sender сохраняет прежний JSON без message_thread_id; неправильное непустое значение блокирует запрос, без fallback в общую тему. Retry, HTML escaping и dedup keys сохранены; старые сообщения не переотправляются из-за смены назначения. Run39140904178/notify117715065966 реально подтвердил topic6/message23(commit)/24(stage); source e34c458. Общее правило подтверждения: `Telegram topic confirmed`: sender записывает его только если Telegram API вернул соответствующий message_thread_id в Message, вместе с message_id. `Telegram accepted` без такого подтверждения не доказывает тему.
+- `.github/workflows/website-digest.yml` существует наdefaultmain, workflow388551143 имеет state active. Cron `0 18 * * *` =21:00 Europe/Moscow. Checkout runtime — `${{ github.sha }}`; данные берутся read-only API изwork/website-v2.
+- Manual workflow_dispatch39141327550 и39141381414 success. Digest check117716359241 подтвердил Telegram topic6/message28. Владелец также подтвердил фактическую доставку.
+- В проверенной API-истории только эти manual runs. **Первый автоматический schedule ещё не проверен**; наличие active/cron не доказывает его успешное выполнение. Не запускать лишний digest и не сбрасывать ledger для проверки.
+- `site-digest-default-branch-activation` resolved: запрос выполнен. APK approval остаётся отдельным открытым действием.
 
-## Что ждёт отдельной авторизации
+## Исправление attribution в development
 
-GitHub запускает schedule только при наличии workflow на default branch. Там сейчас website-digest.yml отсутствует (API404). Workflow_dispatch также требует файл на default branch, поэтому не обещать запуск кнопкой до синхронизации. Локальный CLI dry-run использует фактический GitHub API без отправки Telegram; это не scheduled run.
+Digest учитывает Agent trailers всех unique SHA в actual24h query scope, через existing agent_source/normalized_agent; автор, GitHub username иrunner не определяют identity. Один агент → «Агент», несколько → «Агенты»; смесь known/unknown явно partial, безknown → «Не определён», нолькоммитов → «Агенты: Нет данных». «Механизм: GitHub Actions» сохранён отдельно. При сканировании нескольких веток одинSHA считается впервой запрошенной ветке, повторно не увеличивает count/attribution ине попадает вsummaries. При штатном --branch scope остаётся work/website-v2.
 
-После явного разрешения владельца перенести **только следующие четыре файла** из проверенного working checkpoint, без merge development branch целиком:
+## Явный allowlist следующей синхронизации
 
-1. `.github/workflows/website-digest.yml`
-2. `.github/scripts/telegram_notify.py`
-3. `.github/scripts/test_telegram_notify.py`
-4. `.github/scripts/test_topic_digest.py`
+Требует **нового отдельного разрешения владельца**, не повторной активации расписания. Не merge development branch. Синхронизировать только:
 
-SHA-256 каждого файла и изолированный тест этого набора — [verification/telegram-topic-digest.json](verification/telegram-topic-digest.json). Не включать website-checks.yml, docs, project_specs, site source/data, assets или публикационные настройки. Website-checks остаётся только на development; отдельный allowlist добавляет исключительно требуемый daily workflow/runtime/tests.
+1. `.github/scripts/telegram_notify.py` — factual contributor aggregation/dedup.
+2. `.github/scripts/test_digest_attribution.py` — новые regression tests.
+3. `.github/scripts/test_topic_digest.py` — pagination fixture с уникальнымиSHA.
+4. `.github/scripts/test_telegram_notify.py` — presentation contract допускает требуемый plural «Агенты».
 
-## Проверяемая процедура после разрешения
+Хеши и isolated-main validation — [verification/digest-attribution.json](verification/digest-attribution.json). Workflow, secrets, topic6, retries, HTML, provenance, daily dedup keys иdry_run **не требуют изменений**. Не переносить docs/project_specs/AGENTS/handoff/website-checks/public data/content/tests сайта вmain. Handoff/action registry читаются сdevelopment через API, поэтому корректировка status после dev push уже доступна старому runtime; исправление Agent header станет доступно main-runtime только после разрешённого sync.
 
-1. Fetch main и development, подтвердить approved source SHA и hashes четырёх файлов; если ветки продвинулись — сначала inspect, без reset/force-push. Повторно проверить Pages source/config и сохранить public-only manifest/rollback checkpoint.
-2. Подготовить один минимальный main commit с этим allowlist, проверить diff и отсутствие изменений всех существующих public files. `.github` — служебный каталог GitHub/Jekyll, не публичный контент; после обновления подтвердить его HTTP-недоступность. Не копировать внутренние документы в public root.
-3. Перед записью main учесть: текущий legacy Pages main:/ может автоматически rebuild даже при Telegram-only изменении. Авторизация должна явно покрывать этот возможный побочный эффект; не менять deployment config и не запускать deployment вручную. Сейчас запись main не разрешена и не выполнена.
-4. Workflow берёт код из `${{ github.sha }}` — SHA текущего dispatch/default schedule, а данные читает read-only API из work/website-v2. Так future edits development не становятся исполняемым кодом default-branch job до review/sync. Permissions только contents/actions read, credentials checkout отключены.
-5. Выполнить workflow_dispatch с `dry_run=true` (default): test suite + фактический API; без проверки Telegram secrets, отправки, восстановления/записи cache ledger. Проверить 24-часовое окно, реальные commit summaries, Actions statuses, completed events, open actions/blockers; недоступные данные указаны явно.
-6. Затем dispatch с `dry_run=false`: одна отправка в тему6, verify actual Telegram Message.message_thread_id и message_id; повторный запуск в тот же московский день не должен дублировать digest. Тестовый реальный digest в этот день заменяет scheduled отправку благодаря прежнему daily key.
-7. Проверить remote main SHA, actual scheduled run и тему; `0 18 * * *` =21:00 Europe/Moscow, GitHub может задерживать schedule. Убедиться, что public website hashes, HTTPS, noindex и APK-disabled неизменны. Закрыть существующий alert `site-digest-default-branch-activation` только после подтверждённой активации, не создавать второй alert.
+После разрешения fetch обеих веток, inspect advancement, сверить allowlist/hashes; сохранить текущий main/public manifest. Подготовить минимальный commit только четырёх файлов, проверить неизменность всех public bytes и прежнего workflow. Legacy Pages main:/ может автоматически rebuild при main push: авторизация должна учитывать это; deployment config не менять и вручную deploy не запускать. После push проверить mainSHA, сайт/HTTPS/noindex/APK-disabled инедоступность.github. Не reset/force-push/rewrite history.
 
-Дайджест перечисляет activity предшествующих24часов, а не заявляет непрерывный мониторинг агента. Сообщение ограничено Telegram4096; выводит последние3описания коммитов/Actions runs, до4completed stages и до3failures, общий commit count и ссылки на полную историю; actual statuses не равны результату каждого теста. Completed events требуют явного типа завершения, времени и verified evidence; transitions не считаются completed. Open user actions/blockers берутся из общего registry, next — из handoff. Cache ledger дедуплицирует по прежнему Moscow-day key; глобальная exactly-once доставка при потере cache/сетевой неопределённости не гарантируется.
+Для safe preview использовать workflow_dispatch dry_run=true (default) после sync либо CLI --dry-run до него: реальный API без sends/cache/ledger mutations. Не выполнять live dispatch заново ради этого fix: daily key по Moscow day сохранён, прежние уведомления не пересылать. Первый реальный scheduled run проверить read-only поevent=schedule/conclusion=success иactual Telegram topic/message annotations. GitHub может задерживать расписание; global exactly-once при потереcache/неопределённости сети не гарантируется.

@@ -1,0 +1,71 @@
+{
+  "checked_at": "2026-10-18T15:45:01.585599+00:00",
+  "development_base": "8bf7f541b4cd0c29457440a6631814021429eab3",
+  "main_checkpoint": "e37f521c0f62226fb3c4419372a11a79699ec38c",
+  "public_content_source": "8fb7bf2920a89f39e1ed3a56d53ada91f468b715",
+  "public_files_unchanged_from_release": true,
+  "main_workflow": {
+    "path": ".github/workflows/website-digest.yml",
+    "state": "active",
+    "id": 388551143,
+    "cron": "0 18 * * *",
+    "timezone": "21:00 Europe/Moscow",
+    "manual_success_runs": [
+      39141327550,
+      39141381414
+    ],
+    "delivery": {
+      "check_run": 117716359241,
+      "topic": 6,
+      "message_id": 28,
+      "owner_confirmed": true
+    },
+    "scheduled_run_independently_verified": false,
+    "api_history_events": [
+      "workflow_dispatch",
+      "workflow_dispatch"
+    ]
+  },
+  "changes_preserved": {
+    "workflows": "unchanged",
+    "topic": 6,
+    "retry_dedup_html_secret_protection": "unchanged",
+    "main_modified": false,
+    "live_digest_resent": false
+  },
+  "verification": {
+    "notification_tests": 68,
+    "website_tests": 27,
+    "workflow_yaml_files": 2,
+    "isolated_main_allowlist_tests": {
+      "total": 68,
+      "passed": 66,
+      "skipped": 2,
+      "reason": "development registries absent by design"
+    },
+    "live_api_dry_run": "Codex header observed; no Telegram send or ledger mutation"
+  },
+  "future_main_allowlist": [
+    {
+      "path": ".github/scripts/telegram_notify.py",
+      "sha256": "bdf025346e9b62175ca5018e6604df31e09b53599f5edb0a1ea7ea372f3fa068"
+    },
+    {
+      "path": ".github/scripts/test_digest_attribution.py",
+      "sha256": "93c69f9bd7d2e700c39951996b2a6fb70669d34c9d58af87c42ae0d31a6e811c"
+    },
+    {
+      "path": ".github/scripts/test_topic_digest.py",
+      "sha256": "43e93a2b807f5dbe8e5885dee97dbc194306f9ddb6ddd57a8268fc01b8756753"
+    },
+    {
+      "path": ".github/scripts/test_telegram_notify.py",
+      "sha256": "9ff996f52b54f2885deccfdb0b09f7713f9ec859422a4b9d714c8d0d4505b6db"
+    }
+  ],
+  "owner_actions": {
+    "site_digest_default_branch_activation": "resolved",
+    "site_approved_android_release": "open"
+  },
+  "pending": "Separate owner authorization to sync only these four notification files. First scheduled run still awaits independent read-only verification."
+}

@@ -28,7 +28,7 @@
 | §6 SEO indexing | Owner policy decision, не APK blocker | Сейчас indexing_approved=false; не включать только ради score. |
 | §7.8 screenshots/visual acceptance | Первый coming-soon кандидат принят | Снимки4тем/ширин сохранены; release-specific full UI сравнение и приёмка после настоящих screens. |
 | §8 final full release | Deferred: release content/приёмка + новая production authorization | Первый coming-soon не закрывает требования APK/download и не разрешает следующий production push. |
-| Shared notifications21:00 МСК | Prepared; owner main-workflow authorization required | Digest schedule default branch ещё не активен; не менять production/main для этого без отдельного разрешения. |
+| Shared notifications21:00 МСК | Activated наdefaultmain e37f521 | Manual39141327550/39141381414 success, topic6/message28/owner delivery confirmed; первый automatic schedule ещё не verified. Attribution fix вdevelopment требует отдельного notification-only sync. |
 
 ## Актуальный production срез U3
 
@@ -44,7 +44,11 @@ Owner-authorized UI fixes из0b706e3 опубликованы public-only8fb7bf
 
 Optional TELEGRAM_MESSAGE_THREAD_ID подключён вобщем sender, env6 вnotify/digest направляет commits/events/failures/actions в «Сайт | Я ХУдЕЮ». Verification pipeline/preview/production protections прежние. Digest расширен actual24h summaries/Actions statuses, explicit completed events, user-action blockers; cron21:00МСК прежний, dispatch dry_run=true добавлен.59notification+27website tests PASS,2YAML parsed, actual API dry-run иisolated main allowlist simulation59/57PASS/2expected skips. Evidence telegram-topic-digest.json; Actual topic6 delivery подтверждена notify check117715065966/run39140904178 success: commit message23, stage24; не mock tests. Preview22files/4views/hash995ef47b unchanged.
 
-Расписание ещё не активно: workflow отсутствует наdefaultmain, owner authorization дляTelegram-only4file sync не дана. План docs/TELEGRAM_DEFAULT_BRANCH_SYNC.md включает possible legacy Pages rebuild/public-hash verification, без merge/unrelated files. Existing owner action остаётся open. Production иполный master checklist не меняются.
+Обновлённый факт: default-branch4file sync выполнен наmain e37f521, workflow active/cron21:00МСК; manual runs success иactual Telegram delivery confirmed. Existing activation action resolved. Первый automatic schedule пока не проверен. Новый attribution fix требует отдельного4file sync поdocs/TELEGRAM_DEFAULT_BRANCH_SYNC.md; public content/полный master checklist не меняются.
+
+## Исправление factual attribution/status daily digest
+
+Агрегируются trusted Agent trailers всех уникальныхSHA в actual24h scope; duplicateSHA наветках не повторяют counts/attribution/summaries. Single/multiple/partial/unknown/no-commits states игенератор GitHub Actions разделены. Regression tests включают author/runner non-inference иclosed actions. Source-of-truth status обновлён поmain e37f521/active workflow/manual success/topic6/message28/owner confirmation; automatic schedule пока не verified. Новая main синхронизация только runtime+3notification test files, безworkflow/docs/site changes и без merge. Exact allowlist/evidence — docs/TELEGRAM_DEFAULT_BRANCH_SYNC.md и docs/verification/digest-attribution.json.
 
 ## Дополнительный разрешённый этап W1 — общая работа агентов и уведомления
 
@@ -57,7 +61,7 @@ Optional TELEGRAM_MESSAGE_THREAD_ID подключён вобщем sender, env6
 - APK не утверждён (прямое подтверждение владельца 18.10.2026); registry `site-approved-android-release`.
 - Нет подтверждённых release screenshots; не подменять интерфейс.
 - Telegram bindings восстановлены: live sendMessage ack67 и последующий push ack77; registry `site-telegram-settings-verification` resolved. Исторические failed runs ниже сохранены как журнал.
-- Digest 21:00 МСК обязателен и подготовлен в website-digest.yml; активация требует разрешения на default-branch workflow, main не разрешён.
+- Digest21:00МСК активирован наmain; manual delivery подтверждена, automatic schedule пока не verified. Только будущий attribution sync требует нового разрешения main.
 - Визуальное сходство подтверждает владелец на этапе приёмки, юридические изменения согласуются отдельно.
 
 ## Журнал проверок
