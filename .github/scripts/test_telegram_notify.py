@@ -514,6 +514,13 @@ class PermanentRussianProtocolTest(unittest.TestCase):
             self.assertNotIn('workflow для этого коммита завершились успешно',send.call_args_list[0].args[2])
             self.assertIn('workflow для этого коммита завершились успешно',send.call_args_list[1].args[2])
 
+    def test_milestone_uses_its_own_agent_not_a_later_commit_hint(self):
+        record=dict(id='stage',title='Проверка',status='checkpoint_verified',_source='Codex')
+        text=tn.milestone_message('o/r','work/website-v2','a'*40,record)
+        self.assertIn('Агент:</b> Не определён',text)
+        text=tn.milestone_message('o/r','work/website-v2','a'*40,dict(record,source='Claude Code'))
+        self.assertIn('Агент:</b> Claude Code',text)
+
 
 class ReportMetadataEnforcementTest(unittest.TestCase):
     def check_message(self, message):

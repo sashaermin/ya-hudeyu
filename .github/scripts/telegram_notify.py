@@ -264,7 +264,7 @@ def milestone_transitions(before_json: str | None, after_json: str | None) -> li
 
 def milestone_message(repo: str, branch: str, sha: str, m: dict, server: str = "https://github.com") -> str:
     url = f"{server}/{repo}/commit/{sha}"
-    lines = [f"<b>🏁 Этап дорожной карты</b>", f"<b>Проект:</b> {esc(PROJECT)}", f"<b>Агент:</b> {esc(normalized_agent(m.get('_source', '')))}",
+    lines = [f"<b>🏁 Этап дорожной карты</b>", f"<b>Проект:</b> {esc(PROJECT)}", f"<b>Агент:</b> {esc(normalized_agent(m.get('source', '')))}",
              f"<b>Этап:</b> {esc(m.get('title', m.get('id', '')))}",
              f"<b>Статус:</b> {esc(STATUS_TITLES[m['status']])}", f"<b>Ветка:</b> <code>{esc(branch)}</code>"]
     if m.get("note"):
@@ -536,8 +536,7 @@ def run_commits(args) -> int:
             if key in ledger:
                 continue
             try:
-                head_source = agent_source(commits[-1]["message"], commits[-1]["author"]) if commits else SOURCE_UNKNOWN
-                send(token, chat, action_message(repo, branch, after, a, server, head_source) if kind == "open" else resolved_message(branch, a, head_source))
+                send(token, chat, action_message(repo, branch, after, a, server) if kind == "open" else resolved_message(branch, a))
                 with open(args.ledger, "a", encoding="utf-8") as f:
                     f.write(key + "\n")
                 print(f"Отправлено действие ({kind}): {a['id']}")
@@ -575,13 +574,12 @@ def run_commits(args) -> int:
         except Exception as e:
             failures += 1
             events = []; print(f"::error::Не удалось прочитать журнал событий: {type(e).__name__}")
-        head_source = agent_source(commits[-1]["message"], commits[-1]["author"]) if commits else SOURCE_UNKNOWN
         for ev in events:
             key = f"event:{ev['id']}"
             if key in ledger:
                 continue
             try:
-                message_id = send(token, chat, event_message(repo, branch, after, ev, server, head_source))
+                message_id = send(token, chat, event_message(repo, branch, after, ev, server))
                 with open(args.ledger, "a", encoding="utf-8") as f:
                     f.write(key + "\n")
                 print(f"Отправлено событие {ev['type']}: {ev['id']} (message_id {message_id})")
@@ -598,7 +596,6 @@ def run_commits(args) -> int:
             if key in ledger:
                 continue
             try:
-                m["_source"] = agent_source(commits[-1]["message"], commits[-1]["author"]) if commits else SOURCE_UNKNOWN
                 send(token, chat, milestone_message(repo, branch, after, m, server))
                 with open(args.ledger, "a", encoding="utf-8") as f:
                     f.write(key + "\n")

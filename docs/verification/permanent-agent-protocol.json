@@ -1,0 +1,39 @@
+{
+  "verified_at_moscow": "2026-10-18T11:42:38+03:00",
+  "checkpoint": "24c510237eb9cf7e4387f92a9d2206bb59a55048",
+  "run_id": 39112341703,
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 117630941798,
+      "name": "verify",
+      "conclusion": "success"
+    },
+    {
+      "id": 117630996364,
+      "name": "notify",
+      "conclusion": "success"
+    }
+  ],
+  "telegram_notice": {
+    "title": "Telegram accepted",
+    "message": "commit 24c510237eb9cf7e4387f92a9d2206bb59a55048 message_id 157"
+  },
+  "archive_notice": {
+    "title": "Website review archive verified",
+    "message": "source 24c510237eb9cf7e4387f92a9d2206bb59a55048; archive_sha256 7877e610d11a5a3d84b708864e0b5eae7c6c1b2ab263daeb77f7fc0cdd23c6e5; files 22; rendered 4; noindex=true; APK=false; page_errors=0"
+  },
+  "rendered_report_reproduction": "<b>САЙТ «Я ХУдЕЮ» — новый коммит</b>\n<b>Изменение:</b> Общая передача агентов и русские Telegram-отчёты\n<b>Что сделано:</b> Закреплены единые правила Claude Code, Codex и других разрешённых агентов. Исправлены формат отчётов и точное определение агента; CI проверяет обязательные поля.\n<b>Проверки:</b> Проверки workflow для этого коммита завершились успешно. Локальная запись: Локально пройдены 47 notification-тестов и 20 site/workflow/handoff-тестов; сборка и JS-синтаксис проверены. HTML сайта не изменился; cold-start — симуляция, не реальная передача агентов.\n<b>Агент:</b> Codex\n<b>Ветка:</b> <code>work/website-v2</code>\n<b>Коммит:</b> <code>24c5102</code>\n<a href=\"https://github.com/sashaermin/ya-hudeyu/commit/24c510237eb9cf7e4387f92a9d2206bb59a55048\">https://github.com/sashaermin/ya-hudeyu/commit/24c510237eb9cf7e4387f92a9d2206bb59a55048</a>",
+  "counts_at_verified_checkpoint": {
+    "notification": 47,
+    "site_workflow_handoff": 20
+  },
+  "local_followup": {
+    "notification": 48,
+    "reason": "Own-source milestone attribution; no current-commit hint for historical records",
+    "status": "PASS"
+  },
+  "real_agent_transfer_tested": false,
+  "additional_live_test_messages_sent": false,
+  "ledger_keys_credentials_destination_changed": false
+}
