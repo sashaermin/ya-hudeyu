@@ -134,7 +134,7 @@ def evfile(*events): return json.dumps({"events": list(events)})
 class TransitionEventTest(unittest.TestCase):
     def test_transition_message_matches_the_requested_russian_format(self):
         text = tn.event_message("o/r", "w", "e" * 40, ev("e1"))
-        self.assertTrue(text.startswith("<b>Claude Code — переход к следующей задаче</b>"))
+        self.assertTrue(text.startswith("<b>САЙТ «Я ХУдЕЮ»</b>")); self.assertIn("<b>Агент:</b> Claude Code",text); self.assertIn("переход к следующей задаче",text)
         self.assertIn("<b>Завершено:</b> Task03 › G — Share Studio &lt;2.0&gt;", text)
         self.assertIn("<b>Начато:</b> Task03 › H › H1 — Сравнение", text)
         self.assertIn("<b>Статус:</b> разработка продолжается", text)
@@ -147,7 +147,7 @@ class TransitionEventTest(unittest.TestCase):
             e = {"id": typ, "type": typ, "source": "Codex", "verified": "ok", "from": deep, "to": deep}
             self.assertIsNone(tn.event_problem(e), typ)
             text = tn.event_message("o/r", "w", "e" * 40, e)
-            self.assertIn(f"Codex — {heading}", text)
+            self.assertIn(heading, text); self.assertIn("<b>Агент:</b> Codex", text); self.assertTrue(text.startswith("<b>САЙТ «Я ХУдЕЮ»</b>"))
             self.assertIn("ТЗ-09 › Этап 2 › Задача 4 › Подзадача 4.1 › Шаг — x", text)
 
     def test_completion_without_verification_and_malformed_events_are_never_sent(self):
@@ -184,8 +184,8 @@ class TransitionEventTest(unittest.TestCase):
                 self.assertEqual(expected, len(sent))
                 if expected:
                     self.assertIn("Проверенный коммит", sent[0])
-                    self.assertTrue(sent[1].startswith("<b>Claude Code — задача завершена и проверена</b>"))  # explicit source wins
-                    self.assertTrue(sent[2].startswith("<b>Codex — начата задача</b>"))
+                    self.assertIn("задача завершена и проверена",sent[1]); self.assertIn("<b>Агент:</b> Claude Code",sent[1])  # explicit source wins
+                    self.assertIn("<b>начата задача</b>",sent[2]); self.assertIn("<b>Агент:</b> Codex",sent[2])
 
     def test_add_event_cli_is_deterministic_validated_and_refuses_unverified_completion(self):
         with tempfile.TemporaryDirectory() as d:
@@ -358,6 +358,26 @@ class CiAndDigestTest(unittest.TestCase):
         self.assertIn("21:00 МСК", text); self.assertIn("work/&lt;x&gt;</code>: 3", text)
         self.assertIn("нет записанных завершений", text); self.assertIn("не удалось определить", text); self.assertIn("Нет данных:</b> HANDOFF.md", text)
         self.assertEqual("F5", tn.next_action("x\n**Next:** F5\n**Next:** old"))
+
+
+class WebsiteContractTest(unittest.TestCase):
+    def test_reliable_other_agent_label(self):
+        self.assertEqual(tn.SOURCE_OTHER, tn.agent_source("fix\n\nAgent: Other agent"))
+        self.assertEqual(tn.SOURCE_UNKNOWN, tn.agent_source("fix", "codex-user"))
+
+    def test_stage_report_has_site_agent_evidence_and_next(self):
+        event={"id":"test-stage", "type":"stage_completed", "source":"Codex", "from":{"path":["Сайт","QA"],"title":"QA"},"verified":"tests PASS","done":"Gallery keyboard fixed","next":"Owner release choice"}
+        text=tn.event_message("o/r","work/website-v2","a"*40,event)
+        for word in ["САЙТ «Я ХУдЕЮ»", "Агент:", "Проверено:", "Сделано:", "Далее:", "Owner release choice"]:
+            self.assertIn(word,text)
+
+    def test_ci_failure_rerun_does_not_duplicate(self):
+        with tempfile.TemporaryDirectory() as folder:
+            ledger=os.path.join(folder,"sent.txt")
+            variables={"GITHUB_REPOSITORY":"o/r", "GITHUB_RUN_ID":"123", "TELEGRAM_BOT_TOKEN":"fake-test-only", "TELEGRAM_CHAT_ID":"fake-test-only"}
+            with mock.patch.dict(os.environ,variables), mock.patch.object(tn,"send") as send, mock.patch("sys.stdout",io.StringIO()):
+                for _ in range(2): self.assertEqual(0,tn.main(["ci-report","--workflow","website","--status","failure","--ledger",ledger]))
+            self.assertEqual(send.call_count,1)
 
 
 if __name__ == "__main__":

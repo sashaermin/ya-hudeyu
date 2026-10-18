@@ -33,3 +33,5 @@
 - Build regression tests: 10/10 PASS (блокировка неподтверждённых APK/функций/screens, HTTPS/path safety, экранирование и повторяемость сборки).
 
 - W1 checkpoint `227ab74` подтверждён на remote. Этап 3A: WOFF2 178264 bytes вместо 563240 bytes TTF (−68%); оригиналы и лицензии сохранены. Build/workflow 12/12 PASS; explicit owner approval требуется отдельно от status verified. RELEASE_CONTENT/README добавлены; реальный APK остаётся pending.
+
+- W1.1: stage report соответствует общему формату сайта; `done/next` сохраняются в событиях; повторный CI failure report дедуплицируется по run_id/status. 33/33 notification tests PASS (mocks, без сетевых отправок).

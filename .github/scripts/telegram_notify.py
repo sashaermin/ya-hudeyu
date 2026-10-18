@@ -410,13 +410,17 @@ def _label(n: dict) -> str:
 def event_message(repo: str, branch: str, sha: str, e: dict, server: str = "https://github.com", source: str = SOURCE_UNKNOWN) -> str:
     heading, from_label, to_label, _ = EVENT_TYPES[e["type"]]
     who = alert_source(e, source)
-    lines = [f"<b>{esc(who)} — {esc(heading)}</b>", f"<b>Проект:</b> {esc(PROJECT)}"]
+    lines = [f"<b>{esc(PROJECT)}</b>", f"<b>{esc(heading)}</b>", f"<b>Агент:</b> {esc(who)}"]
     if from_label:
         lines.append(f"<b>{from_label}:</b> {esc(_label(e['from']))}")
     if to_label:
         lines.append(f"<b>{to_label}:</b> {esc(_label(e['to']))}")
     if e.get("verified"):
-        lines.append(f"<b>Проверка:</b> {esc(str(e['verified']))}")
+        lines.append(f"<b>Проверено:</b> {esc(str(e['verified']))}")
+    if e.get("done"):
+        lines.append(f"<b>Сделано:</b> {esc(str(e['done']))}")
+    next_step = e.get("next") or (e.get("to") or {}).get("title") or "См. AGENT_HANDOFF.md"
+    lines.append(f"<b>Далее:</b> {esc(str(next_step))}")
     if e.get("reason"):
         lines.append(f"<b>Причина:</b> {esc(str(e['reason']))}")
     if e.get("status"):
@@ -578,11 +582,17 @@ def run_ci_report(args) -> int:
     counts = junit_counts(args.junit) if args.junit else None
     if args.status == "success" and not args.notify_success:
         print("Успешная сборка: уведомление не требуется"); return 0
+    key = f"ci:{repo}:{os.environ.get('GITHUB_RUN_ID', '')}:{args.status}"
+    ledger = getattr(args, "ledger", ".telegram-ledger/sent.txt")
+    if key in load_ledger(ledger):
+        print("Отчёт этого запуска уже отправлен"); return 0
     try:
         send(env("TELEGRAM_BOT_TOKEN"), env("TELEGRAM_CHAT_ID"),
              ci_message(repo, args.workflow, os.environ.get("GITHUB_REF_NAME", ""), os.environ.get("GITHUB_SHA", ""), args.status, run_url, counts))
     except RuntimeError as e:
         print(f"::error::Не удалось отправить отчёт CI: {e}"); return 1
+    with open(ledger, "a", encoding="utf-8") as f:
+        f.write(key + "\n")
     return 0
 
 
@@ -662,7 +672,7 @@ def run_add_event(args) -> int:
         path, title = getattr(args, f"{name}_path"), getattr(args, f"{name}_title")
         if path or title:
             e[name] = {"path": [x.strip() for x in (path or "").split(">") if x.strip()], "title": (title or "").strip()}
-    for name in ("verified", "status", "reason", "checkpoint"):
+    for name in ("verified", "status", "reason", "checkpoint", "done", "next"):
         if getattr(args, name):
             e[name] = getattr(args, name).strip()
     problem = event_problem(e)
@@ -709,14 +719,14 @@ def main(argv=None) -> int:
     sub = p.add_subparsers(dest="cmd", required=True)
     c = sub.add_parser("commits"); c.add_argument("--ledger", default=".telegram-ledger/sent.txt")
     r = sub.add_parser("ci-report"); r.add_argument("--workflow", required=True); r.add_argument("--status", required=True)
-    r.add_argument("--junit", default=""); r.add_argument("--notify-success", action="store_true")
+    r.add_argument("--junit", default=""); r.add_argument("--notify-success", action="store_true"); r.add_argument("--ledger", default=".telegram-ledger/sent.txt")
     d = sub.add_parser("digest"); d.add_argument("--dry-run", action="store_true")
     v = sub.add_parser("actions"); v.add_argument("--file", default=ACTIONS_FILE)
     ev = sub.add_parser("event"); ev.add_argument("--file", default=EVENTS_FILE)
     ev.add_argument("--type", required=True, choices=sorted(EVENT_TYPES)); ev.add_argument("--source", required=True, choices=[SOURCE_CLAUDE, SOURCE_CODEX, SOURCE_OTHER, SOURCE_UNKNOWN])
     ev.add_argument("--id", default=""); ev.add_argument("--from-path", default=""); ev.add_argument("--from-title", default="")
     ev.add_argument("--to-path", default=""); ev.add_argument("--to-title", default="")
-    for name in ("--verified", "--status", "--reason", "--checkpoint"):
+    for name in ("--verified", "--status", "--reason", "--checkpoint", "--done", "--next"):
         ev.add_argument(name, default="")
     evs = sub.add_parser("events"); evs.add_argument("--file", default=EVENTS_FILE)
     a = p.parse_args(argv)
@@ -730,6 +740,7 @@ def main(argv=None) -> int:
         os.makedirs(os.path.dirname(a.ledger) or ".", exist_ok=True)
         return run_commits(a)
     if a.cmd == "ci-report":
+        os.makedirs(os.path.dirname(a.ledger) or ".", exist_ok=True)
         return run_ci_report(a)
     return run_digest(a)
 

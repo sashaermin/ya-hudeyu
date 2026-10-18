@@ -16,6 +16,25 @@
       "verified": "Локально: 30 notification tests PASS, 11 build/workflow tests PASS; workflow YAML parsed. Фактическая доставка и Actions run не подтверждены (API 403).",
       "status": "Независимая разработка продолжается; Telegram delivery pending",
       "checkpoint": "24ca8d51ec4c194ee84d72392194b923a843cbb7"
+    },
+    {
+      "id": "site-notify-format-dedup-verified-20261018",
+      "at": "2026-10-18T06:44:12Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "W1",
+          "1"
+        ],
+        "title": "Формат stage reports и дедупликация CI failures"
+      },
+      "verified": "33 notification tests PASS, без skip; отправки полностью замоканы.",
+      "status": "Локальная инфраструктура проверена; фактическая доставка пока неизвестна",
+      "checkpoint": "a14a2c640373e60496cd840cd4f7ad7f9f0e24c6",
+      "done": "Добавлены поля Сделано/Далее, достоверные источники и ledger для повторного запуска CI failure reports.",
+      "next": "Сохранить Chromium QA и снимки сайта; завершить независимую приёмку черновика."
     }
   ]
 }
