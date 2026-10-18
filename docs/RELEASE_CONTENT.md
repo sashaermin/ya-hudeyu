@@ -32,3 +32,11 @@ Draft `_site`: robots noindex,nofollow; robots.txt Disallow. Production build в
 ## Действующая политика
 
 `privacy.html` сохранена побайтно от main. Она описывает Google-аккаунт/Drive; не расширять её произвольно и не выводить из неё гарантии конкретной сборки. Перед публикацией владелец проверяет юридическую актуальность. Шаблон главной использует ссылку `/privacy.html`; перенаправление не требуется.
+
+## Дополнительный gate публикации сайта · этап 3B
+
+`data/publication.json` отделяет разрешение публикации **сайта** от разрешения распространения APK. Сейчас `approved: false`, `approval_reference: null`; агент не меняет их без отдельного явного решения владельца. Даже полный verified release и approved screens не позволяют production render снять noindex без `publication.approved: true` и непустой ссылки на соответствующее разрешение.
+
+Обычный draft build сохраняет noindex даже при наличии всех будущих разрешений; только явно запрошенный `--production` с обоими gate может генерировать index,follow. Это не выполняет merge/PR/deploy. Конфигурация publication не копируется в `_site`. Тестовые разрешения существуют только в памяти unit tests, реальные data-файлы остаются false/unverified.
+
+17 build/workflow regression tests PASS, включая взаимную независимость APK/site approval и round-trip HTML-sensitive JSON-LD metadata. При первом добавлении нового JSON-LD test он поймал ошибку экранирования в правке; исправлено на JSON unicode escaping, повторный test PASS. Для настоящего имени бренда сгенерированный HTML не изменился побайтно — существующие browser/Lighthouse результаты остаются применимыми.

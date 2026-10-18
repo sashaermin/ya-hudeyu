@@ -2,12 +2,12 @@
 
 - Repository: `sashaermin/ya-hudeyu`.
 - Branch: `work/website-v2` (от main).
-- Последний независимо подтверждённый remote checkpoint: `9ca5397d59183d6c6b6ac0998792400236ece571`. Более поздний содержащий этот handoff commit проверять через `git ls-remote`, не полагаться на самоссылку.
+- Последний независимо подтверждённый remote checkpoint: `46b824dd99c3c516fd2c2bb679f8a8fc72e1426d`. Более поздний содержащий этот handoff commit проверять через `git ls-remote`, не полагаться на самоссылку.
 - Последний ответственный агент: Codex. В текущей сессии Codex — активный единственный писатель сайта; это историческая запись, не вечный lease. Другой активный website writer неизвестен. Android Claude Code активен отдельно и не затрагивается.
 - Текущая стадия: независимый draft QA этапа 4A завершён локально; оставшаяся проверка ожидает сети и утверждённого release content. W1/W1.1 реализованы; фактическая Telegram-доставка не подтверждена.
 - Завершённые checkpoints: этап 0 `a4de44b`; основа этапа 1 `356eaef`; секции/взаимодействия этапа 2 `24ca8d5`. Релизные критерии этапов 2–4 остаются открытыми.
 
-**Next:** W2A и 4B проверены, сохранить 4B checkpoint. Затем завершить независимый release-safety этап 3B: отдельное подтверждение публикации сайта должно требоваться для снятия noindex, независимо от APK approval. Исправить recovery уведомлений: неотправленные action/event records после отсутствующих bindings должны дойти при следующем успешном workflow без дубликатов. Telegram требует двух подтверждённо отсутствующих Actions bindings; daily schedule ждёт отдельного разрешения на main workflow. Не спрашивать заново об APK, он всё ещё не утверждён.
+**Next:** Завершить W2B recovery для неотправленных action/event records: после настройки bindings следующий успешный workflow должен доставлять backlog без дубликатов. 3B gate готов и локально проверен (17 tests); 4B browser QA завершён в доступном объёме, не повторять матрицы без изменения артефакта. Далее останутся только внешние prerequisites: два Actions bindings, отдельное разрешение на default-branch digest workflow, утверждённый APK/screens и visual/legal/device acceptance. Main/deploy не разрешены.
 
 ## Текущее исполнение и доказательства
 
@@ -46,3 +46,5 @@
 W2A: notification tests 36/36 и build/workflow 13/13 PASS, YAML parsed. Live GitHub digest dry-run PASS без отправки. Новые actions probe и digest runtime dedup проверены с mocks. Последний remote cf7814f подтверждён перед продолжением.
 
 4B: Firefox153 и WebKit26.5 — по16 viewport/theme runs, по4 axe runs, 0 violations; keyboard/theme/gallery/no-JS PASS. Firefox touch не поддерживается, WebKit native swipe не проверен (native tap/DOM handler PASS). Runtime helper реально выполнен; все рецепты и engine-specific evidence/screens сохранены в docs/QA.md. Pages API и побайтная read-only production HTTPS проверка PASS. Run39106472358: verify success, notify check-config доказал отсутствие обоих Telegram bindings.
+
+3B: release/site-publication consent отделены, реальный publication.approved=false; 17 build/workflow tests PASS. Обычный draft hash совпадает с 4A/4B артефактом, output UI не изменён. Новый metadata edge-case test выявил ошибку экранирования в рабочей правке, исправление проверено; реальный контент не затронут.

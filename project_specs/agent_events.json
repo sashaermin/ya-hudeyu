@@ -92,6 +92,25 @@
       "checkpoint": "9ca5397d59183d6c6b6ac0998792400236ece571",
       "done": "Добавлены проверенные runtime recipes, два движка и их screenshots/JSON evidence. Production и privacy побайтно соответствуют main.",
       "next": "Release safety gate для website publication и recovery неотправленных уведомлений."
+    },
+    {
+      "id": "site-release3b-consent-gate-20261018",
+      "at": "2026-10-18T07:16:22Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "3",
+          "3B"
+        ],
+        "title": "Разделение разрешения APK и публикации сайта"
+      },
+      "verified": "17 build/workflow tests PASS; actual draft hash unchanged; config excluded from _site.",
+      "status": "Продолжается; noindex и download restrictions сохранены",
+      "checkpoint": "46b824dd99c3c516fd2c2bb679f8a8fc72e1426d",
+      "done": "Publication gate default false; production indexing requires separate site approval. JSON-LD round-trip fixed; current UI artifact unchanged.",
+      "next": "Восстановление неотправленных action/event records после настройки Telegram bindings."
     }
   ]
 }

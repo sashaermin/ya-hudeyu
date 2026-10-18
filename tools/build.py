@@ -64,8 +64,10 @@ def validate(site, release, production=False):
         raise ValueError('Publication blocked: verified APK, feature evidence and approved real screenshots required')
     return verified
 
-def render(site, release, production=False):
+def render(site, release, production=False, publication=None):
     verified = validate(site, release, production)
+    if production and (not publication or publication.get('approved') is not True or not isinstance(publication.get('approval_reference'), str) or not publication['approval_reference'].strip()):
+        raise ValueError('Separate website publication approval required before enabling indexing')
     values = {key: escape(site[key]) for key in ('description', 'domain', 'support')}
     values['theme_init'] = '<script>' + (ROOT / 'scripts/theme.js').read_text() + '</script>'
     values['stylesheet'] = '<style>' + (ROOT / 'styles/site.css').read_text() + '</style>'
@@ -105,7 +107,7 @@ def render(site, release, production=False):
     application = {'@context': 'https://schema.org', '@type': 'SoftwareApplication', 'name': site['name'], 'operatingSystem': 'Android', 'url': site['domain'] + '/'}
     if verified:
         application.update(softwareVersion=release['version'], downloadUrl=release['url'])
-    values['structured_data'] = '<script type="application/ld+json">' + json.dumps(application, ensure_ascii=False).replace('<', '\\u003c') + '</script>'
+    values['structured_data'] = '<script type="application/ld+json">' + json.dumps(application, ensure_ascii=False).replace('<', r'\u003c') + '</script>'
     template = (ROOT / 'index.html').read_text()
     result = re.sub(r'\{\{(\w+)\}\}', lambda match: values[match[1]], template)
     if '{{' in result:
@@ -115,7 +117,8 @@ def render(site, release, production=False):
 def build(output, production=False):
     site = json.loads((ROOT / 'data/site.json').read_text())
     release = json.loads((ROOT / 'data/release.json').read_text())
-    page = render(site, release, production)
+    publication = json.loads((ROOT / 'data/publication.json').read_text())
+    page = render(site, release, production, publication)
     if output.is_symlink():
         raise ValueError('Symlink output is not allowed')
     output = output.resolve()

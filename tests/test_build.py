@@ -75,6 +75,35 @@ class BuildTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Owner approval'):
             build.render(self.site, self.release)
 
+    def ready_fixture(self):
+        # Test-only proof records; no real APK is approved or added to project data.
+        self.release.update(status='verified',version='TEST-ONLY',date='2026-10-18',url='https://example.com/test-only.apk',size_bytes=1,sha256='a'*64,min_android='TEST',source_commit='a'*40,verification_note='TEST ONLY',approved_for_distribution=True,approval_reference='TEST ONLY')
+        self.site['features']=[dict(title='TEST',description='TEST ONLY',verified_version='TEST-ONLY',evidence='TEST ONLY')]
+        self.site['screenshots']=[dict(src='assets/brand/originals/mascot_calm.webp',width=440,height=512,alt='TEST ONLY',caption='TEST ONLY',verified_version='TEST-ONLY',evidence='TEST ONLY',approved_for_publication=True)]
+
+    def test_apk_approval_cannot_authorize_website_indexing(self):
+        self.ready_fixture()
+        for publication in [None,{},dict(approved=False,approval_reference='TEST'),dict(approved=True,approval_reference='')]:
+            with self.subTest(publication=publication),self.assertRaisesRegex(ValueError,'Separate website publication approval'):
+                build.render(self.site,self.release,production=True,publication=publication)
+
+    def test_website_approval_cannot_bypass_apk_gate(self):
+        with self.assertRaisesRegex(ValueError,'Publication blocked'):
+            build.render(self.site,self.release,production=True,publication=dict(approved=True,approval_reference='TEST ONLY'))
+
+    def test_preview_keeps_noindex_even_if_publication_is_authorized(self):
+        self.ready_fixture();publication=dict(approved=True,approval_reference='TEST ONLY')
+        self.assertIn('noindex,nofollow',build.render(self.site,self.release,publication=publication))
+        self.assertIn('content="index,follow"',build.render(self.site,self.release,production=True,publication=publication))
+
+    def test_structured_data_roundtrips_html_sensitive_names_safely(self):
+        import re
+        self.site['name']='</script><img src=x onerror=alert(1)>'
+        page=build.render(self.site,self.release)
+        block=re.search(r'<script type="application/ld\+json">(.*?)</script>',page,re.S).group(1)
+        self.assertEqual(self.site['name'],json.loads(block)['name'])
+        self.assertNotIn('</script>',block)
+
     def test_support_and_domain_cannot_inject_attributes(self):
         self.site['support'] = 'x@y.com" onclick="alert(1)'
         with self.assertRaises(ValueError): build.render(self.site, self.release)
