@@ -4,6 +4,7 @@ import argparse
 import hashlib
 from html.parser import HTMLParser
 import json
+import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 
@@ -22,13 +23,18 @@ def legal_hash(text):
     p=LegalContent();p.feed(text)
     return hashlib.sha256(json.dumps(p.out,ensure_ascii=False).encode()).hexdigest()
 
-def run(base, output):
+def run(base, output, engine="chromium", executable=None):
     output.mkdir(parents=True,exist_ok=True)
     result={'scope':'Local development UI audit only; production unchanged','privacy_matrix':[], 'nojs':[], 'focus':[], 'privacy_axe':[], 'privacy_text_adaptation':[], 'page_errors':[]}
     assert legal_hash((ROOT/'privacy.html').read_text())==json.loads((ROOT/'docs/verification/uiux-before.json').read_text())['legal_content_sha256']
     result['legal_content_unchanged']=True
     with sync_playwright() as p:
-        browser=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox'])
+        options=dict(headless=True)
+        if engine=='chromium': options.update(executable_path=executable or '/usr/bin/chromium',args=['--no-sandbox'])
+        elif executable: options['executable_path']=executable
+        if engine=='firefox' and os.environ.get('WEBSITE_FIREFOX_CONTAINER')=='1': options['firefox_user_prefs']={'security.sandbox.content.level':0}
+        browser=getattr(p,engine).launch(**options)
+        result.update(engine=engine,browser_version=browser.version)
         for theme in ('light','dark'):
             for width in WIDTHS:
                 c=browser.new_context(viewport={'width':width,'height':900},color_scheme=theme)
@@ -100,4 +106,4 @@ def run(base, output):
     (output/'uiux-results.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps({'privacy_matrix':len(result['privacy_matrix']),'nojs':len(result['nojs']),'privacy_axe':len(result['privacy_axe']),'status':'PASS'}))
 if __name__=='__main__':
-    a=argparse.ArgumentParser();a.add_argument('--base',default='http://127.0.0.1:8012/');a.add_argument('--output',type=Path,default=ROOT/'.test-results/uiux-u1');args=a.parse_args();run(args.base,args.output)
+    a=argparse.ArgumentParser();a.add_argument('--base',default='http://127.0.0.1:8012/');a.add_argument('--output',type=Path,default=ROOT/'.test-results/uiux-u1');a.add_argument('--engine',default='chromium',choices=['chromium','firefox','webkit']);a.add_argument('--executable');args=a.parse_args();run(args.base,args.output,args.engine,args.executable)

@@ -18,3 +18,5 @@
 @media(max-width:800px){.header-inner{flex-wrap:wrap}.nav{position:static;order:3;width:100%}.nav[data-collapsed]{position:absolute;order:initial;width:auto}}
 /* Legal content and links are unchanged; reuse the accepted typography, colors and theme control. */
 body.policy{max-width:800px;margin:0 auto;padding:48px 24px}.policy h1{font-family:Onest,system-ui,sans-serif;font-size:clamp(24px,4vw,36px);line-height:1.3}.policy h2{font-family:Onest,system-ui,sans-serif;font-size:clamp(20px,3vw,24px);letter-spacing:normal;line-height:1.4;margin-top:32px}.policy a{color:var(--steps-ink)}.policy .updated{color:var(--muted)}.policy-tools{display:flex;justify-content:flex-end;margin-bottom:24px}
+
+.viewer-loading{font-size:14px;color:var(--muted);margin:20px 0}

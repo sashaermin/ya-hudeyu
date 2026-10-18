@@ -1,0 +1,1659 @@
+{
+  "scope": "U2 development UI audit, not a production release",
+  "main": {
+    "chromium": {
+      "engine": "chromium",
+      "matrix": [
+        {
+          "width": 320,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 360,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 430,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1024,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1920,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 360,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 430,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1024,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1920,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        }
+      ],
+      "interactions": [
+        "Theme persistence, reset to system and OS changes PASS",
+        "Gallery keyboard, focus trap, Escape/restore focus and image error PASS",
+        "Native tap and CDP touch swipe PASS",
+        "No-JS mobile navigation and native FAQ PASS"
+      ],
+      "axe": [
+        {
+          "width": 390,
+          "theme": "light",
+          "axe_version": "4.10.3",
+          "violations": []
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "axe_version": "4.10.3",
+          "violations": []
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "axe_version": "4.10.3",
+          "violations": []
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "axe_version": "4.10.3",
+          "violations": []
+        }
+      ],
+      "page_errors": [],
+      "failed_requests": [],
+      "browser_version": "154.0.8037.57"
+    },
+    "firefox": {
+      "engine": "firefox",
+      "matrix": [
+        {
+          "width": 320,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 360,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 430,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1024,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1920,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 360,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 430,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1024,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1920,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        }
+      ],
+      "interactions": [
+        "Theme persistence, reset to system and OS changes PASS",
+        "Gallery keyboard, focus trap, Escape/restore focus and image error PASS",
+        "Touch emulation not supported by this Playwright engine; not run",
+        "No-JS mobile navigation and native FAQ PASS"
+      ],
+      "axe": [
+        {
+          "width": 390,
+          "theme": "light",
+          "axe_version": "4.10.3",
+          "violations": []
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "axe_version": "4.10.3",
+          "violations": []
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "axe_version": "4.10.3",
+          "violations": []
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "axe_version": "4.10.3",
+          "violations": []
+        }
+      ],
+      "page_errors": [],
+      "failed_requests": [],
+      "browser_version": "153.0"
+    },
+    "webkit": {
+      "engine": "webkit",
+      "matrix": [
+        {
+          "width": 320,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 360,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 430,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1024,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1920,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 360,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 430,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1024,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1920,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        }
+      ],
+      "interactions": [
+        "Theme persistence, reset to system and OS changes PASS",
+        "Gallery keyboard, focus trap, Escape/restore focus and image error PASS",
+        "Native tap and synthetic DOM gesture handler PASS; native swipe not run",
+        "No-JS mobile navigation and native FAQ PASS"
+      ],
+      "axe": [
+        {
+          "width": 390,
+          "theme": "light",
+          "axe_version": "4.10.3",
+          "violations": []
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "axe_version": "4.10.3",
+          "violations": []
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "axe_version": "4.10.3",
+          "violations": []
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "axe_version": "4.10.3",
+          "violations": []
+        }
+      ],
+      "page_errors": [],
+      "failed_requests": [],
+      "browser_version": "26.5"
+    },
+    "edge": {
+      "engine": "chromium",
+      "matrix": [
+        {
+          "width": 320,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 360,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 430,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1024,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1920,
+          "theme": "light",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 360,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 430,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1024,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        },
+        {
+          "width": 1920,
+          "theme": "dark",
+          "overflow": false,
+          "menu_faq_links_images": "PASS"
+        }
+      ],
+      "interactions": [
+        "Theme persistence, reset to system and OS changes PASS",
+        "Gallery keyboard, focus trap, Escape/restore focus and image error PASS",
+        "Native tap and CDP touch swipe PASS",
+        "No-JS mobile navigation and native FAQ PASS"
+      ],
+      "axe": [
+        {
+          "width": 390,
+          "theme": "light",
+          "axe_version": "4.10.3",
+          "violations": []
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "axe_version": "4.10.3",
+          "violations": []
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "axe_version": "4.10.3",
+          "violations": []
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "axe_version": "4.10.3",
+          "violations": []
+        }
+      ],
+      "page_errors": [],
+      "failed_requests": [],
+      "browser_version": "155.0.4283.62"
+    }
+  },
+  "privacy_and_navigation": {
+    "chromium": {
+      "scope": "Local development UI audit only; production unchanged",
+      "privacy_matrix": [
+        {
+          "width": 320,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 360,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 430,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 1024,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 1920,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 360,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 430,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 1024,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 1920,
+          "theme": "dark",
+          "status": "PASS"
+        }
+      ],
+      "nojs": [
+        {
+          "width": 320,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "dark",
+          "status": "PASS"
+        }
+      ],
+      "focus": [
+        "Keyboard open focuses first link; Tab traverses nav; Escape restores trigger; selection focuses target; hidden-nav resize restores trigger"
+      ],
+      "privacy_axe": [
+        {
+          "width": 390,
+          "theme": "light",
+          "violations": 0,
+          "axe_version": "4.10.3"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "violations": 0,
+          "axe_version": "4.10.3"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "violations": 0,
+          "axe_version": "4.10.3"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "violations": 0,
+          "axe_version": "4.10.3"
+        }
+      ],
+      "privacy_text_adaptation": [
+        {
+          "width": 320,
+          "theme": "light",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 320,
+          "theme": "light",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        }
+      ],
+      "page_errors": [],
+      "legal_content_unchanged": true,
+      "shared_theme_persistence": "PASS: main/privacy saved dark override and reset to system"
+    },
+    "firefox": {
+      "scope": "Local development UI audit only; production unchanged",
+      "privacy_matrix": [
+        {
+          "width": 320,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 360,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 430,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 1024,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 1920,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 360,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 430,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 1024,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 1920,
+          "theme": "dark",
+          "status": "PASS"
+        }
+      ],
+      "nojs": [
+        {
+          "width": 320,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "dark",
+          "status": "PASS"
+        }
+      ],
+      "focus": [
+        "Keyboard open focuses first link; Tab traverses nav; Escape restores trigger; selection focuses target; hidden-nav resize restores trigger"
+      ],
+      "privacy_axe": [
+        {
+          "width": 390,
+          "theme": "light",
+          "violations": 0,
+          "axe_version": "4.10.3"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "violations": 0,
+          "axe_version": "4.10.3"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "violations": 0,
+          "axe_version": "4.10.3"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "violations": 0,
+          "axe_version": "4.10.3"
+        }
+      ],
+      "privacy_text_adaptation": [
+        {
+          "width": 320,
+          "theme": "light",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 320,
+          "theme": "light",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        }
+      ],
+      "page_errors": [],
+      "legal_content_unchanged": true,
+      "engine": "firefox",
+      "browser_version": "153.0",
+      "shared_theme_persistence": "PASS: main/privacy saved dark override and reset to system"
+    },
+    "webkit": {
+      "scope": "Local development UI audit only; production unchanged",
+      "privacy_matrix": [
+        {
+          "width": 320,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 360,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 430,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 1024,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 1920,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 360,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 430,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 1024,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 1920,
+          "theme": "dark",
+          "status": "PASS"
+        }
+      ],
+      "nojs": [
+        {
+          "width": 320,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "dark",
+          "status": "PASS"
+        }
+      ],
+      "focus": [
+        "Keyboard open focuses first link; Tab traverses nav; Escape restores trigger; selection focuses target; hidden-nav resize restores trigger"
+      ],
+      "privacy_axe": [
+        {
+          "width": 390,
+          "theme": "light",
+          "violations": 0,
+          "axe_version": "4.10.3"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "violations": 0,
+          "axe_version": "4.10.3"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "violations": 0,
+          "axe_version": "4.10.3"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "violations": 0,
+          "axe_version": "4.10.3"
+        }
+      ],
+      "privacy_text_adaptation": [
+        {
+          "width": 320,
+          "theme": "light",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 320,
+          "theme": "light",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        }
+      ],
+      "page_errors": [],
+      "legal_content_unchanged": true,
+      "engine": "webkit",
+      "browser_version": "26.5",
+      "shared_theme_persistence": "PASS: main/privacy saved dark override and reset to system"
+    },
+    "edge": {
+      "scope": "Local development UI audit only; production unchanged",
+      "privacy_matrix": [
+        {
+          "width": 320,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 360,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 430,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 1024,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 1920,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 360,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 430,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 1024,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 1920,
+          "theme": "dark",
+          "status": "PASS"
+        }
+      ],
+      "nojs": [
+        {
+          "width": 320,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "light",
+          "status": "PASS"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "status": "PASS"
+        },
+        {
+          "width": 768,
+          "theme": "dark",
+          "status": "PASS"
+        }
+      ],
+      "focus": [
+        "Keyboard open focuses first link; Tab traverses nav; Escape restores trigger; selection focuses target; hidden-nav resize restores trigger"
+      ],
+      "privacy_axe": [
+        {
+          "width": 390,
+          "theme": "light",
+          "violations": 0,
+          "axe_version": "4.10.3"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "violations": 0,
+          "axe_version": "4.10.3"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "violations": 0,
+          "axe_version": "4.10.3"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "violations": 0,
+          "axe_version": "4.10.3"
+        }
+      ],
+      "privacy_text_adaptation": [
+        {
+          "width": 320,
+          "theme": "light",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 320,
+          "theme": "light",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 390,
+          "theme": "light",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 1440,
+          "theme": "light",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 320,
+          "theme": "dark",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 390,
+          "theme": "dark",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "mode": "text-200",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        },
+        {
+          "width": 1440,
+          "theme": "dark",
+          "mode": "text-spacing",
+          "status": "PASS",
+          "method": "CSS simulation, not native zoom"
+        }
+      ],
+      "page_errors": [],
+      "legal_content_unchanged": true,
+      "engine": "chromium",
+      "browser_version": "155.0.4283.62",
+      "shared_theme_persistence": "PASS: main/privacy saved dark override and reset to system"
+    }
+  },
+  "gallery": {
+    "chromium": [
+      {
+        "engine": "chromium",
+        "browser_version": "154.0.8037.57",
+        "theme": "light",
+        "loading_status": true,
+        "stale_image_hidden": true,
+        "loaded": true,
+        "error": true,
+        "retry": true,
+        "cancel_focus": true,
+        "rapid_reopen": true,
+        "page_errors": [],
+        "loading_axe_violations": 0,
+        "error_axe_violations": 0,
+        "fixture": "Original mascot, not released Android screen"
+      },
+      {
+        "engine": "chromium",
+        "browser_version": "154.0.8037.57",
+        "theme": "dark",
+        "loading_status": true,
+        "stale_image_hidden": true,
+        "loaded": true,
+        "error": true,
+        "retry": true,
+        "cancel_focus": true,
+        "rapid_reopen": true,
+        "page_errors": [],
+        "loading_axe_violations": 0,
+        "error_axe_violations": 0,
+        "fixture": "Original mascot, not released Android screen"
+      }
+    ],
+    "firefox": [
+      {
+        "engine": "firefox",
+        "browser_version": "153.0",
+        "theme": "light",
+        "loading_status": true,
+        "stale_image_hidden": true,
+        "loaded": true,
+        "error": true,
+        "retry": true,
+        "cancel_focus": true,
+        "rapid_reopen": true,
+        "page_errors": [],
+        "loading_axe_violations": 0,
+        "error_axe_violations": 0,
+        "fixture": "Original mascot, not released Android screen"
+      },
+      {
+        "engine": "firefox",
+        "browser_version": "153.0",
+        "theme": "dark",
+        "loading_status": true,
+        "stale_image_hidden": true,
+        "loaded": true,
+        "error": true,
+        "retry": true,
+        "cancel_focus": true,
+        "rapid_reopen": true,
+        "page_errors": [],
+        "loading_axe_violations": 0,
+        "error_axe_violations": 0,
+        "fixture": "Original mascot, not released Android screen"
+      }
+    ],
+    "webkit": [
+      {
+        "engine": "webkit",
+        "browser_version": "26.5",
+        "theme": "light",
+        "loading_status": true,
+        "stale_image_hidden": true,
+        "loaded": true,
+        "error": true,
+        "retry": true,
+        "cancel_focus": true,
+        "rapid_reopen": true,
+        "page_errors": [],
+        "loading_axe_violations": 0,
+        "error_axe_violations": 0,
+        "fixture": "Original mascot, not released Android screen"
+      },
+      {
+        "engine": "webkit",
+        "browser_version": "26.5",
+        "theme": "dark",
+        "loading_status": true,
+        "stale_image_hidden": true,
+        "loaded": true,
+        "error": true,
+        "retry": true,
+        "cancel_focus": true,
+        "rapid_reopen": true,
+        "page_errors": [],
+        "loading_axe_violations": 0,
+        "error_axe_violations": 0,
+        "fixture": "Original mascot, not released Android screen"
+      }
+    ],
+    "edge": [
+      {
+        "engine": "chromium",
+        "browser_version": "155.0.4283.62",
+        "theme": "light",
+        "loading_status": true,
+        "stale_image_hidden": true,
+        "loaded": true,
+        "error": true,
+        "retry": true,
+        "cancel_focus": true,
+        "rapid_reopen": true,
+        "page_errors": [],
+        "loading_axe_violations": 0,
+        "error_axe_violations": 0,
+        "fixture": "Original mascot, not released Android screen"
+      },
+      {
+        "engine": "chromium",
+        "browser_version": "155.0.4283.62",
+        "theme": "dark",
+        "loading_status": true,
+        "stale_image_hidden": true,
+        "loaded": true,
+        "error": true,
+        "retry": true,
+        "cancel_focus": true,
+        "rapid_reopen": true,
+        "page_errors": [],
+        "loading_axe_violations": 0,
+        "error_axe_violations": 0,
+        "fixture": "Original mascot, not released Android screen"
+      }
+    ]
+  },
+  "counts": {
+    "main_layout_cases": 64,
+    "privacy_layout_cases": 64,
+    "main_axe_runs": 16,
+    "privacy_axe_runs": 16,
+    "gallery_loading_error_axe_runs": 16,
+    "gallery_theme_cases": 8,
+    "privacy_css_text_adaptation_cases": 48,
+    "main_css_text_adaptation_cases": 12,
+    "nojs_width_theme_cases": 24
+  },
+  "limitations": [
+    "Physical devices/Safari app/AT/native zoom not tested",
+    "Firefox touch emulation unavailable; WebKit native swipe not performed",
+    "Gallery original mascot fixtures are not released Android screenshots",
+    "Main/production remained9b39ffa; development fixes need separate publication authorization"
+  ],
+  "u1_remote": {
+    "sha": "2981a4578f7514d9d14cc08c4fcc033aaa06e816",
+    "run": 39126874190,
+    "conclusion": "success",
+    "telegram_message_id": 261
+  },
+  "test_harness_note": "Gallery native close event is asynchronous: aria-busy checks now wait for the semantic attribute. Early cancellation warnings were from pending test routes on abort; final suites completed without pending routes. Rapid-reopen guard prevents queued close from clearing a newer image request."
+}

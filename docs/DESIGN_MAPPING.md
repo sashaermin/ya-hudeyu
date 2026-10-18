@@ -30,3 +30,6 @@
 Оригинальные маскоты и логотипы сохранены без изменения пропорций/цветов. Онбординг с встроенным текстом не используется как новый маскот. Файлы шрифтов локальны, обе OFL-лицензии приложены. Light/dark следуют system до ручного выбора; выбор хранится локально, ранний theme.js предотвращает вспышку темы. Фокус, hover/active, disabled и error определены; сетевые loading-состояния не нужны статическому документу.
 
 Проверка этапа 1: файлы/лицензии сверены с Git blobs; синтаксис theme.js проверен node. Полная проверка браузером и контраста — этап 4 после подключения HTML.
+
+
+UI audit U1/U2: current Android960e43b Theme/Color/Components/System/AccentColors и original fonts/logo/mascot совпали с source (uiux-android-reference.json). Privacy presentation теперь использует shared palette/Onest/theme control; Onest для длинного document heading сохраняет слово на320px без произвольного разрыва, legal text/URL неизменны. No-JS использует те же Android dark tokens; palette не инвертировалась автоматически. Gallery status/error остаются в существующей системе компонентов; никаких новых mascot poses/screens/дизайн-концепций. Это development changes, production9b39ffa прежний.

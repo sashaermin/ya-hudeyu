@@ -3,11 +3,11 @@
 ## Текущее состояние и точка продолжения
 
 - Проект: официальный сайт «Я ХУдЕЮ», repository `sashaermin/ya-hudeyu`, branch `work/website-v2`.
-- Последний независимо verified remote **до этого documentation checkpoint**: `4a8755665a14d9c4d6eb9c3799fa99c7ebbee119` (run39125607984 success/Telegram242). Фактический последний SHA всегда получить через fetch/ls-remote; файл не содержит собственный будущий SHA.
+- Последний независимо verified remote **до этого documentation checkpoint**: `2981a4578f7514d9d14cc08c4fcc033aaa06e816` (run39126874190 success/Telegram261). Фактический последний SHA всегда получить через fetch/ls-remote; файл не содержит собственный будущий SHA.
 - Последний ответственный агент: Codex, 18.10.2026 11:51 МСК. Другой активный website writer не известен; эта историческая запись не доказывает отсутствия активной сессии при takeover. Только один писатель ветки, Android Claude Code не затрагивать.
 - Стадия: первый инкрементальный website-кандидат **подготовлен к приёмке**, с «Скоро для Android», независимо от APK. Первый принятый coming-soon выпуск опубликован и проверен; мастер-ТЗ не завершено. Исторические ограничения ниже действуют вне этой узкой авторизации.
 
-**Exact next:** проверить U1 remote CI/current development archive, затем U2: реализовать gallery loading status/hide stale image/retry, воспроизвести delayed/error/cancel states на явно test-only fixture, провести affected UI/browser/axe checks и обновить docs/UI_UX_REQUIREMENTS_AUDIT.md. U1 navigation/privacy/no-JS/theme/reflow закрывает6 PARTIAL: current34 COMPLETE/0 PARTIAL/1 MISSING/7 BLOCKED_BY_RELEASE_CONTENT/2 MANUAL. Production9b39ffa не менять; новый draft не утверждён для публикации. Исторический production/release-candidate proof сохранён; current development preview ожидаемые hashes — docs/verification/current-preview.json. APK approval остаётся false, indexing_approved=false; старый publication approval относится только к уже выпущенному сайту.
+**Exact next:** проверить remote CI U2/обычный Telegram accepted, сохранить proof и актуальный review artifact URL без повторного дорогого QA. docs/UI_UX_REQUIREMENTS_AUDIT.md:35 COMPLETE/0 PARTIAL/0 MISSING/7 BLOCKED_BY_RELEASE_CONTENT/2 REQUIRES_MANUAL_VERIFICATION; все независимо исполнимые UI corrections по новому заданию сделаны. Дальше — замечания/отдельное разрешение публикации именно нового UI candidate, approved APK/screens для release-specific пунктов либо manual physical device/AT/native zoom inputs. Production9b39ffa не менять. Новый development preview не утверждён, old publication approval относится только к первому release; APK approval остаётся false, indexing_approved=false. Не делать deferred redesign/вне-ТЗ features, не подменять manual verification автоматикой.
 
 ## Что предъявлено владельцу
 
@@ -99,3 +99,11 @@ R8 завершён: actual production Lighthouse12.8.2 mobile99/100/100/69, FCP
 ## U1 · navigation/privacy fixes проверены
 
 Main16/4axe,privacy16/4axe0violations,main12+privacy12 CSS adaptation и6 no-JS cases PASS. Keyboard Enter/Space/Tab/Escape/select/resize и cross-page theme persistence PASS; все legal paragraphs/date/links/hash сохранены. Первые focused failures помогли найти static data-theme=light и преждевременный focusout/resize blur; причины исправлены, asserts сохранены. Before/after snapshots и exact evidence — uiux-u1.json/UI_UX_REQUIREMENTS_AUDIT.md. Privacy изменён только presentation вdevelopment по новому UI-заданию; production/privacy наmain прежние. Next U2 loading.
+
+
+## U2 · gallery loading и финальный UI audit
+
+Loading/status/aria-busy/stale-image/error/retry/cancel/rapid-reopen проверены вChromium154/Firefox153/WebKit26.5/Edge155. Main64 иprivacy64 layouts,48 axe0violations,24 no-JS cases,60 CSS text/spacing cases PASS. Main visible-layout matrices выполнены до последнего close-event guard (HTML/CSS прежние); affected gallery states повторены4engines после guard. Аудит35 complete/0partial/0missing/7releaseblocked/2manual. Evidence uiux-u2.json, before/after images и current-preview hashes вGit. При дальнейшей QA не запускать production API checks против draft/candidate и не перезаписывать исторический approved production manifest. Exact next — remoteCI/Telegram proof, затем реальные внешние входы/owner review; новые независимые defects не выявлены.
+
+
+UI QA server: python3 -m http.server 8012 --bind 127.0.0.1 --directory _site (запущен только для этого audit).8002 возвращал RemoteDisconnected; прежние чужие процессы не трогались. Localhost не является owner preview URL. Инструкции воспроизведения UI suites — docs/QA.md; будущая сессия должна стартовать собственный корректный server или использовать правильный existing.

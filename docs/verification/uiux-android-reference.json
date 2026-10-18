@@ -40,6 +40,26 @@
       "path": "app/src/main/res/drawable/mascot_calm.webp",
       "blob_sha": "5807f869f55e2c085de47da4a3aea992c8ca5850",
       "website_original_matches_current_android": true
+    },
+    {
+      "path": "app/src/main/res/font/onest_regular.ttf",
+      "blob_sha": "0f45a6221290d5900028fac917d54246c15662c3",
+      "website_original_matches_current_android": true
+    },
+    {
+      "path": "app/src/main/res/font/onest_semibold.ttf",
+      "blob_sha": "5655904812c73771fb6f7c0cb3befd889649ee19",
+      "website_original_matches_current_android": true
+    },
+    {
+      "path": "app/src/main/res/font/unbounded_semibold.ttf",
+      "blob_sha": "683397a313c34937f6fb19fe511d1e8c98def688",
+      "website_original_matches_current_android": true
+    },
+    {
+      "path": "app/src/main/java/com/aleksandr/stepstracker/settings/AccentColors.kt",
+      "blob_sha": "c2cf521aabb8cc9ffe885053891b74040b27f544",
+      "unchanged_since_design_source": true
     }
   ]
 }

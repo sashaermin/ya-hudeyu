@@ -72,22 +72,46 @@
   const dialog = document.querySelector('#viewer');
   const image = document.querySelector('#viewer-image');
   const error = document.querySelector('#viewer-error');
+  const loading = document.querySelector('#viewer-loading');
   let selected = 0;
   let opener;
   function show(index) {
     selected = (index + screens.length) % screens.length;
     const source = screens[selected].querySelector('img');
     error.hidden = true;
+    image.hidden = true;
+    image.setAttribute('aria-busy', 'true');
+    loading.hidden = false;
+    loading.textContent = 'Загружаем изображение…';
     image.src = source.dataset.full || source.src;
     image.alt = source.alt;
     document.querySelector('#viewer-caption').textContent = `${selected + 1} / ${screens.length} · ${screens[selected].dataset.caption}`;
   }
-  image.addEventListener('error', () => { error.hidden = false; });
+  function finishLoading(failed = false) {
+    if (!dialog.open) return;
+    loading.hidden = true;
+    image.setAttribute('aria-busy', 'false');
+    image.hidden = failed;
+    error.hidden = !failed;
+  }
+  image.addEventListener('load', () => {
+    if (image.complete && image.naturalWidth > 0) finishLoading();
+  });
+  image.addEventListener('error', () => {
+    if (image.complete && !image.naturalWidth) finishLoading(true);
+  });
   screens.forEach((button, index) => button.addEventListener('click', () => {
     opener = button; show(index); dialog.showModal(); document.querySelector('#viewer-close').focus();
   }));
   document.querySelector('#viewer-close').addEventListener('click', () => dialog.close());
-  dialog.addEventListener('close', () => opener?.focus());
+  dialog.addEventListener('close', () => {
+    if (dialog.open) return; // Ignore a queued close event after a rapid reopen.
+    loading.hidden = true;
+    error.hidden = true;
+    image.hidden = true;
+    image.setAttribute('aria-busy', 'false');
+    opener?.focus();
+  });
   dialog.addEventListener('click', event => { if (event.target === dialog) {
     const rect = dialog.getBoundingClientRect();
     if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();

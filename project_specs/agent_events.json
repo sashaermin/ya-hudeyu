@@ -396,6 +396,25 @@
       "done": "Устранены no-JS overlap, Tab/focus/resize дефекты; privacy получила общий Onest/palette/theme и reflow. Production и legal text не менялись.",
       "next": "U2 gallery loading/error/retry и affected browser QA; затем final audit remaining blockers.",
       "status": "Только development; новые APK/функции/скриншоты не добавлены"
+    },
+    {
+      "id": "site-uiux-u2-20261018",
+      "at": "2026-10-18T12:28:14.489276Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "UI UX аудит",
+          "U2"
+        ],
+        "title": "Gallery loading и завершение доступных UI требований"
+      },
+      "checkpoint": "2981a4578f7514d9d14cc08c4fcc033aaa06e816",
+      "verified": "64 main+64 privacy layouts,48axe0violations,60 CSS text/spacing и24 no-JS cases; gallery delayed/load/error/retry/cancel/rapid reopen4engines PASS.27 unit tests и archive4views PASS.",
+      "done": "Закрыт loading gap, сохранены legal text, визуальное направление и production9b39ffa. Audit35 complete/0partial/0missing/7releaseblocked/2manual из44.",
+      "next": "Remote CI/Telegram proof и review нового development candidate. Остаток только approved APK/screens и реальные device/AT/native zoom checks; публикация требует отдельного решения.",
+      "status": "Независимые UI fixes выполнены; весь master не закрыт; production не меняется"
     }
   ]
 }

@@ -105,6 +105,7 @@ def run(base, output, axe_path, interactions_only=False, engine="chromium", exec
         page.keyboard.press('Escape');assert not page.locator('#viewer').evaluate('(el)=>el.open')
         assert opener.evaluate('(el)=>el===document.activeElement')
         opener.click() if engine == 'firefox' else opener.tap()
+        page.locator('#viewer-image').wait_for(state='visible')
         if engine == 'chromium':
             box=page.locator('#viewer-image').bounding_box()
             cdp=context.new_cdp_session(page)
