@@ -57,5 +57,10 @@
     "rendered_views": 4,
     "noindex": true,
     "apk_enabled": false
+  },
+  "report_metadata_correction": {
+    "commit": "db483117d6fdb791d5133ef12c38dc4d2a279480",
+    "issue": "Report-Checks was entirely English and rejected by report-check; notification code/tests were unchanged.",
+    "resolution": "Follow-up Russian report checkpoint; no shared history rewrite. Final head CI must pass independently."
   }
 }
