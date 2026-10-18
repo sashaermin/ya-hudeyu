@@ -91,5 +91,47 @@
     "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
     "source": "app/src/main/res/font/unbounded_semibold.ttf",
     "transformation": "WOFF2 compression via fontTools; no glyph subsetting; original TTF and OFL retained"
+  },
+  {
+    "file": "assets/brand/web/wordmark-dark-160.webp",
+    "repository": "sashaermin/ya-hudeyu-android",
+    "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
+    "source": "app/src/main/res/drawable-nodpi/logo_wordmark_green_dark.png",
+    "transformation": "Proportional LANCZOS resize to 160px + lossless WebP; colors/brand content unchanged, original retained"
+  },
+  {
+    "file": "assets/brand/web/wordmark-dark-320.webp",
+    "repository": "sashaermin/ya-hudeyu-android",
+    "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
+    "source": "app/src/main/res/drawable-nodpi/logo_wordmark_green_dark.png",
+    "transformation": "Proportional LANCZOS resize to 320px + lossless WebP; colors/brand content unchanged, original retained"
+  },
+  {
+    "file": "assets/brand/web/wordmark-dark-480.webp",
+    "repository": "sashaermin/ya-hudeyu-android",
+    "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
+    "source": "app/src/main/res/drawable-nodpi/logo_wordmark_green_dark.png",
+    "transformation": "Proportional LANCZOS resize to 480px + lossless WebP; colors/brand content unchanged, original retained"
+  },
+  {
+    "file": "assets/brand/web/wordmark-light-160.webp",
+    "repository": "sashaermin/ya-hudeyu-android",
+    "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
+    "source": "app/src/main/res/drawable-nodpi/logo_wordmark_green_light.png",
+    "transformation": "Proportional LANCZOS resize to 160px + lossless WebP; colors/brand content unchanged, original retained"
+  },
+  {
+    "file": "assets/brand/web/wordmark-light-320.webp",
+    "repository": "sashaermin/ya-hudeyu-android",
+    "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
+    "source": "app/src/main/res/drawable-nodpi/logo_wordmark_green_light.png",
+    "transformation": "Proportional LANCZOS resize to 320px + lossless WebP; colors/brand content unchanged, original retained"
+  },
+  {
+    "file": "assets/brand/web/wordmark-light-480.webp",
+    "repository": "sashaermin/ya-hudeyu-android",
+    "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
+    "source": "app/src/main/res/drawable-nodpi/logo_wordmark_green_light.png",
+    "transformation": "Proportional LANCZOS resize to 480px + lossless WebP; colors/brand content unchanged, original retained"
   }
 ]

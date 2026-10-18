@@ -77,6 +77,12 @@
     if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
   }});
   dialog.addEventListener('keydown', event => {
+    if (event.key === 'Tab') {
+      const focusable = [...dialog.querySelectorAll('button:not([disabled]), a[href], [tabindex="0"]')].filter(el => el.getClientRects().length);
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }
     if (event.key === 'ArrowLeft') { event.preventDefault(); show(selected - 1); }
     if (event.key === 'ArrowRight') { event.preventDefault(); show(selected + 1); }
   });

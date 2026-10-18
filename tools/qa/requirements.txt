@@ -1,0 +1,5 @@
+# Optional QA and original-asset encoders; not required for the website build.
+playwright==1.62.0
+Pillow==12.3.0
+fonttools==4.61.1
+Brotli==1.1.0

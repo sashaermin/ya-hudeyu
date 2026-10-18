@@ -32,6 +32,22 @@
       "blocked": "Подтверждение фактической доставки Telegram, не разработка сайта.",
       "can_continue": "Да: вся независимая разработка и локальные проверки.",
       "link": "https://github.com/sashaermin/ya-hudeyu/settings/secrets/actions"
+    },
+    {
+      "id": "site-network-crossbrowser-qa",
+      "status": "open",
+      "source": "Codex",
+      "opened": "2026-10-18",
+      "task": "Сайт · завершающий QA",
+      "subtask": "Применить сетевые настройки для API и браузеров",
+      "what": "Официальные Playwright CDN отвечают 403 Domain forbidden; Firefox не скачан, WebKit не установлен. GitHub API и действующий домен также недоступны из среды. Необходимые домены и корректный start_skill сохранены в черновике среды; сохранение черновика не применяет настройки и не публикует сайт.",
+      "steps": [
+        "В настройках облачной среды проверьте и сохраните черновик: api.github.com, cdn.playwright.dev, playwright.download.prss.microsoft.com, yahudeyu-app.ru добавлены к сетевому доступу; существующие package-manager presets сохранены.",
+        "Активируйте обновлённую конфигурацию через штатную публикацию среды, если интерфейс этого требует. Это отдельная операция от публикации сайта: main/Pages/APK не разрешены.",
+        "Продолжите задачу: агент повторит затронутые операции, проверит API/доставку и запустит оставшийся browser QA; разрешать main/deploy для этого не нужно."
+      ],
+      "blocked": "Firefox/WebKit QA, read-only проверка production HTTPS и подтверждение GitHub Actions из этой среды.",
+      "can_continue": "Chromium QA, разработка и shared checkpoints выполнены независимо. Внешние операции возобновить после применения настроек."
     }
   ]
 }

@@ -67,6 +67,8 @@ def validate(site, release, production=False):
 def render(site, release, production=False):
     verified = validate(site, release, production)
     values = {key: escape(site[key]) for key in ('description', 'domain', 'support')}
+    values['theme_init'] = '<script>' + (ROOT / 'scripts/theme.js').read_text() + '</script>'
+    values['stylesheet'] = '<style>' + (ROOT / 'styles/site.css').read_text() + '</style>'
     values.update(robots='index,follow' if production else 'noindex,nofollow',
                   download_label='Скачать для Android' if verified else 'О загрузке для Android',
                   hero_release_note=f'Android · Версия {escape(release["version"])}' if verified else 'Проверенный APK пока не опубликован на этой странице.',
@@ -122,10 +124,10 @@ def build(output, production=False):
     output.mkdir(parents=True, exist_ok=True)
     # Do not publish repository docs, configs, source maps, test fixtures, or original unused assets.
     files = ['privacy.html', 'CNAME', 'styles/site.css', 'scripts/site.js', 'scripts/theme.js',
-             'assets/brand/originals/logo_wordmark_green_light.png', 'assets/brand/originals/logo_wordmark_green_dark.png',
              'assets/brand/originals/mascot_calm.webp', 'assets/brand/originals/ic_launcher_green.png',
              'assets/fonts/onest_regular.woff2', 'assets/fonts/onest_semibold.woff2', 'assets/fonts/unbounded_semibold.woff2',
              'assets/fonts/Onest-OFL.txt', 'assets/fonts/Unbounded-OFL.txt']
+    files += [str(p.relative_to(ROOT)) for p in (ROOT / 'assets/brand/web').glob('*.webp')]
     files += [f['icon'] for f in site['features'] if f.get('icon')]
     files += [s['src'] for s in site['screenshots']]
     # Refuse symlink targets: never delete unrelated output or write through external links.

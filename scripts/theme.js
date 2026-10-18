@@ -7,8 +7,6 @@
   document.documentElement.dataset.preference = preference || 'system';
   document.documentElement.dataset.theme = preference || (system.matches ? 'dark' : 'light');
   system.addEventListener('change', event => {
-    let selected = null;
-    try { selected = localStorage.getItem('hudeyu-theme'); } catch { /* system preference */ }
     if (document.documentElement.dataset.preference === 'system') {
       document.documentElement.dataset.theme = event.matches ? 'dark' : 'light';
     }

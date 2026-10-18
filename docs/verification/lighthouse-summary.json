@@ -1,0 +1,36 @@
+{
+  "tool": "Lighthouse",
+  "version": "12.8.2",
+  "mode": "mobile simulated throttling; local Python HTTP server; draft noindex",
+  "fetch_time": "2026-10-18T06:40:57.425Z",
+  "categories": {
+    "performance": 96,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 69
+  },
+  "metrics": {
+    "first-contentful-paint": {
+      "value": 1051.411,
+      "display": "1.1 s"
+    },
+    "largest-contentful-paint": {
+      "value": 2851.411,
+      "display": "2.9 s"
+    },
+    "cumulative-layout-shift": {
+      "value": 1.0614166030972e-05,
+      "display": "0"
+    },
+    "total-blocking-time": {
+      "value": 0,
+      "display": "0 ms"
+    }
+  },
+  "limitations": [
+    "Production domain and APK not tested",
+    "SEO reduced deliberately by draft robots noindex/Disallow",
+    "Python server lacks production cache/compression headers",
+    "One local run after targeted optimization; not production field data"
+  ]
+}

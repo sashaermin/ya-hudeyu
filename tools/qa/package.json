@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@axe-core/playwright": "4.10.2",
+    "lighthouse": "12.8.2"
+  },
+  "private": true
+}

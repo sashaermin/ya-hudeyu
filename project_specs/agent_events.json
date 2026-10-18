@@ -35,6 +35,25 @@
       "checkpoint": "a14a2c640373e60496cd840cd4f7ad7f9f0e24c6",
       "done": "Добавлены поля Сделано/Далее, достоверные источники и ledger для повторного запуска CI failure reports.",
       "next": "Сохранить Chromium QA и снимки сайта; завершить независимую приёмку черновика."
+    },
+    {
+      "id": "site-qa4a-draft-verified-20261018",
+      "at": "2026-10-18T06:49:04Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "4",
+          "4A"
+        ],
+        "title": "Независимый QA черновика"
+      },
+      "verified": "12 build/workflow tests, 33 notification tests, 16 Chromium viewport/theme runs PASS; axe 0 violations. Lighthouse 96/100/100/69 (draft noindex).",
+      "status": "Независимая часть проверена; release и production criteria остаются открыты",
+      "checkpoint": "65f94102eb79fbba5084478863276024fbfc09e3",
+      "done": "Исправлены focus trap/performance; сохранены 4 screenshots, измерения и ограничения. Main/privacy/CNAME сохранены.",
+      "next": "После применения сетевого черновика — Firefox/WebKit/API QA; после разрешения APK — релизный контент."
     }
   ]
 }
