@@ -65,9 +65,16 @@ def validate(site, release, production=False):
     return verified
 
 def render(site, release, production=False, publication=None):
-    verified = validate(site, release, production)
-    if production and (not publication or publication.get('approved') is not True or not isinstance(publication.get('approval_reference'), str) or not publication['approval_reference'].strip()):
+    publication = publication or {}
+    mode = publication.get('release_mode', 'full')
+    if mode not in ('full', 'coming-soon'):
+        raise ValueError('Unknown website release mode')
+    coming_soon = production and mode == 'coming-soon'
+    verified = validate(site, release, production and not coming_soon)
+    if production and (publication.get('approved') is not True or not isinstance(publication.get('approval_reference'), str) or not publication['approval_reference'].strip()):
         raise ValueError('Separate website publication approval required before enabling indexing')
+    if coming_soon and (verified or site['features'] or site['screenshots']):
+        raise ValueError('Coming-soon website release must not contain an APK, features or screenshots')
     values = {key: escape(site[key]) for key in ('description', 'domain', 'support')}
     values['theme_init'] = '<script>' + (ROOT / 'scripts/theme.js').read_text() + '</script>'
     values['stylesheet'] = '<style>' + (ROOT / 'styles/site.css').read_text() + '</style>'

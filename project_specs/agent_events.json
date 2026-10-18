@@ -320,6 +320,25 @@
       "done": "Заголовки, metadata и секции выделены жирным, блоки разделены интервалами, ссылки описательны, branch/hash/IDs моноширинны. Доставка, triggers, секреты и ledger не менялись.",
       "next": "Проверить обычный remote CI/Telegram accepted; далее прежний roadmap с pending owner approval.",
       "status": "Оформление унифицировано; production/main/gates сохранены"
+    },
+    {
+      "id": "site-coming-soon-policy-r6-20261018",
+      "at": "2026-10-18T09:09:21.029739Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Первый релиз",
+          "R6"
+        ],
+        "title": "Применение согласованной coming-soon политики"
+      },
+      "verified": "25 site/build/workflow/handoff tests и draft build PASS; реальная production сборка запрещена в обоих modes, HTML прежний.",
+      "checkpoint": "8a0e7265cb1937efcd8ad771743995e6cbf64ad5",
+      "done": "Точный согласованный patch применён после сверки SHA-256 и latest remote. Реальные approvals, noindex и APK downloads не изменены.",
+      "next": "Проверить CI/archive и предъявить кандидат для визуальной/юридической приёмки.",
+      "status": "Политика реализована по разрешению; публикация не разрешена"
     }
   ]
 }

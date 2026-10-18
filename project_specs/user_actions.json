@@ -70,15 +70,15 @@
       "status": "open",
       "source": "Codex",
       "task": "Сайт · первый инкрементальный релиз",
-      "subtask": "Приёмка кандидата и отдельная coming-soon политика публикации",
-      "what": "Первый coming-soon website-кандидат подготовлен независимо от APK и прошёл реальный CI archive round-trip/rendering. Existing production gate менять без отдельной авторизации запрещено. Конкретный неприменённый patch docs/proposals/first-release-coming-soon.patch (SHA-256 cefd3cc1b1440efa0f09c67b557570e5c9a4f89d0b7f0c63df7b8b407f38fd03) сохраняет full-release gates и требует отдельный site approval для явного coming-soon mode;15 existing+5 proposed tests PASS в изолированном экспорте. Active code/config не изменены.",
+      "subtask": "Приёмка кандидата после применения разрешённой coming-soon политики",
+      "what": "Владелец явно разрешил применение точного coming-soon patch (SHA-256 cefd3cc1b1440efa0f09c67b557570e5c9a4f89d0b7f0c63df7b8b407f38fd03). Он применён после latest-remote/apply-check;25 site tests PASS. Реальные publication/APK approvals выключены. Приёмка и публикация не разрешены этим указанием.",
       "steps": [
         "Посмотрите проверенный review artifact по link и4 candidate screenshots в docs/QA.md; подтвердите визуальную/юридическую приёмку или укажите замечания.",
-        "Отдельно разрешите применение конкретного review-only patch docs/proposals/first-release-coming-soon.patch (SHA-256 cefd3cc1b144…), либо укажите правки. Это разрешение не включает main/deploy/публикацию/распространение APK.",
-        "После авторизованного применения и проверок будет предъявлен точный website-SHA/артефакт для отдельного разрешения публикации и согласованного rollback."
+        "Сообщите замечания либо подтвердите визуальную/юридическую приёмку. Повторного разрешения на уже применённый patch не требуется.",
+        "После приёмки отдельно разрешите публикацию конкретного website-SHA/артефакта с явными условиями main/deploy/indexing/rollback."
       ],
-      "blocked": "Только фактический первый website release и изменение gate, не разработка/приёмка кандидата.",
-      "can_continue": "Кандидат, review-only patch, actual archive round-trip, retry/dedup и Node24 pipeline проверены. Других независимых задач с текущими inputs не найдено; продолжение — замечания/приёмка и отдельное разрешение конкретного patch. APK — deferred независимая задача.",
+      "blocked": "Фактический первый website release: ожидаются visual/legal acceptance и отдельная публикационная авторизация.",
+      "can_continue": "Авторизованная политика реализована; сейчас проверяются remote CI и новый архив кандидата. APK не prerequisite сайта.",
       "link": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39111335266/artifacts/12130497934"
     }
   ]

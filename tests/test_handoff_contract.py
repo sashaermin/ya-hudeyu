@@ -28,4 +28,5 @@ class HandoffContractTests(unittest.TestCase):
         for fact in ['sashaermin/ya-hudeyu','work/website-v2','IMPLEMENTATION_PROGRESS.md','WEBSITE_MASTER_TZ_2026-10-18.md','docs/QA.md','python3 tools/build.py','noindex','main','site-first-website-release-policy']:
             self.assertIn(fact,text)
         self.assertRegex(text,r'`[0-9a-f]{40}`')
-        self.assertIn('неприменён',text)
+        self.assertIn('patch применён',text)
+        self.assertIn('publication/APK approvals остаются false',text)

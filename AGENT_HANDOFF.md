@@ -3,11 +3,11 @@
 ## Текущее состояние и точка продолжения
 
 - Проект: официальный сайт «Я ХУдЕЮ», repository `sashaermin/ya-hudeyu`, branch `work/website-v2`.
-- Последний независимо verified remote **до этого documentation checkpoint**: `674e5f5def19ec5299617d80e2240a2821e5e8fd` (run39113063235 success/Telegram165). Фактический последний SHA всегда получить через fetch/ls-remote; файл не содержит собственный будущий SHA.
+- Последний независимо verified remote **до этого documentation checkpoint**: `8a0e7265cb1937efcd8ad771743995e6cbf64ad5` (run39113223282 success/Telegram169). Фактический последний SHA всегда получить через fetch/ls-remote; файл не содержит собственный будущий SHA.
 - Последний ответственный агент: Codex, 18.10.2026 11:51 МСК. Другой активный website writer не известен; эта историческая запись не доказывает отсутствия активной сессии при takeover. Только один писатель ветки, Android Claude Code не затрагивать.
 - Стадия: первый инкрементальный website-кандидат **подготовлен к приёмке**, с «Скоро для Android», независимо от APK. Не опубликован и не одобрен для публикации. Независимых approved задач с текущими входами больше не выявлено.
 
-**Exact next:** дождаться замечаний/приёмки кандидата и отдельного разрешения `site-first-website-release-policy` на конкретный **неприменённый** `docs/proposals/first-release-coming-soon.patch` (SHA-256 `cefd3cc1b1440efa0f09c67b557570e5c9a4f89d0b7f0c63df7b8b407f38fd03`). При замечаниях — исправить их в development branch и проверить затронутые сценарии. При разрешении именно patch — сверить его digest/source, apply-check, применить и выполнить 15 existing+5 proposed tests; реальные approvals оставить false до соответствующего отдельного решения. Публикация конкретного SHA/артефакта, main/deploy/indexing/rollback требуют отдельного явного разрешения. Подготовка первого сайта **не ждёт APK**. Не обходить existing gate загрузкой draft, не повторять завершённый QA без изменившихся inputs.
+**Exact next:** проверить CI и свежий review artifact текущего policy-checkpoint, записать actual archive/Telegram proof и предъявить владельцу для визуальной/юридической приёмки (`site-first-website-release-policy`). Разрешённый владельцем patch применён после сверки SHA-256 и latest remote; повторно разрешение на него не запрашивать. При замечаниях — исправить их в development branch и проверить затронутые сценарии. Реальные publication/APK approvals остаются false; coming-soon mode не активирован в data/publication.json. После приёмки требуется отдельное разрешение публикации конкретного SHA/артефакта, main/deploy/indexing/rollback. APK не prerequisite сайта; без нового решения ничего не публиковать.
 
 ## Что предъявлено владельцу
 
@@ -15,7 +15,7 @@
 - Внешнего безопасного preview-hosting tool нет. Инструкция просмотра, предмет решения, безопасная публикация и rollback: `docs/FIRST_RELEASE.md`.
 - Inner ZIP SHA-256 `7877e610d11a5a3d84b708864e0b5eae7c6c1b2ab263daeb77f7fc0cdd23c6e5`. Сайт в последующих doc/CI checkpoints не менялся; новый artifact должен совпадать по этому digest, пока не меняется контент/код сайта.
 - 4 current candidate screenshots: `docs/screenshots/rc-{390,1440}-{light,dark}.png`; links и границы доказательств в `docs/QA.md`.
-- Review-only patch проверен в временном git archive экспорте, **не применён** к активным gates. Evidence `docs/verification/first-release-policy-proposal.json`; 15 existing+5 proposed tests PASS. Default full-release gates сохраняются; предлагаемый coming-soon mode требует отдельный site approval и запрещает APK/features/screens.
+- Ранее review-only patch теперь **применён по прямому разрешению владельца** к tools/build.py и tests/test_coming_soon_policy.py; исходный proposal сохранён побайтно. Evidence `docs/verification/first-release-policy-proposal.json`; 15 existing+5 proposed tests PASS. Default full-release gates сохраняются; предлагаемый coming-soon mode требует отдельный site approval и запрещает APK/features/screens.
 - Artifact retention7дней, URL не вечный. После реального rerun старые artifact IDs дали API404; не обещать сохранность IDs. При истечении срока/недоступности заново получить/собрать из verified source и сверить digest, не выбирать произвольный файл.
 
 ## Выполнено и проверено
@@ -24,7 +24,7 @@
 
 - Этапы0/1: read-only Android audit, исходный бренд/котик/шрифты/токены обеих тем, адаптивный каркас. Provenance `docs/ASSET_SOURCES.json`, Android SHA `874de91cb626b6f0e78532963b378d86901b97d9`. Не повторять аудит неизменённых входов.
 - Этап2: секции/навигация/FAQ/темы/галерея/ошибки; R1 — пользовательское coming-soon состояние. Реальные APK features/screens — deferred инкремент, не fabricated UI. Hero пока оригинальный маскот.
-- Этап3: allowlisted stdlib build, SEO/fonts, noindex draft; независимые APK/site approvals. Actual `data/publication.json=false`, `data/release.json=unverified`. Validate и render approval guard AST совпали с22ac98a; предложение gate не активировано.
+- Этап3: allowlisted stdlib build, SEO/fonts, noindex draft; независимые APK/site approvals. Actual `data/publication.json=false`, `data/release.json=unverified`. Validate/full-release guard сохранён; render изменён только согласованным coming-soon patch. Mode по умолчанию full, отдельное website approval обязательно.
 - Этап4: исправлены gallery focus trap, skip target (`tabindex=-1`) и переполнение200% текста (`overflow-wrap:anywhere`). 4D baseline:64 viewport/theme runs в Chromium/Firefox/WebKit/Edge,16 axe0violations. После coming-soon copy R1:Chromium16/16+4axe0violations,48 text resize/spacing cases в4браузерах PASS. Не выдавать старую полную матрицу за новый запуск на новом copy. CSS text simulation — не native zoom/screen reader/device test.
 - R2/R5: настоящий CI upload→download artifact; clean source/SHA/22file manifests и Chrome rendering390/1440×2темы PASS, noindex=true/APK=false/page_errors0. Текущие58 unit tests (40 notify+18 build/workflow/package) PASS в CI. Code/UI не менялся послеR1, повторные matrices не нужны.
 - R4: run39110987166 attempts1/2 success, оба archive round-trip notices; Telegram127 толькоattempt1, повторного commit notice вattempt2 нет. `artifact-retry.json` честно фиксирует API404 старых IDs; global exactly-once не обещать.
@@ -35,7 +35,7 @@
 
 Все alert IDs стабильны в `project_specs/user_actions.json`, не создавать дубли.
 
-1. `site-first-website-release-policy`: ближайший owner review кандидата и разрешение указанного неприменённого diff; затем отдельное разрешение публикации. Это реальная текущая внешняя граница.
+1. `site-first-website-release-policy`: ближайший owner review кандидата; разрешение на patch уже получено и выполнено. Затем отдельное разрешение публикации. Это реальная текущая внешняя граница.
 2. `site-approved-android-release`: APK не утверждён, скачивание выключено. Только последующий APK/features/screens инкремент по `docs/RELEASE_CONTENT.md`; не делать APK prerequisite website readiness.
 3. `site-digest-default-branch-activation`: обязательное21:00 МСК расписание подготовлено, но не активно вне default branch. Main update требует разрешения с учётом legacy Pages side effect; не включать автоматически в разрешение website policy.
 4. Telegram settings и network cross-browser actions resolved. Не запрашивать заново секреты/доступ браузерных CDN без новой причины. Telegram delivery реально подтверждена; secret values не читать/не печатать.
@@ -66,3 +66,8 @@ P1 remote verification:24c5102/run39112341703 success,47+20 tests и actual arch
 Новое указание принято после safe remote checkpoint8888818 и successful CI. Все существующие Telegram message types используют общий presentation: bold project/event header, metadata и section titles, blank paragraphs, descriptive HTTPS links, code branch/hash/IDs. Escaping включает quote-safe attributes; общий truncator сохраняет balanced HTML/entities и footer links. Единственная спецификация — AGENT_NOTIFICATION_PROTOCOL.md, AGENTS ссылается на неё. 51 notification tests PASS, включая parser validation всех типов/опасных URL/длинных сообщений; прежняя дедупликация/ошибки покрыты. Workflow файл/triggers/secrets и send/ledger routing не менялись. После checkpoint проверить CI/обычный accepted notice, затем прежний exact next; новые approvals/gate permissions не предоставлены.
 
 T1 remote verification завершена:674e5f5 independently confirmed; run39113063235 verify/notify success,71 tests и actual archive22files/4views/noindex/noAPK PASS; Telegram accepted165. Exact notices сохранены в telegram-presentation.json. Дополнительных живых test sends/Telegram UI screenshot не было. Задача оформления завершена; следующий approved website action остаётся exact next выше и зависит от ранее зарегистрированного owner decision. Новое указание не разрешает gate patch/main/deploy, независимых незавершённых задач с текущими inputs не найдено. Передача следующему агенту — по AGENT_DEVELOPMENT_PROTOCOL.md; текущий собственный SHA проверять через Git/Actions, не создавать endless doc commits.
+
+
+## R6 · авторизованная coming-soon политика
+
+Владелец явно разрешил применить только docs/proposals/first-release-coming-soon.patch. На clean latest remote8a0e726 SHA-256 cefd3cc1b1440efa0f09c67b557570e5c9a4f89d0b7f0c63df7b8b407f38fd03 совпал, git apply --check PASS. Patch применён без изменения предложенных bytes. 25 site/build/workflow/handoff tests PASS; draft build PASS, HTML SHA af74145de9543065e6822cc79c3252673ae43a53b2b7eeb50484b1caf61b1357 прежний. Исторические P1/T1 записи выше описывают прежние permissions, текущее узкое разрешение зафиксировано здесь. Publication approved=false, APK unverified/approved_for_distribution=false; production build с реальными config по-прежнему блокируется. Workflow/бот/production/main/noindex не меняются. Remote CI/archive proof — после checkpoint, пока не заявляется.

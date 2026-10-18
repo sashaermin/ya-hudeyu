@@ -1,0 +1,22 @@
+{
+  "stage": "R6",
+  "base_remote_sha": "8a0e7265cb1937efcd8ad771743995e6cbf64ad5",
+  "approved_patch_sha256": "cefd3cc1b1440efa0f09c67b557570e5c9a4f89d0b7f0c63df7b8b407f38fd03",
+  "apply_check": "PASS",
+  "site_tests_passed": 25,
+  "real_configs_block_production_in_both_modes": true,
+  "protected_files_unchanged": [
+    "data/publication.json",
+    "data/release.json",
+    ".github/workflows/website-checks.yml",
+    ".github/workflows/website-digest.yml",
+    "index.html",
+    "styles/site.css",
+    "CNAME",
+    "privacy.html"
+  ],
+  "draft_html_sha256": "af74145de9543065e6822cc79c3252673ae43a53b2b7eeb50484b1caf61b1357",
+  "publication_approved": false,
+  "apk_approved": false,
+  "live_ci_pending": true
+}

@@ -125,3 +125,10 @@ P1 checkpoint24c5102 независимо подтверждён на remote, ru
 T1 итог локально:51 notification +20 site/workflow/handoff tests PASS; draft build PASS/HTML byte-identical. AST send/pushed_commits/load_ledger/run_ci_report/run_digest/action_transitions/new_events неизменён относительно safe8888818; оба workflows, approvals, index/CSS, CNAME/privacy побайтно прежние. Evidence telegram-presentation.json содержит mock-примеры, не live send. Следующее — обычный commit/push, remote SHA и CI/accepted notice; отдельные тестовые сообщения не нужны.
 
 T1 remote подтверждён:674e5f5/run39113063235 success;71 tests, actual archive/noindex/noAPK, Telegram accepted165. Точный API proof — telegram-presentation.json. Workflow/секреты/бот/ledger/website gates не менялись; visual standard применяется ко всем существующим message types. Возобновлён прежний roadmap: owner acceptance и разрешение ранее подготовленного gate-diff по-прежнему pending. Повторно запрашивать неизменившееся разрешение или применять diff нельзя; независимая часть выполнена.
+
+
+## R6 · применение разрешённой coming-soon политики
+
+Цель: применить только согласованный proposal к актуальному work/website-v2, не разрешая фактическую публикацию. Владелец явно авторизовал применение patch; SHA-256 cefd3cc1b1440efa0f09c67b557570e5c9a4f89d0b7f0c63df7b8b407f38fd03 совпал; clean local/remote HEAD8a0e726 и git apply --check PASS. Applied bytes: только tools/build.py и новый tests/test_coming_soon_policy.py. Default full gates сохранены; explicit coming-soon требует отдельного approval, запрещает APK/features/screens. Реальные config/approval/noindex/main/deploy не менялись.
+
+25 site/build/workflow/handoff tests PASS, включая5 активированных proposal tests; draft build PASS, index SHA af74145de9543065e6822cc79c3252673ae43a53b2b7eeb50484b1caf61b1357 прежний. Документы/реестр уточнены без нового roadmap/дублированного owner action. После checkpoint — CI actual archive round-trip, Telegram ack, обновлённая review ссылка. Следующий независимый шаг — предъявление проверенного кандидата; далее owner visual/legal acceptance и отдельная публикационная авторизация, APK не prerequisite.
