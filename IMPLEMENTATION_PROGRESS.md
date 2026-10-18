@@ -34,7 +34,7 @@
 
 Owner authorization сохранена дословно project_specs/PHASE2_CONTENT_AUTHORIZATION_2026-10-18.md. Это дополнение master, не новый replacement spec/не full redesign. Plan: P2A reuse/source audit; P2B content/visual implementation; P2C QA+owner review package; P2D owner review, STOP доотдельной production authorization. P2A/B выполнены: reuse fonts/tokens/nav/footer/gallery/release gates;5source-backed planned_areas отдельно отrelease features, journey/timeline/original hint/status/FAQ. No APK/release screenshots/claims.
 
-P2C локально verified:31site+68notify tests,48responsive layout cases в3engines/12axe0violations/12text adaptation/6noJS/privacy320×2;before/after20PNG иsource/claim table. Actual clean CI artifact/source SHA нужно подтвердить послеpush, затем P2C complete иP2D pending owner visual/content review. Existing7release-blocked/2manual UI items не закрыты intent-card текстами. Main/publicproduction/privacy/release+publication configs/workflows untouched; Telegram COMPLETED. Review/evidence — docs/PHASE2_REVIEW.md иdocs/verification/phase2-review.json.
+P2C локально verified:31site+68notify tests,48responsive layout cases в3engines/12axe0violations/12text adaptation/6noJS/privacy320×2;before/after20PNG иsource/claim table. P2C COMPLETED: UI source27247f4/run39146021733 success, actual artifact12143292977/23files/4views/99unit tests; Telegram55/56 topic6. P2D pending owner visual/content review; actual source/link/expiry вPHASE2_REVIEW.md. Existing7release-blocked/2manual UI items не закрыты intent-card текстами. Main/publicproduction/privacy/release+publication configs/workflows untouched; Telegram COMPLETED. Review/evidence — docs/PHASE2_REVIEW.md иdocs/verification/phase2-review.json.
 
 ## Актуальный production срез U3
 

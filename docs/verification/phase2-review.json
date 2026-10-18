@@ -76,8 +76,8 @@
     "archive_sha256": "37e3a7a063fcc443d80606b681949d07f9755ddabbbba39928b64ca1bc7bc6d1",
     "archive_size_bytes": 436989,
     "files": 23,
-    "source_worktree_dirty": true,
-    "scope": "Local rehearsal; clean exact source/actual CI artifact verified after Git checkpoint"
+    "source_worktree_dirty": false,
+    "scope": "Actual stored/uploaded/downloaded CI archive from verified clean27247f4, matches local ZIP; 4 rendered views PASS"
   },
   "screenshots": "docs/screenshots/phase2",
   "limitations": [
@@ -86,5 +86,25 @@
     "CSS text adaptation is not native zoom.",
     "No hosted preview; forthcoming Actions artifact is a ZIP for local review with 7-day retention.",
     "No new mascot poses: original calm and hint only."
-  ]
+  ],
+  "development_ui_commit": "27247f4bf8b5df0efedf4d79a98a972d1d6d8e3c",
+  "ci": {
+    "run_id": 39146021733,
+    "conclusion": "success",
+    "verify_check_run": 117729912933,
+    "notify_check_run": 117730038719,
+    "unit_tests": 99,
+    "actual_stored_archive_roundtrip": true,
+    "archive_files": 23,
+    "rendered_views": 4,
+    "page_errors": 0,
+    "source_worktree_dirty": false,
+    "artifact_id": 12143292977,
+    "artifact_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39146021733/artifacts/12143292977",
+    "artifact_expired": false,
+    "artifact_expires_at": "2026-10-25T16:39:59Z",
+    "telegram_topic": 6,
+    "commit_message_id": 55,
+    "implementation_stage_message_id": 56
+  }
 }

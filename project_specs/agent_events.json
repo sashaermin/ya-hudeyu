@@ -510,6 +510,26 @@
       "done": "Пять planned-направлений, journey/timeline, original hint mascot, status/FAQ; источник Android6c4e8c0 read-only. No APK/released claims;brand/themes/nav/privacy preserved.20before/after/section PNG иreview source table готовы.",
       "next": "Проверить clean CI artifact иremote, записать exact source/artifact link, затем STOP дляowner visual/content review. Production/main/deploy не разрешены.",
       "status": "Phase2 development candidate; owner review pending; Telegram workflows untouched"
+    },
+    {
+      "id": "site-phase2-review-artifact-20261018",
+      "at": "2026-10-18T16:41:41.758887+00:00",
+      "type": "preview_artifact_ready",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Phase2",
+          "P2C"
+        ],
+        "title": "Пакет визуальной и контентной приёмки"
+      },
+      "checkpoint": "27247f4bf8b5df0efedf4d79a98a972d1d6d8e3c",
+      "verified": "CI39146021733 success:99unit tests;actual stored archive23files/4views/clean source/noindex/APK-disabled/page_errors0;48local layouts/12axe0violations. Artifact12143292977 metadata verified,7day retention.",
+      "done": "Before/after20PNG,source claims,exact UI SHA27247f4,preview ZIP иlocal review instructions сохранены вdocs/PHASE2_REVIEW.md. Новых mascot poses нет; Telegram55/56 topic6 подтверждён.",
+      "next": "STOP дляowner visual/content review. Production/main/deploy не разрешены; APK approval отдельно open.",
+      "status": "Review package VERIFIED; owner acceptance pending; production unchanged",
+      "artifact_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39146021733/artifacts/12143292977"
     }
   ]
 }

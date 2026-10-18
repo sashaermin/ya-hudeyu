@@ -1,6 +1,6 @@
 {
   "scope": "Phase2 owner-authorized development enrichment only; review pending; never production permission",
-  "source_base_checkpoint": "94bb268148423eca5c82643da700d62a1b88975f",
+  "source_base_checkpoint": "27247f4bf8b5df0efedf4d79a98a972d1d6d8e3c",
   "archive_sha256": "37e3a7a063fcc443d80606b681949d07f9755ddabbbba39928b64ca1bc7bc6d1",
   "site_index_sha256": "6bcb1876386e65ad2630d882f1ff23508ed6c26ecc8dbc2a4c1e1213197790a6",
   "qa_evidence": "docs/verification/phase2-review.json",

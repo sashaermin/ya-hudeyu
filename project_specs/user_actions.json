@@ -82,6 +82,22 @@
       "can_continue": "Авторизованная политика реализована, CI76 tests и actual archive22files/4views PASS, Telegram173. Других approved независимых задач не найдено; далее приёмка/замечания и отдельное разрешение публикации. APK не prerequisite сайта.",
       "link": "https://yahudeyu-app.ru/",
       "resolution": "Владелец принял первый кандидат и отдельно разрешил публикацию; policy patch применён, publication9b39ffaf35c48973b8115b630ba0d06165ad09a4 реально deployed через Pages39114713056 success. Live browser CI39125147955:16 cases/22 public hashes/12 internal404 PASS, TLS включён, noindex сохранён, APK выключен. Rollback tag доступен на9a0857c. Это завершение первого coming-soon release, не всего мастер-ТЗ и не разрешение новых production изменений."
+    },
+    {
+      "id": "site-phase2-owner-review",
+      "status": "open",
+      "source": "Codex",
+      "opened": "2026-10-18",
+      "task": "Сайт · Phase2",
+      "subtask": "Визуальная и контентная приёмка Phase2",
+      "what": "Development27247f4 иreview package verified:99unit tests,48responsive cases,12axe0violations;actual ZIP23files/4views. Production не изменён. Требуется предусмотренная заданием owner review, не решение об APK.",
+      "steps": [
+        "Откройте docs/PHASE2_REVIEW.md: before/after desktop/mobile вдвух темах,section screenshots,claim/source table ипроверенный ZIP.",
+        "Сообщите замечания или подтвердите визуальную и контентную приёмку этого кандидата. Публикация требует последующего отдельного явного разрешения."
+      ],
+      "blocked": "Только следующий этап приёмки/возможного website release. APK approval остаётся отдельной открытой задачей.",
+      "can_continue": "Все независимые approved Phase2 implementation/QA/review-package задачи выполнены. STOP перед production; новых функций/редизайна не начинать.",
+      "link": "https://github.com/sashaermin/ya-hudeyu/blob/work/website-v2/docs/PHASE2_REVIEW.md"
     }
   ]
 }
