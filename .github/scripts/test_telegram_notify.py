@@ -135,12 +135,12 @@ def evfile(*events): return json.dumps({"events": list(events)})
 class TransitionEventTest(unittest.TestCase):
     def test_transition_message_matches_the_requested_russian_format(self):
         text = tn.event_message("o/r", "w", "e" * 40, ev("e1"))
-        self.assertTrue(text.startswith("<b>САЙТ «Я ХУдЕЮ»</b>")); self.assertIn("<b>Агент:</b> Claude Code",text); self.assertIn("переход к следующей задаче",text)
-        self.assertIn("<b>Завершено:</b> Task03 › G — Share Studio &lt;2.0&gt;", text)
-        self.assertIn("<b>Начато:</b> Task03 › H › H1 — Сравнение", text)
-        self.assertIn("<b>Статус:</b> разработка продолжается", text)
-        self.assertIn('<b>Последний checkpoint:</b> <a href="https://github.com/o/r/commit/abc1234">abc1234</a>', text)
-        self.assertIn("событие <code>e1</code>", text)
+        self.assertTrue(text.startswith("<b>САЙТ «Я ХУдЕЮ» — ")); self.assertIn("<b>Агент:</b> Claude Code",text); self.assertIn("переход к следующей задаче",text)
+        self.assertIn("<b>Завершено:</b>\n<code>Task03</code> › <code>G</code> — Share Studio &lt;2.0&gt;", text)
+        self.assertIn("<b>Начато:</b>\n<code>Task03</code> › <code>H</code> › <code>H1</code> — Сравнение", text)
+        self.assertIn("<b>Статус:</b>\nразработка продолжается", text)
+        self.assertIn('<b>Контрольная точка:</b> <code>abc1234</code>', text)
+        self.assertIn("Событие:</b> <code>e1</code>", text)
 
     def test_every_type_and_any_nesting_depth(self):
         deep = {"path": ["ТЗ-09", "Этап 2", "Задача 4", "Подзадача 4.1", "Шаг"], "title": "x"}
@@ -149,8 +149,8 @@ class TransitionEventTest(unittest.TestCase):
             if typ == "preview_artifact_ready": e["artifact_url"] = "https://github.com/sashaermin/ya-hudeyu/actions/runs/1/artifacts/2"
             self.assertIsNone(tn.event_problem(e), typ)
             text = tn.event_message("o/r", "w", "e" * 40, e)
-            self.assertIn(heading, text); self.assertIn("<b>Агент:</b> Codex", text); self.assertTrue(text.startswith("<b>САЙТ «Я ХУдЕЮ»</b>"))
-            self.assertIn("ТЗ-09 › Этап 2 › Задача 4 › Подзадача 4.1 › Шаг — x", text)
+            self.assertIn(heading, text); self.assertIn("<b>Агент:</b> Codex", text); self.assertTrue(text.startswith("<b>САЙТ «Я ХУдЕЮ» — "))
+            self.assertIn(' › '.join('<code>'+x+'</code>' for x in deep['path'])+' — x', text)
 
     def test_completion_without_verification_and_malformed_events_are_never_sent(self):
         self.assertIsNotNone(tn.event_problem(ev("a", verified="")))
@@ -187,7 +187,7 @@ class TransitionEventTest(unittest.TestCase):
                 if expected:
                     self.assertIn("новый коммит", sent[0])
                     self.assertIn("задача завершена и проверена",sent[1]); self.assertIn("<b>Агент:</b> Claude Code",sent[1])  # explicit source wins
-                    self.assertIn("<b>начата задача</b>",sent[2]); self.assertIn("<b>Агент:</b> Codex",sent[2])
+                    self.assertIn("— начата задача</b>",sent[2]); self.assertIn("<b>Агент:</b> Codex",sent[2])
 
     def test_add_event_cli_is_deterministic_validated_and_refuses_unverified_completion(self):
         with tempfile.TemporaryDirectory() as d:
@@ -249,8 +249,8 @@ def alert(i="tok", status="open", **kw):
 class UserActionTest(unittest.TestCase):
     def test_message_has_all_required_sections_escaped(self):
         text = tn.action_message("o/r", "b", "a" * 40, json.loads(alert())["alerts"][0])
-        self.assertTrue(text.startswith("<b>САЙТ «Я ХУдЕЮ»</b>"))
-        for label in ("Задача:", "Подзадача:", "Что произошло:", "Что нужно сделать:", "Что заблокировано:", "Можно ли продолжать другие задачи:"):
+        self.assertTrue(text.startswith("<b>САЙТ «Я ХУдЕЮ» — "))
+        for label in ("Задача:", "ТРЕБУЕТСЯ ВАШЕ ДЕЙСТВИЕ:", "Что произошло:", "Что нужно сделать:", "Что заблокировано:", "Можно ли продолжать другие задачи:"):
             self.assertIn(label, text)
         self.assertIn("Секрет &lt;bot&gt;", text); self.assertIn("InvalidURL &amp; co", text)
         self.assertIn("1. Откройте Settings\n2. Сохраните `$(id)`", text)
@@ -309,7 +309,7 @@ class AgentSourceTest(unittest.TestCase):
         self.assertIn("<b>Агент:</b> Не определён", tn.action_message("o/r", "b", "a" * 40, a, source=tn.SOURCE_CLAUDE))
         self.assertIn("<b>Агент:</b> Codex", tn.action_message("o/r", "b", "a" * 40, dict(a, source="Codex"), source=tn.SOURCE_CLAUDE))
         self.assertIn("<b>Агент:</b> Codex", tn.resolved_message("b", dict(a, source="codex")))
-        self.assertIn("механизм: GitHub Actions", tn.digest_message("o/r", tn.dt.datetime(2026, 10, 18, tzinfo=tn.dt.timezone.utc), {}, [], [], None, None, []))
+        self.assertIn("<b>Механизм:</b> GitHub Actions", tn.digest_message("o/r", tn.dt.datetime(2026, 10, 18, tzinfo=tn.dt.timezone.utc), {}, [], [], None, None, []))
 
 
 class AgentEventTest(unittest.TestCase):
@@ -336,7 +336,7 @@ class DigestSourceTest(unittest.TestCase):
         with mock.patch.dict(os.environ, {"GITHUB_REPOSITORY": "o/r"}), mock.patch.object(tn, "GitHub", return_value=GH()), mock.patch("sys.stdout", out):
             self.assertEqual(0, tn.main(["digest", "--dry-run"]))
         text = out.getvalue()
-        self.assertIn("• G3 (<code>work</code>)", text)
+        self.assertIn("G3 (<code>work</code>)", text)
         self.assertIn("Ждут вашего действия", text); self.assertIn("Секрет &lt;bot&gt;", text)
         self.assertNotIn("Нет данных", text)
 
@@ -358,7 +358,7 @@ class CiAndDigestTest(unittest.TestCase):
         now = dt.datetime(2026, 10, 18, 18, 0, tzinfo=dt.timezone.utc)
         text = tn.digest_message("o/r", now, {"work/<x>": 3}, [], [], None, None, ["HANDOFF.md"])
         self.assertIn("21:00 МСК", text); self.assertIn("work/&lt;x&gt;</code>: 3", text)
-        self.assertIn("нет записанных завершений", text); self.assertIn("не удалось определить", text); self.assertIn("Нет данных:</b> HANDOFF.md", text)
+        self.assertIn("Нет записанных завершений", text); self.assertIn("Не удалось определить", text); self.assertIn("Нет данных:</b>\nHANDOFF.md", text)
         self.assertEqual("F5", tn.next_action("x\n**Next:** F5\n**Next:** old"))
 
 
@@ -538,3 +538,74 @@ class ReportMetadataEnforcementTest(unittest.TestCase):
         text='SECRET_TEST_ONLY\n\nReport-Summary: English\nReport-Done: English\nReport-Checks: English\nCo-Authored-By: Claude Code'
         rc,out=self.check_message(text)
         self.assertEqual(1,rc); self.assertIn('Agent:',out); self.assertNotIn('SECRET_TEST_ONLY',out)
+
+
+class TelegramPresentationTest(unittest.TestCase):
+    def assert_valid(self, text):
+        from html.parser import HTMLParser
+        from urllib.parse import urlparse
+        case=self
+        class Validate(HTMLParser):
+            def __init__(self):
+                super().__init__(convert_charrefs=False); self.stack=[]; self.links=[]
+            def handle_starttag(self,tag,attrs):
+                case.assertIn(tag,('b','i','code','pre','a'))
+                if tag=='a':
+                    case.assertEqual(['href'],[k for k,v in attrs]); self.links.append(dict(attrs)['href'])
+                    url=urlparse(dict(attrs)['href']); case.assertEqual('https',url.scheme); case.assertFalse(url.username or url.password)
+                else:case.assertFalse(attrs)
+                self.stack.append(tag)
+            def handle_endtag(self,tag):
+                case.assertTrue(self.stack,tag); case.assertEqual(tag,self.stack.pop())
+            def handle_entityref(self,name):case.assertIn(name,('amp','lt','gt','quot','apos'))
+            def handle_charref(self,name):case.assertGreater(int(name[1:],16) if name.startswith('x') else int(name),0)
+        parser=Validate();parser.feed(text);parser.close();self.assertFalse(parser.stack)
+        self.assertLessEqual(len(text),tn.TELEGRAM_LIMIT)
+        self.assertRegex(text,r'^<b>САЙТ «Я ХУдЕЮ» — [^\n]+</b>\n\n')
+        self.assertIn('<b>Проект:</b>',text);self.assertIn('<b>Агент:</b>',text)
+        self.assertTrue(parser.links,'Every supported report has a descriptive link')
+        return parser
+
+    def samples(self):
+        branch='work/<unsafe>&"';sha='a'*40
+        a=json.loads(alert(source='Codex'))['alerts'][0];a.update(what='Описание <script> & "x"',resolution='Исправлено <img> & "x"')
+        event=ev('evt<1>',source='Codex',done='Исправлено <iframe> & "x"')
+        preview=ev('preview',typ='preview_artifact_ready',artifact_url='https://github.com/sashaermin/ya-hudeyu/actions/runs/1/artifacts/2')
+        commit='Изменение <svg> & "x"\n\nReport-Summary: Изменено <b>меню</b> & "x"\nReport-Done: Проверен <script> & "x".\nReport-Checks: Пройдены тесты.\nAgent: Codex'
+        return {
+            'commit':tn.commit_message('o/r',branch,sha,'',commit),
+            'milestone':tn.milestone_message('o/r',branch,sha,dict(id='stage<1>',title='Этап <img>',status='checkpoint_verified',note='Описание <svg>',source='Codex')),
+            'ci':tn.ci_message('o/r','Проверка <script>',branch,sha,'failure','https://github.com/o/r/actions/runs/1?a=1&b=2',None),
+            'action':tn.action_message('o/r',branch,sha,a),
+            'resolved':tn.resolved_message(branch,a,repo='o/r',sha=sha),
+            'event':tn.event_message('o/r',branch,sha,event),
+            'preview':tn.event_message('sashaermin/ya-hudeyu',branch,sha,preview),
+            'digest':tn.digest_message('o/r',tn.dt.datetime(2026,10,18,18,tzinfo=tn.dt.timezone.utc),{branch:1},[],[dict(url='https://github.com/o/r/actions/runs/1?a=1&b=2',name='Проверка <script>',branch=branch)],'Далее <iframe>',branch,['Нет <данных>'],open_actions=[a]),
+        }
+
+    def test_all_report_types_share_hierarchy_and_escape_dynamic_values(self):
+        for kind,text in self.samples().items():
+            with self.subTest(kind=kind):
+                self.assert_valid(text)
+                for bad in ['<script>','<img>','<svg>','<iframe>']:self.assertNotIn(bad,text)
+                self.assertIn('\n\n<b>',text)
+                if kind!='digest':self.assertIn('<b>Ветка:</b> <code>work/&lt;unsafe&gt;&amp;&quot;</code>',text)
+        self.assertIn('Открыть коммит на GitHub',self.samples()['commit'])
+        self.assertIn('Открыть запуск GitHub Actions',self.samples()['ci'])
+
+    def test_long_messages_close_tags_and_reserve_descriptive_links(self):
+        huge='Описание <x> & "кавычки". '*1500
+        a=json.loads(alert(source='Codex',what=huge,steps=[huge]))['alerts'][0]
+        values=[tn.action_message('o/r','work/website-v2','a'*40,a),
+                tn.event_message('o/r','work/website-v2','a'*40,ev('long',done=huge,verified=huge)),
+                tn.digest_message('o/r',tn.dt.datetime.now(tn.dt.timezone.utc),{},[],[],huge,'work/website-v2',[])]
+        for text in values:
+            self.assert_valid(text);self.assertIn('…',text);self.assertIn('<a href=',text)
+            self.assertTrue(text.endswith('</a>'))
+
+    def test_unsafe_links_are_rejected_without_echoing_credentials_or_breaking_html(self):
+        for url in ['javascript:alert(1)','http://example.com','https://user:SECRET_TEST_ONLY@github.com/x','https://github.com/x" onclick="x','https://[bad','https://github.com:99999/x','https://@github.com/x',42]:
+            rendered=tn.safe_link(url,'Открыть')
+            self.assertNotIn('<a ',rendered);self.assertNotIn('SECRET_TEST_ONLY',rendered)
+        link=tn.safe_link('https://github.com/o/r?a=1&b=2','Открыть <настройки> & "x"')
+        self.assertIn('a=1&amp;b=2',link);self.assertIn('&lt;настройки&gt; &amp; &quot;x&quot;',link)

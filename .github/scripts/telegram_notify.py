@@ -20,6 +20,7 @@ import argparse
 import datetime as dt
 import glob
 import html
+from html.parser import HTMLParser
 import json
 import os
 import re
@@ -47,7 +48,7 @@ STATUS_TITLES = {
 
 
 def esc(text: str) -> str:
-    return html.escape(text or "", quote=False)
+    return html.escape(str(text or ""), quote=True)
 
 
 # ---------------------------------------------------------------- GitHub API
@@ -128,8 +129,82 @@ def send(token: str, chat_id: str, text: str, retries: int = 3) -> int | None:
             raise RuntimeError(f"Ошибка запроса к Telegram: {type(e).__name__} (проверьте секреты: лишние пробелы/переводы строк)") from None
 
 
+class _BoundedHTML(HTMLParser):
+    """Truncate only between text/entity atoms, preserving balanced Telegram tags."""
+    def __init__(self, limit):
+        super().__init__(convert_charrefs=False)
+        self.limit, self.parts, self.stack, self.stopped = limit, [], [], False
+        self.size = 0
+
+    def append(self, text, stack=None):
+        if self.stopped:
+            return
+        pending = self.stack if stack is None else stack
+        reserve = sum(len(tag) + 3 for tag in pending) + 1
+        if self.size + len(text) + reserve > self.limit:
+            self.stopped = True
+            return
+        self.parts.append(text); self.size += len(text)
+        if stack is not None:
+            self.stack = stack
+
+    def handle_starttag(self, tag, attrs):
+        if tag not in ('b', 'i', 'code', 'pre', 'a'):
+            self.handle_data(self.get_starttag_text()); return
+        self.append(self.get_starttag_text(), self.stack + [tag])
+
+    def handle_endtag(self, tag):
+        if self.stack and self.stack[-1] == tag:
+            self.append('</' + tag + '>', self.stack[:-1])
+
+    def handle_data(self, text):
+        for character in text:
+            self.append(esc(character))
+            if self.stopped: break
+
+    def handle_entityref(self, name):
+        self.append('&' + name + ';')
+
+    def handle_charref(self, name):
+        self.append('&#' + name + ';')
+
+    def result(self):
+        return ''.join(self.parts) + ('…' if self.stopped else '') + ''.join('</' + tag + '>' for tag in reversed(self.stack))
+
+
 def fit(text: str, limit: int = TELEGRAM_LIMIT) -> str:
-    return text if len(text) <= limit else text[: limit - 1] + "…"
+    if len(text) <= limit:
+        return text
+    parser = _BoundedHTML(limit); parser.feed(text)
+    return parser.result()
+
+
+def safe_link(url: str, label: str) -> str:
+    url = str(url or '')
+    try:
+        parsed = urllib.parse.urlparse(url)
+        valid = parsed.scheme == 'https' and parsed.hostname and parsed.port != 0 and parsed.username is None and parsed.password is None
+    except ValueError:
+        valid = False
+    if not valid or len(esc(url)) > 700 or re.search(r'[\s<>"\x00-\x1f]', url):
+        return '<i>Ссылка недоступна: требуется корректный HTTPS URL</i>'
+    return '<a href="' + esc(url) + '">' + fit(esc(str(label)), 160) + '</a>'
+
+
+def section(title: str, body: str) -> str:
+    return '<b>' + esc(title) + ':</b>\n' + body
+
+
+def presentation(event: str, metadata: list[tuple], sections: list[str], links: list[tuple]) -> str:
+    """Common visual hierarchy only; does not alter delivery or ledger semantics."""
+    meta = [f'<b>Проект:</b> {esc(PROJECT)}']
+    for title, value, code in metadata:
+        rendered = '<code>' + esc(str(value)) + '</code>' if code else esc(str(value))
+        meta.append('<b>' + esc(title) + ':</b> ' + rendered)
+    content = '\n\n'.join([f'<b>{esc(PROJECT)} — {esc(event)}</b>', '\n'.join(meta), *sections])
+    footer = '\n\n' + '\n'.join(safe_link(url, title) for url, title in links[:3]) if links else ''
+    # Reserve descriptive links even if a long section must be shortened.
+    return fit(content, TELEGRAM_LIMIT - len(footer)) + footer
 
 
 # ---------------------------------------------------------------- source
@@ -208,15 +283,12 @@ def commit_message(repo: str, branch: str, sha: str, author: str, message: str, 
     done = report_field(message, "report-done", "Описание изменений не задано по протоколу; полный diff доступен по ссылке.", 800)
     checks = report_field(message, "report-checks", "Результаты локальных проверок не указаны.", 700)
     checks = ("Проверки workflow для этого коммита завершились успешно. Локальная запись: " if workflow_verified else "По записи автора; независимо этим уведомлением не подтверждено: ") + checks
-    lines = [f"<b>{esc(PROJECT)} — новый коммит</b>",
-             f"<b>Изменение:</b> {esc(summary)}", f"<b>Что сделано:</b> {esc(done)}",
-             f"<b>Проверки:</b> {esc(checks)}", f"<b>Агент:</b> {esc(agent_source(message))}",
-             f"<b>Ветка:</b> <code>{esc(branch)}</code>", f"<b>Коммит:</b> <code>{esc(sha[:7])}</code>"]
+    sections = [section('Изменение', esc(summary)), section('Что сделано', esc(done)), section('Проверки', esc(checks))]
     event = agent_event(message)
     if event:
-        lines.append(f"<b>Событие:</b> {esc(event)}")
-    lines.append(f'<a href="{esc(url)}">{esc(url)}</a>')
-    return "\n".join(lines)
+        sections.append(section('Событие', esc(event)))
+    return presentation('новый коммит', [('Агент', agent_source(message), False), ('Ветка', branch, True), ('Коммит', sha[:7], True)],
+                        sections, [(url, 'Открыть коммит на GitHub')])
 
 
 def pushed_commits(event: dict, gh: GitHub) -> tuple[list[dict], list[str]]:
@@ -263,14 +335,12 @@ def milestone_transitions(before_json: str | None, after_json: str | None) -> li
 
 
 def milestone_message(repo: str, branch: str, sha: str, m: dict, server: str = "https://github.com") -> str:
-    url = f"{server}/{repo}/commit/{sha}"
-    lines = [f"<b>🏁 Этап дорожной карты</b>", f"<b>Проект:</b> {esc(PROJECT)}", f"<b>Агент:</b> {esc(normalized_agent(m.get('source', '')))}",
-             f"<b>Этап:</b> {esc(m.get('title', m.get('id', '')))}",
-             f"<b>Статус:</b> {esc(STATUS_TITLES[m['status']])}", f"<b>Ветка:</b> <code>{esc(branch)}</code>"]
-    if m.get("note"):
-        lines.append(f"<b>Примечание:</b> {esc(m['note'])}")
-    lines.append(f"<a href=\"{esc(url)}\">Коммит {esc(sha[:7])}</a>")
-    return fit("\n".join(lines))
+    sections = [section('Этап', esc(m.get('title', m.get('id', '')))), section('Статус', esc(STATUS_TITLES[m['status']]))]
+    if m.get('note'):
+        sections.append(section('Примечание', esc(m['note'])))
+    return presentation('этап дорожной карты', [('Агент', normalized_agent(m.get('source', '')), False),
+                        ('Ветка', branch, True), ('Коммит', sha[:7], True), ('Этап', m.get('id', ''), True)],
+                        sections, [(f'{server}/{repo}/commit/{sha}', 'Открыть изменения этапа на GitHub')])
 
 
 # ---------------------------------------------------------------- CI report
@@ -292,16 +362,15 @@ def junit_counts(pattern: str) -> dict | None:
 
 
 def ci_message(repo: str, workflow: str, branch: str, sha: str, status: str, run_url: str, counts: dict | None) -> str:
-    ok = status == "success"
-    lines = [f"<b>{esc(PROJECT)} — {'сборка успешна' if ok else 'сборка не прошла'}</b>", f"<b>Проект:</b> {esc(PROJECT)}",
-             f"<b>Агент:</b> {SOURCE_UNKNOWN}", f"<b>Механизм:</b> {SOURCE_ACTIONS}", f"<b>Workflow:</b> {esc(workflow)}", f"<b>Ветка:</b> <code>{esc(branch)}</code>",
-             f"<b>Коммит:</b> <code>{esc(sha[:7])}</code>", f"<b>Статус:</b> {esc({'success': 'успех', 'failure': 'ошибка', 'cancelled': 'отменено', 'timed_out': 'превышено время'}.get(status, 'не подтверждён'))}"]
-    if counts is not None:
-        lines.append(f"<b>Тесты (JUnit, {counts['files']} файлов):</b> пройдено {counts['passed']}, упало {counts['failed']}, пропущено {counts['skipped']}")
-    else:
-        lines.append("<b>Тесты:</b> отчёты JUnit не найдены — количество не сообщается")
-    lines.append(f"<a href=\"{esc(run_url)}\">Открыть запуск</a>")
-    return fit("\n".join(lines))
+    ok = status == 'success'
+    state = {'success': 'успех', 'failure': 'ошибка', 'cancelled': 'отменено', 'timed_out': 'превышено время'}.get(status, 'не подтверждён')
+    checks = (f"Пройдено {counts['passed']}, упало {counts['failed']}, пропущено {counts['skipped']} (JUnit: {counts['files']} файлов)."
+              if counts is not None else 'Отчёты JUnit не найдены — количество тестов не сообщается.')
+    return presentation('сборка успешна' if ok else 'сборка не прошла',
+                        [('Агент', SOURCE_UNKNOWN, False), ('Механизм', SOURCE_ACTIONS, False), ('Проверка', workflow, True),
+                         ('Ветка', branch, True), ('Коммит', sha[:7], True)],
+                        [section('Статус', esc(state)), section('Проверки', esc(checks))],
+                        [(run_url, 'Открыть запуск GitHub Actions'), (f'https://github.com/{repo}/commit/{sha}', 'Открыть проверяемый коммит')])
 
 
 # ---------------------------------------------------------------- digest
@@ -332,23 +401,25 @@ def action_transitions(before_json: str | None, after_json: str | None) -> tuple
 
 
 def action_message(repo: str, branch: str, sha: str, a: dict, server: str = "https://github.com", source: str = SOURCE_UNKNOWN) -> str:
-    lines = [f"<b>{esc(PROJECT)}</b>", "🚨 <b>ТРЕБУЕТСЯ ВАШЕ ДЕЙСТВИЕ</b>", f"<b>Проект:</b> {esc(PROJECT)}", f"<b>Агент:</b> {esc(alert_source(a, source))}",
-             f"<b>Задача:</b> {esc(a['task'])}", f"<b>Подзадача:</b> {esc(a['subtask'])}", "",
-             f"<b>Что произошло:</b>\n{esc(a['what'])}", "", "<b>Что нужно сделать:</b>"]
-    lines += [f"{n}. {esc(str(step))}" for n, step in enumerate(a["steps"], 1)]
-    lines += ["", f"<b>Что заблокировано:</b> {esc(a['blocked'])}",
-              f"<b>Можно ли продолжать другие задачи:</b> {esc(a['can_continue'])}"]
-    link = a.get("link") or ""
-    if link.startswith("https://"):
-        lines.append(f"<a href=\"{esc(link)}\">Ссылка на GitHub</a>")
-    lines.append(f"<i>Ветка <code>{esc(branch)}</code>, коммит <a href=\"{esc(f'{server}/{repo}/commit/{sha}')}\">{esc(sha[:7])}</a>; id: <code>{esc(a['id'])}</code></i>")
-    return fit("\n".join(lines))
+    sections = [section('ТРЕБУЕТСЯ ВАШЕ ДЕЙСТВИЕ', esc(a['subtask'])), section('Задача', esc(a['task'])),
+                section('Что произошло', esc(a['what'])),
+                section('Что нужно сделать', '\n'.join(f'{i}. {esc(str(step))}' for i, step in enumerate(a['steps'], 1))),
+                section('Что заблокировано', esc(a['blocked'])), section('Можно ли продолжать другие задачи', esc(a['can_continue']))]
+    links = [(a['link'], 'Открыть задачу или необходимые настройки')] if a.get('link') else []
+    links.append((f'{server}/{repo}/commit/{sha}', 'Открыть коммит с запросом действия'))
+    return presentation('требуется ваше действие', [('Агент', alert_source(a), False), ('Ветка', branch, True),
+                        ('Коммит', sha[:7], True), ('Действие', a['id'], True)], sections, links)
 
 
-def resolved_message(branch: str, a: dict, source: str = SOURCE_UNKNOWN) -> str:
-    return fit(f"<b>{esc(PROJECT)}</b> — действие больше не требуется\n<b>Агент:</b> {esc(alert_source(a, source))}\n<b>{esc(a['subtask'])}</b>"
-               + (f"\n{esc(a['resolution'])}" if a.get("resolution") else "")
-               + f"\n<i>id: <code>{esc(a['id'])}</code>, ветка <code>{esc(branch)}</code></i>")
+def resolved_message(branch: str, a: dict, source: str = SOURCE_UNKNOWN, repo: str = '', sha: str = '', server: str = 'https://github.com') -> str:
+    sections = [section('Действие больше не требуется', esc(a['subtask']))]
+    if a.get('resolution'):
+        sections.append(section('Что решено', esc(a['resolution'])))
+    links = [(a['link'], 'Открыть связанную задачу или настройки')] if a.get('link') else []
+    if repo and sha:
+        links.append((f'{server}/{repo}/commit/{sha}', 'Открыть подтверждение решения'))
+    return presentation('действие больше не требуется', [('Агент', alert_source(a), False), ('Ветка', branch, True),
+                        ('Действие', a['id'], True)], sections, links)
 
 
 # ---------------------------------------------------------------- task / roadmap transition events
@@ -423,35 +494,29 @@ def new_events(before_json: str | None, after_json: str | None) -> list[dict]:
 
 
 def _label(n: dict) -> str:
-    return f"{' › '.join(n['path'])} — {n['title']}"
+    return ' › '.join('<code>' + esc(x) + '</code>' for x in n['path']) + ' — ' + esc(n['title'])
 
 
 def event_message(repo: str, branch: str, sha: str, e: dict, server: str = "https://github.com", source: str = SOURCE_UNKNOWN) -> str:
-    heading, from_label, to_label, _ = EVENT_TYPES[e["type"]]
-    who = alert_source(e, source)
-    lines = [f"<b>{esc(PROJECT)}</b>", f"<b>{esc(heading)}</b>", f"<b>Агент:</b> {esc(who)}"]
-    if from_label:
-        lines.append(f"<b>{from_label}:</b> {esc(_label(e['from']))}")
-    if to_label:
-        lines.append(f"<b>{to_label}:</b> {esc(_label(e['to']))}")
-    if e.get("verified"):
-        lines.append(f"<b>Проверено:</b> {esc(str(e['verified']))}")
-    if e.get("done"):
-        lines.append(f"<b>Сделано:</b> {esc(str(e['done']))}")
-    next_step = e.get("next") or (e.get("to") or {}).get("title") or "См. AGENT_HANDOFF.md"
-    lines.append(f"<b>Далее:</b> {esc(str(next_step))}")
-    if e.get("reason"):
-        lines.append(f"<b>Причина:</b> {esc(str(e['reason']))}")
-    if e.get("status"):
-        lines.append(f"<b>Статус:</b> {esc(str(e['status']))}")
-    if e.get("artifact_url") and not event_problem(e):
-        lines.append(f'<a href="{esc(e["artifact_url"])}">Скачать архив для локального просмотра</a>')
-    cp = str(e.get("checkpoint") or "")
+    heading, from_label, to_label, _ = EVENT_TYPES[e['type']]
+    sections = []
+    if from_label: sections.append(section(from_label, _label(e['from'])))
+    if to_label: sections.append(section(to_label, _label(e['to'])))
+    for key, title in [('done', 'Сделано'), ('verified', 'Проверено')]:
+        if e.get(key): sections.append(section(title, esc(str(e[key]))))
+    sections.append(section('Далее', esc(str(e.get('next') or (e.get('to') or {}).get('title') or 'См. AGENT_HANDOFF.md'))))
+    for key, title in [('reason', 'Причина'), ('status', 'Статус')]:
+        if e.get(key): sections.append(section(title, esc(str(e[key]))))
+    metadata = [('Агент', alert_source(e), False), ('Ветка', branch, True), ('Коммит', sha[:7], True), ('Событие', e['id'], True)]
+    links = []
+    if e.get('artifact_url') and not event_problem(e):
+        links.append((e['artifact_url'], 'Скачать архив для локального просмотра'))
+    cp = str(e.get('checkpoint') or '')
     if cp:
-        lines.append(f"<b>Последний checkpoint:</b> <a href=\"{esc(f'{server}/{repo}/commit/{cp}')}\">{esc(cp[:7])}</a>")
-    lines.append(f"<i>Ветка <code>{esc(branch)}</code> · событие <code>{esc(str(e['id']))}</code> · "
-                 f"<a href=\"{esc(f'{server}/{repo}/commit/{sha}')}\">коммит {esc(sha[:7])}</a></i>")
-    return fit("\n".join(lines))
+        metadata.append(('Контрольная точка', cp[:7], True))
+        links.append((f'{server}/{repo}/commit/{cp}', 'Открыть проверенную контрольную точку'))
+    links.append((f'{server}/{repo}/commit/{sha}', 'Открыть коммит с записью события'))
+    return presentation(heading, metadata, sections, links)
 
 
 def next_action(handoff: str | None) -> str | None:
@@ -465,30 +530,17 @@ def digest_message(repo: str, now: dt.datetime, branch_commits: dict[str, int], 
                    active: str | None, active_branch: str | None, missing: list[str], server: str = "https://github.com",
                    open_actions: list[dict] | None = None) -> str:
     msk = now.astimezone(dt.timezone(dt.timedelta(hours=3)))
-    lines = [f"<b>📋 Итоги дня — {esc(PROJECT)}</b>", f"<i>за 24 ч до {msk:%d.%m.%Y %H:%M} МСК · механизм: {SOURCE_ACTIONS} · агент: {SOURCE_UNKNOWN}</i>", "", "<b>Коммиты:</b>"]
-    if branch_commits:
-        for b, n in sorted(branch_commits.items(), key=lambda kv: -kv[1]):
-            lines.append(f"• <code>{esc(b)}</code>: {n}")
-    else:
-        lines.append("• коммитов не было")
-    lines.append("")
-    lines.append("<b>Завершённые этапы:</b>")
-    lines += [f"• {esc(m.get('title', m.get('id', '')))} — {esc(STATUS_TITLES.get(m.get('status', ''), m.get('status', '')))}" for m in milestones] or ["• нет записанных завершений"]
-    lines.append("")
-    lines.append("<b>Неуспешные проверки GitHub Actions:</b>")
-    lines += [f"• <a href=\"{esc(f['url'])}\">{esc(f['name'])}</a> · <code>{esc(f['branch'])}</code>" for f in failures[:10]] or ["• нет"]
-    lines.append("")
-    lines.append("<b>Текущий этап (по handoff):</b>")
-    lines.append(f"• {esc(active)}" + (f" (<code>{esc(active_branch)}</code>)" if active_branch else "") if active else "• не удалось определить")
+    sections = [section('Коммиты', '\n'.join(f'• <code>{esc(b)}</code>: {n}' for b, n in sorted(branch_commits.items(), key=lambda item: -item[1])) or 'Коммитов не было.')]
+    sections.append(section('Завершённые этапы', '\n'.join(f"• {esc(m.get('title', m.get('id', '')))} — {esc(STATUS_TITLES.get(m.get('status', ''), 'статус не указан'))}" for m in milestones) or 'Нет записанных завершений.'))
+    sections.append(section('Неуспешные проверки GitHub Actions', '\n'.join('• ' + safe_link(f['url'], 'Открыть проверку: ' + f['name']) + ' · <code>' + esc(f['branch']) + '</code>' for f in failures[:10]) or 'Нет.'))
+    sections.append(section('Текущий этап (по handoff)', esc(active) + (f' (<code>{esc(active_branch)}</code>)' if active_branch else '') if active else 'Не удалось определить.'))
     if open_actions:
-        lines.append("")
-        lines.append("🚨 <b>Ждут вашего действия:</b>")
-        lines += [f"• {esc(a['subtask'])} (<code>{esc(a['id'])}</code>)" for a in open_actions]
-    if missing:
-        lines.append("")
-        lines.append("<b>Нет данных:</b> " + esc("; ".join(missing)))
-    lines.append(f"\n<a href=\"{server}/{repo}/commits\">Коммиты на GitHub</a>")
-    return fit("\n".join(lines))
+        sections.append(section('Ждут вашего действия', '\n'.join('• ' + esc(a['subtask']) + ' (<code>' + esc(a['id']) + '</code>)' for a in open_actions)))
+    if missing: sections.append(section('Нет данных', esc('; '.join(missing))))
+    return presentation('итоги дня', [('Агент', SOURCE_UNKNOWN, False), ('Механизм', SOURCE_ACTIONS, False),
+                        ('Период', f'24 часа до {msk:%d.%m.%Y %H:%M} МСК', False)], sections,
+                        [(f'{server}/{repo}/commits', 'Открыть историю коммитов на GitHub'),
+                         (f'{server}/{repo}/blob/{active_branch or "work/website-v2"}/AGENT_HANDOFF.md', 'Открыть текущий handoff')])
 
 
 # ---------------------------------------------------------------- entry points
@@ -536,7 +588,7 @@ def run_commits(args) -> int:
             if key in ledger:
                 continue
             try:
-                send(token, chat, action_message(repo, branch, after, a, server) if kind == "open" else resolved_message(branch, a))
+                send(token, chat, action_message(repo, branch, after, a, server) if kind == "open" else resolved_message(branch, a, repo=repo, sha=after, server=server))
                 with open(args.ledger, "a", encoding="utf-8") as f:
                     f.write(key + "\n")
                 print(f"Отправлено действие ({kind}): {a['id']}")
@@ -562,7 +614,7 @@ def run_commits(args) -> int:
     warning_key = f"warning:{branch}:{after}"
     if warnings and commits and warning_key not in ledger:
         try:
-            send(token, chat, fit(f"<b>⚠️ {esc(PROJECT)}</b>: " + esc(" ".join(warnings)) + f"\n<b>Агент:</b> {SOURCE_UNKNOWN}\n<b>Механизм:</b> {SOURCE_ACTIONS}\n<b>Ветка:</b> <code>{esc(branch)}</code>"))
+            send(token, chat, presentation('данные уведомления неполны', [('Агент', SOURCE_UNKNOWN, False), ('Механизм', SOURCE_ACTIONS, False), ('Ветка', branch, True)], [section('Причина', esc(' '.join(warnings)))], [(f'{server}/{repo}/commit/{after}', 'Открыть коммит на GitHub')]))
             with open(args.ledger, "a", encoding="utf-8") as stream:
                 stream.write(warning_key + "\n")
         except RuntimeError as e:

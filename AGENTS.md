@@ -34,7 +34,7 @@
 
 Следовать AGENT_NOTIFICATION_PROTOCOL.md. Не отправлять Telegram из локальной сессии: отправляет GitHub Actions после push. Используется существующий бот «Я ХУдЕЮ | Dev Reports», repository secrets TELEGRAM_BOT_TOKEN и TELEGRAM_CHAT_ID. Значения никогда не читать/печатать/коммитить. Не создавать нового бота. Проверять только имена/наличие секретов; отсутствие переменных в облачной машине не доказывает отсутствие Actions secrets.
 
-Каждый commit снабжать каноническими provenance/report trailers по [AGENT_NOTIFICATION_PROTOCOL.md](AGENT_NOTIFICATION_PROTOCOL.md); CI проверяет их через `report-check`. Значения агента и Telegram-шаблон определены только там. Не определять агента по автору/runner/ветке. Изменения статуса этапа регистрировать в project_specs/agent_events.json; решения владельца — в project_specs/user_actions.json. Для open → resolved записать resolution, чтобы workflow отправил закрытие. Нельзя дублировать события под новым id.
+Каждый commit снабжать каноническими provenance/report trailers по [AGENT_NOTIFICATION_PROTOCOL.md](AGENT_NOTIFICATION_PROTOCOL.md); CI проверяет их через `report-check`. Значения агента, единая HTML-иерархия, описательные ссылки и escaping определены только там. Сохранять этот стандарт для всех видов событий; оформление не меняет механизм доставки. Не определять агента по автору/runner/ветке. Изменения статуса этапа регистрировать в project_specs/agent_events.json; решения владельца — в project_specs/user_actions.json. Для open → resolved записать resolution, чтобы workflow отправил закрытие. Нельзя дублировать события под новым id.
 
 Короткие пользовательские отчёты только по-русски:
 

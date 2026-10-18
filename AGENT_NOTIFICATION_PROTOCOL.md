@@ -6,20 +6,31 @@
 
 Общие resume/checkpoint/handoff правила — [AGENT_DEVELOPMENT_PROTOCOL.md](AGENT_DEVELOPMENT_PROTOCOL.md); единая точка входа — [AGENTS.md](AGENTS.md), Claude entrypoint — [CLAUDE.md](CLAUDE.md). Эти протоколы обязательны при будущих изменениях workflows/инфраструктуры; не заменять конкурирующими агентскими правилами.
 
-Один commit → одно сообщение:
+Один commit → одно сообщение. Каноническая визуальная иерархия (текст остаётся русским):
 
-```text
-САЙТ «Я ХУдЕЮ» — новый коммит
+```html
+<b>САЙТ «Я ХУдЕЮ» — новый коммит</b>
 
-Изменение: короткое содержательное русское описание
-Что сделано: 1–3 коротких русских предложения
-Проверки: только фактические результаты либо честный неподтверждённый статус
-Агент: Codex / Claude Code / Разработчик / Не определён
-Ветка: фактическая ветка
-Коммит: короткий SHA
+<b>Проект:</b> САЙТ «Я ХУдЕЮ»
+<b>Агент:</b> Codex
+<b>Ветка:</b> <code>work/website-v2</code>
+<b>Коммит:</b> <code>короткий-SHA</code>
 
-https://github.com/sashaermin/ya-hudeyu/commit/полный-SHA
+<b>Изменение:</b>
+Короткое содержательное русское описание.
+
+<b>Что сделано:</b>
+1–3 коротких предложения.
+
+<b>Проверки:</b>
+Только реальные результаты либо честный неподтверждённый статус.
+
+<a href="https://github.com/sashaermin/ya-hudeyu/commit/полный-SHA">Открыть коммит на GitHub</a>
 ```
+
+Та же иерархия обязательна для stage/task transitions, milestone, CI failures, owner action required/resolved, preview artifacts, daily digest и API warnings: один жирный header проекта/события; затем блок жирных metadata labels; далее отдельные жирные секции с пустой строкой между блоками; внизу заметные описательные ссылки. Branch/hash/event/action/stage identifiers — `<code>`. Цели и данные не переводить автоматически и не выдумывать; narratives остаются русскими. Digest представлен этим стилем, но его расписание не активировано без прежнего отдельного main-разрешения.
+
+Формирование сосредоточено в presentation/section/safe_link; это только отображение, не новая система отправки. Динамические текстовые значения и атрибуты проходят HTML escaping, включая кавычки. Clickable URLs — только валидные HTTPS без credentials/control/quote injection; плохая ссылка отклоняется без эха значений. Descriptive anchors ведут непосредственно к commit/Actions run/записи задачи, вместо голого URL. Long-message truncation сохраняет целые entities, сбалансированные HTML tags и резервирует footer links. Mocks проверяют все виды сообщений, malicious values/URL и длинный текст; это не Telegram screenshot/UI test.
 
 Формат хранится только здесь. Структурированные однострочные trailers в последнем непрерывном блоке commit message:
 
@@ -90,3 +101,7 @@ Cache — вспомогательное хранилище, не вечная �
 Уточнение после чтения Pages API: source сайта — legacy main:/. Хотя digest workflow не содержит deploy, сам update main может запустить действующий legacy Pages build. До main update разрешение должно учитывать этот побочный эффект. Не переносить в main workflow по одному лишь общему разрешению разработки; v2 сайт и APK остаются вне разрешения.
 
 Проверенная live-доставка: docs/verification/telegram-delivery-2026-10-18.json. GitHub status success сам по себе недостаточен: здесь сохранён отдельный notice Telegram accepted с message_id67 из фактического sendMessage. Повторять тот же run без причины не нужно; ledger предотвращает повторные уведомления.
+
+## Представление не меняет доставку
+
+Обновление HTML не меняет workflow triggers/secrets/concurrency, бота/чат, ledger keys, retry/backlog/partial-failure поведение или существующие notification IDs. Старые уведомления не пересылать ради нового оформления. Живую проверку выполнять через обычный verified commit push, без дополнительных тестовых сообщений. Ошибка metadata API не означает отсутствие secrets; последние реальные accepted notices остаются доказательством доступности.

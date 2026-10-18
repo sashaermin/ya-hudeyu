@@ -301,6 +301,25 @@
       "done": "Общие правила передачи закреплены без конкурирующего roadmap; Telegram использует русские поля и только явную подпись агента. CI проверяет report metadata; ledger keys и секреты сохранены.",
       "next": "Проверить remote CI и доставку обычного commit; затем продолжить прежнюю точку дорожной карты с учётом pending owner approval.",
       "status": "Правила постоянны; публикация и изменение gates не разрешены"
+    },
+    {
+      "id": "site-telegram-presentation-t1-20261018",
+      "at": "2026-10-18T08:51:22Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Уведомления",
+          "T1"
+        ],
+        "title": "Единая HTML-иерархия Telegram"
+      },
+      "verified": "51 notification-тест и20 site/workflow/handoff-тестов пройдены; сборка/HTML unchanged. Escaping/URL/long-message parser validation и прежняя дедупликация проверены.",
+      "checkpoint": "88888182d41273cf1bf9d9327dbdd410cd8a68ee",
+      "done": "Заголовки, metadata и секции выделены жирным, блоки разделены интервалами, ссылки описательны, branch/hash/IDs моноширинны. Доставка, triggers, секреты и ledger не менялись.",
+      "next": "Проверить обычный remote CI/Telegram accepted; далее прежний roadmap с pending owner approval.",
+      "status": "Оформление унифицировано; production/main/gates сохранены"
     }
   ]
 }
