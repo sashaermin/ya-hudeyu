@@ -1,0 +1,105 @@
+{
+  "run_id": 39107259552,
+  "head_sha": "ad7c5a043d45f31cbc0a4ab6f489592ae14622d2",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "id": 117615712361,
+      "name": "verify",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09"
+        },
+        {
+          "conclusion": "success",
+          "name": "Verify notification script"
+        },
+        {
+          "conclusion": "success",
+          "name": "Validate registries"
+        },
+        {
+          "conclusion": "success",
+          "name": "Website build"
+        },
+        {
+          "conclusion": "success",
+          "name": "Website regression tests"
+        },
+        {
+          "conclusion": "success",
+          "name": "JavaScript syntax"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job"
+        }
+      ]
+    },
+    {
+      "conclusion": "failure",
+      "id": 117615731660,
+      "name": "notify",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09"
+        },
+        {
+          "conclusion": "failure",
+          "name": "Check Telegram bindings without exposing values"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Run actions/cache/restore@caa296126883cff596d87d8935842f9db880ef25"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Report verified commits and registered events"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Report meaningful verification failure"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/cache/save@caa296126883cff596d87d8935842f9db880ef25"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job"
+        }
+      ]
+    }
+  ],
+  "delivery_annotations": [
+    {
+      "annotation_level": "failure",
+      "message": "TELEGRAM_CHAT_ID is not configured for this workflow; add the existing bot/chat in repository Actions secrets.",
+      "title": "Missing Telegram binding"
+    },
+    {
+      "annotation_level": "failure",
+      "message": "TELEGRAM_BOT_TOKEN is not configured for this workflow; add the existing bot/chat in repository Actions secrets.",
+      "title": "Missing Telegram binding"
+    }
+  ],
+  "interpretation": "verify success; notify blocked by two absent Actions bindings; no Telegram accepted acknowledgement"
+}

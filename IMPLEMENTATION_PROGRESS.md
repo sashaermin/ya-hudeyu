@@ -4,8 +4,8 @@
 
 | Этап ТЗ | Цель / критерии | Состояние и checkpoint | Проверки / остаток |
 |---|---|---|---|
-| 0. Аудит | Источники, токены, ресурсы, различение release/dev | Аудит выполнен, `a4de44b` | Android SHA зафиксирован; пути/активы описаны. APK и release screenshots ожидают решения владельца. Pages settings недоступны API. |
-| 1. Дизайн-основа | Оригинальный бренд, CSS-токены и обе темы, адаптивный каркас | Реализован `356eaef` | Сверены оригинальные ресурсы; node syntax PASS. Браузерная матрица/контраст — этап 4. |
+| 0. Аудит | Источники, токены, ресурсы, различение release/dev | Аудит выполнен, `a4de44b` | Android SHA зафиксирован; пути/активы описаны. APK и release screenshots ожидают решения владельца. Первоначально Pages API недоступен; в4B подтверждён legacy main:/ и HTTPS preservation. |
+| 1. Дизайн-основа | Оригинальный бренд, CSS-токены и обе темы, адаптивный каркас | Реализован `356eaef` | Сверены оригинальные ресурсы; node syntax PASS. Матрица/контраст подтверждены в4A/4B, owner visual acceptance pending. |
 | 2. Контент / секции | Hero, возможности, gallery, установка, FAQ, footer | Каркас и взаимодействия `24ca8d5`; релизный контент частично заблокирован | Draft build PASS; JS syntax PASS; CNAME/privacy побайтно сохранены. Реальные скриншоты, публичные функции и hero screenshot не добавлены без подтверждённой сборки. |
 | 3. Загрузка / SEO | Проверенный APK, checksum/версия/совместимость, метатеги, performance | В работе | Download gate реализован, draft noindex, production build блокируется. Gate tests PASS, WOFF2/SEO/релизная документация реализованы (`a14a2c6`); APK ожидает утверждения. |
 | 4. QA | 8 ширин × 2 темы; клавиатура, touch, ссылки, axe/Lighthouse, screenshots | В работе | 16/16 Chromium viewport/theme PASS, 4 axe runs 0 violations, keyboard/touch/gallery PASS. Lighthouse 96/100/100/69 (draft noindex); 4 screenshots сохранены. Firefox/WebKit также проверены (4B); физические устройства, отдельные Edge/Safari и release content pending. См. docs/QA.md. |
@@ -53,3 +53,15 @@ W2A проверен: автономная инструкция сохранен
 3B: отдельный gate site-publication (data/publication.json=false) и независимые APK/site approval tests реализованы. 17 build/workflow tests PASS; исходный draft HTML сохраняется побайтно, browser/Lighthouse QA не повторялся. JSON-LD escaping исправлен и подтверждён round-trip test. Main/deploy/noindex/download статусы не менялись.
 
 W2B: восстановление пропущенных action/event records с ledger + dedup API warnings реализовано; 40 notification tests PASS. Итог текущих focused unit suites: 40 notification + 17 build/workflow = 57 PASS (на актуальных затронутых inputs). Browser artifact после3B побайтно прежний, поэтому 48 viewport/theme runs и12 axe runs валидны без повторения. Остаток: настройкиbindings, разрешениеdigestmain, APK/screens и owner/device release acceptance.
+
+
+## Актуальное состояние · 18.10.2026 10:22 МСК
+
+| Завершённый независимый checkpoint | Доказательства | Открытая граница |
+|---|---|---|
+| W2A `9ca5397` | 36 notify +13 build/workflow tests, YAML/live API dry-run PASS | Daily schedule вdevelopment не активен; нужно разрешение default-branch infrastructure update |
+| 4B `46b824d` | Firefox/WebKit по16 combinations и4 axe, 0violations; runtime helper PASS | Физические устройства и отдельные Safari/Edge; native WebKit swipe не проверен |
+| 3B `237fc81` | 17 build/workflow tests PASS; отдельный publication gate, реальный artifact hash сохранён | Нет APK/site publication approvals, production build не разрешён |
+| W2B `ad7c5a0` | 40 notification tests PASS; backlog recovery, partial retry, dedup/ack | Два Telegram bindings отсутствуют; реальная доставка не подтверждена |
+
+Run39107259552: verify success, notify failure (missing TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID). Workflow целиком не прошёл, deployment в нём нет. Network action resolved по фактическому доступу, нового действия с настройками сети не требуется. Следующие незавершённые approved задачи зависят от перечисленных внешних prerequisites; повторный запрос тех же неизменившихся действий не нужен. Мастер-ТЗ целиком не закрыто: релизные функции/screens, визуальное/юридическое/device принятие и отдельная публикация ещё впереди.
