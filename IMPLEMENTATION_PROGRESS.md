@@ -39,3 +39,5 @@
 - Этап 4A: все независимые draft проверки завершены, доказательства и 4 screenshots — docs/QA.md. Production build проверенно блокируется exit 1. Исправлены focus trap и performance 86→96; ошибки оснастки theme/touch отделены от дефектов сайта. Интеграция с реальным APK и production QA ещё не выполнены.
 
 - 18.10.2026 09:48 МСК: сетевые browser downloads попробованы и получили 403; сохранён config draft с start_skill и additive domains. Новое owner action site-network-crossbrowser-qa. Проверено npm ci (202 packages); provenance bytes/полный cmap WOFF2 PASS. Проверка фактического Actions run, environment activation/new-task restore не выполнялась.
+
+Итоговый проверенный implementation checkpoint этапа 4A: `b3ffaf9ceb9d7f998e673468bfb4a0718393b961` (remote подтверждён). Разрешённая независимая работа выполнена; продолжение — сетевой доступ/оставшиеся браузеры и утверждённый APK/screens. Этапы 2–4 частично открыты по release/owner/device критериям; этап 5 не разрешён и не начат.

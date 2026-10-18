@@ -2,7 +2,7 @@
 
 - Repository: `sashaermin/ya-hudeyu`.
 - Branch: `work/website-v2` (от main).
-- Последний независимо подтверждённый remote checkpoint: `65f94102eb79fbba5084478863276024fbfc09e3`. Более поздний содержащий этот handoff commit проверять через `git ls-remote`, не полагаться на самоссылку.
+- Последний независимо подтверждённый remote checkpoint: `b3ffaf9ceb9d7f998e673468bfb4a0718393b961`. Более поздний содержащий этот handoff commit проверять через `git ls-remote`, не полагаться на самоссылку.
 - Последний ответственный агент: Codex. В текущей сессии Codex — активный единственный писатель сайта; это историческая запись, не вечный lease. Другой активный website writer неизвестен. Android Claude Code активен отдельно и не затрагивается.
 - Текущая стадия: независимый draft QA этапа 4A завершён локально; оставшаяся проверка ожидает сети и утверждённого release content. W1/W1.1 реализованы; фактическая Telegram-доставка не подтверждена.
 - Завершённые checkpoints: этап 0 `a4de44b`; основа этапа 1 `356eaef`; секции/взаимодействия этапа 2 `24ca8d5`. Релизные критерии этапов 2–4 остаются открытыми.
@@ -36,3 +36,5 @@
 - Start_skill и additive domains сохранены в environment config draft (persistence confirmed). Package-manager presets сохранены. Runtime activation / environment publication / новая task не проверены. Не путать публикацию среды с запрещённым website deployment.
 - `npm ci --prefix tools/qa --cache /tmp/npm-cache --ignore-scripts --no-audit --no-fund` реально выполнен успешно (202 packages). Lockfile/optional Python pins и encoders сохранены; `_site` остаётся stdlib-only. Rebuild commands: README и docs/QA.md. Node_modules/_site/.test-results ignored.
 - Все существенные результаты сохранены в Git, temp logs не являются единственным источником. Новая cloud task: прочитать общие файлы и remote, rebuild draft, restart server по startup instructions; завершённые проверки не повторять без изменившихся входов.
+
+Проверенный implementation checkpoint `b3ffaf9ceb9d7f998e673468bfb4a0718393b961` отправлен и независимо подтверждён через git ls-remote. Рабочее дерево после него чистое. Эта финальная запись handoff — отдельный documentation checkpoint; его актуальный SHA получать из Git. Дальнейшая работа по открытым release/network критериям требует описанных действий владельца; независимые draft-задачи завершены. Не считать session label бессрочным доказательством отсутствия другого активного агента.
