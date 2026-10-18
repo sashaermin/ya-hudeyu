@@ -40,6 +40,12 @@ Owner-authorized UI fixes из0b706e3 опубликованы public-only8fb7bf
 
 Исправлены фактически устаревшие инструкции RELEASE_CONTENT: текущий coming-soon/site approval, независимая индексация, legal-body preservation и точный будущий переход наfull сновой авторизацией. Код/production unchanged, переработка компонентов дляAPK не требуется. UI35complete/7releaseblocked/2manual unchanged; все независимо исполнимые требования завершены. Следующие действия только по реальным APK/screens/evidence, physical-device/AT inputs либо отдельному разрешению digest; не выдумывать дальнейшие задачи и не считать full master завершённым.
 
+## Telegram topic6 / daily digest · разрешённый development этап
+
+Optional TELEGRAM_MESSAGE_THREAD_ID подключён вобщем sender, env6 вnotify/digest направляет commits/events/failures/actions в «Сайт | Я ХУдЕЮ». Verification pipeline/preview/production protections прежние. Digest расширен actual24h summaries/Actions statuses, explicit completed events, user-action blockers; cron21:00МСК прежний, dispatch dry_run=true добавлен.59notification+27website tests PASS,2YAML parsed, actual API dry-run иisolated main allowlist simulation59/57PASS/2expected skips. Evidence telegram-topic-digest.json; actual topic delivery проверяется после push, не inferred.
+
+Расписание ещё не активно: workflow отсутствует наdefaultmain, owner authorization дляTelegram-only4file sync не дана. План docs/TELEGRAM_DEFAULT_BRANCH_SYNC.md включает possible legacy Pages rebuild/public-hash verification, без merge/unrelated files. Existing owner action остаётся open. Production иполный master checklist не меняются.
+
 ## Дополнительный разрешённый этап W1 — общая работа агентов и уведомления
 
 Объём: общие инструкции, handoff, прогресс, сохранение оригинального ТЗ, сайт-специфичный Telegram через Actions, стабильные event/action IDs. Без Android-записи и без default-branch schedule.

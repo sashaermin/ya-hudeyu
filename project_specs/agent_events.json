@@ -453,6 +453,25 @@
       "done": "Исправлены устаревшие инструкции подключения APK и handoff. Production/код/data неизменны. Конфигурация поддерживает APK/version/features/screens без перестройки; noindex и disabled download сохранены.",
       "next": "Независимых approved задач нет. Нужны утверждённый APK/реальные release screens/evidence и physical-device/AT/native zoom QA. Full master остаётся частично заблокирован.",
       "status": "Production стабилен; UI35complete/7releaseblocked/2manual; новые публикации не разрешены"
+    },
+    {
+      "id": "site-telegram-topic6-digest-20261018",
+      "at": "2026-10-18T15:31:38.251493+00:00",
+      "type": "stage_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Telegram",
+          "Topic6 + daily"
+        ],
+        "title": "Маршрутизация темы и фактический daily digest"
+      },
+      "checkpoint": "5b4ae4f37a102350b76bdc38cec9e319b27fdcb1",
+      "verified": "59 notification+27 website tests PASS;2workflow YAML parsed;actual GitHub API dry-run без sends/ledger;isolated4file main simulation57PASS/2expected skips. Verify job/preview/production guards unchanged.",
+      "done": "Optional thread ID иenv6 длявсех website notifications;24h actual commit summaries/Actions statuses/completed stages/open blockers;dispatch dry_run=true. Production иmain неизменны.",
+      "next": "Подтвердить actual topic6 delivery послеpush. Daily21:00МСК ждёт отдельного разрешения Telegram-only sync наdefaultmain поdocs/TELEGRAM_DEFAULT_BRANCH_SYNC.md; не выполнять main/deploy автоматически.",
+      "status": "Development готов; default-branch schedule не активен без owner authorization"
     }
   ]
 }

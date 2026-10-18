@@ -16,6 +16,7 @@ environment and never printed.
 """
 from __future__ import annotations
 
+from pathlib import Path
 import argparse
 import datetime as dt
 import glob
@@ -93,9 +94,23 @@ class GitHub:
 
 # ---------------------------------------------------------------- Telegram
 
+def message_thread_id() -> int | None:
+    """Optional routing; reject malformed IDs rather than silently posting to General."""
+    value = os.environ.get("TELEGRAM_MESSAGE_THREAD_ID", "").strip()
+    if not value:
+        return None
+    if not re.fullmatch(r"[1-9][0-9]*", value):
+        raise RuntimeError("TELEGRAM_MESSAGE_THREAD_ID must be a positive integer")
+    return int(value)
+
+
 def send(token: str, chat_id: str, text: str, retries: int = 3) -> int | None:
     """Sends one message; returns Telegram's message_id (logged so a delivery can be located in the chat)."""
-    body = json.dumps({"chat_id": chat_id, "text": text, "parse_mode": "HTML", "disable_web_page_preview": True}).encode("utf-8")
+    payload = {"chat_id": chat_id, "text": text, "parse_mode": "HTML", "disable_web_page_preview": True}
+    thread = message_thread_id()
+    if thread is not None:
+        payload["message_thread_id"] = thread
+    body = json.dumps(payload).encode("utf-8")
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     for attempt in range(1, retries + 1):
         req = urllib.request.Request(url, data=body, headers={"Content-Type": "application/json"})
@@ -103,7 +118,10 @@ def send(token: str, chat_id: str, text: str, retries: int = 3) -> int | None:
             with urllib.request.urlopen(req, timeout=30) as resp:
                 payload = json.loads(resp.read().decode("utf-8"))
                 if payload.get("ok"):
-                    return (payload.get("result") or {}).get("message_id")
+                    result = payload.get("result") or {}
+                    if thread is not None and result.get("message_thread_id") == thread:
+                        print(f"::notice title=Telegram topic confirmed::message_thread_id {thread}; message_id {result.get('message_id')}")
+                    return result.get("message_id")
                 raise RuntimeError(f"Telegram ответил ok=false: {payload.get('description', 'без описания')}")
         except urllib.error.HTTPError as e:
             # Never print the URL: it contains the bot token.
@@ -528,14 +546,18 @@ def next_action(handoff: str | None) -> str | None:
 
 def digest_message(repo: str, now: dt.datetime, branch_commits: dict[str, int], milestones: list[dict], failures: list[dict],
                    active: str | None, active_branch: str | None, missing: list[str], server: str = "https://github.com",
-                   open_actions: list[dict] | None = None) -> str:
+                   open_actions: list[dict] | None = None, recent_commits: list[dict] | None = None, verification_runs: list[dict] | None = None) -> str:
     msk = now.astimezone(dt.timezone(dt.timedelta(hours=3)))
     sections = [section('Коммиты', '\n'.join(f'• <code>{esc(b)}</code>: {n}' for b, n in sorted(branch_commits.items(), key=lambda item: -item[1])) or 'Коммитов не было.')]
-    sections.append(section('Завершённые этапы', '\n'.join(f"• {esc(m.get('title', m.get('id', '')))} — {esc(STATUS_TITLES.get(m.get('status', ''), 'статус не указан'))}" for m in milestones) or 'Нет записанных завершений.'))
-    sections.append(section('Неуспешные проверки GitHub Actions', '\n'.join('• ' + safe_link(f['url'], 'Открыть проверку: ' + f['name']) + ' · <code>' + esc(f['branch']) + '</code>' for f in failures[:10]) or 'Нет.'))
-    sections.append(section('Текущий этап (по handoff)', esc(active) + (f' (<code>{esc(active_branch)}</code>)' if active_branch else '') if active else 'Не удалось определить.'))
+    if recent_commits:
+        sections.append(section('Изменения за 24 часа', '\n'.join('• ' + safe_link(c['url'], c['summary'][:90]) + ' · <code>' + esc(c['sha'][:7]) + '</code>' for c in recent_commits[:3])))
+    if verification_runs is not None:
+        sections.append(section('Результаты GitHub Actions', '\n'.join('• ' + safe_link(r['url'], r['name'][:60]) + ' · ' + esc(r['result']) + ' · <code>' + esc(r['branch']) + '</code>' for r in verification_runs[:3]) or 'Запусков за период не найдено.'))
+    sections.append(section('Завершённые этапы', '\n'.join(f"• {esc(m.get('title', m.get('id', '')))} — {esc(STATUS_TITLES.get(m.get('status', ''), 'статус не указан'))}" for m in milestones[:4]) or 'Нет записанных завершений.'))
+    sections.append(section('Неуспешные проверки GitHub Actions', '\n'.join('• ' + safe_link(f['url'], 'Открыть проверку: ' + f['name']) + ' · <code>' + esc(f['branch']) + '</code>' for f in failures[:3]) or 'Нет.'))
+    sections.append(section('Текущий этап (по handoff)', esc(active[:400] + ('…' if len(active) > 400 else '')) + (f' (<code>{esc(active_branch)}</code>)' if active_branch else '') if active else 'Не удалось определить.'))
     if open_actions:
-        sections.append(section('Ждут вашего действия', '\n'.join('• ' + esc(a['subtask']) + ' (<code>' + esc(a['id']) + '</code>)' for a in open_actions)))
+        sections.append(section('Ждут вашего действия', '\n'.join('• ' + esc(a['subtask']) + ' (<code>' + esc(a['id']) + '</code>)' + (' — ' + esc(a['blocked']) if a.get('blocked') else '') for a in open_actions)))
     if missing: sections.append(section('Нет данных', esc('; '.join(missing))))
     return presentation('итоги дня', [('Агент', SOURCE_UNKNOWN, False), ('Механизм', SOURCE_ACTIONS, False),
                         ('Период', f'24 часа до {msk:%d.%m.%Y %H:%M} МСК', False)], sections,
@@ -682,6 +704,11 @@ def run_check_config() -> int:
     missing = [name for name in ("TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID") if not os.environ.get(name, "").strip()]
     for name in missing:
         print(f"::error title=Missing Telegram binding::{name} is not configured for this workflow; add the existing bot/chat in repository Actions secrets.")
+    try:
+        message_thread_id()
+    except RuntimeError as error:
+        print(f"::error title=Invalid Telegram routing::{error}")
+        return 1
     if not missing:
         print("Telegram bindings present: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (values hidden; delivery not yet verified)")
     return 1 if missing else 0
@@ -690,7 +717,7 @@ def run_check_config() -> int:
 def completed_events_since(text, since, now):
     result = []
     for event in load_events(text):
-        if event_problem(event) or event.get("type") not in {"task_completed", "stage_completed", "task_transition", "stage_transition", "roadmap_completed"}:
+        if event_problem(event) or event.get("type") not in {"task_completed", "stage_completed", "roadmap_completed"}:
             continue
         try:
             at = dt.datetime.fromisoformat(event.get("at", "").replace("Z", "+00:00"))
@@ -698,8 +725,8 @@ def completed_events_since(text, since, now):
                 continue
         except (ValueError, TypeError):
             continue
-        result.append({"id": event["id"], "title": _label(event["from"]), "status": "checkpoint_verified", "note": event["verified"]})
-    return result
+        result.append({"id": event["id"], "title": " › ".join(event["from"]["path"]) + " — " + event["from"]["title"], "at": event["at"], "status": "checkpoint_verified", "note": event["verified"]})
+    return sorted(result, key=lambda item: item["at"], reverse=True)
 
 
 def run_digest(args) -> int:
@@ -708,6 +735,7 @@ def run_digest(args) -> int:
     now = dt.datetime.now(dt.timezone.utc); since = now - dt.timedelta(hours=24)
     missing: list[str] = []
     branch_commits: dict[str, int] = {}
+    commit_details: list[dict] = []
     recent: list[tuple[str, str]] = []
     seen_milestones: dict[str, dict] = {}
     selected_branch = getattr(args, "branch", "")
@@ -722,11 +750,22 @@ def run_digest(args) -> int:
         name = b["name"]
         recent.append(("", name))
         try:
-            commits = gh.get(f"/repos/{repo}/commits", {"sha": name, "since": since.isoformat(), "per_page": 100})
+            commits = []
+            for page in range(1, 51):
+                batch = gh.get(f"/repos/{repo}/commits", {"sha": name, "since": since.isoformat(), "until": now.isoformat(), "per_page": 100, "page": page})
+                commits.extend(batch)
+                if len(batch) < 100:
+                    break
+            else:
+                missing.append(f"коммиты ветки {name}: достигнут предел пагинации")
         except Exception:
             missing.append(f"коммиты ветки {name}"); continue
         if commits:
             branch_commits[name] = len(commits)
+            for c in commits[:6]:
+                msg = c["commit"].get("message", "")
+                summary = report_field(msg, "report-summary", msg.splitlines()[0] if msg else "Коммит", 180)
+                commit_details.append({"sha": c["sha"], "summary": summary, "url": f"https://github.com/{repo}/commit/{c['sha']}"})
             at = commits[0]["commit"]["committer"]["date"]
             recent.append((at, name))
         try:
@@ -734,10 +773,26 @@ def run_digest(args) -> int:
                 seen_milestones[item["id"]] = item
         except Exception as error:
             missing.append(f"журнал проверенных событий ветки {name} ({type(error).__name__})")
-    failures = []
+    failures = []; verification_runs = []
     try:
-        runs = gh.get(f"/repos/{repo}/actions/runs", {"status": "failure", "created": f">={since:%Y-%m-%dT%H:%M:%SZ}", "per_page": 50})
-        failures = [{"name": r.get("name", ""), "branch": r.get("head_branch", ""), "url": r.get("html_url", "")} for r in runs.get("workflow_runs", [])]
+        all_runs = []
+        for page in range(1, 51):
+            params = {"created": f"{since:%Y-%m-%dT%H:%M:%SZ}..{now:%Y-%m-%dT%H:%M:%SZ}", "per_page": 100, "page": page}
+            if selected_branch:
+                params["branch"] = selected_branch
+            runs = gh.get(f"/repos/{repo}/actions/runs", params)
+            batch = runs.get("workflow_runs", [])
+            all_runs.extend(batch)
+            if len(batch) < 100:
+                break
+        else:
+            missing.append("GitHub Actions: достигнут предел пагинации")
+        for r in all_runs:
+            item = {"name": r.get("name", ""), "branch": r.get("head_branch", ""), "url": r.get("html_url", ""),
+                    "result": r.get("conclusion") or r.get("status") or "статус неизвестен"}
+            verification_runs.append(item)
+            if r.get("conclusion") in {"failure", "timed_out", "action_required", "startup_failure"}:
+                failures.append(item)
     except Exception as e:
         missing.append(f"запуски GitHub Actions ({type(e).__name__})")
     # Handoff and action registry: the most recently active branch that actually has them (the default branch
@@ -755,8 +810,12 @@ def run_digest(args) -> int:
             missing.append(f"handoff/реестр действий ветки {name}")
         if active is not None and open_actions is not None:
             break
-    text = digest_message(repo, now, branch_commits, list(seen_milestones.values()), failures, active, active_branch, missing,
-                          os.environ.get("GITHUB_SERVER_URL", "https://github.com"), open_actions or [])
+    if active is None:
+        missing.append("текущее действие handoff")
+    if open_actions is None:
+        missing.append("реестр действий владельца")
+    text = digest_message(repo, now, branch_commits, sorted(seen_milestones.values(), key=lambda item: item["at"], reverse=True), failures, active, active_branch, missing,
+                          os.environ.get("GITHUB_SERVER_URL", "https://github.com"), open_actions or [], commit_details, verification_runs)
     if args.dry_run:
         print(text); return 0
     ledger = getattr(args, "ledger", ".telegram-ledger/digest.txt")
@@ -765,11 +824,13 @@ def run_digest(args) -> int:
     if key in load_ledger(ledger):
         print("Дайджест за этот день уже отправлен"); return 0
     try:
-        send(env("TELEGRAM_BOT_TOKEN"), env("TELEGRAM_CHAT_ID"), text)
+        message_id = send(env("TELEGRAM_BOT_TOKEN"), env("TELEGRAM_CHAT_ID"), text)
     except RuntimeError as e:
         print(f"::error::Не удалось отправить дайджест: {e}"); return 1
+    Path(ledger).parent.mkdir(parents=True, exist_ok=True)
     with open(ledger, "a", encoding="utf-8") as stream:
         stream.write(key + "\n")
+    print(f"::notice title=Telegram accepted::digest message_id {message_id}")
     print("Дайджест отправлен"); return 0
 
 

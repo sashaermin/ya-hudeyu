@@ -1,0 +1,45 @@
+{
+  "checked_at": "2026-10-18T15:30:28.317903+00:00",
+  "base_development_commit": "5b4ae4f37a102350b76bdc38cec9e319b27fdcb1",
+  "production_unchanged": "8fb7bf2920a89f39e1ed3a56d53ada91f468b715",
+  "topic": 6,
+  "destination": "Я худею GROUP / Сайт | Я ХУдЕЮ",
+  "local_checks": {
+    "notification_tests": 59,
+    "website_tests": 27,
+    "workflow_yaml": "2 parsed with PyYAML BaseLoader",
+    "verification_pipeline_and_existing_notify_steps": "unchanged; only notify job env added",
+    "dry_run": "actual GitHub API, no Telegram send or ledger write",
+    "isolated_default_branch_simulation": {
+      "tests": 59,
+      "passed": 57,
+      "skipped": 2,
+      "skip_reason": "real development event/action registries intentionally absent from public-only main"
+    }
+  },
+  "default_branch": "main",
+  "schedule": "0 18 * * * / 21:00 Europe/Moscow; not active before separately authorized default-branch sync",
+  "proposed_default_branch_allowlist": [
+    {
+      "path": ".github/scripts/telegram_notify.py",
+      "sha256": "1386722e0efc09c2092d9f69e1b8fd1f41de578acaf9230c88c6fb45a508f3f6"
+    },
+    {
+      "path": ".github/scripts/test_telegram_notify.py",
+      "sha256": "de778224efcd520cb8abf9a37ecf8a8551c027eeee136e0cf97cdd01890c3396"
+    },
+    {
+      "path": ".github/scripts/test_topic_digest.py",
+      "sha256": "39820ff1fb6143395ec5beb32a89d2380fda8d4a63a15e6547fa3653d2c501d2"
+    },
+    {
+      "path": ".github/workflows/website-digest.yml",
+      "sha256": "5e971e4bb2bdbc890b878daa2745f30190a7373317e9ca4a99b081f26df49ac7"
+    }
+  ],
+  "limitations": [
+    "No main commit, PR or deployment performed.",
+    "Actual topic delivery will be checked in post-push Actions annotations.",
+    "workflow_dispatch requires the workflow file on default branch; live dry_run tested through CLI with real API instead."
+  ]
+}

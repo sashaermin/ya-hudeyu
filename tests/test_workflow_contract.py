@@ -19,7 +19,7 @@ class WorkflowContractTests(unittest.TestCase):
     def test_prepared_digest_schedule_has_no_production_side_effects(self):
         workflow=(ROOT/'.github/workflows/website-digest.yml').read_text()
         self.assertIn("cron: '0 18 * * *'",workflow)
-        self.assertIn('ref: work/website-v2',workflow)
+        self.assertIn('ref: ${{ github.sha }}',workflow)
         self.assertIn('actions: read',workflow)
         self.assertIn('digest --branch work/website-v2',workflow)
         self.assertNotIn('pages: write',workflow)

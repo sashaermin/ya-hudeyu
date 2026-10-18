@@ -105,3 +105,9 @@ Cache — вспомогательное хранилище, не вечная �
 ## Представление не меняет доставку
 
 Обновление HTML не меняет workflow triggers/secrets/concurrency, бота/чат, ledger keys, retry/backlog/partial-failure поведение или существующие notification IDs. Старые уведомления не пересылать ради нового оформления. Живую проверку выполнять через обычный verified commit push, без дополнительных тестовых сообщений. Ошибка metadata API не означает отсутствие secrets; последние реальные accepted notices остаются доказательством доступности.
+
+## Topic6 и daily digest · текущая конфигурация
+
+Все website sends используют optional TELEGRAM_MESSAGE_THREAD_ID; workflow notify/digest задают `6` для группы «Я худею GROUP» / темы «Сайт | Я ХУдЕЮ». TELEGRAM_CHAT_ID обновлён владельцем, его значение не читать. Без optional ID прежний sender совместим; malformed ID — ошибка до HTTP, не fallback. Retry/HTML/secret protection/provenance и существующие ledger keys не меняются. Topic подтверждён только если actual Telegram Message вернул6 и annotation `Telegram topic confirmed` сmessage_id; mock и request payload не доказывают delivery.
+
+Daily cron18:00UTC =21:00Europe/Moscow подготовлен, но не активен до отдельно разрешённого default-branch sync. `workflow_dispatch.inputs.dry_run` boolean/default true: фактический read-only GitHub API, без sends/cache/ledger mutations и без необходимости Telegram secrets. Отчёт содержит 24h commits/summaries, реальные Actions statuses, только явные verified completed events, open actions/blockers и handoff; API failures отмечаются как missing data. [Изолированный план активации](docs/TELEGRAM_DEFAULT_BRANCH_SYNC.md), allowlist/hashes/tests — docs/verification/telegram-topic-digest.json. Main/Pages сейчас не менять. Не выдавать наличие cron вdevelopment за действующее расписание.

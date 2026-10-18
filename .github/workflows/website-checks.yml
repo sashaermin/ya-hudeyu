@@ -85,6 +85,8 @@ jobs:
           if-no-files-found: error
           retention-days: 7
   notify:
+    env:
+      TELEGRAM_MESSAGE_THREAD_ID: '6'
     needs: verify
     if: always()
     runs-on: ubuntu-latest
