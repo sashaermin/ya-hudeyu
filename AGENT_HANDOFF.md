@@ -2,12 +2,12 @@
 
 - Repository: `sashaermin/ya-hudeyu`.
 - Branch: `work/website-v2` (от main).
-- Последний независимо подтверждённый remote checkpoint: `cf7814fc5ff60caf0de480aa50c288de5404472a`. Более поздний содержащий этот handoff commit проверять через `git ls-remote`, не полагаться на самоссылку.
+- Последний независимо подтверждённый remote checkpoint: `9ca5397d59183d6c6b6ac0998792400236ece571`. Более поздний содержащий этот handoff commit проверять через `git ls-remote`, не полагаться на самоссылку.
 - Последний ответственный агент: Codex. В текущей сессии Codex — активный единственный писатель сайта; это историческая запись, не вечный lease. Другой активный website writer неизвестен. Android Claude Code активен отдельно и не затрагивается.
 - Текущая стадия: независимый draft QA этапа 4A завершён локально; оставшаяся проверка ожидает сети и утверждённого release content. W1/W1.1 реализованы; фактическая Telegram-доставка не подтверждена.
 - Завершённые checkpoints: этап 0 `a4de44b`; основа этапа 1 `356eaef`; секции/взаимодействия этапа 2 `24ca8d5`. Релизные критерии этапов 2–4 остаются открытыми.
 
-**Next:** После W2A push прочитать verify/notify job annotations нового run: probe check-config покажет только имена missing bindings или подтвердит наличие. Не запрашивать токен по ошибке metadata API. Продолжить 4B Firefox/WebKit: скачаны в /tmp/website-browsers, WebKit нужны 6 runtime libraries, официальные подписанные Debian-пакеты скачаны в /tmp/website-apt/downloads и извлечены в /tmp/website-browser-libs. Firefox smoke ещё исследуется; не считать PASS. Подготовленный daily digest ждёт отдельного разрешения только на default-branch workflow, main не менять. APK по-прежнему не выбран/не разрешён.
+**Next:** W2A и 4B проверены, сохранить 4B checkpoint. Затем завершить независимый release-safety этап 3B: отдельное подтверждение публикации сайта должно требоваться для снятия noindex, независимо от APK approval. Исправить recovery уведомлений: неотправленные action/event records после отсутствующих bindings должны дойти при следующем успешном workflow без дубликатов. Telegram требует двух подтверждённо отсутствующих Actions bindings; daily schedule ждёт отдельного разрешения на main workflow. Не спрашивать заново об APK, он всё ещё не утверждён.
 
 ## Текущее исполнение и доказательства
 
@@ -44,3 +44,5 @@
 Сеть повторно проверена после возобновления: official CDN и действующий домен HTTP 200; прежний network action resolved. GitHub Actions runs доступны; checkpoint cf7814f: verify success, notify failure. Secrets metadata 403 по правам integration. Логи run redirect на results-receiver.actions.githubusercontent.com пока недоступны из среды; не выводить signed URLs в отчёты. Firefox/WebKit install запущен после подтверждённого изменения сети. Сохранены постоянные автономные инструкции владельца; W2 — digest/notification diagnosis, затем 4B cross-browser QA.
 
 W2A: notification tests 36/36 и build/workflow 13/13 PASS, YAML parsed. Live GitHub digest dry-run PASS без отправки. Новые actions probe и digest runtime dedup проверены с mocks. Последний remote cf7814f подтверждён перед продолжением.
+
+4B: Firefox153 и WebKit26.5 — по16 viewport/theme runs, по4 axe runs, 0 violations; keyboard/theme/gallery/no-JS PASS. Firefox touch не поддерживается, WebKit native swipe не проверен (native tap/DOM handler PASS). Runtime helper реально выполнен; все рецепты и engine-specific evidence/screens сохранены в docs/QA.md. Pages API и побайтная read-only production HTTPS проверка PASS. Run39106472358: verify success, notify check-config доказал отсутствие обоих Telegram bindings.

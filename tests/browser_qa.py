@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Chromium functional matrix. Run against the draft server; fixtures never enter _site."""
+"""Multi-engine functional matrix. Run against the draft server; fixtures never enter _site."""
 import argparse
 import importlib.util
 import json
+import os
 from pathlib import Path
 from urllib.parse import urlparse, urljoin
 from playwright.sync_api import sync_playwright, expect
@@ -22,14 +23,21 @@ def gallery_fixture():
     return build.render(site, release)
 
 
-def run(base, output, axe_path, interactions_only=False):
-    results = {'matrix':[], 'interactions':[], 'axe':[], 'page_errors':[], 'failed_requests':[]}
+def run(base, output, axe_path, interactions_only=False, engine="chromium", executable=None):
+    results = {'engine':engine,'matrix':[], 'interactions':[], 'axe':[], 'page_errors':[], 'failed_requests':[]}
     output.mkdir(parents=True,exist_ok=True)
     if interactions_only:
         results = json.loads((output/'browser-results.json').read_text())
         results['interactions'] = []
     with sync_playwright() as p:
-        browser = p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox'])
+        options = dict(headless=True,timeout=30000)
+        if engine == 'chromium':
+            options.update(executable_path=executable or '/usr/bin/chromium',args=['--no-sandbox'])
+        elif executable:
+            options['executable_path']=executable
+        if engine == 'firefox' and os.environ.get('WEBSITE_FIREFOX_CONTAINER') == '1':
+            options['firefox_user_prefs']={'security.sandbox.content.level':0}
+        browser = getattr(p,engine).launch(**options)
         results['browser_version'] = browser.version
         for theme in (() if interactions_only else ('light','dark')):
             for width in WIDTHS:
@@ -74,7 +82,9 @@ def run(base, output, axe_path, interactions_only=False):
                 results['matrix'].append({'width':width,'theme':theme,'overflow':False,'menu_faq_links_images':'PASS'})
                 context.close()
         (output/'browser-results.json').write_text(json.dumps(results,ensure_ascii=False,indent=2)+'\n')
-        context=browser.new_context(viewport={'width':390,'height':844},color_scheme='light',has_touch=True)
+        options=dict(viewport={'width':390,'height':844},color_scheme='light')
+        if engine != 'firefox': options['has_touch']=True
+        context=browser.new_context(**options)
         page=context.new_page();page.goto(base)
         button=page.locator('#theme-toggle'); button.click() # system -> light
         button.click() # light -> dark
@@ -94,18 +104,33 @@ def run(base, output, axe_path, interactions_only=False):
         assert page.locator('#viewer-next').evaluate('(el)=>el===document.activeElement'), 'Native dialog focus containment'
         page.keyboard.press('Escape');assert not page.locator('#viewer').evaluate('(el)=>el.open')
         assert opener.evaluate('(el)=>el===document.activeElement')
-        opener.tap()
-        box=page.locator('#viewer-image').bounding_box()
-        cdp=context.new_cdp_session(page)
-        y=box['y']+box['height']/2
-        cdp.send('Input.dispatchTouchEvent',{'type':'touchStart','touchPoints':[{'x':box['x']+box['width']*.8,'y':y}]})
-        cdp.send('Input.dispatchTouchEvent',{'type':'touchMove','touchPoints':[{'x':box['x']+box['width']*.2,'y':y}]})
-        cdp.send('Input.dispatchTouchEvent',{'type':'touchEnd','touchPoints':[]})
-        assert '2 / 2' in page.locator('#viewer-caption').inner_text()
+        opener.click() if engine == 'firefox' else opener.tap()
+        if engine == 'chromium':
+            box=page.locator('#viewer-image').bounding_box()
+            cdp=context.new_cdp_session(page)
+            y=box['y']+box['height']/2
+            cdp.send('Input.dispatchTouchEvent',{'type':'touchStart','touchPoints':[{'x':box['x']+box['width']*.8,'y':y}]})
+            cdp.send('Input.dispatchTouchEvent',{'type':'touchMove','touchPoints':[{'x':box['x']+box['width']*.2,'y':y}]})
+            cdp.send('Input.dispatchTouchEvent',{'type':'touchEnd','touchPoints':[]})
+            assert '2 / 2' in page.locator('#viewer-caption').inner_text()
+        elif engine == 'webkit':
+            page.locator('#viewer-image').evaluate("""el=>{
+                const rect=el.getBoundingClientRect();
+                // Desktop WebKit exposes Touch but does not allow construction. Exercise the
+                // application's DOM event handler; native touch swipe remains a device check.
+                const touch=x=>({identifier:1,target:el,clientX:x,clientY:rect.y+rect.height/2});
+                const start=new Event('touchstart',{bubbles:true});
+                Object.defineProperty(start,'touches',{value:[touch(rect.x+rect.width*.8)]});
+                const end=new Event('touchend',{bubbles:true});
+                Object.defineProperty(end,'changedTouches',{value:[touch(rect.x+rect.width*.2)]});
+                el.dispatchEvent(start);el.dispatchEvent(end);
+            }""")
+            assert '2 / 2' in page.locator('#viewer-caption').inner_text()
         page.locator('#viewer-image').evaluate("el=>el.src='/missing-image-qa.webp'")
         page.locator('#viewer-error').wait_for(state='visible')
-        page.locator('#viewer-close').tap()
-        results['interactions'].append('Gallery test-only fixtures: keyboard, native focus trap, Escape/restore focus, touch/swipe, image error PASS')
+        page.locator('#viewer-close').click() if engine == 'firefox' else page.locator('#viewer-close').tap()
+        results['interactions'].append('Gallery keyboard, focus trap, Escape/restore focus and image error PASS')
+        results['interactions'].append({'chromium':'Native tap and CDP touch swipe PASS','webkit':'Native tap and synthetic DOM gesture handler PASS; native swipe not run','firefox':'Touch emulation not supported by this Playwright engine; not run'}[engine])
         context.close()
         context=browser.new_context(viewport={'width':320,'height':844},java_script_enabled=False)
         page=context.new_page();page.goto(base)
@@ -118,9 +143,9 @@ def run(base, output, axe_path, interactions_only=False):
     assert not results['page_errors'],results['page_errors']
     assert not results['failed_requests'],results['failed_requests']
     violations=[v for run in results['axe'] for v in run['violations']]
-    print(json.dumps({'matrix_runs':len(results['matrix']),'interactions':results['interactions'],'axe_violations':violations},ensure_ascii=False,indent=2))
+    print(json.dumps({'engine':engine,'matrix_runs':len(results['matrix']),'interactions':results['interactions'],'axe_violations':violations},ensure_ascii=False,indent=2))
     assert not violations,violations
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--base',default='http://127.0.0.1:8001/');parser.add_argument('--output',type=Path,default=ROOT/'.test-results/browser');parser.add_argument('--interactions-only',action='store_true');parser.add_argument('--axe',default='/tmp/website-qa/node_modules/axe-core/axe.min.js');args=parser.parse_args()
-    run(args.base,args.output,args.axe,args.interactions_only)
+    parser=argparse.ArgumentParser();parser.add_argument('--base',default='http://127.0.0.1:8001/');parser.add_argument('--output',type=Path);parser.add_argument('--engine',choices=['chromium','firefox','webkit'],default='chromium');parser.add_argument('--executable');parser.add_argument('--interactions-only',action='store_true');parser.add_argument('--axe',default='/tmp/website-qa/node_modules/axe-core/axe.min.js');args=parser.parse_args()
+    run(args.base,args.output or ROOT/'.test-results'/args.engine,args.axe,args.interactions_only,args.engine,args.executable)

@@ -73,6 +73,25 @@
       "checkpoint": "cf7814fc5ff60caf0de480aa50c288de5404472a",
       "done": "Сохранены инструкции; сеть подтверждена; подготовлен digest 21:00 МСК, Actions probe и закреплённые upstream action refs.",
       "next": "Проверить новый Actions run и продолжить Firefox/WebKit QA."
+    },
+    {
+      "id": "site-qa4b-engines-20261018",
+      "at": "2026-10-18T07:14:37Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "4",
+          "4B"
+        ],
+        "title": "Firefox/WebKit QA и подтверждение production preservation"
+      },
+      "verified": "Firefox153 и WebKit26.5: по16 viewport/theme runs, по4 axe runs 0 violations; keyboard/theme/gallery/no-JS PASS. Native device swipe не заявлен.",
+      "status": "Независимая разработка продолжается; APK/bindings/main authorization pending",
+      "checkpoint": "9ca5397d59183d6c6b6ac0998792400236ece571",
+      "done": "Добавлены проверенные runtime recipes, два движка и их screenshots/JSON evidence. Production и privacy побайтно соответствуют main.",
+      "next": "Release safety gate для website publication и recovery неотправленных уведомлений."
     }
   ]
 }

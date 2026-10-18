@@ -22,12 +22,12 @@
       "source": "Codex",
       "opened": "2026-10-18",
       "task": "Сайт · уведомления",
-      "subtask": "Проверить Actions secrets и первый запуск уведомлений",
-      "what": "GitHub Actions API теперь доступен: verify run 39105427770 успешен, notify завершился failure. Secrets metadata возвращает Resource not accessible by integration (403), что не доказывает отсутствие secret bindings. Live delivery не подтверждена; продолжается точная диагностика.",
+      "subtask": "Настроить отсутствующие Telegram bindings репозитория сайта",
+      "what": "Actions run 39106472358: verify success; check-config внутри notify подтвердил, что TELEGRAM_BOT_TOKEN и TELEGRAM_CHAT_ID не настроены для workflow. Check-run annotations доступны через API; значения не читались и не выводились. Это подтверждённый недостающий prerequisite, не вывод из локальных env.",
       "steps": [
         "Откройте sashaermin/ya-hudeyu → Settings → Secrets and variables → Actions.",
-        "Только если отсутствуют TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID, добавьте значения существующего бота «Я ХУдЕЮ | Dev Reports» и чата через защищённые поля GitHub. Не отправляйте значения в чат.",
-        "Проверьте Actions → «САЙТ — проверки и Telegram»: verify и notify. После исправления секретов перезапустите неуспешный run; подтвердите доставку."
+        "Добавьте TELEGRAM_BOT_TOKEN и TELEGRAM_CHAT_ID существующего бота «Я ХУдЕЮ | Dev Reports» для этого репозитория. Значения вводите только в защищённых полях GitHub, не в чат.",
+        "После сохранения сообщите об изменении или перезапустите неуспешный workflow. Агент проверит новые annotations/результат; не будет заявлять доставку без подтверждения."
       ],
       "blocked": "Подтверждение фактической доставки Telegram, не разработка сайта.",
       "can_continue": "Да: вся независимая разработка и локальные проверки.",

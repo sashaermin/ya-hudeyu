@@ -102,3 +102,38 @@ PYTHONPATH=/tmp/website-python-qa python3 tools/optimize_fonts.py
 Firefox/WebKit installer был запущен с отдельным PLAYWRIGHT_BROWSERS_PATH=/tmp/website-browsers. Firefox download остановлен proxy 403 Domain forbidden на cdn.playwright.dev и playwright.download.prss.microsoft.com; WebKit installer до загрузки не дошёл. Нужные домены вместе с api.github.com и yahudeyu-app.ru добавлены в **черновик** настроек среды; существующий package_managers preset сохранён. Start_skill также обновлён для запуска `_site`. Сохранение этих полей подтверждено, применение/публикация среды и повторная проверка пока не выполнены. Registry: site-network-crossbrowser-qa.
 
 Дополнительно проверено: все неизменённые скопированные Android-активы побайтно равны исходным Git blobs; WOFF2 сохраняет glyph order и полный cmap оригинальных TTF.
+
+## 4B · Firefox и WebKit после активации сети
+
+Сеть действительно изменилась: CDN и production HTTPS отвечают 200; повторно скачаны Firefox 153.0 (Playwright revision 1538), WebKit 26.5 (revision 2336). После подготовки runtime выполнены **16/16 viewport/theme runs в каждом движке**, 4 axe-core 4.10.3 runs в каждом — 0 violations. Новые 32 проверки дополняют прежние 16 Chromium; успешный Chromium run не повторялся.
+
+- [Firefox: машинные результаты](verification/firefox-results.json)
+- [WebKit: машинные результаты](verification/webkit-results.json)
+- [Firefox mobile dark](screenshots/firefox-390-dark.png), [desktop light](screenshots/firefox-1440-light.png)
+- [WebKit mobile dark](screenshots/webkit-390-dark.png), [desktop light](screenshots/webkit-1440-light.png)
+
+В обоих движках PASS: overflow/границы CTA, заголовки, картинки/якоря, native FAQ, no-JS nav/FAQ, mobile menu/Escape/focus return, theme persistence/reset/system updates, gallery arrows/focus trap/Escape/restore focus и handled image error. Firefox touch emulation Playwright не поддерживает — **не запускалась**. В WebKit проверены native tap и DOM gesture handler; native swipe не проверен. Chromium CDP touch swipe остаётся отдельным ранее подтверждённым результатом. Это движки в Linux cloud, не физические Android/iOS и не проверка установленного Safari/Edge.
+
+WebKit при первом запуске взаимодействий не позволил создать `new Touch`: ошибка test harness, не приложения. Матрица/axe уже прошли, поэтому повторены только interaction checks с явно помеченным DOM event fixture; assert переключения кадра сохранён. Native WebKit swipe остаётся открытым device-check.
+
+### Runtime без изменения системы
+
+Cloud Debian 13 amd64 не содержит GTK4/graphene/harfbuzz-icu/manette/hyphen/GLES и части runtime libs. Встроенные sources указывали на недоступный snapshot.debian.org. Использован отдельный task-local APT config с официальным `https://deb.debian.org/debian trixie main`, системным Debian archive keyring, обязательной проверкой обновления и штатной checksum/signature validation. Никакие системные APT-файлы не менялись. Package archives извлечены через dpkg-deb в /tmp; бинарники браузеров не переписывались.
+
+Воспроизводимый helper `tools/qa/prepare_linux_libs.py` **реально выполнен успешно**. Он сохраняет package versions/SHA-256 в локальном packages.json и добавляет отсутствующие dependency links в предусмотренный bundled wrapper каталог `minibrowser-wpe/sys/lib`, сохраняя существующие файлы. HTTPS и подписи не отключаются.
+
+```sh
+PLAYWRIGHT_BROWSERS_PATH=/tmp/website-browsers python3 -m playwright install firefox webkit
+python3 tools/qa/prepare_linux_libs.py --webkit /tmp/website-browsers/webkit-2336
+mkdir -p /tmp/website-runtime/cache /tmp/website-runtime/config
+PLAYWRIGHT_BROWSERS_PATH=/tmp/website-browsers XDG_CACHE_HOME=/tmp/website-runtime/cache XDG_CONFIG_HOME=/tmp/website-runtime/config WEBSITE_FIREFOX_CONTAINER=1 MOZ_DISABLE_CONTENT_SANDBOX=1 python3 tests/browser_qa.py --engine firefox --axe tools/qa/node_modules/axe-core/axe.min.js
+PLAYWRIGHT_BROWSERS_PATH=/tmp/website-browsers XDG_CACHE_HOME=/tmp/website-runtime/cache XDG_CONFIG_HOME=/tmp/website-runtime/config python3 tests/browser_qa.py --engine webkit --executable /tmp/website-browsers/webkit-2336/pw_run.sh --axe tools/qa/node_modules/axe-core/axe.min.js
+```
+
+Firefox default content sandbox не может создать nested uid_map внутри cloud sandbox и launch timeout; container-only flag отключает вложенный browser content sandbox для **локальной fixture**, агентский sandbox сохраняется. Это параметр QA, не сайта. WebKit system-cache probe не видит GLES из task-local LD path; фактический dlopen проверен, затем использован поддержанный custom executable_path штатного pw_run.sh с полным набором verified runtime libs. Финальный запуск не использует PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS и не меняет системный ldconfig. Промежуточный диагностический запуск с этим флагом завершился отсутствующей зависимостью; после исправления выполнен финальный реальный smoke/matrix.
+
+### Production и CI: только чтение
+
+GitHub Pages API теперь подтвердил `build_type: legacy`, source `main:/`, status built. Read-only HTTPS-проверки `/` и `/privacy.html`: HTTP 200 и полное побайтное соответствие текущему origin/main. Production не менялся.
+
+Actions run [39106472358](https://github.com/sashaermin/ya-hudeyu/actions/runs/39106472358): verify success (36 notify + 13 build/workflow tests); notify failure на новом check-config. Check-run annotations однозначно указывают на отсутствующие TELEGRAM_BOT_TOKEN и TELEGRAM_CHAT_ID для workflow. Metadata secrets API по-прежнему запрещён integration scope, значения не извлекались. Доставка **не проверена/не работает до настройки bindings**. Existing registry обновлён, повторный alert с новым id не создавался.
