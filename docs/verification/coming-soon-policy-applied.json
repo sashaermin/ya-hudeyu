@@ -18,5 +18,21 @@
   "draft_html_sha256": "af74145de9543065e6822cc79c3252673ae43a53b2b7eeb50484b1caf61b1357",
   "publication_approved": false,
   "apk_approved": false,
-  "live_ci_pending": true
+  "live_ci_pending": false,
+  "verified_remote_commit": "70527d0e676c3b5dbc497082668af6db9d7cfb33",
+  "ci_run": 39114231216,
+  "ci_conclusion": "success",
+  "artifact_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39114231216/artifacts/12131711410",
+  "archive_notice": [
+    {
+      "title": "Website review archive verified",
+      "message": "source 70527d0e676c3b5dbc497082668af6db9d7cfb33; archive_sha256 7877e610d11a5a3d84b708864e0b5eae7c6c1b2ab263daeb77f7fc0cdd23c6e5; files 22; rendered 4; noindex=true; APK=false; page_errors=0"
+    }
+  ],
+  "telegram_notice": [
+    {
+      "title": "Telegram accepted",
+      "message": "commit 70527d0e676c3b5dbc497082668af6db9d7cfb33 message_id 173"
+    }
+  ]
 }

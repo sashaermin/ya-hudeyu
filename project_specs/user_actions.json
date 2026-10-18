@@ -78,8 +78,8 @@
         "После приёмки отдельно разрешите публикацию конкретного website-SHA/артефакта с явными условиями main/deploy/indexing/rollback."
       ],
       "blocked": "Фактический первый website release: ожидаются visual/legal acceptance и отдельная публикационная авторизация.",
-      "can_continue": "Авторизованная политика реализована; сейчас проверяются remote CI и новый архив кандидата. APK не prerequisite сайта.",
-      "link": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39111335266/artifacts/12130497934"
+      "can_continue": "Авторизованная политика реализована, CI76 tests и actual archive22files/4views PASS, Telegram173. Других approved независимых задач не найдено; далее приёмка/замечания и отдельное разрешение публикации. APK не prerequisite сайта.",
+      "link": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39114231216/artifacts/12131711410"
     }
   ]
 }

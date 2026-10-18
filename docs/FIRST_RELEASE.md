@@ -10,6 +10,10 @@
 
 ## Как посмотреть
 
+Самый простой визуальный просмотр без установки: открыть [главную на компьютере — светлая тема](https://github.com/sashaermin/ya-hudeyu/blob/70527d0e676c3b5dbc497082668af6db9d7cfb33/docs/screenshots/rc-1440-light.png), [тёмная тема](https://github.com/sashaermin/ya-hudeyu/blob/70527d0e676c3b5dbc497082668af6db9d7cfb33/docs/screenshots/rc-1440-dark.png), [мобильная — светлая](https://github.com/sashaermin/ya-hudeyu/blob/70527d0e676c3b5dbc497082668af6db9d7cfb33/docs/screenshots/rc-390-light.png) и [тёмная](https://github.com/sashaermin/ya-hudeyu/blob/70527d0e676c3b5dbc497082668af6db9d7cfb33/docs/screenshots/rc-390-dark.png). Это сохранённые снимки кандидата, не интерактивный сайт. После policy patch draft HTML побайтно совпадает с этим визуальным baseline.
+
+Для проверки взаимодействий: [свежий проверенный архив кандидата](https://github.com/sashaermin/ya-hudeyu/actions/runs/39114231216/artifacts/12131711410), source `70527d0e676c3b5dbc497082668af6db9d7cfb33`, run39114231216. CI реально скачал его и открыл390/1440px ×2темы:22files, noindex=true, APK=false, ошибок0. Inner ZIP SHA-256 `7877e610d11a5a3d84b708864e0b5eae7c6c1b2ab263daeb77f7fc0cdd23c6e5`. Архив хранится7дней; для запуска используйте следующие шаги.
+
 1. Открыть последний успешный «САЙТ — проверки и Telegram» для нужного SHA в [Actions](https://github.com/sashaermin/ya-hudeyu/actions/workflows/website-checks.yml).
 2. Скачать artifact `website-preview-<полный SHA>-attempt-<номер попытки>` (GitHub может требовать вход). Сверить ZIP с SHA-256 в соседнем manifest; manifest `source_commit` должен совпасть с проверенным SHA, `source_worktree_dirty` — false.
 3. Распаковать внутренний `website-preview.zip` в отдельную локальную папку и запустить `python3 -m http.server 8002 --bind 127.0.0.1 --directory <эта папка>`.
@@ -59,4 +63,4 @@
 
 R4 [retry evidence](verification/artifact-retry.json): обе попытки successful, round-trip/render прошёл повторно, commit Telegram127 принят вattempt1 и не повторён вattempt2. Исходная гипотеза о name collision не выдаётся за воспроизведённый дефект; фактически доказаны успешный retry и явная attempt provenance. Обещание сохранности старых IDs снято по результату проверки.
 
-Последняя verified review ссылка и digest: [Node24 proof](verification/artifact-node24.json), artifact12130497934/sourcefec5137. GitHub artifacts ограничены retention и rerun lifecycle, при их недоступности сверяйте восстановленный inner ZIP с зафиксированным SHA. Число58 current unit tests относится к active CI;20 policy proposal tests — отдельная изолированная проверка неприменённого diff.
+Последняя verified review ссылка и digest: [Node24 proof](verification/artifact-node24.json), artifact12131711410/source70527d0. GitHub artifacts ограничены retention и rerun lifecycle, при их недоступности сверяйте восстановленный inner ZIP с зафиксированным SHA. Текущие76 unit tests прошли в CI R6; историческое число58 относится к R5;20 policy proposal tests — отдельная изолированная проверка неприменённого diff.
