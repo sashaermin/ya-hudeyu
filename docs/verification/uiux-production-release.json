@@ -1,5 +1,5 @@
 {
-  "status": "PREPARED, not deployed",
+  "status": "DEPLOYED; extended live verification pending",
   "approved_development_commit": "0b706e3cdec864afe589e02b4c45986ac559e854",
   "prepared_production_commit": "8fb7bf2920a89f39e1ed3a56d53ada91f468b715",
   "rollback_commit": "9b39ffaf35c48973b8115b630ba0d06165ad09a4",
@@ -140,5 +140,28 @@
     "legal_text_unchanged": true,
     "status": "PASS",
     "scope": "Fresh representative pre-release checks; audited64+64/48axe evidence retained separately"
+  },
+  "readiness_ci": {
+    "run": 39128881988,
+    "source_sha": "105a8dce49cce87931eb8604cd59fc8b20b91e23",
+    "conclusion": "success",
+    "archive_notice": [
+      {
+        "title": "Website review archive verified",
+        "message": "source 105a8dce49cce87931eb8604cd59fc8b20b91e23; archive_sha256 995ef47b8eec4b636aefbdc6b46b5bdd01b4d9227be82299bbcea61b5d77c43f; files 22; rendered 4; noindex=true; APK=false; page_errors=0"
+      }
+    ]
+  },
+  "published_commit": "8fb7bf2920a89f39e1ed3a56d53ada91f468b715",
+  "production_url": "https://yahudeyu-app.ru/",
+  "pages_deployment": {
+    "run": 39129023427,
+    "conclusion": "success",
+    "head_sha": "8fb7bf2920a89f39e1ed3a56d53ada91f468b715"
+  },
+  "pages_configuration_preserved": true,
+  "initial_https_probe": {
+    "status": 200,
+    "index_sha256": "e2cd7f460ea040c4030c69cb8b7bf9a765348c98338b3a2b43f2a027b7104ebc"
   }
 }
