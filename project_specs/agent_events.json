@@ -168,6 +168,25 @@
       "checkpoint": "3f98d6515dba982ec56132b8654af6bb213d16bd",
       "done": "Отдельный Edge QA выполнен; доказательства и2 screenshots сохранены. Main/production/publication gate не менялись.",
       "next": "Проверка увеличения текста, reflow400% и reduced motion."
+    },
+    {
+      "id": "site-accessibility4d-20261018",
+      "at": "2026-10-18T08:02:06Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "4",
+          "4D"
+        ],
+        "title": "Увеличение текста и клавиатурная доступность"
+      },
+      "verified": "48 text resize/spacing cases PASS в4 браузерах; reduced-motion/skip focus PASS;64 viewport/theme и16 axe runs0violations;17 unit tests PASS.",
+      "status": "Доступный draft QA завершён; release/owner/device критерии остаются открыты",
+      "checkpoint": "6958c0d83863bda00e7fcdbc9ec0fa14dd7b2a25",
+      "done": "Исправлены переполнение при200% текста и перенос фокуса skip link.12 обычных screenshots побайтно прежние; main/production/gates сохранены.",
+      "next": "Утверждённый APK/screens → проверка артефакта и релизный контент. Другие открытые owner prerequisites сохранены в общем handoff."
     }
   ]
 }

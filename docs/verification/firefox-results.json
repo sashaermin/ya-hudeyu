@@ -132,5 +132,8 @@
   ],
   "page_errors": [],
   "failed_requests": [],
-  "browser_version": "153.0"
+  "browser_version": "153.0",
+  "tested_at_utc": "2026-10-18T08:02:06Z",
+  "site_index_sha256": "a7882d41f71d035ffee41a5682ff39bf0cb273f624248f7103f264cf43bb0e70",
+  "scope": "Draft after skip focus/text-resize fixes; new full matrix due changed HTML/CSS"
 }

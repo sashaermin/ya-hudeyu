@@ -1,0 +1,792 @@
+{
+  "at_utc": "2026-10-18T08:02:06Z",
+  "site_index_sha256": "a7882d41f71d035ffee41a5682ff39bf0cb273f624248f7103f264cf43bb0e70",
+  "source_checkpoint_before_fix": "6958c0d83863bda00e7fcdbc9ec0fa14dd7b2a25",
+  "fixes": [
+    "main tabindex=-1 gives skip link a native focus target",
+    "body overflow-wrap:anywhere allows enlarged text to wrap in intrinsic grid tracks"
+  ],
+  "before": {
+    "at_utc": "2026-10-18T07:58:38.120107+00:00",
+    "method": "CSS text-only 200% simulation; WCAG 1.4.12 spacing override; not native browser zoom",
+    "cases": [
+      {
+        "mode": "text-200",
+        "theme": "light",
+        "width": 320,
+        "overflow": true,
+        "out_of_view_text": [
+          {
+            "text": "Возможности — после проверки сборки",
+            "selector": "H3.",
+            "left": 40,
+            "right": 322.375
+          },
+          {
+            "text": "Используйте ссылку из раздела загрузки. Перед установкой сверьте версию и сведения о файле.",
+            "selector": "P.",
+            "left": 100,
+            "right": 335.5625
+          },
+          {
+            "text": "Установите на Android",
+            "selector": "H3.",
+            "left": 100,
+            "right": 335.171875
+          },
+          {
+            "text": "Откройте скачанный файл на телефоне и следуйте системным подсказкам.",
+            "selector": "P.",
+            "left": 100,
+            "right": 334.453125
+          },
+          {
+            "text": "Настройте приложение",
+            "selector": "H3.",
+            "left": 100,
+            "right": 355.234375
+          },
+          {
+            "text": "Ваш следующий",
+            "selector": "H2.",
+            "left": 40,
+            "right": 324.21875
+          },
+          {
+            "text": "маленький шаг",
+            "selector": "H2.",
+            "left": 40,
+            "right": 331.125
+          },
+          {
+            "text": "Давайте разберёмся",
+            "selector": "H2.",
+            "left": 16,
+            "right": 374.671875
+          },
+          {
+            "text": "Ссылка на Android APK появится в разделе загрузки после проверки файла. Сейчас на этой странице нет ",
+            "selector": "P.",
+            "left": 16,
+            "right": 348.109375
+          },
+          {
+            "text": "Когда проверенный APK будет доступен, скачайте его на телефон и откройте файл. Android может запроси",
+            "selector": "P.",
+            "left": 16,
+            "right": 331.578125
+          },
+          {
+            "text": "Минимальная версия Android, номер и дата выпуска будут указаны рядом с проверенным APK. Порядок обно",
+            "selector": "P.",
+            "left": 16,
+            "right": 324.796875
+          },
+          {
+            "text": "Где прочитать об обработке данных?",
+            "selector": "SUMMARY.",
+            "left": 16,
+            "right": 342
+          },
+          {
+            "text": "Действующая политика конфиденциальности доступна по ссылке внизу страницы. В ней описаны Google-акка",
+            "selector": "P.",
+            "left": 16,
+            "right": 325.453125
+          },
+          {
+            "text": "Напишите на sashaermin@gmail.com. Для вопроса об установленном приложении укажите его версию и модел",
+            "selector": "P.",
+            "left": 16,
+            "right": 350.140625
+          }
+        ]
+      },
+      {
+        "mode": "text-200",
+        "theme": "light",
+        "width": 390,
+        "overflow": true,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-200",
+        "theme": "light",
+        "width": 1440,
+        "overflow": false,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-200",
+        "theme": "dark",
+        "width": 320,
+        "overflow": true,
+        "out_of_view_text": [
+          {
+            "text": "Возможности — после проверки сборки",
+            "selector": "H3.",
+            "left": 40,
+            "right": 322.375
+          },
+          {
+            "text": "Используйте ссылку из раздела загрузки. Перед установкой сверьте версию и сведения о файле.",
+            "selector": "P.",
+            "left": 100,
+            "right": 335.5625
+          },
+          {
+            "text": "Установите на Android",
+            "selector": "H3.",
+            "left": 100,
+            "right": 335.171875
+          },
+          {
+            "text": "Откройте скачанный файл на телефоне и следуйте системным подсказкам.",
+            "selector": "P.",
+            "left": 100,
+            "right": 334.453125
+          },
+          {
+            "text": "Настройте приложение",
+            "selector": "H3.",
+            "left": 100,
+            "right": 355.234375
+          },
+          {
+            "text": "Ваш следующий",
+            "selector": "H2.",
+            "left": 40,
+            "right": 324.21875
+          },
+          {
+            "text": "маленький шаг",
+            "selector": "H2.",
+            "left": 40,
+            "right": 331.125
+          },
+          {
+            "text": "Давайте разберёмся",
+            "selector": "H2.",
+            "left": 16,
+            "right": 374.671875
+          },
+          {
+            "text": "Ссылка на Android APK появится в разделе загрузки после проверки файла. Сейчас на этой странице нет ",
+            "selector": "P.",
+            "left": 16,
+            "right": 348.109375
+          },
+          {
+            "text": "Когда проверенный APK будет доступен, скачайте его на телефон и откройте файл. Android может запроси",
+            "selector": "P.",
+            "left": 16,
+            "right": 331.578125
+          },
+          {
+            "text": "Минимальная версия Android, номер и дата выпуска будут указаны рядом с проверенным APK. Порядок обно",
+            "selector": "P.",
+            "left": 16,
+            "right": 324.796875
+          },
+          {
+            "text": "Где прочитать об обработке данных?",
+            "selector": "SUMMARY.",
+            "left": 16,
+            "right": 342
+          },
+          {
+            "text": "Действующая политика конфиденциальности доступна по ссылке внизу страницы. В ней описаны Google-акка",
+            "selector": "P.",
+            "left": 16,
+            "right": 325.453125
+          },
+          {
+            "text": "Напишите на sashaermin@gmail.com. Для вопроса об установленном приложении укажите его версию и модел",
+            "selector": "P.",
+            "left": 16,
+            "right": 350.140625
+          }
+        ]
+      },
+      {
+        "mode": "text-200",
+        "theme": "dark",
+        "width": 390,
+        "overflow": true,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-200",
+        "theme": "dark",
+        "width": 1440,
+        "overflow": false,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-spacing",
+        "theme": "light",
+        "width": 320,
+        "overflow": false,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-spacing",
+        "theme": "light",
+        "width": 390,
+        "overflow": false,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-spacing",
+        "theme": "light",
+        "width": 1440,
+        "overflow": false,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-spacing",
+        "theme": "dark",
+        "width": 320,
+        "overflow": false,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-spacing",
+        "theme": "dark",
+        "width": 390,
+        "overflow": false,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-spacing",
+        "theme": "dark",
+        "width": 1440,
+        "overflow": false,
+        "out_of_view_text": []
+      }
+    ],
+    "page_errors": [],
+    "preferences": [
+      {
+        "reduced_motion": {
+          "matches": true,
+          "scroll": "auto",
+          "transition": "0s"
+        }
+      },
+      {
+        "keyboard_skip_link": {
+          "first_tab_visible_focus": true,
+          "enter_focus_main": false
+        }
+      }
+    ],
+    "browser_version": "154.0.8037.57"
+  },
+  "after": {
+    "chromium": {
+      "at_utc": "2026-10-18T07:59:57.505432+00:00",
+      "method": "CSS text-only 200% simulation; WCAG 1.4.12 spacing override; not native browser zoom",
+      "engine": "chromium",
+      "cases": [
+        {
+          "mode": "text-200",
+          "theme": "light",
+          "width": 320,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "light",
+          "width": 390,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "light",
+          "width": 1440,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "dark",
+          "width": 320,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "dark",
+          "width": 390,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "dark",
+          "width": 1440,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "light",
+          "width": 320,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "light",
+          "width": 390,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "light",
+          "width": 1440,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "dark",
+          "width": 320,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "dark",
+          "width": 390,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "dark",
+          "width": 1440,
+          "overflow": false,
+          "out_of_view_text": []
+        }
+      ],
+      "page_errors": [],
+      "preferences": [
+        {
+          "reduced_motion": {
+            "matches": true,
+            "scroll": "auto",
+            "transition": "0s"
+          }
+        },
+        {
+          "keyboard_skip_link": {
+            "first_tab_visible_focus": true,
+            "enter_focus_main": true
+          }
+        }
+      ],
+      "browser_version": "154.0.8037.57",
+      "site_index_sha256": "a7882d41f71d035ffee41a5682ff39bf0cb273f624248f7103f264cf43bb0e70"
+    },
+    "firefox": {
+      "at_utc": "2026-10-18T07:59:49.857378+00:00",
+      "method": "CSS text-only 200% simulation; WCAG 1.4.12 spacing override; not native browser zoom",
+      "engine": "firefox",
+      "cases": [
+        {
+          "mode": "text-200",
+          "theme": "light",
+          "width": 320,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "light",
+          "width": 390,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "light",
+          "width": 1440,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "dark",
+          "width": 320,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "dark",
+          "width": 390,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "dark",
+          "width": 1440,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "light",
+          "width": 320,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "light",
+          "width": 390,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "light",
+          "width": 1440,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "dark",
+          "width": 320,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "dark",
+          "width": 390,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "dark",
+          "width": 1440,
+          "overflow": false,
+          "out_of_view_text": []
+        }
+      ],
+      "page_errors": [],
+      "preferences": [
+        {
+          "reduced_motion": {
+            "matches": true,
+            "scroll": "auto",
+            "transition": "0s"
+          }
+        },
+        {
+          "keyboard_skip_link": {
+            "first_tab_visible_focus": true,
+            "enter_focus_main": true
+          }
+        }
+      ],
+      "browser_version": "153.0",
+      "site_index_sha256": "a7882d41f71d035ffee41a5682ff39bf0cb273f624248f7103f264cf43bb0e70"
+    },
+    "webkit": {
+      "at_utc": "2026-10-18T07:59:49.866823+00:00",
+      "method": "CSS text-only 200% simulation; WCAG 1.4.12 spacing override; not native browser zoom",
+      "engine": "webkit",
+      "cases": [
+        {
+          "mode": "text-200",
+          "theme": "light",
+          "width": 320,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "light",
+          "width": 390,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "light",
+          "width": 1440,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "dark",
+          "width": 320,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "dark",
+          "width": 390,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "dark",
+          "width": 1440,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "light",
+          "width": 320,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "light",
+          "width": 390,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "light",
+          "width": 1440,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "dark",
+          "width": 320,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "dark",
+          "width": 390,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "dark",
+          "width": 1440,
+          "overflow": false,
+          "out_of_view_text": []
+        }
+      ],
+      "page_errors": [],
+      "preferences": [
+        {
+          "reduced_motion": {
+            "matches": true,
+            "scroll": "auto",
+            "transition": "0s"
+          }
+        },
+        {
+          "keyboard_skip_link": {
+            "first_tab_visible_focus": true,
+            "enter_focus_main": true
+          }
+        }
+      ],
+      "browser_version": "26.5",
+      "site_index_sha256": "a7882d41f71d035ffee41a5682ff39bf0cb273f624248f7103f264cf43bb0e70"
+    },
+    "edge": {
+      "at_utc": "2026-10-18T07:59:49.841637+00:00",
+      "method": "CSS text-only 200% simulation; WCAG 1.4.12 spacing override; not native browser zoom",
+      "engine": "chromium",
+      "cases": [
+        {
+          "mode": "text-200",
+          "theme": "light",
+          "width": 320,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "light",
+          "width": 390,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "light",
+          "width": 1440,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "dark",
+          "width": 320,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "dark",
+          "width": 390,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-200",
+          "theme": "dark",
+          "width": 1440,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "light",
+          "width": 320,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "light",
+          "width": 390,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "light",
+          "width": 1440,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "dark",
+          "width": 320,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "dark",
+          "width": 390,
+          "overflow": false,
+          "out_of_view_text": []
+        },
+        {
+          "mode": "text-spacing",
+          "theme": "dark",
+          "width": 1440,
+          "overflow": false,
+          "out_of_view_text": []
+        }
+      ],
+      "page_errors": [],
+      "preferences": [
+        {
+          "reduced_motion": {
+            "matches": true,
+            "scroll": "auto",
+            "transition": "0s"
+          }
+        },
+        {
+          "keyboard_skip_link": {
+            "first_tab_visible_focus": true,
+            "enter_focus_main": true
+          }
+        }
+      ],
+      "browser_version": "155.0.4283.62",
+      "site_index_sha256": "a7882d41f71d035ffee41a5682ff39bf0cb273f624248f7103f264cf43bb0e70"
+    }
+  },
+  "normal_screenshots_compared": [
+    {
+      "engine": "chromium",
+      "file": "390-light.png",
+      "identical": true
+    },
+    {
+      "engine": "chromium",
+      "file": "390-dark.png",
+      "identical": true
+    },
+    {
+      "engine": "chromium",
+      "file": "1440-light.png",
+      "identical": true
+    },
+    {
+      "engine": "chromium",
+      "file": "1440-dark.png",
+      "identical": true
+    },
+    {
+      "engine": "firefox",
+      "file": "390-dark.png",
+      "identical": true
+    },
+    {
+      "engine": "firefox",
+      "file": "1440-light.png",
+      "identical": true
+    },
+    {
+      "engine": "webkit",
+      "file": "390-dark.png",
+      "identical": true
+    },
+    {
+      "engine": "webkit",
+      "file": "1440-light.png",
+      "identical": true
+    },
+    {
+      "engine": "edge",
+      "file": "390-light.png",
+      "identical": true
+    },
+    {
+      "engine": "edge",
+      "file": "390-dark.png",
+      "identical": true
+    },
+    {
+      "engine": "edge",
+      "file": "1440-light.png",
+      "identical": true
+    },
+    {
+      "engine": "edge",
+      "file": "1440-dark.png",
+      "identical": true
+    }
+  ],
+  "limitations": [
+    "CSS text-only resize simulation, not browser-native zoom",
+    "No real Android/iOS/Safari or screen reader test",
+    "Original viewport320 matrix covers CSS reflow; native400% browser zoom not tested",
+    "Draft gallery uses labelled in-memory fixtures; release screenshots pending"
+  ]
+}

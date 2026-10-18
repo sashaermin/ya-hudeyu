@@ -1,4 +1,4 @@
-# QA черновика · этапы 4A–4C
+# QA черновика · этапы 4A–4D
 
 Проверки выполнены 18.10.2026; сохранение отчёта 09:42 МСК (06:42 UTC). Это локальный draft, **не проверка production и не разрешение выпуска**. Последние изменения ресурсов/галереи проверены после оптимизации. Итоговый checkpoint указан в IMPLEMENTATION_PROGRESS.md и Git-истории.
 
@@ -162,3 +162,26 @@ python3 tests/browser_qa.py --engine chromium --executable /tmp/website-edge/opt
 `engine: chromium` обозначает Playwright protocol; product/package в evidence указывает настоящий Edge. Старый server8001 отвечал empty reply; его не останавливали, использован отдельный read-only draft server8002. Физические Android/iOS, Safari и screen reader остаются непроверенными.
 
 Текущее Telegram-состояние заменяет исторические missing-binding записи выше: **DELIVERED**, последний проверенный push run39109066640 accepted message_id77. Обязательное daily schedule всё ещё ожидает отдельного разрешения main; доставка по push этого не меняет.
+
+## 4D · увеличение текста, интервалы, reduced motion и skip link
+
+Новая независимая проверка обнаружила два дефекта: skip link прокручивал, но не фокусировал main; при CSS-увеличении текста до200% на320/390px grid-карточки выходили за viewport. Исправлено: `tabindex="-1"` у main и наследуемый `overflow-wrap:anywhere` у body. Отрицательный baseline сохранён, не считается PASS.
+
+[Доказательства до/после](verification/accessibility-adaptation.json): **48/48 PASS** — по12 сценариев в Chromium154, Firefox153, WebKit26.5 и Edge155:320/390/1440px ×2темы ×200% текст/увеличенные интервалы. Для интервалов применены line-height1.5, letter-spacing.12em, word-spacing.16em, paragraph margin2em; FAQ раскрыт, mobile menu открыт. Проверяются scrollWidth и границы видимых текстовых ranges, а не маскировка overflow. Во всех4 браузерах: reduced-motion отключает transitions/smooth scroll; первый Tab показывает skip link, Enter переносит фокус в main.
+
+[Текст200% ·320 dark](screenshots/accessibility-text-200-320-dark.png), [интервалы ·320 dark](screenshots/accessibility-text-spacing-320-dark.png). Это CSS-симуляция **text-only resize**, не native browser zoom и не замена screen reader/manual/device acceptance. Reflow до320 CSSpx уже покрыт матрицей; реальный400% zoom отдельного браузера не заявляется проверенным.
+
+После изменения HTML/CSS обоснованно повторены4 обычные matrices:64/64 viewport/theme,16 axe runs0violations, interactions PASS. Текущие browser-results/firefox-results/webkit-results/edge-results обновлены и содержат hash нового HTML. Все12 имеющихся сравнительных screenshots побайтно прежние, обычный дизайн не изменился. 17 build/workflow unit tests PASS; notification code не менялся, его40 tests повторно исполняет обычный CI. Lighthouse96/100/100/69 остаётся историческим замером4A; он не запускался снова ради не влияющего на обычный layout исправления.
+
+Воспроизведение дополнительного QA:
+
+```sh
+python3 tests/accessibility_qa.py --base http://127.0.0.1:8002/
+python3 tests/accessibility_qa.py --base http://127.0.0.1:8002/ --executable /tmp/website-edge/opt/microsoft/msedge/msedge --output .test-results/accessibility-edge
+```
+
+Firefox/WebKit используют те же runtime environment variables и executable, что recipes4B, с `tests/accessibility_qa.py --engine firefox|webkit --output ...`. Все зависимости остаются optional QA; внутренние отчёты/fixtures в `_site` не добавлены. Telegram push checkpoint6958c0d: run39109598867 success, accepted message_id84.
+
+### Текущий остаток приёмки
+
+Доступные в этой Linux-среде независимые draft-задачи этапов0–4 выполнены. Открыты: утверждение конкретного APK, его техническая/функциональная проверка, реальные hero/gallery screens обеих тем, owner visual/legal acceptance, реальные Android/iOS/Safari и screen reader. После нового контента QA нужен снова по затронутым сценариям. Daily digest требует разрешения main; публикация сайта требует отдельного разрешения. Ни один этот критерий не закрыт успешными draft-тестами.

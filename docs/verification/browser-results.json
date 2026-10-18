@@ -1,4 +1,5 @@
 {
+  "engine": "chromium",
   "matrix": [
     {
       "width": 320,
@@ -99,36 +100,40 @@
   ],
   "interactions": [
     "Theme persistence, reset to system and OS changes PASS",
-    "Gallery test-only fixtures: keyboard, native focus trap, Escape/restore focus, touch/swipe, image error PASS",
+    "Gallery keyboard, focus trap, Escape/restore focus and image error PASS",
+    "Native tap and CDP touch swipe PASS",
     "No-JS mobile navigation and native FAQ PASS"
   ],
   "axe": [
     {
       "width": 390,
       "theme": "light",
-      "violations": [],
-      "axe_version": "4.10.3"
+      "axe_version": "4.10.3",
+      "violations": []
     },
     {
       "width": 1440,
       "theme": "light",
-      "violations": [],
-      "axe_version": "4.10.3"
+      "axe_version": "4.10.3",
+      "violations": []
     },
     {
       "width": 390,
       "theme": "dark",
-      "violations": [],
-      "axe_version": "4.10.3"
+      "axe_version": "4.10.3",
+      "violations": []
     },
     {
       "width": 1440,
       "theme": "dark",
-      "violations": [],
-      "axe_version": "4.10.3"
+      "axe_version": "4.10.3",
+      "violations": []
     }
   ],
   "page_errors": [],
   "failed_requests": [],
-  "browser_version": "154.0.8037.57"
+  "browser_version": "154.0.8037.57",
+  "tested_at_utc": "2026-10-18T08:02:06Z",
+  "site_index_sha256": "a7882d41f71d035ffee41a5682ff39bf0cb273f624248f7103f264cf43bb0e70",
+  "scope": "Draft after skip focus/text-resize fixes; new full matrix due changed HTML/CSS"
 }

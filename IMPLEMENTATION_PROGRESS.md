@@ -75,3 +75,11 @@ Run39107259552: verify success, notify failure (missing TELEGRAM_BOT_TOKEN/TELEG
 Цель: закрыть отдельную проверку Edge по этапу4 без повторения Chromium/Firefox/WebKit. Критерии:16 ширин/тем,4 axe runs, основные взаимодействия, no-JS, отсутствие runtime errors; официальный browser binary с проверяемым происхождением.
 
 Результат: Edge155.0.4283.62 —16/16 PASS,4 axe runs0violations; theme/menu/FAQ/gallery keyboard/focus/Escape/error/native tap/CDP swipe/no-JS PASS. Пакет Microsoft SHA-256 и signed index проверены; система не изменена. Evidence docs/verification/edge-results.json,2 owner-review screenshots. Совокупно64 viewport/theme и16 axe runs; это не физические устройства/Safari и не проверка релизных screens. Следующая независимая задача: text resize/reflow/reduced motion.
+
+## 4D · доступность и исправления
+
+Цель: закрыть доступные text resize/spacing/reduced-motion/skip-link критерии этапа4. Объём ограничен двумя найденными дефектами и воспроизводимой optional browser QA оснасткой, без новых продуктовых функций.
+
+До исправления: skip target не получал фокус; text200% переполнял320/390px в обеих темах. После `main tabindex=-1` и `body overflow-wrap:anywhere`:48/48 дополнительных случаев в4 браузерах PASS; reduced-motion/keyboard skip PASS. После изменения HTML/CSS повторены4 обычные matrices:64/64 PASS,16 axe runs0violations;12 ранее сохранённых comparative screenshots побайтно совпали.17 build/workflow unit tests PASS. Evidence docs/verification/accessibility-adaptation.json,2 дополнительных screenshots; browser evidence обновлён. CSS text simulation не называется native zoom или screen reader проверкой.
+
+**Первое незавершённое действие:** после решения владельца `site-approved-android-release` проверить конкретный APK и подключить подтверждённые функции/screens по docs/RELEASE_CONTENT.md, затем провести affected QA. Независимых задач с имеющимися входами больше не найдено. Остальные открытые границы: visual/legal/device acceptance, отдельное main authorization для daily digest, отдельное разрешение публикации. Главные этапы2–4 частично открыты, этап5 запрещён. Main/production/deployment/publication gate/noindex/download не изменялись. Последний подтверждённый remote до4D:6958c0d; его Actions success/Telegram accepted84.

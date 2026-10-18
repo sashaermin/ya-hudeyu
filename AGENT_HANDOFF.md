@@ -3,11 +3,11 @@
 ## Точка продолжения
 
 - Repository: `sashaermin/ya-hudeyu`; development branch: `work/website-v2`.
-- Последний независимо подтверждённый remote checkpoint: `3f98d6515dba982ec56132b8654af6bb213d16bd`; его push-triggered run39109066640 success, Telegram accepted message_id77. Предыдущий **implementation checkpoint**: `ad7c5a043d45f31cbc0a4ab6f489592ae14622d2` (W2B). Последующий documentation checkpoint получать из Git: файл не может содержать собственный будущий SHA.
-- Последний ответственный писатель: Codex, 18.10.2026 10:57 МСК. Другой активный website writer не известен; это историческая запись, не доказательство отсутствия активной сессии при будущем takeover. Android Claude Code не затрагивался.
-- Состояние: независимые задачи W2A / 4B / 3B / W2B выполнены и проверены. Открытые release/device/owner критерии сохранены в IMPLEMENTATION_PROGRESS.md и docs/QA.md. Сайт **не готов к публикации**, она не разрешена.
+- Последний независимо подтверждённый remote checkpoint до4D: `6958c0d83863bda00e7fcdbc9ec0fa14dd7b2a25`; его push-triggered run39109598867 success, Telegram accepted message_id84. Предыдущий **implementation checkpoint**: `ad7c5a043d45f31cbc0a4ab6f489592ae14622d2` (W2B). Последующий documentation checkpoint получать из Git: файл не может содержать собственный будущий SHA.
+- Последний ответственный писатель: Codex, 18.10.2026 11:02 МСК. Другой активный website writer не известен; это историческая запись, не доказательство отсутствия активной сессии при будущем takeover. Android Claude Code не затрагивался.
+- Состояние: независимые задачи W2A / 4B / 3B / W2B / 4C / 4D выполнены и проверены. Открытые release/device/owner критерии сохранены в IMPLEMENTATION_PROGRESS.md и docs/QA.md. Сайт **не готов к публикации**, она не разрешена.
 
-**Previous next (закрыт):** Telegram проверен и не требует настройки: run39107499146 attempt2, accepted message_id67. Сохранить текущий verification checkpoint и проверить его remote SHA/новый notify ack. Далее остаются ранее зарегистрированные внешние release prerequisites: daily default-branch authorization и утверждённый APK/screens; текущий пользователь запретил любые изменения main/production/deployment/publication gate. Не запрашивать повторно Telegram secrets и не запускать идентичный тест без причины.
+**Next:** независимый draft QA завершён в доступной Linux-среде (4C/4D). Первое незавершённое действие зависит от уже зарегистрированного решения `site-approved-android-release`: получить утверждённый конкретный APK/screens и выполнить docs/RELEASE_CONTENT.md. До него не подключать произвольный артефакт или dev screens. Если владелец отдельно разрешит main infrastructure update, активировать готовый daily digest с учётом legacy Pages side effect. Иначе не менять main/deployment/publication gate. Физические Android/iOS, Safari, screen reader и owner visual/legal acceptance остаются открыты; не имитировать эти результаты. Нет других выявленных независимо выполнимых approved задач с текущими входами. Не повторять текущие успешные tests без изменения inputs.
 
 ## Авторитетные общие документы
 
@@ -52,4 +52,10 @@ Main SHA `9a0857ce260540ad604f344565d535a8d47b2fa0` сохранялся; Pages 
 
 Edge Stable155.0.4283.62 проверен отдельно:16/16 viewport/theme,4 axe runs без violations; menu/FAQ/theme/gallery/focus/no-JS и native tap/CDP swipe PASS. Официальный пакет проверен через подписанный Microsoft index и извлечён только в /tmp. Evidence docs/verification/edge-results.json;2 screenshots в docs/screenshots/edge-*.png. Native Safari/iOS/Android и screen reader ещё не проверены.
 
-**Next:** дополнить этап4 доступными независимыми accessibility checks:200% текст, reflow400%, reduced motion, затем сохранить evidence/remote checkpoint. Не повторять завершённые viewport/axe matrices. Telegram работает, новые push уведомляет существующий Actions. После доступного QA остаются APK/screens, owner visual/legal/device acceptance и отдельные разрешения digest/main/publication.
+**Эта точка продолжения закрыта4D:** text resize/spacing/reduced motion/skip link выполнены; native400% zoom не заявляется проверенным.
+
+## 4D · финальный доступный draft QA
+
+Исправлены2 реальных дефекта: main теперь получает фокус по skip link (`tabindex=-1`), enlarged text переносится в grid (`body overflow-wrap:anywhere`). Optional оснастка tests/accessibility_qa.py реально выполнена в Chromium/Firefox/WebKit/Edge:48/48 text resize/spacing cases PASS, reduced-motion/skip focus PASS. После изменения inputs все4 обычные matrices также повторены:64/64,16 axe runs0violations, gallery/menu/theme/no-JS PASS.12 comparative screenshots побайтно совпали;17 unit build/workflow PASS. Evidence docs/verification/accessibility-adaptation.json содержит отрицательный baseline и финальные cases;2 screenshots добавлены. Все ограничения и exact next — выше и в docs/QA.md.
+
+Процесс http.server8001 из старой сессии отвечал empty reply; не остановлен, не используется. Отдельный draft8002 реально обслуживал QA; при новой сессии запустить/reuse собственный правильный server. Edge binary извлечён в /tmp/website-edge с signed-index provenance в evidence. Никакие binaries/QA node_modules в Git не добавлены. После текущего checkpoint проверить remote SHA и обычный Actions notify ack; не создавать endless doc commits ради записи собственного SHA/следующего ack.
