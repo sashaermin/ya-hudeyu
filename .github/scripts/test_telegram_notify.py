@@ -562,7 +562,7 @@ class TelegramPresentationTest(unittest.TestCase):
         parser=Validate();parser.feed(text);parser.close();self.assertFalse(parser.stack)
         self.assertLessEqual(len(text),tn.TELEGRAM_LIMIT)
         self.assertRegex(text,r'^<b>САЙТ «Я ХУдЕЮ» — [^\n]+</b>\n\n')
-        self.assertIn('<b>Проект:</b>',text);self.assertIn('<b>Агент:</b>',text)
+        self.assertIn('<b>Проект:</b>',text);self.assertRegex(text,r'<b>Агент(?:ы)?:</b>')
         self.assertTrue(parser.links,'Every supported report has a descriptive link')
         return parser
 
