@@ -1,0 +1,74 @@
+[
+  {
+    "file": "assets/fonts/Onest-OFL.txt",
+    "repository": "sashaermin/ya-hudeyu-android",
+    "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
+    "source": "app/src/main/assets/licenses/Onest-OFL.txt"
+  },
+  {
+    "file": "assets/fonts/Unbounded-OFL.txt",
+    "repository": "sashaermin/ya-hudeyu-android",
+    "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
+    "source": "app/src/main/assets/licenses/Unbounded-OFL.txt"
+  },
+  {
+    "file": "assets/brand/originals/logo_wordmark_green_dark.png",
+    "repository": "sashaermin/ya-hudeyu-android",
+    "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
+    "source": "app/src/main/res/drawable-nodpi/logo_wordmark_green_dark.png"
+  },
+  {
+    "file": "assets/brand/originals/logo_wordmark_green_light.png",
+    "repository": "sashaermin/ya-hudeyu-android",
+    "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
+    "source": "app/src/main/res/drawable-nodpi/logo_wordmark_green_light.png"
+  },
+  {
+    "file": "assets/brand/originals/mascot_calm.webp",
+    "repository": "sashaermin/ya-hudeyu-android",
+    "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
+    "source": "app/src/main/res/drawable/mascot_calm.webp"
+  },
+  {
+    "file": "assets/brand/originals/mascot_celebrate.webp",
+    "repository": "sashaermin/ya-hudeyu-android",
+    "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
+    "source": "app/src/main/res/drawable/mascot_celebrate.webp"
+  },
+  {
+    "file": "assets/brand/originals/mascot_hint.webp",
+    "repository": "sashaermin/ya-hudeyu-android",
+    "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
+    "source": "app/src/main/res/drawable/mascot_hint.webp"
+  },
+  {
+    "file": "assets/brand/originals/onboarding_welcome_cat.webp",
+    "repository": "sashaermin/ya-hudeyu-android",
+    "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
+    "source": "app/src/main/res/drawable/onboarding_welcome_cat.webp"
+  },
+  {
+    "file": "assets/fonts/onest_regular.ttf",
+    "repository": "sashaermin/ya-hudeyu-android",
+    "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
+    "source": "app/src/main/res/font/onest_regular.ttf"
+  },
+  {
+    "file": "assets/fonts/onest_semibold.ttf",
+    "repository": "sashaermin/ya-hudeyu-android",
+    "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
+    "source": "app/src/main/res/font/onest_semibold.ttf"
+  },
+  {
+    "file": "assets/fonts/unbounded_semibold.ttf",
+    "repository": "sashaermin/ya-hudeyu-android",
+    "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
+    "source": "app/src/main/res/font/unbounded_semibold.ttf"
+  },
+  {
+    "file": "assets/brand/originals/ic_launcher_green.png",
+    "repository": "sashaermin/ya-hudeyu-android",
+    "commit": "874de91cb626b6f0e78532963b378d86901b97d9",
+    "source": "app/src/main/res/mipmap-xxxhdpi/ic_launcher_green.png"
+  }
+]
