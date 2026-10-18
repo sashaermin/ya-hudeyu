@@ -175,3 +175,8 @@ Remote2d7f3cf/run39125369226 success:78 unit tests, archive4views, live16 browse
 ## U0 · покритериальный UI/UX-аудит master
 
 Новый запрос владельца: comprehensive source/render/Android comparison, затем объективные fixes без redesign/production. docs/UI_UX_REQUIREMENTS_AUDIT.md покрывает44 UI требований:28 COMPLETE,6 PARTIAL,1 MISSING,7 BLOCKED_BY_RELEASE_CONTENT,2 REQUIRES_MANUAL_VERIFICATION. Current Android960e43b theme/components/logo/mascot read-only совпадают с прежним design source. Реально воспроизведены no-JS nav/h1 overlap, keyboard Tab bypass и privacy397px overflow при320; loading state отсутствует по source. Before photos и exact gaps/impact/correction/acceptance сохранены. Следующие разрешённые этапы U1 (navigation/privacy/themes/reflow), U2 (gallery loading). Production9b39ffa не менять; старый approved release не разрешает выпуск нового candidate.
+
+
+## U1 · menu/privacy/theme/reflow
+
+6 PARTIAL требований исправлены без изменения принятого визуального направления: no-JS nav flow, keyboard entry/traversal/select/resize focus, no-JS dark fallback, privacy shared theme/fonts/reflow. Legal content SHA и URL/links прежние. Fresh main16+privacy16 layouts,8axe0violations,main12+privacy12 CSS text/spacing,6 no-JS cases и targeted keyboard/persistence PASS. Before/final screenshots визуально осмотрены; 320px privacy заголовок теперь помещается целым словом с Android Onest вместо произвольного разрыва. Bugs обнаружены реальными failing assertions, finalPASS сохранён в uiux-u1.json. Audit counts34 complete/0partial/1missing/7releaseblocked/2manual. Следующий независимый шаг U2 gallery loading; production9b39ffa и publication gates не менялись, future candidate требует отдельного разрешения на release.

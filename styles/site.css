@@ -11,3 +11,10 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 .phone-frame{position:relative;width:260px;border:8px solid var(--ink);border-radius:32px;background:var(--surface);box-shadow:var(--shadow);overflow:hidden}.phone-frame img{width:100%;height:auto}.hero-art.with-screen{min-height:620px}.with-screen .hero-cat{position:absolute;width:150px;right:0;bottom:12px}.with-screen .art-note{display:none}@media(max-width:800px){.hero-art.with-screen{min-height:600px}.phone-frame{width:240px}.with-screen .hero-cat{right:12px;width:130px}}
+
+@media(prefers-color-scheme:dark){:root:not([data-theme]){color-scheme:dark;--bg:#131117;--surface:#1e1b23;--ink:#f4f1f7;--muted:#aba4b5;--track:#26222c;--line:#3a3440;--outline:#77707f;--food:#36281b;--food-ink:#ffc58a;--steps:#17301f;--steps-ink:#8be6b1;--weight:#272243;--weight-ink:#c6bcff;--error:#ff453a;--shadow:none}:root:not([data-theme]) .wordmark-light{display:none}:root:not([data-theme]) .wordmark-dark{display:block}}
+
+/* No-JS navigation stays in document flow; disclosure positioning is enhanced only after initialization. */
+@media(max-width:800px){.header-inner{flex-wrap:wrap}.nav{position:static;order:3;width:100%}.nav[data-collapsed]{position:absolute;order:initial;width:auto}}
+/* Legal content and links are unchanged; reuse the accepted typography, colors and theme control. */
+body.policy{max-width:800px;margin:0 auto;padding:48px 24px}.policy h1{font-family:Onest,system-ui,sans-serif;font-size:clamp(24px,4vw,36px);line-height:1.3}.policy h2{font-family:Onest,system-ui,sans-serif;font-size:clamp(20px,3vw,24px);letter-spacing:normal;line-height:1.4;margin-top:32px}.policy a{color:var(--steps-ink)}.policy .updated{color:var(--muted)}.policy-tools{display:flex;justify-content:flex-end;margin-bottom:24px}

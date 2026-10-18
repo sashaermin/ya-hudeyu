@@ -25,26 +25,42 @@
   const menuButton = document.querySelector('#menu-toggle');
   const nav = document.querySelector('#navigation');
   const mobile = matchMedia('(max-width: 800px)');
+  if (menuButton && nav) {
   menuButton.hidden = false;
   function setMenu(open, restoreFocus = false) {
     nav.dataset.collapsed = String(!open);
     menuButton.setAttribute('aria-expanded', String(open));
     menuButton.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
-    if (restoreFocus && mobile.matches) menuButton.focus();
+    if (open && mobile.matches) nav.querySelector('a[href]')?.focus();
+    else if (restoreFocus && mobile.matches) menuButton.focus();
   }
   setMenu(false);
   menuButton.addEventListener('click', () => setMenu(nav.dataset.collapsed === 'true'));
-  nav.addEventListener('click', event => { if (event.target.closest('a')) setMenu(false); });
+  nav.addEventListener('click', event => {
+    const link = event.target.closest('a');
+    if (!link) return;
+    setMenu(false);
+    const href = link.getAttribute('href');
+    const target = href?.startsWith('#') ? document.getElementById(href.slice(1)) : null;
+    if (mobile.matches && target) {
+      target.setAttribute('tabindex', '-1');
+      target.focus({preventScroll: true});
+    }
+  });
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') setMenu(false, true);
   });
   document.addEventListener('click', event => {
     if (!event.target.closest('.site-header')) setMenu(false);
   });
-  nav.addEventListener('focusout', () => {
-    queueMicrotask(() => { if (!nav.contains(document.activeElement) && document.activeElement !== menuButton) setMenu(false); });
+  nav.addEventListener('focusout', event => {
+    if (!nav.contains(event.relatedTarget) && event.relatedTarget !== menuButton) {
+      const hiddenFocus = !event.relatedTarget && mobile.matches && !nav.getClientRects().length;
+      setMenu(false, hiddenFocus);
+    }
   });
-  mobile.addEventListener('change', () => setMenu(false));
+  mobile.addEventListener('change', () => setMenu(false, mobile.matches && nav.contains(document.activeElement)));
+  }
   document.querySelectorAll('details').forEach(detail => {
     const summary = detail.querySelector('summary');
     const sync = () => summary.setAttribute('aria-expanded', String(detail.open));

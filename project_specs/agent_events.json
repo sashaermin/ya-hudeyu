@@ -377,6 +377,25 @@
       "done": "Первый production https://yahudeyu-app.ru/ на9b39ffa проверен, rollback9a0857c сохранён. Полный master checklist содержит все незавершённые пункты и конкретные зависимости.",
       "next": "APK-зависимые требования после утверждённого артефакта/screens; manual device QA при наличии устройств. Без новых входов independent approved задач больше нет.",
       "status": "Первый release завершён; master частично открыт. Noindex и запрет APK сохранены; production не redeploy."
+    },
+    {
+      "id": "site-uiux-u1-20261018",
+      "at": "2026-10-18T12:20:25.051324Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "UI UX аудит",
+          "U1"
+        ],
+        "title": "Навигация, privacy и темы без JS"
+      },
+      "checkpoint": "c32c2d1cee0f9903a6b617ac1987cfcc797f22d8",
+      "verified": "Main16/4axe иprivacy16/4axe0violations;24 text adaptation,6 no-JS и keyboard/persistence regressions PASS. Legal content hash прежний;27 unit tests/архив4views PASS.",
+      "done": "Устранены no-JS overlap, Tab/focus/resize дефекты; privacy получила общий Onest/palette/theme и reflow. Production и legal text не менялись.",
+      "next": "U2 gallery loading/error/retry и affected browser QA; затем final audit remaining blockers.",
+      "status": "Только development; новые APK/функции/скриншоты не добавлены"
     }
   ]
 }

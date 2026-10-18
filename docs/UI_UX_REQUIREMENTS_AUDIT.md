@@ -8,9 +8,9 @@ Read-only Android current960e43b545fb0203e1199256db93885acca6e33d: Color.kt, The
 
 Прочитаны AGENTS/handoff/progress/design mapping/QA/release content, проверены source selectors и rendered draft. [Before reproduction](verification/uiux-before.json), [mobile before](screenshots/uiux/before-390-light.png), [desktop before](screenshots/uiux/before-1440-dark.png), [no-JS overlap](screenshots/uiux/before-nojs-320.png), [privacy overflow](screenshots/uiux/before-privacy-320.png). Исторические production99/100/100/69 и automated matrices — контекст, не основание объявить все UI требования выполненными. Для каждого исправления ниже нужен отдельный targeted browser proof; после visual changes — fresh matrix/axe/screenshots.
 
-## Покрытие44 проверяемых требований (до исправлений)
+## Покрытие44 проверяемых требований (после U1)
 
-COMPLETE: 28; PARTIAL: 6; MISSING: 1; BLOCKED_BY_RELEASE_CONTENT: 7; REQUIRES_MANUAL_VERIFICATION: 2.
+COMPLETE: 34; PARTIAL: 0; MISSING: 1; BLOCKED_BY_RELEASE_CONTENT: 7; REQUIRES_MANUAL_VERIFICATION: 2.
 
 | ID | Мастер-ТЗ | Требование | Статус | Точный source reference | Evidence / граница |
 |---|---|---|---|---|---|
@@ -24,8 +24,8 @@ COMPLETE: 28; PARTIAL: 6; MISSING: 1; BLOCKED_BY_RELEASE_CONTENT: 7; REQUIRES_MA
 | U08 | §5 | Начальное отображение сохранённой темы | COMPLETE | index.html:head; scripts/theme.js:1–18 | Inline theme script до CSS; storage errors обрабатываются; проверить pre-style dark state. |
 | U09 | §5 | Ручной выбор и persistence темы | COMPLETE | scripts/site.js:updateThemeButton/click | system/light/dark, localStorage, reload; runtime не определяет продуктовые функции. |
 | U10 | §5 | Изменение системной темы | COMPLETE | scripts/theme.js:matchMedia listener | Реакция только в system mode, ручной выбор не перезаписывается. |
-| U11 | §5/6 | Системная dark тема без JS | PARTIAL | styles/site.css:root selectors | При JS disabled prefers-dark остаётся light: нет CSS fallback. |
-| U12 | §4.8/5/7.4 | Privacy: reflow и единая тема/типографика | PARTIAL | privacy.html:style/head | На320px heading расширяет viewport до397px; legacy purple/system-font/light-only. |
+| U11 | §5/6 | Системная dark тема без JS | COMPLETE | styles/site.css:root selectors | CSS fallback использует те же dark tokens и logo при JS disabled;6 no-JS width/theme cases PASS. |
+| U12 | §4.8/5/7.4 | Privacy: reflow и единая тема/типографика | COMPLETE | privacy.html:style/head | Privacy использует существующие Onest/tokens/theme control;16 cases/4axe PASS, legal content hash прежний. |
 | U13 | §4.2/5 | Hero composition и CTA hierarchy | COMPLETE | index.html:hero; styles/site.css:.hero/.hero-actions | Оригинальный маскот, primary release-info/secondary possibilities; честный coming-soon вариант принят. |
 | U14 | §4.1/4.2/4.6 | Активный CTA скачивания | BLOCKED_BY_RELEASE_CONTENT | tools/build.py:download_label/release; data/release.json | APK не утверждён: ссылка намеренно отсутствует; info CTA не подменяет финальное требование. |
 | U15 | §4.2 | Настоящий hero screenshot | BLOCKED_BY_RELEASE_CONTENT | tools/build.py:hero_visual; data/site.json:screenshots | Нет approved release screens; маскот — честный временный hero, не скриншот приложения. |
@@ -45,21 +45,21 @@ COMPLETE: 28; PARTIAL: 6; MISSING: 1; BLOCKED_BY_RELEASE_CONTENT: 7; REQUIRES_MA
 | U29 | §4.8 | Footer brand/contact/privacy/top/year | COMPLETE | index.html:site-footer | Ссылки и год присутствуют; прямой mailto, без сторонних tracker/API. |
 | U30 | §4.8/7.6 | URL privacy и сохранение юридического текста | COMPLETE | privacy.html; docs/verification/first-production-rollback.json | Сохранять весь legal body/date/links; оформление не является изменением юридических условий. |
 | U31 | §5/7.4 | 8 ширин320–1920 ×2темы, bounds | COMPLETE | tests/browser_qa.py:WIDTHS/matrix; production proof39125369226 | Current main layout прошёл16 cases; дополнительно проверить изменённый draft, не опираться только на старый PASS. |
-| U32 | §4.1/6 | No-JS mobile navigation не перекрывает контент | PARTIAL | styles/site.css:@media800 .nav; index.html:header | Без JS nav остаётся absolute/open и закрывает hero heading. |
-| U33 | §4.1/5 | Tab order при открытии mobile menu | PARTIAL | scripts/site.js:setMenu; index.html:nav before trigger | После keyboard-open Tab уходит в hero, минуя открытые ссылки. |
-| U34 | §4.1/5 | Закрытие меню и focus после выбора/resize | PARTIAL | scripts/site.js:nav click/mobile change | Escape работает; закрытие через выбор/resize может скрыть focused link без логичного focus destination. |
+| U32 | §4.1/6 | No-JS mobile navigation не перекрывает контент | COMPLETE | styles/site.css:@media800 .nav; index.html:header | No-JS nav в потоке; absolute только data-collapsed после JS init; ни hero, ни headings не перекрыты. |
+| U33 | §4.1/5 | Tab order при открытии mobile menu | COMPLETE | scripts/site.js:setMenu; index.html:nav before trigger | Keyboard open фокусирует first link; relatedTarget устраняет преждевременное закрытие при Tab. |
+| U34 | §4.1/5 | Закрытие меню и focus после выбора/resize | COMPLETE | scripts/site.js:nav click/mobile change | Выбор фокусирует target; Escape/hidden focus на resize возвращают toggle; targeted regressions PASS. |
 | U35 | §5 | Visible focus и skip link | COMPLETE | styles/site.css::focus-visible/.skip; index.html:main tabindex | Skip переносит фокус main; outline видим в обеих темах. |
 | U36 | §5 | Hover/active/feedback где применимо | COMPLETE | styles/site.css:.button/.icon-button/.nav/summary | Primary active transform/hover, native FAQ expanded и theme labels; декоративным панелям не нужен искусственный hover. |
 | U37 | §4.6/5 | Недоступные действия не вводят в заблуждение | COMPLETE | tools/build.py:pending_release; styles/site.css:button:disabled | Вместо ложного download доступно release-info; disabled helper не выдаётся за реально работающий APK. |
 | U38 | §5 | Умеренное движение/reduced-motion | COMPLETE | styles/site.css:@media reduced-motion; scripts/site.js:scrollBy | Нет autoplay/video, reduced motion отключает transition/scroll animation. |
 | U39 | §5/7.7 | WCAG AA contrast/targets | COMPLETE | styles/site.css:tokens/buttons; docs/QA.md:axe | Palette/48px icon/52px CTA/native summary; свежий axe/bounds после fixes обязателен, не утверждать manual WCAG conformance. |
 | U40 | §5 | Семантика/alt/headings/ARIA | COMPLETE | index.html:main/sections/dialog; tools/build.py:faq/gallery | Landmarks, h1/h2, meaningful alt и native controls. Это structural evidence, не реальный screen-reader session. |
-| U41 | §5/7.4 | 200% text/spacing/reflow | PARTIAL | tests/accessibility_qa.py; privacy.html:style | Main ранее проверен, но privacy overflow делает site-wide требование незавершённым. |
+| U41 | §5/7.4 | 200% text/spacing/reflow | COMPLETE | tests/accessibility_qa.py; privacy.html:style | Main12 adaptation cases и privacy12 CSS text/spacing cases PASS; это не native zoom. |
 | U42 | §5/6 | Настоящий screen reader/native zoom | REQUIRES_MANUAL_VERIFICATION | docs/QA.md:limitations | Нет AT/operator integration; DOM snapshot/CSS text simulation не являются screen reader/native zoom. |
 | U43 | §6/7.5 | Physical Android/iOS Safari/native WebKit swipe | REQUIRES_MANUAL_VERIFICATION | docs/QA.md:4B/4C/production | Engine emulation/desktop Edge не заменяют physical devices/Safari app. |
 | U44 | §5/7.8 | Иерархия, whitespace, readability | COMPLETE | styles/site.css:hero/section/panel/faq; screenshots/uiux | Осмотр mobile/desktop обеих тем; общий принятый визуальный строй сохраняется. Новая художественная концепция не требуется. |
 
-## Gap analysis: все незавершённые требования
+## Зафиксированный gap analysis (история до исправлений, текущие статусы выше)
 
 | ID / ТЗ | Текущая реализация и точный недостаток | Влияние на пользователя | Коррекция | Без APK? | Критерий проверки |
 |---|---|---|---|---|---|
@@ -87,3 +87,8 @@ COMPLETE: 28; PARTIAL: 6; MISSING: 1; BLOCKED_BY_RELEASE_CONTENT: 7; REQUIRES_MA
 ## Порядок выполнения в текущем roadmap
 
 U1: no-JS/keyboard navigation + shared privacy theme/reflow + system CSS fallback (U11/U12/U32/U33/U34/U41). U2: gallery loading/error/retry (U22). Source audit/current Android comparison завершены. После каждого этапа focused QA + current matrix/axe/screenshots, commit/push/remote/Telegram; production не менять. APK-dependent/manual остаток перечислен выше, всего мастер-ТЗ не закрывать.
+
+
+## U1 · доказательства исправления
+
+Навигация/focus/no-JS и privacy themes/reflow исправлены без APK. Все legal headings/paragraphs/date/links сохранены, normalized content SHA в uiux-before/uiux-u1. Main layout/visual direction прежние; правовая страница использует тот же Android Onest и palette, без переписывания политики. [Current proof](verification/uiux-u1.json): main16 иprivacy16 cases; main4 иprivacy4axe0violations; main12 +privacy12 text adaptation;6 no-JS cases; keyboard open/Tab/Escape/select/resize; persistence main/privacy PASS. Before/post визуально осмотрены, включая readability long heading на320. [Privacy after](screenshots/uiux/after-u1-privacy-320-light.png), [dark](screenshots/uiux/after-u1-privacy-320-dark.png), [no-JS after](screenshots/uiux/after-u1-nojs-320-light.png), [desktop](screenshots/uiux/after-u1-1440-dark.png). Generic U22 loading ещё не завершён. Исторический release-candidate.json не перезаписан: CI сверяет новую development preview по current-preview.json; production evidence и artifact остаются отдельно неизменными.

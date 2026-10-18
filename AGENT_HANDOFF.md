@@ -7,7 +7,7 @@
 - Последний ответственный агент: Codex, 18.10.2026 11:51 МСК. Другой активный website writer не известен; эта историческая запись не доказывает отсутствия активной сессии при takeover. Только один писатель ветки, Android Claude Code не затрагивать.
 - Стадия: первый инкрементальный website-кандидат **подготовлен к приёмке**, с «Скоро для Android», независимо от APK. Первый принятый coming-soon выпуск опубликован и проверен; мастер-ТЗ не завершено. Исторические ограничения ниже действуют вне этой узкой авторизации.
 
-**Exact next:** выполнить U1 UI/UX-аудита: исправить no-JS overlap и keyboard focus mobile menu, дать privacy существующие fonts/theme/reflow без изменения legal text/URL, system dark CSS fallback. Затем U2 gallery loading state. Подробные44 требования/gaps/acceptance — docs/UI_UX_REQUIREMENTS_AUDIT.md; единственный roadmap IMPLEMENTATION_PROGRESS.md. Initial28 COMPLETE/6 PARTIAL/1 MISSING/7 BLOCKED_BY_RELEASE_CONTENT/2 REQUIRES_MANUAL_VERIFICATION. Before evidence и текущий read-only Android snapshot960e43b сохранены в Git. Работать только development; production9b39ffa/rollback9a0857c не менять, даже при старом publication approved=true (он относится только к ранее выпущенному кандидату). APK approval остаётся false, indexing_approved=false. Не начинать новый визуальный redesign и не подменять release content.
+**Exact next:** проверить U1 remote CI/current development archive, затем U2: реализовать gallery loading status/hide stale image/retry, воспроизвести delayed/error/cancel states на явно test-only fixture, провести affected UI/browser/axe checks и обновить docs/UI_UX_REQUIREMENTS_AUDIT.md. U1 navigation/privacy/no-JS/theme/reflow закрывает6 PARTIAL: current34 COMPLETE/0 PARTIAL/1 MISSING/7 BLOCKED_BY_RELEASE_CONTENT/2 MANUAL. Production9b39ffa не менять; новый draft не утверждён для публикации. Исторический production/release-candidate proof сохранён; current development preview ожидаемые hashes — docs/verification/current-preview.json. APK approval остаётся false, indexing_approved=false; старый publication approval относится только к уже выпущенному сайту.
 
 ## Что предъявлено владельцу
 
@@ -94,3 +94,8 @@ R8 завершён: actual production Lighthouse12.8.2 mobile99/100/100/69, FCP
 ## U0 · подробный UI/UX-аудит
 
 По прямому новому заданию владельца возобновлена проверка не-APK UI gaps; старое заключение об отсутствии independent задач не заменяет новый аудит. Текущие4 Android theme/component files и3 original logo/mascot ресурса совпали с источниками сайта (read-only API, Android не изменён). Render/source review обнаружил6 PARTIAL и1 MISSING: navigation no-JS/focus, privacy theme/reflow, no-JS dark fallback, gallery loading. Before screenshots и reproduction uiux-before.json сохранены. Не маркировать incomplete как complete по старым suites. Next U1/U2 с targeted regression checks; privacy legal paragraphs/date/links сохраняются, меняется только UI в development.
+
+
+## U1 · navigation/privacy fixes проверены
+
+Main16/4axe,privacy16/4axe0violations,main12+privacy12 CSS adaptation и6 no-JS cases PASS. Keyboard Enter/Space/Tab/Escape/select/resize и cross-page theme persistence PASS; все legal paragraphs/date/links/hash сохранены. Первые focused failures помогли найти static data-theme=light и преждевременный focusout/resize blur; причины исправлены, asserts сохранены. Before/after snapshots и exact evidence — uiux-u1.json/UI_UX_REQUIREMENTS_AUDIT.md. Privacy изменён только presentation вdevelopment по новому UI-заданию; production/privacy наmain прежние. Next U2 loading.

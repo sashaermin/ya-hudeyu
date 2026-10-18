@@ -1,0 +1,8 @@
+{
+  "scope": "U1 UI/UX development review; not authorized for production",
+  "source_base_checkpoint": "c32c2d1cee0f9903a6b617ac1987cfcc797f22d8",
+  "archive_sha256": "c2a77ae49f8b76e42efe0be3aeae25ae3bb7395f47fb3b4df134b90b3089a92a",
+  "site_index_sha256": "a3d75aa98d66ea7a03340fee6e692c8d7d825b63d2b377f7870eeaae059c735b",
+  "production_commit_unchanged": "9b39ffaf35c48973b8115b630ba0d06165ad09a4",
+  "qa_evidence": "docs/verification/uiux-u1.json"
+}

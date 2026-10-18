@@ -1,0 +1,486 @@
+{
+  "scope": "Local development UI audit only; production unchanged",
+  "privacy_matrix": [
+    {
+      "width": 320,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 360,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 430,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 1920,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 430,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 1920,
+      "theme": "dark",
+      "status": "PASS"
+    }
+  ],
+  "nojs": [
+    {
+      "width": 320,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "status": "PASS"
+    }
+  ],
+  "focus": [
+    "Keyboard open focuses first link; Tab traverses nav; Escape restores trigger; selection focuses target; hidden-nav resize restores trigger"
+  ],
+  "privacy_axe": [
+    {
+      "width": 390,
+      "theme": "light",
+      "violations": 0,
+      "axe_version": "4.10.3"
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "violations": 0,
+      "axe_version": "4.10.3"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "violations": 0,
+      "axe_version": "4.10.3"
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "violations": 0,
+      "axe_version": "4.10.3"
+    }
+  ],
+  "privacy_text_adaptation": [
+    {
+      "width": 320,
+      "theme": "light",
+      "mode": "text-200",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "mode": "text-spacing",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "mode": "text-200",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "mode": "text-spacing",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "mode": "text-200",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "mode": "text-spacing",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "mode": "text-200",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "mode": "text-spacing",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "mode": "text-200",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "mode": "text-spacing",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "mode": "text-200",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "mode": "text-spacing",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    }
+  ],
+  "page_errors": [],
+  "legal_content_unchanged": true,
+  "shared_theme_persistence": "PASS: main/privacy saved dark override and reset to system",
+  "main_browser": {
+    "engine": "chromium",
+    "matrix": [
+      {
+        "width": 320,
+        "theme": "light",
+        "overflow": false,
+        "menu_faq_links_images": "PASS"
+      },
+      {
+        "width": 360,
+        "theme": "light",
+        "overflow": false,
+        "menu_faq_links_images": "PASS"
+      },
+      {
+        "width": 390,
+        "theme": "light",
+        "overflow": false,
+        "menu_faq_links_images": "PASS"
+      },
+      {
+        "width": 430,
+        "theme": "light",
+        "overflow": false,
+        "menu_faq_links_images": "PASS"
+      },
+      {
+        "width": 768,
+        "theme": "light",
+        "overflow": false,
+        "menu_faq_links_images": "PASS"
+      },
+      {
+        "width": 1024,
+        "theme": "light",
+        "overflow": false,
+        "menu_faq_links_images": "PASS"
+      },
+      {
+        "width": 1440,
+        "theme": "light",
+        "overflow": false,
+        "menu_faq_links_images": "PASS"
+      },
+      {
+        "width": 1920,
+        "theme": "light",
+        "overflow": false,
+        "menu_faq_links_images": "PASS"
+      },
+      {
+        "width": 320,
+        "theme": "dark",
+        "overflow": false,
+        "menu_faq_links_images": "PASS"
+      },
+      {
+        "width": 360,
+        "theme": "dark",
+        "overflow": false,
+        "menu_faq_links_images": "PASS"
+      },
+      {
+        "width": 390,
+        "theme": "dark",
+        "overflow": false,
+        "menu_faq_links_images": "PASS"
+      },
+      {
+        "width": 430,
+        "theme": "dark",
+        "overflow": false,
+        "menu_faq_links_images": "PASS"
+      },
+      {
+        "width": 768,
+        "theme": "dark",
+        "overflow": false,
+        "menu_faq_links_images": "PASS"
+      },
+      {
+        "width": 1024,
+        "theme": "dark",
+        "overflow": false,
+        "menu_faq_links_images": "PASS"
+      },
+      {
+        "width": 1440,
+        "theme": "dark",
+        "overflow": false,
+        "menu_faq_links_images": "PASS"
+      },
+      {
+        "width": 1920,
+        "theme": "dark",
+        "overflow": false,
+        "menu_faq_links_images": "PASS"
+      }
+    ],
+    "interactions": [
+      "Theme persistence, reset to system and OS changes PASS",
+      "Gallery keyboard, focus trap, Escape/restore focus and image error PASS",
+      "Native tap and CDP touch swipe PASS",
+      "No-JS mobile navigation and native FAQ PASS"
+    ],
+    "axe": [
+      {
+        "width": 390,
+        "theme": "light",
+        "axe_version": "4.10.3",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "light",
+        "axe_version": "4.10.3",
+        "violations": []
+      },
+      {
+        "width": 390,
+        "theme": "dark",
+        "axe_version": "4.10.3",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "dark",
+        "axe_version": "4.10.3",
+        "violations": []
+      }
+    ],
+    "page_errors": [],
+    "failed_requests": [],
+    "browser_version": "154.0.8037.57"
+  },
+  "main_text_adaptation": {
+    "at_utc": "2026-10-18T12:15:43.007599+00:00",
+    "method": "CSS text-only 200% simulation; WCAG 1.4.12 spacing override; not native browser zoom",
+    "engine": "chromium",
+    "cases": [
+      {
+        "mode": "text-200",
+        "theme": "light",
+        "width": 320,
+        "overflow": false,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-200",
+        "theme": "light",
+        "width": 390,
+        "overflow": false,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-200",
+        "theme": "light",
+        "width": 1440,
+        "overflow": false,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-200",
+        "theme": "dark",
+        "width": 320,
+        "overflow": false,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-200",
+        "theme": "dark",
+        "width": 390,
+        "overflow": false,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-200",
+        "theme": "dark",
+        "width": 1440,
+        "overflow": false,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-spacing",
+        "theme": "light",
+        "width": 320,
+        "overflow": false,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-spacing",
+        "theme": "light",
+        "width": 390,
+        "overflow": false,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-spacing",
+        "theme": "light",
+        "width": 1440,
+        "overflow": false,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-spacing",
+        "theme": "dark",
+        "width": 320,
+        "overflow": false,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-spacing",
+        "theme": "dark",
+        "width": 390,
+        "overflow": false,
+        "out_of_view_text": []
+      },
+      {
+        "mode": "text-spacing",
+        "theme": "dark",
+        "width": 1440,
+        "overflow": false,
+        "out_of_view_text": []
+      }
+    ],
+    "page_errors": [],
+    "preferences": [
+      {
+        "reduced_motion": {
+          "matches": true,
+          "scroll": "auto",
+          "transition": "0s"
+        }
+      },
+      {
+        "keyboard_skip_link": {
+          "first_tab_visible_focus": true,
+          "enter_focus_main": true
+        }
+      }
+    ],
+    "browser_version": "154.0.8037.57",
+    "site_index_sha256": "ac506f0992c4cb40b3b17640c44f13f0cb3bb4e91c45a9a8f8ce7e6dbfe486c3"
+  },
+  "before_failures_corrected": [
+    "No-JS system dark initially stayed light because static data-theme=light; removed default attribute",
+    "Tab focusout microtask closed nav before next link; uses relatedTarget",
+    "Resize CSS hiding a focused nav link blurred to body before media event; focusout restores trigger when hidden"
+  ],
+  "legal_text_sha256": "c69aef2ed970eaf64d7825492ae308a810d312243d80b51e9d9e3021b513c5cc"
+}

@@ -25,7 +25,7 @@ class QuietHandler(http.server.SimpleHTTPRequestHandler):
 
 def run(archive, checkpoint, output, executable, local=False):
     manifest = json.loads(archive.with_suffix('.manifest.json').read_text())
-    expected = json.loads((ROOT / 'docs/verification/release-candidate.json').read_text())
+    expected = json.loads((ROOT / 'docs/verification/current-preview.json').read_text())
     assert manifest['source_commit'] == checkpoint
     if not local:
         assert manifest['source_worktree_dirty'] is False

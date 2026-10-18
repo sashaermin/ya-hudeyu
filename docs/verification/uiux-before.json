@@ -1,5 +1,6 @@
 {
   "menu_next_tab": "<a class=\"button\" href=\"#download\">О выпуске для Android <span aria-hidden=\"true\">↗</span></a>",
   "nojs_menu_overlap": true,
-  "privacy_overflow": true
+  "privacy_overflow": true,
+  "legal_content_sha256": "c69aef2ed970eaf64d7825492ae308a810d312243d80b51e9d9e3021b513c5cc"
 }
