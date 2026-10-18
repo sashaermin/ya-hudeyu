@@ -3,11 +3,11 @@
 ## Текущее состояние и точка продолжения
 
 - Проект: официальный сайт «Я ХУдЕЮ», repository `sashaermin/ya-hudeyu`, branch `work/website-v2`.
-- Последний независимо verified remote **до этого documentation checkpoint**: `cf277fb28196b0b2bec5d18da9fd113e4cd8bae4` (run39114659470 success). Фактический последний SHA всегда получить через fetch/ls-remote; файл не содержит собственный будущий SHA.
+- Последний независимо verified remote **до этого documentation checkpoint**: `31c0112e8a6f36faedbbd4f2bcfd5359e4df61f1` (run39125147955 success/live production PASS). Фактический последний SHA всегда получить через fetch/ls-remote; файл не содержит собственный будущий SHA.
 - Последний ответственный агент: Codex, 18.10.2026 11:51 МСК. Другой активный website writer не известен; эта историческая запись не доказывает отсутствия активной сессии при takeover. Только один писатель ветки, Android Claude Code не затрагивать.
-- Стадия: первый инкрементальный website-кандидат **подготовлен к приёмке**, с «Скоро для Android», независимо от APK. Первый принятый coming-soon выпуск опубликован; завершается live QA. Исторические ограничения ниже действуют вне этой узкой авторизации.
+- Стадия: первый инкрементальный website-кандидат **подготовлен к приёмке**, с «Скоро для Android», независимо от APK. Первый принятый coming-soon выпуск опубликован и проверен; мастер-ТЗ не завершено. Исторические ограничения ниже действуют вне этой узкой авторизации.
 
-**Exact next:** проверить CI текущего development checkpoint: read-only tests/production_qa.py выполняет live HTTPS/16 browser cases на GitHub runner со штатным TLS trust. Production уже опубликован:9b39ffaf35c48973b8115b630ba0d06165ad09a4, Pages run39114713056 success; повторный push/deploy неизменённого сайта запрещён. 22 public HTTP hashes и12 internal404 PASS. После browser PASS — сохранить actual notices/Telegram и сопоставить весь master с выполненным, выполнить оставшиеся independent maintenance/QA (включая production Lighthouse); APK requirements отложить отдельно. Publication approved=true/coming-soon, indexing_approved=false, APK approval остаётся false. Не менять main/production без новой авторизации, не начинать deferred redesign. Rollback tag доступен на9a0857ce260540ad604f344565d535a8d47b2fa0.
+**Exact next:** проверить mobile production Lighthouse в текущем development CI (явный trailer Verify-Live-Production: true включает только read-only QA). Первый coming-soon release9b39ffaf35c48973b8115b630ba0d06165ad09a4 VERIFIED: Pages39114713056, live browser39125147955/16 cases,22 public hashes/12 internal404 PASS, TLS normal. Не redeploy неизменённый сайт. После Lighthouse сохранить actual scores/причины отклонений и продолжить единственный master checklist в IMPLEMENTATION_PROGRESS.md. APK approval остаётся false, indexing_approved=false; noindex остаётся. Main/production без нового разрешения не менять; deferred redesign не начинать. Rollback9a0857c/tag verified. Независимые maintenance/QA разрешены, APK/screens/manual-device проверки требуют соответствующих входов.
 
 ## Что предъявлено владельцу
 
@@ -35,7 +35,7 @@
 
 Все alert IDs стабильны в `project_specs/user_actions.json`, не создавать дубли.
 
-1. `site-first-website-release-policy`: ближайший owner review кандидата; разрешение на patch уже получено и выполнено. Затем отдельное разрешение публикации. Это реальная текущая внешняя граница.
+1. `site-first-website-release-policy` resolved: кандидат принят, patch и первый production release отдельно разрешены и выполнены; release9b39ffa/live QA verified. Новые production изменения требуют нового разрешения.
 2. `site-approved-android-release`: APK не утверждён, скачивание выключено. Только последующий APK/features/screens инкремент по `docs/RELEASE_CONTENT.md`; не делать APK prerequisite website readiness.
 3. `site-digest-default-branch-activation`: обязательное21:00 МСК расписание подготовлено, но не активно вне default branch. Main update требует разрешения с учётом legacy Pages side effect; не включать автоматически в разрешение website policy.
 4. Telegram settings и network cross-browser actions resolved. Не запрашивать заново секреты/доступ браузерных CDN без новой причины. Telegram delivery реально подтверждена; secret values не читать/не печатать.
@@ -81,3 +81,6 @@ T1 remote verification завершена:674e5f5 independently confirmed; run39
 ### R7 · возобновление live QA
 
 Remote main9b39ffa и devcf277fb подтверждены, Pages run39114713056 success. Все22 HTTP public bytes совпадают с manifest/принятым ZIP,12 internal paths404, HTTPS/Pages config сохранены (production-http.json). Chromium cloud ERR_CERT_AUTHORITY_INVALID — проблема proxy CA trust, не доказательство дефекта public certificate. Пробное временное NSS trust db не используется из-за существующего legacy NSS directory. Automatic approval review отклонил import CA в persistent NSS как расширение доверия без отдельного разрешения. Изменение не выполнено, TLS не отключался, обхода нет. Безопасная альтернатива — read-only browser QA в существующем verify workflow на штатном GitHub runner; trigger/permissions/бот не меняются, deployment не добавлен. До реального CI proof browser status pending; не заявлять PASS. Manifest/HTTP evidence прежней прерванной порции сохранены без потери.
+
+
+R7 завершён: production9b39ffa Pages39114713056 success; live browser/HTTP CI39125147955 PASS со штатным trust GitHub runner, без CA import/TLS bypass. Дополнительный production QA теперь только по явному commit trailer Verify-Live-Production: true, чтобы не повторять дорогие live suites на documentation checkpoints. Proof first-production-release.json; точный scope mocked gallery/browser interactions описан в tests/browser_qa.py, публичных Android screens нет. Следующий independent master QA — production Lighthouse.

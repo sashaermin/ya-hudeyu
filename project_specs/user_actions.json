@@ -67,7 +67,7 @@
     },
     {
       "id": "site-first-website-release-policy",
-      "status": "open",
+      "status": "resolved",
       "source": "Codex",
       "task": "Сайт · первый инкрементальный релиз",
       "subtask": "Приёмка кандидата после применения разрешённой coming-soon политики",
@@ -79,7 +79,8 @@
       ],
       "blocked": "Фактический первый website release: ожидаются visual/legal acceptance и отдельная публикационная авторизация.",
       "can_continue": "Авторизованная политика реализована, CI76 tests и actual archive22files/4views PASS, Telegram173. Других approved независимых задач не найдено; далее приёмка/замечания и отдельное разрешение публикации. APK не prerequisite сайта.",
-      "link": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39114231216/artifacts/12131711410"
+      "link": "https://yahudeyu-app.ru/",
+      "resolution": "Владелец принял первый кандидат и отдельно разрешил публикацию; policy patch применён, publication9b39ffaf35c48973b8115b630ba0d06165ad09a4 реально deployed через Pages39114713056 success. Live browser CI39125147955:16 cases/22 public hashes/12 internal404 PASS, TLS включён, noindex сохранён, APK выключен. Rollback tag доступен на9a0857c. Это завершение первого coming-soon release, не всего мастер-ТЗ и не разрешение новых production изменений."
     }
   ]
 }

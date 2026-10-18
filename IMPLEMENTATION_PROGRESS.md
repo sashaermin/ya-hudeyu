@@ -2,16 +2,33 @@
 
 Единственная общая дорожная карта Codex / Claude Code / других агентов. Основание: неизменённый [мастер-ТЗ](project_specs/WEBSITE_MASTER_TZ_2026-10-18.md). Общие правила — AGENTS.md, текущее продолжение — AGENT_HANDOFF.md.
 
-**Актуальный срез R5:** первый coming-soon website-кандидат подготовлен независимо от APK и проверен; actual CI artifact доступен для приёмки. Owner next — review и отдельная авторизация неприменённого policy patch; публикация/main не разрешены. Краткий полный state — AGENT_HANDOFF.md. Исторические записи ниже не переоткрывают уже решённые Telegram/network вопросы.
+**Актуальный срез R7/R8:** первый coming-soon website release опубликован и проверен: production9b39ffa, Pages39114713056 success, live browser39125147955 PASS. Это **не завершение мастер-ТЗ**. Исторические записи ниже — журнал, текущее состояние и независимые next tasks определяет следующая таблица. APK не блокирует уже опубликованный сайт; только соответствующие пункты deferred. Production без новой авторизации не менять.
 
-| Этап ТЗ | Цель / критерии | Состояние и checkpoint | Проверки / остаток |
-|---|---|---|---|
-| 0. Аудит | Источники, токены, ресурсы, различение release/dev | Аудит выполнен, `a4de44b` | Android SHA зафиксирован; пути/активы описаны. APK и release screenshots ожидают решения владельца. Первоначально Pages API недоступен; в4B подтверждён legacy main:/ и HTTPS preservation. |
-| 1. Дизайн-основа | Оригинальный бренд, CSS-токены и обе темы, адаптивный каркас | Реализован `356eaef` | Сверены оригинальные ресурсы; node syntax PASS. Матрица/контраст подтверждены в4A/4B, owner visual acceptance pending. |
-| 2. Контент / секции | Hero, возможности, gallery, установка, FAQ, footer | Каркас/взаимодействия `24ca8d5`, первый coming-soon кандидат R1 готов; APK content deferred | Draft build PASS; JS syntax PASS; CNAME/privacy побайтно сохранены. Реальные скриншоты, публичные функции и hero screenshot не добавлены без подтверждённой сборки. |
-| 3. Загрузка / SEO | Проверенный APK, checksum/версия/совместимость, метатеги, performance | В работе | Download gate реализован, draft noindex, production build блокируется. Gate tests PASS, WOFF2/SEO/релизная документация реализованы (`a14a2c6`); APK ожидает утверждения. |
-| 4. QA | 8 ширин × 2 темы; клавиатура, touch, ссылки, axe/Lighthouse, screenshots | В работе | 16/16 Chromium viewport/theme PASS, 4 axe runs 0 violations, keyboard/touch/gallery PASS. Lighthouse 96/100/100/69 (draft noindex); 4 screenshots сохранены. Firefox/WebKit также проверены (4B); физические устройства, отдельные Edge/Safari и release content pending. См. docs/QA.md. |
-| 5. Публикация | Одобрение владельца, main/deploy, HTTPS/APK/rollback | Не разрешена, не начата | Нельзя менять main, PR/merge/deploy/publish APK без отдельного разрешения. |
+| Этап ТЗ | Текущее состояние | Проверенные критерии и незавершённое |
+|---|---|---|
+| 0. Аудит | Выполнен для исходного design/source SHA | SOURCE_AUDIT/ASSET_SOURCES/DESIGN_MAPPING; релизный APK/source audit отложен до выбранного артефакта. Android/другие проекты не изменены. |
+| 1. Дизайн-основа | Реализована; первый визуальный кандидат принят владельцем | Оригинальные бренд/маскот/шрифты/tokens, обе темы, адаптивность и состояния. Полное сравнение release screens зависит от APK. Deferred redesign не разрешён. |
+| 2. Контент/секции | Coming-soon вариант опубликован; full-content открыт | §4.1–4.8: навигация, hero с маскотом, безопасные empty states, установка, FAQ, footer/privacy работают. CTA скачивания, hero screenshot, features, gallery реальных screens и release-specific FAQ deferred до APK evidence/approval. Неподтверждённых claims нет. |
+| 3. Загрузка/SEO | Независимая инфраструктура готова; APK integration deferred | data configs, release gates, метатеги/canonical/OG/Twitter/favicon/robots/sitemap и SoftwareApplication с достоверными полями реализованы; версии/size/SHA/minAndroid/changelog/URL и настоящий download не заполнены без артефакта. Intentional noindex/Disallow сохранён, SEO target исключение политики. |
+| 4. QA | Автоматизированный QA выполнен, production Lighthouse следующий | Исторический4D:64 browser viewport/theme +16axe; послеR1 copy Chromium16/4axe и48 adaptation cases. Актуальный live coming-soon:16 Chrome cases320–1920×темы, меню/FAQ/theme/no-JS PASS,22files/12internal404 PASS. Physical Android/iOS/Safari, screen reader/native zoom и native WebKit swipe не выполнялись; требуют устройства/ручного оператора. Не выдавать engine emulation за device tests. |
+| 5. Публикация | Первый coming-soon выпуск завершён по отдельному разрешению | Pages39114713056/production9b39ffa/HTTPS/privacy/CNAME/public allowlist verified; rollback tag9a0857c. Полный APK-сайт и дальнейшие releases не разрешены этим выпуском. |
+
+### Чеклист остатка мастер-ТЗ (единственный roadmap, без нового ТЗ)
+
+| Требование | Статус / зависимость | Точное следующее действие |
+|---|---|---|
+| §3, §7.1–3 release audit/APK | Deferred: нет approved APK | После owner artifact approval проверить manifest/signature/version/size/SHA/URL/реальный download по RELEASE_CONTENT.md. |
+| §4.1/4.2 download CTA/hero screen | Deferred: APK/screens | Подключить только утверждённые реальные screens и download, affected QA; не генерировать интерфейс. |
+| §4.3 verified feature cards | Deferred: release evidence | Проверить каждую функцию в выбранной версии; добавить реальные icons/evidence, не обещать dev features. |
+| §4.4 gallery real content | Deferred: release screens обеих тем | Generic gallery/error/focus/swipe реализованы и проверены на явно test-only fixtures; публикация actual screens после approval. |
+| §4.5/4.6 versioned installation/release data | Deferred: APK | Не выдумывать совместимость, дату, версию, URL, changelog. |
+| §4.7 sync/backup/update FAQs | Deferred только release-specific ответы | Текущие честные установка/privacy/support FAQs готовы; уточнить release-specific поведение по APK/code/doc evidence. |
+| §5/6/7 browser/device/manual accessibility | External manual capability | Physical Android Chrome/iOS Safari, standalone Safari, real screen reader/native zoom/WebKit swipe; automated engines и axe не заменяют эти проверки. |
+| §6 production Lighthouse mobile ≥90/95/95/95 | Independent R8: подготовлен read-only runner замер | Получить actual scores/metrics; устранить обоснованные defects только в development, deployment отдельно. SEO<95 при intentional noindex документировать как разрешённую причину отклонения. |
+| §6 SEO indexing | Owner policy decision, не APK blocker | Сейчас indexing_approved=false; не включать только ради score. |
+| §7.8 screenshots/visual acceptance | Первый coming-soon кандидат принят | Снимки4тем/ширин сохранены; release-specific full UI сравнение и приёмка после настоящих screens. |
+| §8 final full release | Deferred: release content/приёмка + новая production authorization | Первый coming-soon не закрывает требования APK/download и не разрешает следующий production push. |
+| Shared notifications21:00 МСК | Prepared; owner main-workflow authorization required | Digest schedule default branch ещё не активен; не менять production/main для этого без отдельного разрешения. |
 
 ## Дополнительный разрешённый этап W1 — общая работа агентов и уведомления
 
@@ -142,3 +159,5 @@ R6 remote70527d0 подтверждён, run39114231216 success:76 unit tests, a
 
 
 R7 production опубликован9b39ffa, Pages39114713056 success; backup tag на9a0857c подтверждён.22 public bytes/12 internal404/HTTPS/config unchanged PASS (production-http.json). Live Chromium cloud остановился на proxy CA trust, не на product defect. Persistent CA import отклонён automatic approval review; TLS не отключали, CA не меняли. Read-only production QA добавлен в существующий verify workflow на GitHub runner с normal TLS, без новых triggers/permissions/deployment; фактический browser result pending. Следующее — проверить реальный CI, затем актуализировать полный checklist master и закрывать independent QA, не объявляя весь master завершённым первым coming-soon release.
+
+R7 live verification фактически завершён в run39125147955:78 unit tests и production notice16 browser cases/22files/12internal404/TLS/noindex/APKfalse PASS. R8 следующий независимый шаг: read-only production Lighthouse в существующем verify; expensive live QA теперь только при Verify-Live-Production: true, чтобы не повторять на обычных docs commits. Полный master checklist выше сохраняет все незавершённые требования и конкретные зависимости; новые функции/редизайн не начаты.

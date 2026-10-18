@@ -1,5 +1,5 @@
 {
-  "status": "Pages deployed and HTTP verified; live browser verification pending on GitHub runner",
+  "status": "VERIFIED: Pages, HTTP and live browser PASS",
   "accepted_candidate": "b12b0b0fadf4c260186f65a1e9813bde43896a24",
   "rollback_commit": "9a0857ce260540ad604f344565d535a8d47b2fa0",
   "rollback_tag": "rollback/website-first-release-2026-10-18",
@@ -125,5 +125,22 @@
   "pages_run": 39114713056,
   "pages_conclusion": "success",
   "published_commit": "9b39ffaf35c48973b8115b630ba0d06165ad09a4",
-  "cloud_browser_limitation": "ERR_CERT_AUTHORITY_INVALID from proxy CA trust; persistent CA import rejected by automatic approval review; no TLS bypass or trust-store change performed"
+  "cloud_browser_limitation": "ERR_CERT_AUTHORITY_INVALID from proxy CA trust; persistent CA import rejected by automatic approval review; no TLS bypass or trust-store change performed",
+  "browser_verification_run": 39125147955,
+  "browser_check_run": 117668589807,
+  "browser_matrix_runs": 16,
+  "tls_verification": true,
+  "production_url": "https://yahudeyu-app.ru/",
+  "live_production_notices": [
+    {
+      "title": "Production website verified",
+      "message": "commit 9b39ffaf35c48973b8115b630ba0d06165ad09a4; public_files 22; internal_404 12; browser_matrix 16; noindex=true; APK=false; TLS=true; page_errors=0"
+    }
+  ],
+  "remaining_limitations": [
+    "Physical Android/iOS/Safari and screen-reader checks not performed",
+    "Indexing intentionally disabled; SEO threshold needs policy exception",
+    "APK/features/screenshots deferred until owner approves an artifact",
+    "Mobile production Lighthouse measurement is next independent task"
+  ]
 }

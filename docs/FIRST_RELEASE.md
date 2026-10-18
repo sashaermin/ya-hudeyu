@@ -2,13 +2,15 @@
 
 Основание: уточнение владельца 18.10.2026 — подготовить редизайн и основные секции отдельно от отложенной интеграции APK. Это процедура приёмки и будущей публикации, не новое ТЗ и не разрешение выполнять deploy.
 
-## Подготовленный кандидат
+## Первый опубликованный coming-soon release
 
 Главная с оригинальным Android-брендом/котиком/шрифтами, обе темы, адаптивная навигация, секции знакомства, будущей галереи, установки, FAQ, поддержка и неизменённая `/privacy.html`. Состояние загрузки — «Скоро для Android», без даты, версии, активного download и неподтверждённых функций. Отсутствие APK не блокирует подготовку и приёмку этого website-кандидата. Полные features/screens/download — следующий инкремент по мастер-ТЗ.
 
 Кандидат всегда собирается как draft с noindex и robots Disallow. `python3 tools/package_preview.py` создаёт свежую allowlisted сборку во временной папке и детерминированный ZIP с manifest/SHA-256. В архиве только сайт, без внутренних docs/config/tests/секретов. Manifest указывает Git commit и наличие uncommitted source: локальный dirty candidate не выдаётся за точное содержимое remote. GitHub Actions собирает архив из чистого checkout после проверок и сохраняет на7дней. Это Actions artifact для просмотра, не Pages deployment и не размещённый preview-сайт.
 
 ## Как посмотреть
+
+Открыть действующий сайт: **https://yahudeyu-app.ru/**. Published commit `9b39ffaf35c48973b8115b630ba0d06165ad09a4`, Pages run39114713056 success; live browser run39125147955 PASS. Это актуальный способ просмотра; прежние archive/screenshot ссылки ниже сохранены как evidence приёмки. Noindex намеренно сохранён; APK недоступен.
 
 Самый простой визуальный просмотр без установки: открыть [главную на компьютере — светлая тема](https://github.com/sashaermin/ya-hudeyu/blob/70527d0e676c3b5dbc497082668af6db9d7cfb33/docs/screenshots/rc-1440-light.png), [тёмная тема](https://github.com/sashaermin/ya-hudeyu/blob/70527d0e676c3b5dbc497082668af6db9d7cfb33/docs/screenshots/rc-1440-dark.png), [мобильная — светлая](https://github.com/sashaermin/ya-hudeyu/blob/70527d0e676c3b5dbc497082668af6db9d7cfb33/docs/screenshots/rc-390-light.png) и [тёмная](https://github.com/sashaermin/ya-hudeyu/blob/70527d0e676c3b5dbc497082668af6db9d7cfb33/docs/screenshots/rc-390-dark.png). Это сохранённые снимки кандидата, не интерактивный сайт. После policy patch draft HTML побайтно совпадает с этим визуальным baseline.
 
@@ -56,3 +58,8 @@
 R4 [retry evidence](verification/artifact-retry.json): обе попытки successful, round-trip/render прошёл повторно, commit Telegram127 принят вattempt1 и не повторён вattempt2. Исходная гипотеза о name collision не выдаётся за воспроизведённый дефект; фактически доказаны успешный retry и явная attempt provenance. Обещание сохранности старых IDs снято по результату проверки.
 
 Последняя verified review ссылка и digest: [Node24 proof](verification/artifact-node24.json), artifact12131711410/source70527d0. GitHub artifacts ограничены retention и rerun lifecycle, при их недоступности сверяйте восстановленный inner ZIP с зафиксированным SHA. Текущие76 unit tests прошли в CI R6; историческое число58 относится к R5;20 policy proposal tests — историческая изолированная проверка до применения diff.
+
+
+## Завершение production verification
+
+Actual Pages/HTTPS/22 public hashes/12 internal404/live16 browser cases подтверждены в docs/verification/first-production-release.json и production-http.json. Rollback tag rollback/website-first-release-2026-10-18 указывает на9a0857c. Cloud Chromium упёрся в proxy CA trust; persistent import отклонён automatic approval review и не выполнен. Безопасная проверка сделана на GitHub runner со штатным TLS trust, не отключая сертификаты. Для повторного read-only CI QA при реальной необходимости добавить Verify-Live-Production: true в final commit trailer block; это не разрешение и не запуск deployment. Полный master остаётся частично открытым, см. IMPLEMENTATION_PROGRESS.md.

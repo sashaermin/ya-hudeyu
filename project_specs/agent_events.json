@@ -339,6 +339,25 @@
       "done": "Точный согласованный patch применён после сверки SHA-256 и latest remote. Реальные approvals, noindex и APK downloads не изменены.",
       "next": "Проверить CI/archive и предъявить кандидат для визуальной/юридической приёмки.",
       "status": "Политика реализована по разрешению; публикация не разрешена"
+    },
+    {
+      "id": "site-first-production-release-r7-20261018",
+      "at": "2026-10-18T11:57:13.938139Z",
+      "type": "stage_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Первый релиз",
+          "R7"
+        ],
+        "title": "Проверенный production выпуск coming-soon"
+      },
+      "checkpoint": "9b39ffaf35c48973b8115b630ba0d06165ad09a4",
+      "verified": "Pages39114713056 success; CI39125147955:16 live browser cases,22 public hashes,12 internal404 PASS. TLS включён; noindex=true/APK=false.",
+      "done": "Опубликован https://yahudeyu-app.ru/ из публичного allowlist. Темы, меню, FAQ и no-JS проверены. CNAME/privacy/Pages сохранены; rollback9a0857c доступен.",
+      "next": "Production Lighthouse и remaining master checklist; APK только после отдельного approval, физические devices требуют ручной проверки.",
+      "status": "Первый выпуск проверен; мастер-ТЗ частично открыто; production повторно не менять"
     }
   ]
 }
