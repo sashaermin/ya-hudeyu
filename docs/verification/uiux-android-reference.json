@@ -1,0 +1,45 @@
+{
+  "android_read_only_sha": "960e43b545fb0203e1199256db93885acca6e33d",
+  "prior_design_source": "874de91cb626b6f0e78532963b378d86901b97d9",
+  "records": [
+    {
+      "path": "app/src/main/java/com/aleksandr/stepstracker/ui/theme/Color.kt",
+      "blob_sha": "697ba3e8edf8ebf0e5bfe53b4bb99aaf5e223562",
+      "unchanged_since_design_source": true,
+      "sha256": "8bf942fc407532b6931c18f3e0ccb1ddb0ca7ff589b740a2c023c0a8b2016c76"
+    },
+    {
+      "path": "app/src/main/java/com/aleksandr/stepstracker/ui/theme/Theme.kt",
+      "blob_sha": "231aa30876bca4ac8b398cd5d03b1dbfd14b3f3f",
+      "unchanged_since_design_source": true,
+      "sha256": "3cc09b4eb11922c0a9127197fb9757da183f530f843247f19a5936fd1722b09f"
+    },
+    {
+      "path": "app/src/main/java/com/aleksandr/stepstracker/ui/theme/HudeyuComponents.kt",
+      "blob_sha": "f59cd5519a014ca8b6adbc2fc6e41a9763ea0085",
+      "unchanged_since_design_source": true,
+      "sha256": "ea7a19261135191b9cc088b2b7cab8cc272b6aa7f6c250c197acdfa4e7b94b45"
+    },
+    {
+      "path": "app/src/main/java/com/aleksandr/stepstracker/ui/theme/HudeyuSystem.kt",
+      "blob_sha": "e891608bb38f9859b8daed68ee9f2c668faca3ef",
+      "unchanged_since_design_source": true,
+      "sha256": "515069402e858a77001fd9ddca4c926d4b084778349a0b32d6341a39cd6dee8b"
+    },
+    {
+      "path": "app/src/main/res/drawable-nodpi/logo_wordmark_green_dark.png",
+      "blob_sha": "b1e3aff1a7adb61005492fb74ce2cb71d71bb0f1",
+      "website_original_matches_current_android": true
+    },
+    {
+      "path": "app/src/main/res/drawable-nodpi/logo_wordmark_green_light.png",
+      "blob_sha": "86d0fcb82797545b486b80b9a74fb3aafb635183",
+      "website_original_matches_current_android": true
+    },
+    {
+      "path": "app/src/main/res/drawable/mascot_calm.webp",
+      "blob_sha": "5807f869f55e2c085de47da4a3aea992c8ca5850",
+      "website_original_matches_current_android": true
+    }
+  ]
+}
