@@ -71,9 +71,12 @@ def run(base, output, axe_path, interactions_only=False, engine="chromium", exec
                 page.evaluate('scrollTo(0,document.body.scrollHeight)'); page.wait_for_timeout(100)
                 page.evaluate('scrollTo(0,0)'); page.wait_for_timeout(100)
                 for image in page.locator('img:visible').all():
-                    assert image.evaluate('(el)=>el.complete && el.naturalWidth>0'), image.get_attribute('src')
+                    # Below-fold Phase2 assets are intentionally lazy. Trigger loading,
+                    # then require successful decoding; a broken asset still times out.
+                    image.scroll_into_view_if_needed()
+                    page.wait_for_function('(el)=>el.complete && el.naturalWidth>0',arg=image.element_handle(),timeout=10000)
                 if width in (390,1440):
-                    page.evaluate('document.activeElement.blur()')
+                    page.evaluate('scrollTo(0,0);document.activeElement.blur()')
                     page.screenshot(path=str(output/f'{width}-{theme}.png'),full_page=True)
                 if width in (390,1440) and axe_path:
                     page.add_script_tag(path=axe_path)

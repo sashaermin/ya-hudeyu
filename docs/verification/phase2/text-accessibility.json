@@ -1,0 +1,109 @@
+{
+  "at_utc": "2026-10-18T16:34:13.071461+00:00",
+  "method": "CSS text-only 200% simulation; WCAG 1.4.12 spacing override; not native browser zoom",
+  "engine": "chromium",
+  "cases": [
+    {
+      "mode": "text-200",
+      "theme": "light",
+      "width": 320,
+      "overflow": false,
+      "out_of_view_text": []
+    },
+    {
+      "mode": "text-200",
+      "theme": "light",
+      "width": 390,
+      "overflow": false,
+      "out_of_view_text": []
+    },
+    {
+      "mode": "text-200",
+      "theme": "light",
+      "width": 1440,
+      "overflow": false,
+      "out_of_view_text": []
+    },
+    {
+      "mode": "text-200",
+      "theme": "dark",
+      "width": 320,
+      "overflow": false,
+      "out_of_view_text": []
+    },
+    {
+      "mode": "text-200",
+      "theme": "dark",
+      "width": 390,
+      "overflow": false,
+      "out_of_view_text": []
+    },
+    {
+      "mode": "text-200",
+      "theme": "dark",
+      "width": 1440,
+      "overflow": false,
+      "out_of_view_text": []
+    },
+    {
+      "mode": "text-spacing",
+      "theme": "light",
+      "width": 320,
+      "overflow": false,
+      "out_of_view_text": []
+    },
+    {
+      "mode": "text-spacing",
+      "theme": "light",
+      "width": 390,
+      "overflow": false,
+      "out_of_view_text": []
+    },
+    {
+      "mode": "text-spacing",
+      "theme": "light",
+      "width": 1440,
+      "overflow": false,
+      "out_of_view_text": []
+    },
+    {
+      "mode": "text-spacing",
+      "theme": "dark",
+      "width": 320,
+      "overflow": false,
+      "out_of_view_text": []
+    },
+    {
+      "mode": "text-spacing",
+      "theme": "dark",
+      "width": 390,
+      "overflow": false,
+      "out_of_view_text": []
+    },
+    {
+      "mode": "text-spacing",
+      "theme": "dark",
+      "width": 1440,
+      "overflow": false,
+      "out_of_view_text": []
+    }
+  ],
+  "page_errors": [],
+  "preferences": [
+    {
+      "reduced_motion": {
+        "matches": true,
+        "scroll": "auto",
+        "transition": "0s"
+      }
+    },
+    {
+      "keyboard_skip_link": {
+        "first_tab_visible_focus": true,
+        "enter_focus_main": true
+      }
+    }
+  ],
+  "browser_version": "154.0.8037.57",
+  "site_index_sha256": "6bcb1876386e65ad2630d882f1ff23508ed6c26ecc8dbc2a4c1e1213197790a6"
+}

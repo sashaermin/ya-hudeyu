@@ -111,3 +111,7 @@ U22: доступный loading status, aria-busy, отсутствие stale im
 ## U3 · публикация по отдельному разрешению владельца
 
 После завершённого audit владелец отдельно разрешил выпуск именно этих fixes. Они опубликованы8fb7bf2 (approved source0b706e3), Pages39129023427 иnormal-TLS live39129135130 success:22file hashes/16internal404,main16+privacy16 layouts/noJS6/focus/gallery2themes/12axe0violations. [Production proof](verification/uiux-production-release.json). Классификация44UI требований не изменена:35complete/7releaseblocked/2manual; новые непроверенные claims/screens/APK не добавлены. Фразы онеизменённом production выше относятся кпериоду аудита до отдельной авторизации U3. Rollback9b39ffa сохранён; будущие production updates требуют нового owner решения.
+
+## Phase2 development enrichment (отдельная owner authorization)
+
+Новый coming-soon development candidate добавляет5 source-backed **planned** directions, journey, original mascot hint, status/FAQ — docs/PHASE2_REVIEW.md. Это не released features и не Android screenshots; U14/U15/U17/U19/U25/U26/U28 остаются BLOCKED_BY_RELEASE_CONTENT, U42/U43 manual. Исходные44 статуса не подменяются Phase2 layout tests. Матрица нового кандидата48cases/12axe0violations/6noJS/12text adaptation, evidence phase2-review.json; production не меняется. Owner visual/content review pending.

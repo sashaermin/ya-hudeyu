@@ -47,6 +47,11 @@ def validate(site, release, production=False):
             raise ValueError('Expected full Android source commit')
         from datetime import date
         date.fromisoformat(release['date'])
+    for area in site.get('planned_areas', []):
+        if area.get('status') != 'in-development' or not re.fullmatch(r'[a-f0-9]{40}', area.get('source_commit', '')) or not area.get('source_path'):
+            raise ValueError('Planned area requires development status and source evidence')
+        if area.get('id') not in ('food', 'weight', 'activity', 'training', 'stats'):
+            raise ValueError('Unknown planned area')
     for feature in site['features']:
         if feature.get('verified_version') != release.get('version') or not verified or not feature.get('evidence'):
             raise ValueError('Feature is not verified against this APK')
@@ -81,7 +86,7 @@ def render(site, release, production=False, publication=None):
     values.update(robots='index,follow' if production and publication.get('indexing_approved', True) is True else 'noindex,nofollow',
                   download_label='Скачать для Android' if verified else 'О выпуске для Android',
                   hero_release_note=f'Android · Версия {escape(release["version"])}' if verified else 'Скоро для Android. Дата выпуска пока не объявлена.',
-                  features_intro='Возможности подтверждены для указанной ниже версии приложения.' if site['features'] else 'Знакомство с возможностями — вместе с доступной версией приложения.',
+                  features_intro='Возможности подтверждены для указанной ниже версии приложения.' if site['features'] else 'Пять направлений, над которыми мы работаем. Это замысел и текущая область разработки, а не список выпущенных функций.',
                   screens_intro='Настоящие экраны версии ' + escape(release['version']) + '.' if site['screenshots'] else 'Галерея экранов появится вместе с доступной версией приложения.',
                   release_summary='Проверенный файл и сведения о выпуске — в одном месте.' if verified else 'Готовим сведения о проверенном выпуске. Ссылка появится после проверки APK.')
     mascot = '<img class="hero-cat" src="assets/brand/originals/mascot_calm.webp" width="440" height="512" alt="Рыжий котик — маскот Я ХУдЕЮ" fetchpriority="high">'
@@ -94,8 +99,11 @@ def render(site, release, production=False, publication=None):
         values['features'] = '<div class="feature-grid">' + ''.join(
             '<article class="panel">' + (f'<img class="feature-icon" src="{asset(f["icon"])}" alt="" width="52" height="52" loading="lazy">' if f.get('icon') else '') +
             f'<h3>{escape(f["title"])}</h3><p>{escape(f["description"])}</p></article>' for f in site['features']) + '</div>'
+    elif site.get('planned_areas'):
+        values['features'] = '<p class="development-note"><span class="dot" aria-hidden="true"></span>В разработке · состав функций уточняется к выпуску</p><div class="intent-grid">' + ''.join(
+            '<article class="intent-card intent-' + escape(a['id']) + '"><span class="intent-label">' + ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5,5.5c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM9.8,8.9L7,23h2.1l1.8,-8 2.1,2v6h2v-7.5l-2.1,-2 0.6,-3C14.8,12 16.8,13 19,13v-2c-1.9,0 -3.5,-1 -4.3,-2.4l-1,-1.6c-0.4,-0.6 -1,-1 -1.7,-1 -0.3,0 -0.5,0.1 -0.8,0.1L6,8v6h2V9.6L9.8,8.9z"/></svg>' if a['id'] == 'activity' else '') + escape(a['label']) + '</span><p class="intent-topic">' + escape(a['title']) + '</p><h3>' + escape(a['heading']) + '</h3><p>' + escape(a['description']) + '</p><span class="intent-state">Направление разработки</span></article>' for a in site['planned_areas']) + '</div>'
     else:
-        values['features'] = '<div class="panel empty-features"><h3 style="margin:0">Расскажем больше к выпуску</h3><p>Здесь появится подробный рассказ о возможностях доступной версии. Пока можно познакомиться с приложением и найти ответы на вопросы ниже.</p></div>'
+        values['features'] = '<div class="panel empty-features"><h3 style="margin:0">Расскажем больше к выпуску</h3><p>Подробности появятся вместе с подтверждённой версией приложения.</p></div>'
     if site['screenshots']:
         values['gallery'] = '<div class="gallery-track" tabindex="0" role="region" aria-label="Скриншоты приложения">' + ''.join(
             f'<figure class="screen-item"><button class="screen-button" type="button" data-caption="{escape(s["caption"])}" aria-label="Открыть: {escape(s["caption"])}"><img src="{asset(s["src"])}" alt="{escape(s["alt"])}" width="{s["width"]}" height="{s["height"]}" loading="lazy"></button><figcaption>{escape(s["caption"])}</figcaption></figure>' for s in site['screenshots']) + '</div><div class="gallery-toolbar"><button class="icon-button" type="button" data-gallery-direction="-1" aria-label="Предыдущие экраны">←</button><button class="icon-button" type="button" data-gallery-direction="1" aria-label="Следующие экраны">→</button></div>'
@@ -135,7 +143,7 @@ def build(output, production=False):
     output.mkdir(parents=True, exist_ok=True)
     # Do not publish repository docs, configs, source maps, test fixtures, or original unused assets.
     files = ['privacy.html', 'CNAME', 'styles/site.css', 'scripts/site.js', 'scripts/theme.js',
-             'assets/brand/originals/mascot_calm.webp', 'assets/brand/originals/ic_launcher_green.png',
+             'assets/brand/originals/mascot_calm.webp', 'assets/brand/originals/mascot_hint.webp', 'assets/brand/originals/ic_launcher_green.png',
              'assets/fonts/onest_regular.woff2', 'assets/fonts/onest_semibold.woff2', 'assets/fonts/unbounded_semibold.woff2',
              'assets/fonts/Onest-OFL.txt', 'assets/fonts/Unbounded-OFL.txt']
     files += [str(p.relative_to(ROOT)) for p in (ROOT / 'assets/brand/web').glob('*.webp')]

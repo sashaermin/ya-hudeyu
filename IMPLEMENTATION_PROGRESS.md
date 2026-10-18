@@ -30,6 +30,12 @@
 | §8 final full release | Deferred: release content/приёмка + новая production authorization | Первый coming-soon не закрывает требования APK/download и не разрешает следующий production push. |
 | Shared notifications21:00 МСК | **COMPLETED**, main3cf7825 | Все4 notification файла изa7e495e синхронизированы; Codex/topic6/21:00МСК/manual dry-run+delivery подтверждены. Первый automatic run pending observation, не блокер; больше sync/activation не требуется. |
 
+## Phase2 · approved content expansion / visual enrichment
+
+Owner authorization сохранена дословно project_specs/PHASE2_CONTENT_AUTHORIZATION_2026-10-18.md. Это дополнение master, не новый replacement spec/не full redesign. Plan: P2A reuse/source audit; P2B content/visual implementation; P2C QA+owner review package; P2D owner review, STOP доотдельной production authorization. P2A/B выполнены: reuse fonts/tokens/nav/footer/gallery/release gates;5source-backed planned_areas отдельно отrelease features, journey/timeline/original hint/status/FAQ. No APK/release screenshots/claims.
+
+P2C локально verified:31site+68notify tests,48responsive layout cases в3engines/12axe0violations/12text adaptation/6noJS/privacy320×2;before/after20PNG иsource/claim table. Actual clean CI artifact/source SHA нужно подтвердить послеpush, затем P2C complete иP2D pending owner visual/content review. Existing7release-blocked/2manual UI items не закрыты intent-card текстами. Main/publicproduction/privacy/release+publication configs/workflows untouched; Telegram COMPLETED. Review/evidence — docs/PHASE2_REVIEW.md иdocs/verification/phase2-review.json.
+
 ## Актуальный production срез U3
 
 Owner-authorized UI fixes из0b706e3 опубликованы public-only8fb7bf2 (4 files,22file allowlist), Pages39129023427 success. Normal-TLS live39129135130 success:78unit,22public hashes/16private404,16main+16privacy layouts,6noJS/keyboard focus/legal-text/gallery loading/error/retry/reopen,12axe0violations. Lighthouse mobile99/100/100/69; intentional noindex сохранён, APK disabled. Rollback9b39ffa/tag website-uiux-release-2026-10-18 истарый9a0857c доступны. Подробный manifest/notices — docs/verification/uiux-production-release.json. Полный master не закрыт: UI audit35 complete/7releaseblocked/2manual; дальнейшие inputs иограничения остаются вчеклисте. Никакого дополнительного release/редизайна/digest этим разрешением не начато.

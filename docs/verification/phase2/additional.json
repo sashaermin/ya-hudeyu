@@ -1,0 +1,86 @@
+{
+  "nojs": [
+    {
+      "theme": "light",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 768,
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 768,
+      "passed": true
+    }
+  ],
+  "privacy": [
+    {
+      "theme": "light",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "after-390-light.png",
+    "directions-390-light.png",
+    "journey-390-light.png",
+    "status-390-light.png",
+    "after-1440-light.png",
+    "directions-1440-light.png",
+    "journey-1440-light.png",
+    "status-1440-light.png",
+    "after-390-dark.png",
+    "directions-390-dark.png",
+    "journey-390-dark.png",
+    "status-390-dark.png",
+    "after-1440-dark.png",
+    "directions-1440-dark.png",
+    "journey-1440-dark.png",
+    "status-1440-dark.png"
+  ],
+  "new_section_bounds": [
+    {
+      "width": 390,
+      "theme": "light",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "passed": true
+    }
+  ]
+}

@@ -491,6 +491,25 @@
       "done": "Агенты изtrusted trailers всех unique24h SHA; partial/unknown/no-commits состояния. Activation action resolved;APK approval untouched. Первый автоматический schedule не заявлен verified.",
       "next": "Remote/CI/Telegram proof; затем только отдельно разрешённый4file notification sync наmain. Не повторять digest и не менять production/workflows.",
       "status": "Development fix готов; active schedule/manual delivery confirmed; automatic schedule пока не verified"
+    },
+    {
+      "id": "site-phase2-content-implementation-20261018",
+      "at": "2026-10-18T16:39:42.716050+00:00",
+      "type": "stage_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Phase2",
+          "P2A–P2B"
+        ],
+        "title": "Content expansion иvisual enrichment вdevelopment"
+      },
+      "checkpoint": "94bb268148423eca5c82643da700d62a1b88975f",
+      "verified": "31site+68notify tests PASS;48layouts/12axe0violations/12text adaptation/6noJS/privacy320×2;local archive23files/4views;3production HTTPS hashes unchanged.",
+      "done": "Пять planned-направлений, journey/timeline, original hint mascot, status/FAQ; источник Android6c4e8c0 read-only. No APK/released claims;brand/themes/nav/privacy preserved.20before/after/section PNG иreview source table готовы.",
+      "next": "Проверить clean CI artifact иremote, записать exact source/artifact link, затем STOP дляowner visual/content review. Production/main/deploy не разрешены.",
+      "status": "Phase2 development candidate; owner review pending; Telegram workflows untouched"
     }
   ]
 }
