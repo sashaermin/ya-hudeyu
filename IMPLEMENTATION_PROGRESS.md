@@ -21,7 +21,7 @@
 
 - APK не утверждён (прямое подтверждение владельца 18.10.2026); registry `site-approved-android-release`.
 - Нет подтверждённых release screenshots; не подменять интерфейс.
-- Отсутствие двух Telegram bindings подтверждено Actions probe; доставка заблокирована, registry `site-telegram-settings-verification`.
+- Telegram bindings восстановлены: live sendMessage ack67 и последующий push ack77; registry `site-telegram-settings-verification` resolved. Исторические failed runs ниже сохранены как журнал.
 - Digest 21:00 МСК обязателен и подготовлен в website-digest.yml; активация требует разрешения на default-branch workflow, main не разрешён.
 - Визуальное сходство подтверждает владелец на этапе приёмки, юридические изменения согласуются отдельно.
 
@@ -69,3 +69,9 @@ Run39107259552: verify success, notify failure (missing TELEGRAM_BOT_TOKEN/TELEG
 ## Telegram priority verification · 18.10.2026 10:47 МСК
 
 По прямому запросу владельца повторён existing notify mechanism: run39107499146 attempt2 success; check-config success; Telegram accepted message_id67 для87fd265. **Telegram: DELIVERED** в смысле подтверждённой отправки Telegram, без утверждения о прочтении человеком. Missing bindings action resolved, код исправлять не потребовалось. Сохранены live jobs/annotations/evidence и прежний failed snapshot. Scope main/production/deployment/publication gate сохранён. Остальные owner gates не считаются снятыми.
+
+## 4C · отдельный Microsoft Edge
+
+Цель: закрыть отдельную проверку Edge по этапу4 без повторения Chromium/Firefox/WebKit. Критерии:16 ширин/тем,4 axe runs, основные взаимодействия, no-JS, отсутствие runtime errors; официальный browser binary с проверяемым происхождением.
+
+Результат: Edge155.0.4283.62 —16/16 PASS,4 axe runs0violations; theme/menu/FAQ/gallery keyboard/focus/Escape/error/native tap/CDP swipe/no-JS PASS. Пакет Microsoft SHA-256 и signed index проверены; система не изменена. Evidence docs/verification/edge-results.json,2 owner-review screenshots. Совокупно64 viewport/theme и16 axe runs; это не физические устройства/Safari и не проверка релизных screens. Следующая независимая задача: text resize/reflow/reduced motion.

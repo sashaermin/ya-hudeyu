@@ -149,6 +149,25 @@
       "checkpoint": "87fd265846a415e9e0d53cf7e4dee4ca2d5fe25c",
       "done": "Existing Actions notify rerun подтвердил оба bindings и реальную отправку; прежний secret blocker закрыт без чтения значений.",
       "next": "Сохранить и подтвердить verification checkpoint; остальные release prerequisites без изменения приоритета."
+    },
+    {
+      "id": "site-edge4c-20261018",
+      "at": "2026-10-18T07:57:09Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "4",
+          "4C"
+        ],
+        "title": "Отдельная проверка Microsoft Edge"
+      },
+      "verified": "Edge155:16/16 viewport/theme PASS;4 axe runs0violations; keyboard/touch/gallery/theme/no-JS PASS; signed official package verified.",
+      "status": "Разработка продолжается; release/device gates сохранены",
+      "checkpoint": "3f98d6515dba982ec56132b8654af6bb213d16bd",
+      "done": "Отдельный Edge QA выполнен; доказательства и2 screenshots сохранены. Main/production/publication gate не менялись.",
+      "next": "Проверка увеличения текста, reflow400% и reduced motion."
     }
   ]
 }

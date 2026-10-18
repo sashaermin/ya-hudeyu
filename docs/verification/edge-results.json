@@ -1,0 +1,152 @@
+{
+  "engine": "chromium",
+  "matrix": [
+    {
+      "width": 320,
+      "theme": "light",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 360,
+      "theme": "light",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 430,
+      "theme": "light",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 1920,
+      "theme": "light",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 430,
+      "theme": "dark",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 1920,
+      "theme": "dark",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    }
+  ],
+  "interactions": [
+    "Theme persistence, reset to system and OS changes PASS",
+    "Gallery keyboard, focus trap, Escape/restore focus and image error PASS",
+    "Native tap and CDP touch swipe PASS",
+    "No-JS mobile navigation and native FAQ PASS"
+  ],
+  "axe": [
+    {
+      "width": 390,
+      "theme": "light",
+      "axe_version": "4.10.3",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "axe_version": "4.10.3",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "axe_version": "4.10.3",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "axe_version": "4.10.3",
+      "violations": []
+    }
+  ],
+  "page_errors": [],
+  "failed_requests": [],
+  "browser_version": "155.0.4283.62",
+  "product": "Microsoft Edge Stable",
+  "tested_at_utc": "2026-10-18T07:57:09Z",
+  "executable": "/tmp/website-edge/opt/microsoft/msedge/msedge",
+  "site_index_sha256": "402c0bab39504cb0a3b3ec3c50ae42ee60700f2eb1e0bc8a9a8770e1a3d99530",
+  "site_checkpoint": "3f98d6515dba982ec56132b8654af6bb213d16bd",
+  "package": {
+    "Package": "microsoft-edge-stable",
+    "Version": "155.0.4283.62-1",
+    "Filename": "pool/main/m/microsoft-edge-stable/microsoft-edge-stable_155.0.4283.62-1_amd64.deb",
+    "Size": "194357122",
+    "SHA256": "3e53834d9d6e505bc57e6bff44d92cfe8cf0bed9064e88efc5b0d8f1c75f70fa",
+    "repository": "https://packages.microsoft.com/repos/edge/",
+    "signed_index_sha256": "8b4d5041823b188d715ae1f97e792303185b80ca43736a878d5dbe2ad5184a92",
+    "signing_key_fingerprint": "BC528686B50D79E339D3721CEB3E94ADBE1229CF",
+    "verification": "GPG InRelease signature PASS; compressed Packages SHA-256 matches signed index; deb size/SHA-256 match package record; dpkg-deb extract only, no system install."
+  }
+}

@@ -1,4 +1,4 @@
-# QA черновика · этап 4A
+# QA черновика · этапы 4A–4C
 
 Проверки выполнены 18.10.2026; сохранение отчёта 09:42 МСК (06:42 UTC). Это локальный draft, **не проверка production и не разрешение выпуска**. Последние изменения ресурсов/галереи проверены после оптимизации. Итоговый checkpoint указан в IMPLEMENTATION_PROGRESS.md и Git-истории.
 
@@ -96,7 +96,7 @@ PYTHONPATH=/tmp/website-python-qa python3 tools/optimize_fonts.py
 - [ ] Функции и реальные screens именно этого APK, включая hero, обе темы.
 - [ ] Визуальное подтверждение владельца и юридическая актуальность.
 - [ ] Остальные браузеры/устройства и ручная accessibility-проверка.
-- [ ] Подтверждённый GitHub Actions run и фактическая Telegram-доставка.
+- [x] Подтверждённый GitHub Actions run и фактическая Telegram-доставка: run39109066640 success, Telegram accepted message_id77; live evidence также в telegram-delivery-2026-10-18.json.
 - [ ] Отдельное разрешение владельца на main/публикацию, затем проверка production SEO/HTTPS/Pages/download и готовый rollback.
 
 Firefox/WebKit installer был запущен с отдельным PLAYWRIGHT_BROWSERS_PATH=/tmp/website-browsers. Firefox download остановлен proxy 403 Domain forbidden на cdn.playwright.dev и playwright.download.prss.microsoft.com; WebKit installer до загрузки не дошёл. Нужные домены вместе с api.github.com и yahudeyu-app.ru добавлены в **черновик** настроек среды; существующий package_managers preset сохранён. Start_skill также обновлён для запуска `_site`. Сохранение этих полей подтверждено, применение/публикация среды и повторная проверка пока не выполнены. Registry: site-network-crossbrowser-qa.
@@ -146,3 +146,19 @@ Actions run [39106472358](https://github.com/sashaermin/ya-hudeyu/actions/runs/3
 Реальный notify пока не успешен: отсутствуют два Actions bindings. Новые check-run notices содержат message_id только после реального Telegram ok=true; будущий агент проверяет annotations, а не предполагает доставку по наличию workflow. Package versions/SHA для QA runtime дополнительно сохранены в [linux-qa-packages.json](verification/linux-qa-packages.json), бинарные архивы в Git не добавлялись.
 
 Последний проверенный GitHub run [39107259552](https://github.com/sashaermin/ya-hudeyu/actions/runs/39107259552) для ad7c5a0: verify success, notify failure по missing bindings. [Сохранённые jobs/annotations](verification/actions-current.json). Числа57 unit tests относятся к текущим inputs; 48 viewport/theme и12 axe включают сохранённый неизменённый Chromium artifact и реально выполненные новые Firefox/WebKit runs. Доставка и обязательное расписание всё ещё не активны.
+
+## 4C · Microsoft Edge Stable
+
+Отдельно проверен настоящий Microsoft Edge155.0.4283.62 на Linux, не замена Edge обычным Chromium. [Результат и происхождение пакета](verification/edge-results.json):16/16 ширин/тем,4 axe runs без нарушений; theme/menu/FAQ/gallery/focus/no-JS/native tap/CDP swipe PASS; page errors и failed requests0. [390 dark](screenshots/edge-390-dark.png), [1440 light](screenshots/edge-1440-light.png). Совокупно с предыдущими неизменёнными inputs64 viewport/theme runs и16 axe runs.
+
+Пакет получен из официального https://packages.microsoft.com/repos/edge/; GPG InRelease signature проверена ключом Microsoft fingerprint BC528686B50D79E339D3721CEB3E94ADBE1229CF, SHA-256 Packages.gz совпал с подписанным index, размер и SHA-256 deb совпали с Packages. Пакет извлечён `dpkg-deb -x` в `/tmp/website-edge`, без system install. Key получен по HTTPS из https://packages.microsoft.com/keys/microsoft.asc; GPG предупреждение об отсутствии personal web-of-trust не подменяется заявлением о наличии локальной доверительной цепочки.
+
+Повторить на уже подготовленном официальном бинарнике:
+
+```sh
+python3 tests/browser_qa.py --engine chromium --executable /tmp/website-edge/opt/microsoft/msedge/msedge --base http://127.0.0.1:8002/ --output .test-results/edge --axe tools/qa/node_modules/axe-core/axe.min.js
+```
+
+`engine: chromium` обозначает Playwright protocol; product/package в evidence указывает настоящий Edge. Старый server8001 отвечал empty reply; его не останавливали, использован отдельный read-only draft server8002. Физические Android/iOS, Safari и screen reader остаются непроверенными.
+
+Текущее Telegram-состояние заменяет исторические missing-binding записи выше: **DELIVERED**, последний проверенный push run39109066640 accepted message_id77. Обязательное daily schedule всё ещё ожидает отдельного разрешения main; доставка по push этого не меняет.

@@ -3,11 +3,11 @@
 ## Точка продолжения
 
 - Repository: `sashaermin/ya-hudeyu`; development branch: `work/website-v2`.
-- Последний независимо подтверждённый **implementation checkpoint**: `ad7c5a043d45f31cbc0a4ab6f489592ae14622d2` (W2B). Последующий documentation checkpoint получать из Git: файл не может содержать собственный будущий SHA.
-- Последний ответственный писатель: Codex, 18.10.2026 10:47 МСК. Другой активный website writer не известен; это историческая запись, не доказательство отсутствия активной сессии при будущем takeover. Android Claude Code не затрагивался.
+- Последний независимо подтверждённый remote checkpoint: `3f98d6515dba982ec56132b8654af6bb213d16bd`; его push-triggered run39109066640 success, Telegram accepted message_id77. Предыдущий **implementation checkpoint**: `ad7c5a043d45f31cbc0a4ab6f489592ae14622d2` (W2B). Последующий documentation checkpoint получать из Git: файл не может содержать собственный будущий SHA.
+- Последний ответственный писатель: Codex, 18.10.2026 10:57 МСК. Другой активный website writer не известен; это историческая запись, не доказательство отсутствия активной сессии при будущем takeover. Android Claude Code не затрагивался.
 - Состояние: независимые задачи W2A / 4B / 3B / W2B выполнены и проверены. Открытые release/device/owner критерии сохранены в IMPLEMENTATION_PROGRESS.md и docs/QA.md. Сайт **не готов к публикации**, она не разрешена.
 
-**Next:** Telegram проверен и не требует настройки: run39107499146 attempt2, accepted message_id67. Сохранить текущий verification checkpoint и проверить его remote SHA/новый notify ack. Далее остаются ранее зарегистрированные внешние release prerequisites: daily default-branch authorization и утверждённый APK/screens; текущий пользователь запретил любые изменения main/production/deployment/publication gate. Не запрашивать повторно Telegram secrets и не запускать идентичный тест без причины.
+**Previous next (закрыт):** Telegram проверен и не требует настройки: run39107499146 attempt2, accepted message_id67. Сохранить текущий verification checkpoint и проверить его remote SHA/новый notify ack. Далее остаются ранее зарегистрированные внешние release prerequisites: daily default-branch authorization и утверждённый APK/screens; текущий пользователь запретил любые изменения main/production/deployment/publication gate. Не запрашивать повторно Telegram secrets и не запускать идентичный тест без причины.
 
 ## Авторитетные общие документы
 
@@ -47,3 +47,9 @@ Main SHA `9a0857ce260540ad604f344565d535a8d47b2fa0` сохранялся; Pages 
 ## Приоритетная проверка Telegram · 18.10.2026 10:47 МСК
 
 Владелец явно запросил безопасный повторный тест; выполнен `gh run rerun 39107499146 --failed`, без изменения workflow/code. Attempt2 завершился success, check-config подтвердил доступность обоих bindings. Check-run117620640488 содержит Telegram accepted: commit87fd265846a415e9e0d53cf7e4dee4ca2d5fe25c message_id67. Это реальный API acknowledgement, не mock или просто exit0. Evidence docs/verification/telegram-delivery-2026-10-18.json; прежний failed evidence сохранён отдельно. Существующий action закрыт, notification-side code fixes не потребовались. Main/publication gate не менялись.
+
+## 4C · Edge и текущее продолжение
+
+Edge Stable155.0.4283.62 проверен отдельно:16/16 viewport/theme,4 axe runs без violations; menu/FAQ/theme/gallery/focus/no-JS и native tap/CDP swipe PASS. Официальный пакет проверен через подписанный Microsoft index и извлечён только в /tmp. Evidence docs/verification/edge-results.json;2 screenshots в docs/screenshots/edge-*.png. Native Safari/iOS/Android и screen reader ещё не проверены.
+
+**Next:** дополнить этап4 доступными независимыми accessibility checks:200% текст, reflow400%, reduced motion, затем сохранить evidence/remote checkpoint. Не повторять завершённые viewport/axe matrices. Telegram работает, новые push уведомляет существующий Actions. После доступного QA остаются APK/screens, owner visual/legal/device acceptance и отдельные разрешения digest/main/publication.
