@@ -1,5 +1,5 @@
 {
-  "status": "prepared, not deployed",
+  "status": "Pages deployed and HTTP verified; live browser verification pending on GitHub runner",
   "accepted_candidate": "b12b0b0fadf4c260186f65a1e9813bde43896a24",
   "rollback_commit": "9a0857ce260540ad604f344565d535a8d47b2fa0",
   "rollback_tag": "rollback/website-first-release-2026-10-18",
@@ -118,5 +118,12 @@
       "sha256": "20bf346fb530b5e9b7f20d399dd4a1dd23bddb75e7fdbab7753fdf02ee0c8285",
       "size": 12212
     }
-  ]
+  ],
+  "prepared_production_commit": "9b39ffaf35c48973b8115b630ba0d06165ad09a4",
+  "source_commit": "cf277fb28196b0b2bec5d18da9fd113e4cd8bae4",
+  "public_tree": "8d188ce315ff9dbad9584b24a50d62559cec9a17",
+  "pages_run": 39114713056,
+  "pages_conclusion": "success",
+  "published_commit": "9b39ffaf35c48973b8115b630ba0d06165ad09a4",
+  "cloud_browser_limitation": "ERR_CERT_AUTHORITY_INVALID from proxy CA trust; persistent CA import rejected by automatic approval review; no TLS bypass or trust-store change performed"
 }

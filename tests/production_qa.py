@@ -1,0 +1,90 @@
+#!/usr/bin/env python3
+"""Read-only HTTPS and browser QA of the recorded production release.
+
+Run on the existing GitHub runner with its normal TLS trust. Never deploy,
+change trust stores, disable certificate checks, or infer a new release.
+"""
+import argparse
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+from pathlib import Path
+import urllib.error
+import urllib.request
+
+import browser_qa
+
+ROOT = Path(__file__).resolve().parents[1]
+BASE = 'https://yahudeyu-app.ru/'
+PRIVATE = ['AGENTS.md', 'AGENT_HANDOFF.md', 'AGENT_DEVELOPMENT_PROTOCOL.md',
+           'docs/FIRST_RELEASE.md', 'data/publication.json', 'data/release.json',
+           'project_specs/WEBSITE_MASTER_TZ_2026-10-18.md',
+           '.github/workflows/website-checks.yml', 'tools/build.py',
+           'tests/test_build.py', '.git/config', 'README.md']
+
+
+def fetch(path):
+    request = urllib.request.Request(BASE + path, headers={'Cache-Control': 'no-cache'})
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            assert response.url.startswith(BASE), response.url
+            body = response.read()
+            return dict(path=path, status=response.status,
+                        sha256=hashlib.sha256(body).hexdigest())
+    except urllib.error.HTTPError as error:
+        return dict(path=path, status=error.code)
+
+
+def run(executable, output):
+    manifest = json.loads((ROOT/'docs/verification/first-production-release.json').read_text())
+    records = manifest['files']
+    expected_commit = manifest['prepared_production_commit']
+    result = dict(checked_at=datetime.now(timezone.utc).isoformat(), base=BASE,
+                  production_commit=expected_commit, read_only=True,
+                  tls_verification=True, custom_ca_changes=False, status='RUNNING')
+    output.mkdir(parents=True, exist_ok=True)
+    try:
+        with ThreadPoolExecutor(max_workers=6) as pool:
+            result['http'] = list(pool.map(fetch, [''] + [r['path'] for r in records] + PRIVATE))
+        by_path = {r['path']: r for r in result['http']}
+        for record in records:
+            actual = by_path[record['path']]
+            assert actual['status'] == 200, actual
+            assert actual['sha256'] == record['sha256'], actual
+        assert by_path['']['sha256'] == by_path['index.html']['sha256']
+        for path in PRIVATE:
+            assert by_path[path]['status'] == 404, by_path[path]
+        with urllib.request.urlopen(BASE, timeout=30) as response:
+            page = response.read().decode()
+            assert 'content="noindex,nofollow"' in page
+            assert 'Скоро для Android' in page
+            assert 'downloadUrl' not in page
+        with urllib.request.urlopen(BASE+'robots.txt', timeout=30) as response:
+            assert response.read() == b'User-agent: *\nDisallow: /\n'
+        browser_qa.run(BASE, output, None, executable=executable)
+        browser = json.loads((output/'browser-results.json').read_text())
+        assert len(browser['matrix']) == 16
+        assert not browser['page_errors'] and not browser['failed_requests']
+        result.update(status='PASS', public_files_verified=len(records),
+                      private_paths_404=len(PRIVATE), browser_version=browser['browser_version'],
+                      matrix_runs=16, interactions=browser['interactions'],
+                      noindex=True, apk_download=False)
+    except Exception as error:
+        result.update(status='FAIL', error=str(error))
+        raise
+    finally:
+        (output/'production-results.json').write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n')
+    if os.environ.get('GITHUB_ACTIONS') == 'true':
+        print(f'::notice title=Production website verified::commit {expected_commit}; '
+              f'public_files {len(records)}; internal_404 {len(PRIVATE)}; '
+              'browser_matrix 16; noindex=true; APK=false; TLS=true; page_errors=0')
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--executable', required=True)
+    parser.add_argument('--output', type=Path, default=ROOT/'.test-results/production')
+    args = parser.parse_args()
+    run(args.executable, args.output)
