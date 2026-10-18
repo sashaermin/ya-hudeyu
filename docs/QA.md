@@ -185,3 +185,11 @@ Firefox/WebKit используют те же runtime environment variables и e
 ### Текущий остаток приёмки
 
 Доступные в этой Linux-среде независимые draft-задачи этапов0–4 выполнены. Открыты: утверждение конкретного APK, его техническая/функциональная проверка, реальные hero/gallery screens обеих тем, owner visual/legal acceptance, реальные Android/iOS/Safari и screen reader. После нового контента QA нужен снова по затронутым сценариям. Daily digest требует разрешения main; публикация сайта требует отдельного разрешения. Ни один этот критерий не закрыт успешными draft-тестами.
+
+## R1 · кандидат первого сайта с «Скоро»
+
+Первый инкремент готовится независимо от APK по новому указанию владельца. [Машинный результат](verification/release-candidate.json):18 build/workflow/package unit tests PASS; Chromium16/16 ширин/тем,4 axe runs0violations, interaction/runtime checks PASS. После изменения пользовательского текста проверены48/48 text resize/spacing cases в Chromium/Firefox/WebKit/Edge, reduced-motion/skip focus PASS. Это новая проверка затронутого copy; старые4D full-browser matrices остаются историческим подтверждением совместимости структуры, а не новым запуском на этом copy.
+
+Кандидат для визуальной приёмки: [390 light](screenshots/rc-390-light.png), [390 dark](screenshots/rc-390-dark.png), [1440 light](screenshots/rc-1440-light.png), [1440 dark](screenshots/rc-1440-dark.png). Галерея не имитирует Android UI, функции не выдуманы, download отсутствует, дата выпуска не обещана. noindex/robots Disallow и data approvals сохранены.
+
+Архив проверен на повторяемость и allowlist, включая неизменённые CNAME/privacy и отсутствие внутренних docs/config/APK. Local manifest честно помечает dirty tree; окончательный CI source/digest проверяется отдельно вR2. Публикация/изменение production gate не выполнялись. [Приёмка, разрешения и план отката](FIRST_RELEASE.md).

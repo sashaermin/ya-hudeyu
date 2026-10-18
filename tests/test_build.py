@@ -19,7 +19,7 @@ class BuildTests(unittest.TestCase):
     def test_draft_has_no_download_and_noindex(self):
         page = build.render(self.site, self.release)
         self.assertIn('noindex,nofollow', page)
-        self.assertIn('APK пока недоступен', page)
+        self.assertIn('Скоро для Android', page)
         self.assertNotIn('>Скачать для Android', page)
         self.assertNotIn('{{', page)
 

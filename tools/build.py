@@ -72,10 +72,10 @@ def render(site, release, production=False, publication=None):
     values['theme_init'] = '<script>' + (ROOT / 'scripts/theme.js').read_text() + '</script>'
     values['stylesheet'] = '<style>' + (ROOT / 'styles/site.css').read_text() + '</style>'
     values.update(robots='index,follow' if production else 'noindex,nofollow',
-                  download_label='Скачать для Android' if verified else 'О загрузке для Android',
-                  hero_release_note=f'Android · Версия {escape(release["version"])}' if verified else 'Проверенный APK пока не опубликован на этой странице.',
-                  features_intro='Возможности подтверждены для указанной ниже версии приложения.' if site['features'] else 'Здесь появятся возможности, подтверждённые в сборке для скачивания.',
-                  screens_intro='Настоящие экраны версии ' + escape(release['version']) + '.' if site['screenshots'] else 'Только настоящие экраны приложения. Без нарисованных интерфейсов.',
+                  download_label='Скачать для Android' if verified else 'О выпуске для Android',
+                  hero_release_note=f'Android · Версия {escape(release["version"])}' if verified else 'Скоро для Android. Дата выпуска пока не объявлена.',
+                  features_intro='Возможности подтверждены для указанной ниже версии приложения.' if site['features'] else 'Знакомство с возможностями — вместе с доступной версией приложения.',
+                  screens_intro='Настоящие экраны версии ' + escape(release['version']) + '.' if site['screenshots'] else 'Галерея экранов появится вместе с доступной версией приложения.',
                   release_summary='Проверенный файл и сведения о выпуске — в одном месте.' if verified else 'Готовим сведения о проверенном выпуске. Ссылка появится после проверки APK.')
     mascot = '<img class="hero-cat" src="assets/brand/originals/mascot_calm.webp" width="440" height="512" alt="Рыжий котик — маскот Я ХУдЕЮ" fetchpriority="high">'
     if site['screenshots']:
@@ -88,17 +88,18 @@ def render(site, release, production=False, publication=None):
             '<article class="panel">' + (f'<img class="feature-icon" src="{asset(f["icon"])}" alt="" width="52" height="52" loading="lazy">' if f.get('icon') else '') +
             f'<h3>{escape(f["title"])}</h3><p>{escape(f["description"])}</p></article>' for f in site['features']) + '</div>'
     else:
-        values['features'] = '<div class="panel empty-features"><h3 style="margin:0">Возможности — после проверки сборки</h3><p>Описание функций появится вместе с проверенным APK. Так вы сможете заранее узнать, что доступно именно в скачиваемой версии.</p></div>'
+        values['features'] = '<div class="panel empty-features"><h3 style="margin:0">Расскажем больше к выпуску</h3><p>Здесь появится подробный рассказ о возможностях доступной версии. Пока можно познакомиться с приложением и найти ответы на вопросы ниже.</p></div>'
     if site['screenshots']:
         values['gallery'] = '<div class="gallery-track" tabindex="0" role="region" aria-label="Скриншоты приложения">' + ''.join(
             f'<figure class="screen-item"><button class="screen-button" type="button" data-caption="{escape(s["caption"])}" aria-label="Открыть: {escape(s["caption"])}"><img src="{asset(s["src"])}" alt="{escape(s["alt"])}" width="{s["width"]}" height="{s["height"]}" loading="lazy"></button><figcaption>{escape(s["caption"])}</figcaption></figure>' for s in site['screenshots']) + '</div><div class="gallery-toolbar"><button class="icon-button" type="button" data-gallery-direction="-1" aria-label="Предыдущие экраны">←</button><button class="icon-button" type="button" data-gallery-direction="1" aria-label="Следующие экраны">→</button></div>'
     else:
-        values['gallery'] = '<div class="screen-empty"><div><h3>Сначала — реальные экраны</h3><p>Добавим сюда скриншоты проверенного выпуска, чтобы вы могли познакомиться с приложением до установки.</p></div><div class="screen-reserved">Скриншоты выпуска пока не добавлены</div></div>'
+        values['gallery'] = '<div class="screen-empty"><div><h3>Приложение изнутри — скоро</h3><p>Добавим сюда скриншоты проверенного выпуска, чтобы вы могли познакомиться с приложением до установки.</p></div><div class="screen-reserved">Скриншоты появятся к выпуску</div></div>'
     if verified:
         fields = [('Версия', release['version']), ('Дата выпуска', release['date']), ('Размер файла', f'{release["size_bytes"]:,} байт'.replace(',', ' ')), ('Совместимость', 'Android ' + release['min_android']), ('SHA-256', release['sha256'])]
         values['release'] = '<div class="release-status"><span class="status-label">Проверенный APK</span><dl class="release-data">' + ''.join(f'<dt>{escape(k)}</dt><dd>{escape(v)}</dd>' for k, v in fields) + f'</dl><a class="button" href="{escape(https(release["url"]))}" rel="noopener noreferrer">Скачать для Android ↓</a>' + ('<h3>Что нового</h3><ul>' + ''.join('<li>'+escape(c)+'</li>' for c in release.get('changes', [])) + '</ul>' if release.get('changes') else '') + '</div>'
     else:
-        values['release'] = '<div class="release-status"><span class="status-label">Релиз ещё не подключён</span><h3>APK пока недоступен</h3><p>Когда файл будет проверен, здесь появятся ссылка, версия, размер, требования к Android и контрольная сумма.</p><p><a href="mailto:' + escape(site['support']) + '">Связаться с поддержкой ↗</a></p></div>'
+        pending = site['pending_release']
+        values['release'] = '<div class="release-status"><span class="status-label">' + escape(pending['label']) + '</span><h3>' + escape(pending['title']) + '</h3><p>' + escape(pending['description']) + '</p><p><a href="mailto:' + escape(site['support']) + '">Связаться с поддержкой ↗</a></p></div>'
     faq = list(site['faq'])
     if verified:
         faq[0] = dict(question='Где скачать приложение?', answer='Проверенный Android APK доступен в разделе загрузки. Сверьте версию и контрольную сумму файла перед установкой.')

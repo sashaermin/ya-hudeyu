@@ -29,6 +29,18 @@ jobs:
         run: |
           node --check scripts/theme.js
           node --check scripts/site.js
+      - name: Package protected draft for review
+        run: python3 tools/package_preview.py
+      - name: Save review archive (no website deployment)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: website-preview-${{ github.sha }}
+          path: |
+            .test-results/release-candidate/website-preview.zip
+            .test-results/release-candidate/website-preview.manifest.json
+          if-no-files-found: error
+          include-hidden-files: true # Only the two explicit review files above.
+          retention-days: 7
   notify:
     needs: verify
     if: always()

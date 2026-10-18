@@ -187,6 +187,25 @@
       "checkpoint": "6958c0d83863bda00e7fcdbc9ec0fa14dd7b2a25",
       "done": "Исправлены переполнение при200% текста и перенос фокуса skip link.12 обычных screenshots побайтно прежние; main/production/gates сохранены.",
       "next": "Утверждённый APK/screens → проверка артефакта и релизный контент. Другие открытые owner prerequisites сохранены в общем handoff."
+    },
+    {
+      "id": "site-first-release-r1-20261018",
+      "at": "2026-10-18T08:08:19Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Первый релиз",
+          "R1"
+        ],
+        "title": "Кандидат редизайна с «Скоро» независимо от APK"
+      },
+      "verified": "18 unit tests PASS; Chromium16 viewport/theme и4 axe0violations;48 text resize/spacing cases в4браузерах PASS; noindex archive reproducible.",
+      "checkpoint": "22ac98a270fbe48322f5ab3cc88e31102f1b0e7c",
+      "done": "Coming-soon copy, review ZIP/manifest и CI artifact packaging,4 screenshots, безопасная процедура публикации/отката. APK и publication gates неизменны.",
+      "next": "Скачать remote CI artifact, проверить source/digest и реальную архивную страницу.",
+      "status": "Подготовка продолжается; публикация не разрешена"
     }
   ]
 }
