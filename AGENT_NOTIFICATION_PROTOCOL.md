@@ -2,6 +2,40 @@
 
 Основан на read-only Android `.github/AGENT_NOTIFICATION_PROTOCOL.md` и проверяемом скрипте Android `874de91cb626b6f0e78532963b378d86901b97d9`; адаптирован исключительно для репозитория сайта. Один существующий бот «Я ХУдЕЮ | Dev Reports». Никаких локальных отправок, дополнительных ботов или команд исполнения из Telegram.
 
+## Канонический русский формат и provenance
+
+Общие resume/checkpoint/handoff правила — [AGENT_DEVELOPMENT_PROTOCOL.md](AGENT_DEVELOPMENT_PROTOCOL.md); единая точка входа — [AGENTS.md](AGENTS.md), Claude entrypoint — [CLAUDE.md](CLAUDE.md). Эти протоколы обязательны при будущих изменениях workflows/инфраструктуры; не заменять конкурирующими агентскими правилами.
+
+Один commit → одно сообщение:
+
+```text
+САЙТ «Я ХУдЕЮ» — новый коммит
+
+Изменение: короткое содержательное русское описание
+Что сделано: 1–3 коротких русских предложения
+Проверки: только фактические результаты либо честный неподтверждённый статус
+Агент: Codex / Claude Code / Разработчик / Не определён
+Ветка: фактическая ветка
+Коммит: короткий SHA
+
+https://github.com/sashaermin/ya-hudeyu/commit/полный-SHA
+```
+
+Формат хранится только здесь. Структурированные однострочные trailers в последнем непрерывном блоке commit message:
+
+```text
+Report-Summary: Единый протокол передачи и отчётов
+Report-Done: Закреплены общие правила агентов и русский шаблон уведомлений.
+Report-Checks: Локальные проверки пройдены; результаты и область указаны в progress.
+Agent: Codex
+```
+
+Все три Report-поля обязательны для новых commits; писать реальные результаты, не копировать пример как доказательство. Summary≤220, Done≤800, Checks≤700 символов; Done —1–3 предложения. `report-check` проверяет HEAD (или `--message-file` перед commit), язык/наличие/границы полей и точную canonical Agent запись; workflow запускает его до остальных проверок. Report-Checks — запись implementing agent, она помечается как таковая. Только head SHA успешно проверенного verify job получает отдельное утверждение об успешных workflow checks (`WEBSITE_CHECK_STATUS=success`); старые commits multi-push не выдаются за отдельно проверенные.
+
+Разрешённые **выводимые** значения Agent ровно: `Claude Code`, `Codex`, `Разработчик`, `Не определён`. Использовать точную явную provenance запись; Git author, co-author, repository/branch/workflow/runner/session URL и префиксы имён не определяют implementing agent. Конфликтующие/неизвестные записи → `Не определён`. Исторические input aliases `Other agent`/`Unknown` читаются для совместимости, но новые commits используют только canonical labels. События/actions должны иметь собственный source: агент более позднего commit не присваивается старому событию. CI/digest без достоверного implementing-agent metadata: Agent `Не определён`, отдельно «Механизм: GitHub Actions».
+
+У stage/CI/owner-action/resolution reports те же русские подписи проекта/агента, фактические проверки и ссылки. Технические identifiers не переводить, русские narrative поля заполняет агент. Preview artifact: event `preview_artifact_ready`, verified, from, source и `artifact_url` — только проверенная HTTPS GitHub artifact ссылка этого сайта; подпись явно «архив для просмотра, не онлайн-превью». Не выдавать ZIP/localhost за доступный веб-сайт. CLI поддерживает `--artifact-url`. Новые форматы тестируются mocks; отдельные живые test messages не отправлять.
+
 ## Механизм
 
 `.github/workflows/website-checks.yml` на push `work/**` выполняет тесты и сборку. Только после успешных проверок уведомляет о коммитах, действиях и явно зарегистрированных этапах. При провале проверок отправляет отдельный отчёт об ошибке; непроверенный коммит не называется проверенным. Отправитель — `.github/scripts/telegram_notify.py`, stdlib Python. Все сообщения содержат **САЙТ «Я ХУдЕЮ»**. Android не затрагивается.
@@ -10,7 +44,7 @@ GitHub Actions получает repository secrets `TELEGRAM_BOT_TOKEN`, `TELEGR
 
 ## Единые записи
 
-- Commit: trailer `Agent: Codex` / `Agent: Claude Code` / `Agent: Other agent`. Имя git-автора само по себе не доказывает агентский источник. Без достоверного trailer — Unknown.
+- Commit: canonical provenance/report trailers определены выше. Ledger keys сохраняются при смене формата, старые сообщения не переотправлять ради нового шаблона.
 - Этап/переход: append-only `project_specs/agent_events.json`. Уникальный постоянный id, `source`, `from`/`to` (`path` массив и `title`), `verified` для завершения, `checkpoint` последнего проверенного SHA. Не выводить завершение из активности агента или одного сообщения коммита. Не заявлять полное завершение ТЗ при открытых критериях.
 - USER ACTION REQUIRED: `project_specs/user_actions.json`, поля `id`, `status` (open/resolved), `task`, `subtask`, `what`, `steps` массив, `blocked`, `can_continue`, `source`. Один id на проблему; при решении `status: resolved` и `resolution`. Новая запись/переход open→resolved отправляется один раз при нормальном выполнении workflow. Не переоткрывать решённый вопрос без причины.
 - Значимые ошибки: автоматический CI report и/или явный `task_blocked` event с проверенной причиной. Не засыпать владельца уведомлениями на каждую команду.

@@ -15,6 +15,8 @@ jobs:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           persist-credentials: false
+      - name: Validate Russian report metadata (AGENT_NOTIFICATION_PROTOCOL.md)
+        run: python3 .github/scripts/telegram_notify.py report-check
       - name: Verify notification script
         run: python3 -m unittest discover -s .github/scripts -p 'test_*.py' -v
       - name: Validate registries
@@ -79,9 +81,11 @@ jobs:
           path: .telegram-ledger
           key: website-telegram-${{ github.ref }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: website-telegram-${{ github.ref }}-
+      # Formatting/provenance/dedup: AGENT_NOTIFICATION_PROTOCOL.md; handoff: AGENT_DEVELOPMENT_PROTOCOL.md.
       - name: Report verified commits and registered events
         if: needs.verify.result == 'success'
         env:
+          WEBSITE_CHECK_STATUS: ${{ needs.verify.result }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GITHUB_TOKEN: ${{ github.token }}

@@ -20,23 +20,24 @@ def api_commit(sha, msg, author="Claude"):
 
 
 class EscapingTest(unittest.TestCase):
-    def test_untrusted_text_is_escaped_and_message_preserved(self):
-        msg = 'fix: <b>bold</b> & "quotes" $(rm -rf /) `id`\n\nbody line'
+    def test_untrusted_report_fields_are_escaped(self):
+        msg = 'legacy English subject\n\nReport-Summary: Исправлено <b>меню</b> & навигация\nReport-Done: Проверен текст $(id) `id` и <script>.\nReport-Checks: Сборка пройдена.\nAgent: Codex'
         text = tn.commit_message("o/r", "feat/<x>", "a" * 40, "Иван <ivan>", msg)
-        self.assertIn("&lt;b&gt;bold&lt;/b&gt; &amp; \"quotes\" $(rm -rf /) `id`\n\nbody line", text)
+        self.assertIn("&lt;b&gt;меню&lt;/b&gt; &amp; навигация", text)
+        self.assertIn("$(id) `id` и &lt;script&gt;", text)
         self.assertIn("<code>feat/&lt;x&gt;</code>", text)
-        self.assertIn("Иван &lt;ivan&gt;", text)
-        self.assertIn("Я ХУдЕЮ", text); self.assertIn("aaaaaaa", text)
+        self.assertNotIn('Иван', text)
         self.assertIn('href="https://github.com/o/r/commit/' + "a" * 40 + '"', text)
-        for label in ("Проект:", "Автор:", "Ветка:", "Коммит:", "Сообщение:"):
+        for label in ("Изменение:", "Что сделано:", "Проверки:", "Агент:", "Ветка:", "Коммит:"):
             self.assertIn(label, text)
+        self.assertTrue(text.startswith('<b>САЙТ «Я ХУдЕЮ» — новый коммит</b>'))
 
-    def test_overlong_message_is_cut_within_limit_without_breaking_entities(self):
-        text = tn.commit_message("o/r", "b", "c" * 40, "a", "&" * 5000)
+    def test_overlong_fields_keep_link_and_html_entities_within_limit(self):
+        msg = 'x\n\nReport-Summary: Изменение ' + '&' * 5000 + '\nReport-Done: Сделано ' + '&' * 5000 + '\nReport-Checks: Проверено ' + '&' * 5000
+        text = tn.commit_message("o/r", "b", "c" * 40, "a", msg)
         self.assertLessEqual(len(text), tn.TELEGRAM_LIMIT)
-        self.assertIn("сообщение обрезано", text)
-        body = text.split("<pre>")[1].split("\n…")[0]
-        self.assertTrue(body.endswith("&amp;"), body[-10:])
+        self.assertIn('https://github.com/o/r/commit/', text)
+        self.assertNotRegex(text, r'&(?!amp;|lt;|gt;)')
 
 
 class CommitListTest(unittest.TestCase):
@@ -70,12 +71,12 @@ class LedgerAndRunTest(unittest.TestCase):
             with open(event, "w") as f: json.dump({"before": "b" * 40, "after": "e" * 40, "commits": []}, f)
             with open(ledger, "w") as f: f.write(f"commit:main:{'1' * 40}\n")
             sent = []
-            gh = FakeGitHub({("b" * 40, "e" * 40): [api_commit("1" * 40, "old"), api_commit("2" * 40, "new")]})
+            gh = FakeGitHub({("b" * 40, "e" * 40): [api_commit("1" * 40, "Старое"), api_commit("2" * 40, "Новое")]})
             envv = {"GITHUB_EVENT_PATH": event, "GITHUB_REPOSITORY": "o/r", "GITHUB_REF_NAME": "main", "TELEGRAM_BOT_TOKEN": "t", "TELEGRAM_CHAT_ID": "c"}
             with mock.patch.dict(os.environ, envv), mock.patch.object(tn, "GitHub", return_value=gh), \
                  mock.patch.object(tn, "send", side_effect=lambda t, c, text: sent.append(text)):
                 rc = tn.main(["commits", "--ledger", ledger])
-            self.assertEqual(0, rc); self.assertEqual(1, len(sent)); self.assertIn("new", sent[0])
+            self.assertEqual(0, rc); self.assertEqual(1, len(sent)); self.assertIn("Новое", sent[0])
             with open(ledger) as f: self.assertIn(f"commit:main:{'2' * 40}", f.read())
 
     def test_telegram_failure_fails_the_job_and_hides_the_token(self):
@@ -109,16 +110,16 @@ class MultiCommitPushTest(unittest.TestCase):
             rc, sent, log = self.run_push(d, commits)
         self.assertEqual(0, rc); self.assertEqual(3, len(sent))
         for text, sha in zip(sent, ("1" * 40, "2" * 40, "3" * 40)):
-            self.assertIn(f"<code>{sha}</code>", text)
+            self.assertIn(f"<code>{sha[:7]}</code>", text); self.assertIn(f"/commit/{sha}", text)
         self.assertIn("message_id 3", log)
 
     def test_failure_of_one_commit_fails_job_keeps_others_and_rerun_sends_only_the_missing_one(self):
         commits = [api_commit("1" * 40, "first"), api_commit("2" * 40, "second"), api_commit("3" * 40, "third")]
         with tempfile.TemporaryDirectory() as d:
-            rc, sent, log = self.run_push(d, commits, fail_on=("second",))
+            rc, sent, log = self.run_push(d, commits, fail_on=("/commit/" + "2" * 40,))
             self.assertEqual(1, rc); self.assertEqual(2, len(sent)); self.assertIn("::error::", log)
             rc2, sent2, _ = self.run_push(d, commits)        # re-run of the same run (same ledger)
-        self.assertEqual(0, rc2); self.assertEqual(1, len(sent2)); self.assertIn("second", sent2[0])
+        self.assertEqual(0, rc2); self.assertEqual(1, len(sent2)); self.assertIn("/commit/" + "2" * 40, sent2[0])
 
 
 def ev(i, typ="task_transition", source="Claude Code", **kw):
@@ -145,6 +146,7 @@ class TransitionEventTest(unittest.TestCase):
         deep = {"path": ["ТЗ-09", "Этап 2", "Задача 4", "Подзадача 4.1", "Шаг"], "title": "x"}
         for typ, (heading, f, t, needs) in tn.EVENT_TYPES.items():
             e = {"id": typ, "type": typ, "source": "Codex", "verified": "ok", "from": deep, "to": deep}
+            if typ == "preview_artifact_ready": e["artifact_url"] = "https://github.com/sashaermin/ya-hudeyu/actions/runs/1/artifacts/2"
             self.assertIsNone(tn.event_problem(e), typ)
             text = tn.event_message("o/r", "w", "e" * 40, e)
             self.assertIn(heading, text); self.assertIn("<b>Агент:</b> Codex", text); self.assertTrue(text.startswith("<b>САЙТ «Я ХУдЕЮ»</b>"))
@@ -183,7 +185,7 @@ class TransitionEventTest(unittest.TestCase):
                     self.assertEqual(0, tn.main(["commits", "--ledger", ledger]))
                 self.assertEqual(expected, len(sent))
                 if expected:
-                    self.assertIn("Проверенный коммит", sent[0])
+                    self.assertIn("новый коммит", sent[0])
                     self.assertIn("задача завершена и проверена",sent[1]); self.assertIn("<b>Агент:</b> Claude Code",sent[1])  # explicit source wins
                     self.assertIn("<b>начата задача</b>",sent[2]); self.assertIn("<b>Агент:</b> Codex",sent[2])
 
@@ -247,7 +249,7 @@ def alert(i="tok", status="open", **kw):
 class UserActionTest(unittest.TestCase):
     def test_message_has_all_required_sections_escaped(self):
         text = tn.action_message("o/r", "b", "a" * 40, json.loads(alert())["alerts"][0])
-        self.assertTrue(text.startswith("🚨 <b>ТРЕБУЕТСЯ ВАШЕ ДЕЙСТВИЕ</b>"))
+        self.assertTrue(text.startswith("<b>САЙТ «Я ХУдЕЮ»</b>"))
         for label in ("Задача:", "Подзадача:", "Что произошло:", "Что нужно сделать:", "Что заблокировано:", "Можно ли продолжать другие задачи:"):
             self.assertIn(label, text)
         self.assertIn("Секрет &lt;bot&gt;", text); self.assertIn("InvalidURL &amp; co", text)
@@ -278,7 +280,7 @@ class UserActionTest(unittest.TestCase):
                     self.assertEqual(0, tn.main(["commits", "--ledger", ledger]))
                 self.assertEqual(expected, len(sent))
                 if expected:
-                    self.assertIn("ТРЕБУЕТСЯ ВАШЕ ДЕЙСТВИЕ", sent[0]); self.assertIn("Проверенный коммит", sent[1])
+                    self.assertIn("ТРЕБУЕТСЯ ВАШЕ ДЕЙСТВИЕ", sent[0]); self.assertIn("новый коммит", sent[1])
 
     def test_repository_registry_is_valid(self):
         path = os.path.join(os.path.dirname(__file__), "..", "..", tn.ACTIONS_FILE)
@@ -291,9 +293,9 @@ class AgentSourceTest(unittest.TestCase):
     def test_source_comes_from_trailers_and_never_echoes_untrusted_text(self):
         self.assertEqual("Claude Code", tn.agent_source("fix\n\nAgent: Claude Code"))
         self.assertEqual("Codex", tn.agent_source("fix\n\nAgent: Codex"))
-        self.assertEqual("Codex", tn.agent_source("fix\n\nagent: codex (cloud)"))
-        self.assertEqual("Claude Code", tn.agent_source("fix\n\nCo-Authored-By: Claude Opus <noreply@anthropic.com>"))
-        self.assertEqual("Claude Code", tn.agent_source("fix\n\nClaude-Session: https://claude.ai/code/x"))
+        self.assertEqual(tn.SOURCE_UNKNOWN, tn.agent_source("fix\n\nagent: codex (cloud)"))
+        self.assertEqual(tn.SOURCE_UNKNOWN, tn.agent_source("fix\n\nCo-Authored-By: Claude Opus <noreply@anthropic.com>"))
+        self.assertEqual(tn.SOURCE_UNKNOWN, tn.agent_source("fix\n\nClaude-Session: https://claude.ai/code/x"))
         self.assertEqual(tn.SOURCE_UNKNOWN, tn.agent_source("fix", author="codex-bot"))
         self.assertEqual(tn.SOURCE_UNKNOWN, tn.agent_source("fix\n\nAgent: <b>evil</b>"))
         self.assertEqual(tn.SOURCE_UNKNOWN, tn.agent_source("manual fix", author="Sasha"))
@@ -301,20 +303,20 @@ class AgentSourceTest(unittest.TestCase):
         self.assertEqual("Codex", tn.agent_source("x\n\nAgent: Codex\nCo-Authored-By: Claude <c>"))
 
     def test_every_message_kind_names_its_source(self):
-        self.assertIn("<b>Источник:</b> Codex", tn.commit_message("o/r", "b", "a" * 40, "n", "m\n\nAgent: Codex"))
-        self.assertIn("<b>Источник:</b> GitHub Actions", tn.ci_message("o/r", "CI", "b", "a" * 40, "failure", "https://x", None))
+        self.assertIn("<b>Агент:</b> Codex", tn.commit_message("o/r", "b", "a" * 40, "n", "m\n\nAgent: Codex"))
+        self.assertIn("<b>Механизм:</b> GitHub Actions", tn.ci_message("o/r", "CI", "b", "a" * 40, "failure", "https://x", None))
         a = json.loads(alert())["alerts"][0]
-        self.assertIn("<b>Источник:</b> Claude Code", tn.action_message("o/r", "b", "a" * 40, a, source=tn.SOURCE_CLAUDE))
-        self.assertIn("<b>Источник:</b> Codex", tn.action_message("o/r", "b", "a" * 40, dict(a, source="Codex"), source=tn.SOURCE_CLAUDE))
-        self.assertIn("<b>Источник:</b> Codex", tn.resolved_message("b", dict(a, source="codex")))
-        self.assertIn("источник: GitHub Actions", tn.digest_message("o/r", tn.dt.datetime(2026, 10, 18, tzinfo=tn.dt.timezone.utc), {}, [], [], None, None, []))
+        self.assertIn("<b>Агент:</b> Не определён", tn.action_message("o/r", "b", "a" * 40, a, source=tn.SOURCE_CLAUDE))
+        self.assertIn("<b>Агент:</b> Codex", tn.action_message("o/r", "b", "a" * 40, dict(a, source="Codex"), source=tn.SOURCE_CLAUDE))
+        self.assertIn("<b>Агент:</b> Codex", tn.resolved_message("b", dict(a, source="codex")))
+        self.assertIn("механизм: GitHub Actions", tn.digest_message("o/r", tn.dt.datetime(2026, 10, 18, tzinfo=tn.dt.timezone.utc), {}, [], [], None, None, []))
 
 
 class AgentEventTest(unittest.TestCase):
     def test_interruption_handoff_resume_headings_only_from_fixed_values(self):
-        self.assertTrue(tn.commit_message("o/r", "b", "a" * 40, "n", "x\n\nAgent-Event: handoff\nAgent: Codex").startswith("<b>🔁 Передача работы"))
-        self.assertTrue(tn.commit_message("o/r", "b", "a" * 40, "n", "x\n\nAgent-Event: interruption").startswith("<b>⏸️"))
-        self.assertTrue(tn.commit_message("o/r", "b", "a" * 40, "n", "x\n\nAgent-Event: <b>x</b>").startswith("<b>Проверенный коммит</b>"))
+        self.assertTrue(tn.commit_message("o/r", "b", "a" * 40, "n", "x\n\nAgent-Event: handoff\nAgent: Codex").__contains__("🔁 Передача работы"))
+        self.assertTrue(tn.commit_message("o/r", "b", "a" * 40, "n", "x\n\nAgent-Event: interruption").__contains__("⏸️"))
+        self.assertTrue(tn.commit_message("o/r", "b", "a" * 40, "n", "x\n\nAgent-Event: <b>x</b>").startswith("<b>САЙТ «Я ХУдЕЮ» — новый коммит</b>"))
 
 
 class DigestSourceTest(unittest.TestCase):
@@ -469,3 +471,63 @@ class NotificationRecoveryTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class PermanentRussianProtocolTest(unittest.TestCase):
+    def test_provenance_is_exact_conflict_safe_and_not_inferred(self):
+        for message in ["Agent: Codex\n\nТело без trailer", "x\n\nAgent: Codex\nAgent: Claude Code", "x\n\nAgent: Codex-extra", "x\n\nAgent: GitHub Actions"]:
+            self.assertEqual(tn.SOURCE_UNKNOWN, tn.agent_source(message, "Claude Code"))
+        self.assertEqual("Разработчик", tn.agent_source("x\n\nAgent: Разработчик"))
+        self.assertEqual("Не определён", tn.alert_source({}, "Codex"))
+        self.assertEqual("Не определён", tn.alert_source({"source": "codex-bot"}, "Codex"))
+
+    def test_russian_fallback_and_workflow_checks_only_when_explicit(self):
+        text = tn.commit_message("o/r", "work/website-v2", "a"*40, "Claude", "English subject")
+        self.assertNotIn("English subject", text)
+        self.assertIn("Не определён", text)
+        self.assertIn("независимо этим уведомлением не подтверждено", text)
+        checked = tn.commit_message("o/r", "work/website-v2", "a"*40, "Claude", "English subject", workflow_verified=True)
+        self.assertIn("workflow для этого коммита завершились успешно", checked)
+        self.assertIn("Агент:</b> Не определён", checked)
+
+    def test_preview_is_archive_not_online_site_and_url_cannot_inject(self):
+        url="https://github.com/sashaermin/ya-hudeyu/actions/runs/1/artifacts/2"
+        e=ev("preview",typ="preview_artifact_ready",artifact_url=url)
+        self.assertIsNone(tn.event_problem(e))
+        text=tn.event_message("sashaermin/ya-hudeyu","work/website-v2","a"*40,e)
+        self.assertIn("не онлайн-превью",text); self.assertIn('href="'+url+'"',text)
+        for bad in ['http://github.com/a',url+'" onclick="x','https://user:secret@github.com/sashaermin/ya-hudeyu/actions/runs/1/artifacts/2']:
+            self.assertIsNotNone(tn.event_problem(dict(e,artifact_url=bad)))
+
+    def test_current_handoff_marker_is_readable_by_digest(self):
+        self.assertEqual("Продолжить",tn.next_action("**Exact next:** Продолжить"))
+
+    def test_successful_workflow_marks_only_the_tested_push_head(self):
+        with tempfile.TemporaryDirectory() as folder:
+            event=os.path.join(folder,'push.json');ledger=os.path.join(folder,'sent.txt')
+            with open(event,'w') as f:json.dump(dict(before='b'*40,after='e'*40,commits=[]),f)
+            gh=FakeGitHub({('b'*40,'e'*40):[api_commit('a'*40,'Ранний коммит'),api_commit('e'*40,'Текущий коммит')]})
+            values=dict(GITHUB_EVENT_PATH=event,GITHUB_REPOSITORY='o/r',GITHUB_REF_NAME='work/website-v2',WEBSITE_CHECK_STATUS='success',TELEGRAM_BOT_TOKEN='fake-test-only',TELEGRAM_CHAT_ID='fake-test-only')
+            with mock.patch.dict(os.environ,values),mock.patch.object(tn,'GitHub',return_value=gh),mock.patch.object(tn,'send',return_value=1) as send,mock.patch('sys.stdout',io.StringIO()):
+                self.assertEqual(0,tn.main(['commits','--ledger',ledger]))
+            self.assertEqual(2,send.call_count)
+            self.assertNotIn('workflow для этого коммита завершились успешно',send.call_args_list[0].args[2])
+            self.assertIn('workflow для этого коммита завершились успешно',send.call_args_list[1].args[2])
+
+
+class ReportMetadataEnforcementTest(unittest.TestCase):
+    def check_message(self, message):
+        with tempfile.NamedTemporaryFile(mode='w',encoding='utf-8') as f:
+            f.write(message); f.flush()
+            with mock.patch('sys.stdout',io.StringIO()) as output:
+                rc=tn.main(['report-check','--message-file',f.name])
+                return rc,output.getvalue()
+
+    def test_canonical_russian_commit_is_accepted_without_network(self):
+        text='Изменение\n\nReport-Summary: Общий протокол\nReport-Done: Сохранены общие правила.\nReport-Checks: Локальные тесты пройдены.\nAgent: Codex'
+        self.assertEqual(0,self.check_message(text)[0])
+
+    def test_english_report_or_inferred_agent_is_rejected_without_echoing_values(self):
+        text='SECRET_TEST_ONLY\n\nReport-Summary: English\nReport-Done: English\nReport-Checks: English\nCo-Authored-By: Claude Code'
+        rc,out=self.check_message(text)
+        self.assertEqual(1,rc); self.assertIn('Agent:',out); self.assertNotIn('SECRET_TEST_ONLY',out)

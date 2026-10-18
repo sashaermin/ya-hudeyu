@@ -3,7 +3,7 @@
 ## Текущее состояние и точка продолжения
 
 - Проект: официальный сайт «Я ХУдЕЮ», repository `sashaermin/ya-hudeyu`, branch `work/website-v2`.
-- Последний независимо verified remote **до этого documentation checkpoint**: `fec5137920b3871bbd67487b37ac1400d634b5f1`. Фактический последний SHA всегда получить через fetch/ls-remote; файл не содержит собственный будущий SHA.
+- Последний независимо verified remote **до этого documentation checkpoint**: `b5f69e7207a7b1b50a9c35683178d31f1225a3d1` (run39111583461 success/Telegram143). Фактический последний SHA всегда получить через fetch/ls-remote; файл не содержит собственный будущий SHA.
 - Последний ответственный агент: Codex, 18.10.2026 11:28 МСК. Другой активный website writer не известен; эта историческая запись не доказывает отсутствия активной сессии при takeover. Только один писатель ветки, Android Claude Code не затрагивать.
 - Стадия: первый инкрементальный website-кандидат **подготовлен к приёмке**, с «Скоро для Android», независимо от APK. Не опубликован и не одобрен для публикации. Независимых approved задач с текущими входами больше не выявлено.
 
@@ -20,7 +20,7 @@
 
 ## Выполнено и проверено
 
-Общий roadmap — только `IMPLEMENTATION_PROGRESS.md`, исходное неизменённое ТЗ — `project_specs/WEBSITE_MASTER_TZ_2026-10-18.md`. Постоянные инструкции — `AGENTS.md`; `CLAUDE.md` ведёт к тем же правилам. Новый приоритет первого инкрементального релиза сохранён в AGENTS.md, не заменяет master.
+Общий roadmap — только `IMPLEMENTATION_PROGRESS.md`, исходное неизменённое ТЗ — `project_specs/WEBSITE_MASTER_TZ_2026-10-18.md`. Постоянные инструкции — `AGENTS.md`, [канонический cross-agent протокол](AGENT_DEVELOPMENT_PROTOCOL.md) и [Telegram-протокол](AGENT_NOTIFICATION_PROTOCOL.md); `CLAUDE.md` ведёт к тем же правилам. Новый приоритет первого инкрементального релиза сохранён в AGENTS.md, не заменяет master.
 
 - Этапы0/1: read-only Android audit, исходный бренд/котик/шрифты/токены обеих тем, адаптивный каркас. Provenance `docs/ASSET_SOURCES.json`, Android SHA `874de91cb626b6f0e78532963b378d86901b97d9`. Не повторять аудит неизменённых входов.
 - Этап2: секции/навигация/FAQ/темы/галерея/ошибки; R1 — пользовательское coming-soon состояние. Реальные APK features/screens — deferred инкремент, не fabricated UI. Hero пока оригинальный маскот.
@@ -52,3 +52,9 @@
 ## Неприкосновенное
 
 Main `9a0857ce260540ad604f344565d535a8d47b2fa0`; production Pages source legacy main:/. CNAME/privacy побайтно равны исходному main, DNS/Pages/deploy не менялись. Нельзя main update/merge/PR/deploy, public APK, изменение gates или снятие draft noindex без соответствующего явного разрешения. Не менять Android/другие клиентские репозитории/сессии. Весь существенный контекст, evidence и точный next находятся в Git; /tmp не единственный источник. При следующей сессии fetch/status/AGENTS/handoff/progress/latest verified remote обязательны.
+
+## P1 · постоянная совместимость агентов и русские Telegram-отчёты
+
+По новому указанию владельца общий порядок resume/checkpoint/handoff выделен в единственный AGENT_DEVELOPMENT_PROTOCOL.md с входом через AGENTS/CLAUDE. Формат и provenance определяет только AGENT_NOTIFICATION_PROTOCOL.md; CI report-check обеспечивает обязательные русские Report-* trailers и точный Agent. Прежний website roadmap/дизайн/gates не меняются. Cold-start проверяется по файлам репозитория, реальный transfer Claude↔Codex не заявляется. После проверки/сохранения этого этапа продолжить exact next выше; разрешение неприменённого gate patch пока не получено.
+
+P1 локально проверен:47 notification tests +20 site/workflow/handoff tests PASS; draft build/JS syntax PASS, HTML hash побайтно совпадает с R1 candidate. Cold-start simulation по repository-only sources/remote GitHub checkpoint — docs/verification/cold-start-handoff.json; real transfer=false. Новые source/report поля меняют только Telegram-представление, ledger keys/credentials/destination и website public artifact не меняются. После remote checkpoint проверить CI/Telegram ack без отдельной test-send; затем возобновить прежний exact next (owner decision ещё не дано).

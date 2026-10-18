@@ -1,0 +1,103 @@
+{
+  "at_moscow": "2026-10-18T11:38:00+03:00",
+  "method": "Repository-only documentary cold-start simulation plus local contract tests; no previous chat used for answers",
+  "real_agent_transfer_tested": false,
+  "documentation_worktree_dirty_at_local_audit": true,
+  "sources": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "AGENT_DEVELOPMENT_PROTOCOL.md",
+    "AGENT_NOTIFICATION_PROTOCOL.md",
+    "AGENT_HANDOFF.md",
+    "IMPLEMENTATION_PROGRESS.md",
+    "project_specs/WEBSITE_MASTER_TZ_2026-10-18.md",
+    "docs/QA.md",
+    "README.md"
+  ],
+  "answers": {
+    "repository": {
+      "answer": "sashaermin/ya-hudeyu",
+      "source": "AGENT_HANDOFF.md + Git origin"
+    },
+    "branch": {
+      "answer": "work/website-v2",
+      "source": "Git + AGENTS.md"
+    },
+    "latest_verified_remote": {
+      "answer": "b5f69e7207a7b1b50a9c35683178d31f1225a3d1",
+      "source": "git ls-remote + GitHub successful run",
+      "run": {
+        "conclusion": "success",
+        "databaseId": 39111583461,
+        "headSha": "b5f69e7207a7b1b50a9c35683178d31f1225a3d1",
+        "status": "completed"
+      }
+    },
+    "completed_current_stages": {
+      "answer": [
+        "Review-only patch проверен в временном git archive экспорте, **не применён** к активным gates. Evidence `docs/verification/first-release-policy-proposal.json`; 15 existing+5 proposed tests PASS. Default full-release gates сохраняются; предлагаемый coming-soon mode требует отдельный site approval и запрещает APK/features/screens.",
+        "Этапы0/1: read-only Android audit, исходный бренд/котик/шрифты/токены обеих тем, адаптивный каркас. Provenance `docs/ASSET_SOURCES.json`, Android SHA `874de91cb626b6f0e78532963b378d86901b97d9`. Не повторять аудит неизменённых входов.",
+        "Этап2: секции/навигация/FAQ/темы/галерея/ошибки; R1 — пользовательское coming-soon состояние. Реальные APK features/screens — deferred инкремент, не fabricated UI. Hero пока оригинальный маскот.",
+        "Этап3: allowlisted stdlib build, SEO/fonts, noindex draft; независимые APK/site approvals. Actual `data/publication.json=false`, `data/release.json=unverified`. Validate и render approval guard AST совпали с22ac98a; предложение gate не активировано.",
+        "Этап4: исправлены gallery focus trap, skip target (`tabindex=-1`) и переполнение200% текста (`overflow-wrap:anywhere`). 4D baseline:64 viewport/theme runs в Chromium/Firefox/WebKit/Edge,16 axe0violations. После coming-soon copy R1:Chromium16/16+4axe0violations,48 text resize/spacing cases в4браузерах PASS. Не выдавать старую полную матрицу за новый запуск на новом copy. CSS text simulation — не native zoom/screen reader/device test.",
+        "R2/R5: настоящий CI upload→download artifact; clean source/SHA/22file manifests и Chrome rendering390/1440×2темы PASS, noindex=true/APK=false/page_errors0. Текущие58 unit tests (40 notify+18 build/workflow/package) PASS в CI. Code/UI не менялся послеR1, повторные matrices не нужны.",
+        "R4: run39110987166 attempts1/2 success, оба archive round-trip notices; Telegram127 толькоattempt1, повторного commit notice вattempt2 нет. `artifact-retry.json` честно фиксирует API404 старых IDs; global exactly-once не обещать.",
+        "R5: current official Node24 upload7.0.2/download8.0.2 pinned SHAs, compatible inputs сверены. Run39111335266 success; verify117627928319 с `Website review archive verified`, notify117628076983 с accepted138. Node20 annotation отсутствует. `docs/verification/artifact-node24.json`."
+      ],
+      "source": "AGENT_HANDOFF.md → IMPLEMENTATION_PROGRESS.md → docs/QA.md"
+    },
+    "exact_next": {
+      "answer": "дождаться замечаний/приёмки кандидата и отдельного разрешения `site-first-website-release-policy` на конкретный **неприменённый** `docs/proposals/first-release-coming-soon.patch` (SHA-256 `cefd3cc1b1440efa0f09c67b557570e5c9a4f89d0b7f0c63df7b8b407f38fd03`). При замечаниях — исправить их в development branch и проверить затронутые сценарии. При разрешении именно patch — сверить его digest/source, apply-check, применить и выполнить 15 existing+5 proposed tests; реальные approvals оставить false до соответствующего отдельного решения. Публикация конкретного SHA/артефакта, main/deploy/indexing/rollback требуют отдельного явного разрешения. Подготовка первого сайта **не ждёт APK**. Не обходить existing gate загрузкой draft, не повторять завершённый QA без изменившихся inputs.",
+      "source": "AGENT_HANDOFF.md (parsed without chat)"
+    },
+    "approved_spec": {
+      "answer": "project_specs/WEBSITE_MASTER_TZ_2026-10-18.md",
+      "sha256": "2657eedd632e222c777714ff7dad2e7f8144f1cd371c360456d303a0d932f904"
+    },
+    "required_checks": {
+      "answer": [
+        "python3 tools/build.py",
+        "python3 -m unittest discover -s tests -p 'test_*.py' -v",
+        "python3 -m unittest discover -s .github/scripts -p 'test_*.py' -v",
+        "Risk-appropriate browser recipes in docs/QA.md; unchanged HTML does not require repeating full matrices."
+      ],
+      "source": "AGENTS.md + README.md + docs/QA.md"
+    },
+    "pending_approvals": {
+      "answer": [
+        "site-approved-android-release",
+        "site-digest-default-branch-activation",
+        "site-first-website-release-policy"
+      ],
+      "source": "project_specs/user_actions.json"
+    },
+    "restrictions": {
+      "answer": "No main/PR/merge/deploy/noindex removal/download/gate changes without explicit owner approval; APK independent of first website candidate.",
+      "source": "AGENTS.md + AGENT_HANDOFF.md",
+      "publication": {
+        "approved": false,
+        "approval_reference": null
+      },
+      "release_status": "unverified"
+    },
+    "preview_review": {
+      "answer": "Verified downloadable noindex archive and screenshots; no hosted preview.",
+      "source": "AGENT_HANDOFF.md + docs/FIRST_RELEASE.md"
+    },
+    "save_and_handoff": {
+      "answer": "One writer; focused checks; progress/handoff; canonical Russian report trailers; commit/push/ls-remote; verify CI and Telegram acceptance separately. Never treat unpushed work as transferred.",
+      "source": "AGENT_DEVELOPMENT_PROTOCOL.md + AGENT_NOTIFICATION_PROTOCOL.md"
+    }
+  },
+  "local_results": {
+    "notification_tests": 47,
+    "site_and_handoff_tests": 20,
+    "status": "PASS",
+    "draft_html_unchanged": true,
+    "browser_matrices_repeated": false
+  },
+  "limits": [
+    "Not a real Claude↔Codex handoff",
+    "Current source/documentation changes become transferred only after commit/push/remote verification"
+  ]
+}

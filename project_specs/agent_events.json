@@ -282,6 +282,25 @@
       "done": "Кандидат готов к приёмке независимо от APK. Проверены archive pipeline/retry/commit dedup; подготовлен неприменённый policy diff20isolated tests PASS; handoff сохранён.",
       "next": "Владелец: приёмка кандидата и отдельное решение по конкретному review-only patch. Затем продолжить по этому решению; публикация отдельно.",
       "status": "Независимые approved задачи завершены; production/main/gates не менялись"
+    },
+    {
+      "id": "site-permanent-agent-protocol-p1-20261018",
+      "at": "2026-10-18T08:39:36Z",
+      "type": "task_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Общая работа",
+          "P1"
+        ],
+        "title": "Каноническая передача агентов и русские отчёты"
+      },
+      "verified": "47 notification mock tests и20 site/workflow/handoff tests пройдены; сборка/JS синтаксис пройдены; HTML сайта не изменился. Cold-start simulation выполнена, реальный transfer не заявляется.",
+      "checkpoint": "b5f69e7207a7b1b50a9c35683178d31f1225a3d1",
+      "done": "Общие правила передачи закреплены без конкурирующего roadmap; Telegram использует русские поля и только явную подпись агента. CI проверяет report metadata; ledger keys и секреты сохранены.",
+      "next": "Проверить remote CI и доставку обычного commit; затем продолжить прежнюю точку дорожной карты с учётом pending owner approval.",
+      "status": "Правила постоянны; публикация и изменение gates не разрешены"
     }
   ]
 }
