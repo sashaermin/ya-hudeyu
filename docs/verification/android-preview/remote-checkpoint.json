@@ -1,0 +1,43 @@
+{
+  "verified_at": "2026-10-19T22:54:43.768190+00:00",
+  "source_commit": "98374392af7f1a86d7bb3523ea32e889b311c342",
+  "run_id": 39337952451,
+  "run_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39337952451",
+  "conclusion": "success",
+  "verify_check_id": 118352067427,
+  "notify_check_id": 118352288830,
+  "review_archive_artifact_id": 12228215758,
+  "verification_artifact_id": 12226839580,
+  "archive_sha256": "faa3c3e406cb0baab71155572ae95bc901aa7abc2760c41d07d512c6c2c03c51",
+  "verify_annotations": [
+    {
+      "title": "Website review archive verified",
+      "message": "source 98374392af7f1a86d7bb3523ea32e889b311c342; archive_sha256 faa3c3e406cb0baab71155572ae95bc901aa7abc2760c41d07d512c6c2c03c51; files 46; rendered 4; download_rendered 4; noindex=true; APK=false; page_errors=0"
+    }
+  ],
+  "notify_annotations": [
+    {
+      "title": "Telegram topic confirmed",
+      "message": "message_thread_id 6; message_id 358"
+    },
+    {
+      "title": "Telegram accepted",
+      "message": "commit 98374392af7f1a86d7bb3523ea32e889b311c342 message_id 357"
+    },
+    {
+      "title": "Telegram topic confirmed",
+      "message": "message_thread_id 6; message_id 357"
+    },
+    {
+      "title": "Telegram topic confirmed",
+      "message": "message_thread_id 6; message_id 356"
+    },
+    {
+      "title": "Telegram topic confirmed",
+      "message": "message_thread_id 6; message_id 355"
+    }
+  ],
+  "cloud_artifact_download": "403 from artifact storage in this cloud session. No artifact JSON claimed locally downloaded. Runner upload/download/render succeeded; GitHub check annotations are the remote evidence.",
+  "publication": false,
+  "production_unchanged": "6810206125ccf72080c8a7aa29072041d5812f0f"
+}

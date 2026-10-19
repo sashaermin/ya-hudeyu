@@ -1,9 +1,10 @@
 {
   "scope": "Development-only edited11-screen Android gallery; not approved for publication",
-  "source_base_checkpoint": "e8e1818b8210106ae61f17e95efa64ef0f9052b0",
+  "source_base_checkpoint": "98374392af7f1a86d7bb3523ea32e889b311c342",
   "archive_sha256": "faa3c3e406cb0baab71155572ae95bc901aa7abc2760c41d07d512c6c2c03c51",
   "site_index_sha256": "609eb804eb91ca6f8d57c46029273c694c53f3af7be5a053bfcca08697fa5f4d",
   "qa_evidence": "docs/ANDROID_PREVIEW_GALLERY_REVIEW.md",
   "production_unchanged": "6810206125ccf72080c8a7aa29072041d5812f0f",
-  "publication_evidence": "docs/verification/phase2-faq-beta-production-release.json"
+  "publication_evidence": "docs/verification/phase2-faq-beta-production-release.json",
+  "remote_verification": "docs/verification/android-preview/remote-checkpoint.json"
 }

@@ -1,6 +1,6 @@
 # Предварительная Android-галерея — review-пакет
 
-**Статус: реализовано и локально проверено, development only.** Все 11 исходных JPEG получены ZIP-вложением владельца. Прежний технический блокер файлов устранён. Агент выполнил обезличивание по прямому указанию «сам обезличь и выполни тз»; повторное разрешение на обработку не требуется. [Исходное задание](../project_specs/ANDROID_PREVIEW_GALLERY_AUTHORIZATION_2026-10-20.md) и [уточнение](../project_specs/ANDROID_PREVIEW_ANONYMIZATION_AUTHORIZATION_2026-10-20.md) сохранены без замены мастер-ТЗ. Публикация галереи **не разрешена**.
+**Статус: DEVELOPMENT COMPLETED / REMOTE VERIFIED, ожидает owner review.** Все 11 исходных JPEG получены ZIP-вложением владельца. Прежний технический блокер файлов устранён. Агент выполнил обезличивание по прямому указанию «сам обезличь и выполни тз»; повторное разрешение на обработку не требуется. [Исходное задание](../project_specs/ANDROID_PREVIEW_GALLERY_AUTHORIZATION_2026-10-20.md) и [уточнение](../project_specs/ANDROID_PREVIEW_ANONYMIZATION_AUTHORIZATION_2026-10-20.md) сохранены без замены мастер-ТЗ. Публикация галереи **не разрешена**.
 
 ## Реализация
 
@@ -30,7 +30,7 @@
 - Регрессии: [главная](verification/android-preview/homepage.json)16layouts/темы/menu/persistence/4axe/legacyviewer; [FAQ](verification/android-preview/faq.json)16layouts/4axe/6noJS/33disclosures; [download](verification/android-preview/download.json)16layouts/4axe/6noJS/unavailable/sharedtheme. Ошибок JS не обнаружено.
 - [6 дополнительных коротких viewport/text-spacing cases](verification/android-preview/text-adaptation.json), включая320×568, PASS. CSS-симуляция не является nativezoom/screenreader проверкой.
 - [Локальный mobile Lighthouse](verification/android-preview/lighthouse.json): **93/100/100/69**, CLS≈0,000014. SEO69 ожидаем приnoindex. Это один локальный HTTP-замер, не production/реальное устройство; cache/compression на простом локальном сервере не эквивалентны Pages.
-- Воспроизводимый review ZIP:46 public files; SHA-256 `faa3c3e406cb0baab71155572ae95bc901aa7abc2760c41d07d512c6c2c03c51`. Локальный archive→render rehearsal:4homepage+4download views PASS. Чистый CI upload→download→render проверяется после push; точное подтверждение в handoff/CI evidence.
+- Воспроизводимый review ZIP:46 public files; SHA-256 `faa3c3e406cb0baab71155572ae95bc901aa7abc2760c41d07d512c6c2c03c51`. Локальный archive→render rehearsal:4homepage+4download views PASS. Чистый CI39337952451 upload→download→render PASS для source `98374392af7f1a86d7bb3523ea32e889b311c342`;[remote evidence](verification/android-preview/remote-checkpoint.json). Telegram подтвердилtopic6/messages355–358. В этой cloud-сессии локальное скачивание artifact получило403storage;это не отказ runner round-trip. СкачанныйremoteJSON не заявляется,доказательство — GitHub check annotations.
 
 ## Снимки сайта
 
@@ -47,7 +47,7 @@
 ## Как посмотреть и что дальше
 
 1. Проще всего начать со снимков выше, затем сообщить замечания к 11 изображениям, подписям и расположению галереи. Это контентная/визуальная приёмка development, не APK approval.
-2. Для интерактивного просмотра скачать `website-preview-<SHA>-attempt-1` из успешного website-checks run, распаковать внешний artifact и внутренний `website-preview.zip`, выполнить `python3 -m http.server 8002` в распакованной папке, открыть `http://localhost:8002/`. ZIP хранится7дней; его можно воспроизвести из verifiedGitSHA командой `python3 tools/package_preview.py`. Это **не размещённый веб-preview**.
+2. Для интерактивного просмотра скачать `website-preview-<SHA>-attempt-1` из [успешного website-checks run39337952451](https://github.com/sashaermin/ya-hudeyu/actions/runs/39337952451/artifacts/12228215758), распаковать внешний artifact и внутренний `website-preview.zip`, выполнить `python3 -m http.server 8002` в распакованной папке, открыть `http://localhost:8002/`. ZIP хранится7дней; его можно воспроизвести из verifiedGitSHA командой `python3 tools/package_preview.py`. Это **не размещённый веб-preview**.
 3. После review — замечания или отдельная явная авторизация новой website публикации. Сейчас **STOP перед owner review**, никаких main/deploy/APK/indexing операций.
 
 Production остаётся `6810206125ccf72080c8a7aa29072041d5812f0f`; Phase2/FAQ33/8 и`/download/` недоступная бета сохранены. `data/publication.json`, `data/release.json`, privacy/CNAME/robots/deployment/workflows иAndroid/Windows не изменялись. Preview approval отсутствует: production builder отклоняет эту галерею без отдельного разрешения точного manifestSHA. Release-specificscreens/APK требования master остаются отложенными; предварительная галерея их не закрывает.

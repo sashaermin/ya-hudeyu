@@ -148,7 +148,7 @@
         "Сообщите замечания или подтвердите визуальную/контентную приёмку. Сейчас публикация не выполняется, отдельный APK approval не меняется."
       ],
       "blocked": "Дальнейшая визуальная приёмка и возможная будущая отдельно разрешённая публикация галереи.",
-      "can_continue": "Approved gallery development/QA завершены; production6810206 сохраняется. STOP перед owner review, без новых функций/редизайна/deploy.",
+      "can_continue": "Галерея development/QA/remoteCI39337952451/Telegram topic6 проверена,production6810206 сохранён. Все independent approved gallery задачи выполнены; STOP передowner review,без новыхфункций/редизайна/deploy.",
       "link": "https://github.com/sashaermin/ya-hudeyu/blob/work/website-v2/docs/ANDROID_PREVIEW_GALLERY_REVIEW.md"
     }
   ]
