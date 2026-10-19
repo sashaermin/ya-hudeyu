@@ -1,11 +1,17 @@
 {
   "approved": true,
-  "approval_reference": "project_specs/PHASE2_FAQ_BETA_PRODUCTION_AUTHORIZATION_2026-10-20.md — explicit one-release owner approval for Phase2 + 33-question FAQ + unavailable /download; no APK, noindex preserved",
+  "approval_reference": "project_specs/ANDROID_PREVIEW_PRODUCTION_AUTHORIZATION_2026-10-20.md — one owner-authorized release of reviewed11-image gallery; coming-soon, no APK, noindex preserved",
   "release_mode": "coming-soon",
   "indexing_approved": false,
   "beta_release": {
     "approved": false,
     "approval_reference": null,
     "artifact_sha256": null
+  },
+  "preview_gallery": {
+    "approved": true,
+    "approval_reference": "project_specs/ANDROID_PREVIEW_PRODUCTION_AUTHORIZATION_2026-10-20.md",
+    "manifest_sha256": "33718228f5f81036c1d735d8782a009d7b1a8ec2efa56c2305e8be89fb95052d",
+    "approved_source_commit": "c3d8d9f6a659c7e698049af8f27cd50a00b54937"
   }
 }

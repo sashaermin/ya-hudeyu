@@ -137,7 +137,7 @@
     },
     {
       "id": "site-preview-gallery-owner-review",
-      "status": "open",
+      "status": "resolved",
       "source": "Codex",
       "opened": "2026-10-20",
       "task": "Сайт · предварительная Android-галерея",
@@ -147,9 +147,10 @@
         "Откройте docs/ANDROID_PREVIEW_GALLERY_REVIEW.md и снимки сайта в обеих темах; при желании скачайте проверенный CI preview ZIP для интерактивного просмотра.",
         "Сообщите замечания или подтвердите визуальную/контентную приёмку. Сейчас публикация не выполняется, отдельный APK approval не меняется."
       ],
-      "blocked": "Дальнейшая визуальная приёмка и возможная будущая отдельно разрешённая публикация галереи.",
-      "can_continue": "Галерея development/QA/remoteCI39337952451/Telegram topic6 проверена,production6810206 сохранён. Все independent approved gallery задачи выполнены; STOP передowner review,без новыхфункций/редизайна/deploy.",
-      "link": "https://github.com/sashaermin/ya-hudeyu/blob/work/website-v2/docs/ANDROID_PREVIEW_GALLERY_REVIEW.md"
+      "blocked": "Визуальная/контентная приёмка получена;publication authorized for this exact candidate only.",
+      "can_continue": "Да:исполнить узкий G2release сrollback/liveverification;непубликоватьAPK/неиндексировать/неразрабатыватьновыеfeatures.",
+      "link": "https://github.com/sashaermin/ya-hudeyu/blob/work/website-v2/docs/ANDROID_PREVIEW_GALLERY_REVIEW.md",
+      "resolution": "Владелец явно одобрил completed11-image gallery иразрешил ONE production release поANDROID_PREVIEW_PRODUCTION_AUTHORIZATION_2026-10-20.md. Дополнительное подтверждение не требуется. Подготовка/main/Pages/live verification выполняются отдельно;APKapproval остаётсяopen."
     }
   ]
 }

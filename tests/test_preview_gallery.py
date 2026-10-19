@@ -62,6 +62,7 @@ class PreviewGalleryTests(unittest.TestCase):
         self.assertFalse(gallery.validate(None,ROOT));self.assertFalse(gallery.validate({'enabled':False},ROOT))
     def test_production_requires_separate_exact_manifest_approval(self):
         publication=json.loads((ROOT/'data/publication.json').read_text())
+        publication.pop('preview_gallery',None)  # Isolated unapproved fixture, independent of real release policy.
         with self.assertRaisesRegex(ValueError,'Separate preliminary'):gallery.validate(self.config,ROOT,True,publication)
         publication['preview_gallery']={'approved':True,'manifest_sha256':gallery.fingerprint(self.config),'approval_reference':'TEST ONLY, not owner approval'}
         self.assertTrue(gallery.validate(self.config,ROOT,True,publication))
@@ -76,4 +77,5 @@ class PreviewGalleryTests(unittest.TestCase):
         self.assertIn('id="viewer-zoom"',html);self.assertIn('class="viewer-canvas"',html)
         self.assertEqual(html.count('<details id="question-'),33)
         publication=json.loads((ROOT/'data/publication.json').read_text())
+        publication.pop('preview_gallery',None)  # Isolated unapproved fixture, independent of real release policy.
         with self.assertRaisesRegex(ValueError,'Separate preliminary'):build.render(site,release,True,publication,preview=self.config)

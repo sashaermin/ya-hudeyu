@@ -684,6 +684,24 @@
       "done": "11source-basededitedscreens/22WebP/5категорий,дисклеймер,viewer/zoom/focus/swipe. SourceZIPblockerresolved;reviewpackage/screenshotssaved. Production/main/APK/noindex/workflows не менялись.",
       "next": "Проверить clean CI/remoteSHA/Telegram послеpush,затем STOP передowner visual/content review. APKapproval остаётсяотдельноopen;публикация не разрешена.",
       "status": "Development locally VERIFIED; owner review next; production unchanged"
+    },
+    {
+      "id": "site-preview-gallery-production-prepared-20261020",
+      "at": "2026-10-19T23:03:35.699748+00:00",
+      "type": "stage_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "G2",
+          "Готовность выпуска"
+        ],
+        "title": "Подготовлен одобренный public-only выпуск галереи"
+      },
+      "verified": "Production46file manifest=reviewedcandidate;22images unchanged/privacyreview revalidated;124unit tests/16production-stage layouts/8axe0violations/8noJS/176opens/CDPswipes PASS;24oldHTTPS hashes иrollbacktag verified.",
+      "done": "Ownerapproval exactmanifest применён;prepared locald7ebfd8e,25publicpaths;download/privacy/CNAME/robots/.github unchanged. Main/production пока6810206;APKoff/noindex.",
+      "next": "ДождатьсяcleanreadinessCI,повторно refs/config/filetree gates,пушить толькоpreparedproductioncommit вmain,waitPages иactualHTTPS liveQA. Ownerconfirmation не требуется.",
+      "status": "PREPARED — deployment not yet performed"
     }
   ]
 }

@@ -59,7 +59,7 @@ jobs:
         run: |
           production_browser=$(command -v google-chrome || command -v google-chrome-stable || command -v chromium)
           npm ci --prefix tools/qa --ignore-scripts --no-audit --no-fund
-          .test-results/preview-qa-venv/bin/python tests/production_qa.py --executable "$production_browser" --manifest docs/verification/phase2-faq-beta-production-release.json --uiux --expanded
+          .test-results/preview-qa-venv/bin/python tests/production_qa.py --executable "$production_browser" --manifest docs/verification/android-preview-production-release.json --uiux --expanded
       - name: Measure mobile production Lighthouse (read-only)
         if: "contains(github.event.head_commit.message, 'Verify-Live-Production: true')"
         run: |

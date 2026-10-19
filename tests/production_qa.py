@@ -19,6 +19,7 @@ import uiux_qa
 import gallery_loading_qa
 import faq_qa
 import download_live_qa
+import preview_gallery_qa
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = 'https://yahudeyu-app.ru/'
@@ -33,7 +34,12 @@ PRIVATE = ['AGENTS.md', 'AGENT_HANDOFF.md', 'AGENT_DEVELOPMENT_PROTOCOL.md',
            'docs/BETA_REVIEW.md', 'docs/FAQ_GUIDE.md', 'data/site.json',
            'templates/download.html', 'tools/beta_release.py', 'tests/beta_fixture.py',
            'fixture/', 'download/fixture/',
-           'project_specs/PHASE2_FAQ_BETA_PRODUCTION_AUTHORIZATION_2026-10-20.md']
+           'project_specs/PHASE2_FAQ_BETA_PRODUCTION_AUTHORIZATION_2026-10-20.md',
+           'data/android_preview.json', 'docs/ANDROID_PREVIEW_GALLERY_REVIEW.md',
+           'project_specs/ANDROID_PREVIEW_PRODUCTION_AUTHORIZATION_2026-10-20.md',
+           'tools/preview_gallery.py', 'tests/preview_gallery_qa.py',
+           'assets/previews/today.jpg', 'assets/previews/today.jpeg',
+           'assets/previews/originals/', 'raw-screenshots/', 'screenshots.zip']
 
 
 def fetch(path):
@@ -109,6 +115,15 @@ def run(executable, output, manifest_path=None, detailed_ui=False, expanded=Fals
                 download_layouts=len(download['matrix']),download_nojs=len(download['nojs']),
                 axe_runs=len(faq['axe'])+len(download['axe']),axe_violations=0,
                 development_intent_cards=5,journey_steps=4,download_unavailable=True,no_fixture_publication=True)
+        if manifest.get('preview_gallery'):
+            preview_gallery_qa.run(BASE,output/'expanded/android-preview','chromium',executable)
+            preview=json.loads((output/'expanded/android-preview/gallery-results.json').read_text())
+            result['preview_gallery']=dict(screens=11,categories=5,layouts=len(preview['matrix']),
+                opens=sum(c['opens'] for c in preview['matrix']),axe_runs=len(preview['axe']),
+                axe_violations=0,nojs_cases=len(preview['nojs']),viewer_touch=preview['cdp_viewer_swipe'],
+                track_touch=preview['cdp_track_swipe'],error_retry=preview['error_retry'],
+                manifest_sha256=manifest['preview_gallery']['manifest_sha256'],
+                scope='Actual HTTPS production gallery with approved edited demonstration images; no TLS bypass')
         result.update(status='PASS', public_files_verified=len(records),
                       private_paths_404=len(PRIVATE), browser_version=browser['browser_version'],
                       matrix_runs=16, interactions=browser['interactions'],
@@ -123,6 +138,8 @@ def run(executable, output, manifest_path=None, detailed_ui=False, expanded=Fals
             print('::notice title=Production UI UX verified::' + json.dumps(dict(production_commit=expected_commit, **result['uiux']), ensure_ascii=False))
         if expanded:
             print('::notice title=Production expanded release verified::'+json.dumps(dict(production_commit=expected_commit,**result['expanded']),ensure_ascii=False))
+        if manifest.get('preview_gallery'):
+            print('::notice title=Production Android preview gallery verified::'+json.dumps(dict(production_commit=expected_commit,**result['preview_gallery']),ensure_ascii=False))
         print(f'::notice title=Production website verified::commit {expected_commit}; '
               f'public_files {len(records)}; internal_404 {len(PRIVATE)}; '
               'browser_matrix 16; noindex=true; APK=false; TLS=true; page_errors=0')
