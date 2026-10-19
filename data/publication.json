@@ -2,5 +2,10 @@
   "approved": true,
   "approval_reference": "project_specs/UIUX_PRODUCTION_AUTHORIZATION_2026-10-18.md — explicit owner approval to publish audited UI/UX fixes from0b706e3, with noindex and APK disabled",
   "release_mode": "coming-soon",
-  "indexing_approved": false
+  "indexing_approved": false,
+  "beta_release": {
+    "approved": false,
+    "approval_reference": null,
+    "artifact_sha256": null
+  }
 }

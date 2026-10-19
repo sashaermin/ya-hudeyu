@@ -77,6 +77,8 @@ class BuildTests(unittest.TestCase):
 
     def ready_fixture(self):
         # Test-only proof records; no real APK is approved or added to project data.
+        for key in ('channel','version_code','known_issues','artifact_verification','approval_sha256'):
+            self.release.pop(key, None)  # Explicit legacy full-release fixture, not a beta gate bypass.
         self.release.update(status='verified',version='TEST-ONLY',date='2026-10-18',url='https://example.com/test-only.apk',size_bytes=1,sha256='a'*64,min_android='TEST',source_commit='a'*40,verification_note='TEST ONLY',approved_for_distribution=True,approval_reference='TEST ONLY')
         self.site['features']=[dict(title='TEST',description='TEST ONLY',verified_version='TEST-ONLY',evidence='TEST ONLY')]
         self.site['screenshots']=[dict(src='assets/brand/originals/mascot_calm.webp',width=440,height=512,alt='TEST ONLY',caption='TEST ONLY',verified_version='TEST-ONLY',evidence='TEST ONLY',approved_for_publication=True)]

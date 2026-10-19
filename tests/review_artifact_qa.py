@@ -79,7 +79,7 @@ def run(archive, checkpoint, output, executable, local=False):
                         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
                         assert page.locator('.hero-cat').evaluate('el => el.complete && el.naturalWidth > 0')
                         for href in page.locator('a[href]').evaluate_all('els => els.map(el => el.getAttribute("href"))'):
-                            assert href.startswith(('#', 'mailto:')) or href == 'privacy.html', href
+                            assert href.startswith(('#', 'mailto:')) or href in ('privacy.html', '/download/'), href
                         if width == 390:
                             page.locator('#menu-toggle').click()
                             assert page.locator('#menu-toggle').get_attribute('aria-expanded') == 'true'
@@ -87,6 +87,18 @@ def run(archive, checkpoint, output, executable, local=False):
                         page.locator('summary').first.click()
                         assert page.locator('details').first.get_attribute('open') is not None
                         result['rendered'].append(dict(width=width, theme=theme, status='PASS', coming_soon=True, apk_download=False, noindex=True))
+                        response=page.goto(base+'download/')
+                        assert response.status==200
+                        assert page.locator('meta[name=robots]').get_attribute('content')=='noindex,nofollow'
+                        assert page.locator('[data-apk-download]').count()==0
+                        assert 'бета ещё не доступна' in page.locator('.beta-status').inner_text().casefold()
+                        assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
+                        for image in page.locator('img').all():
+                            if image.is_visible():
+                                image.scroll_into_view_if_needed()
+                                image.evaluate('el => el.decode()')
+                        assert page.locator('html').get_attribute('data-theme')==theme
+                        result.setdefault('download_rendered',[]).append(dict(width=width,theme=theme,apk_download=False,noindex=True))
                         context.close()
                 browser.close()
         finally:
@@ -96,7 +108,7 @@ def run(archive, checkpoint, output, executable, local=False):
     output.write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n')
     print(json.dumps(result, ensure_ascii=False, indent=2))
     if not local and os.environ.get('GITHUB_ACTIONS') == 'true':
-        print(f'::notice title=Website review archive verified::source {checkpoint}; archive_sha256 {digest}; files {result["archive_files_verified"]}; rendered 4; noindex=true; APK=false; page_errors=0')
+        print(f'::notice title=Website review archive verified::source {checkpoint}; archive_sha256 {digest}; files {result["archive_files_verified"]}; rendered 4; download_rendered {len(result["download_rendered"])}; noindex=true; APK=false; page_errors=0')
 
 
 if __name__ == '__main__':

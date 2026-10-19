@@ -89,15 +89,15 @@
       "source": "Codex",
       "opened": "2026-10-18",
       "task": "Сайт · Phase2",
-      "subtask": "Визуальная и контентная приёмка Phase2",
-      "what": "Phase2+FAQ candidate1611a15 готов:33вопроса/8категорий,source matrix24chains,8новыхснимков;verify104unit/64layouts/16axe0violations иactualZIP23files/4views. Требуется предусмотреннаявладельцем content/visual review;production unchanged.",
+      "subtask": "Контентная и визуальная приёмка Phase2/FAQ и Phase3 beta preparation",
+      "what": "Phase2+FAQ33/8 сохранены. Phase3 /download unavailable-default и TEST ONLY approved-beta simulation готовы: схема трёх разрешений, установка/feedback,8снимков,локальный browser/security QA. Это review-only,непредложениепубличнойбеты.",
       "steps": [
-        "Откройте docs/FAQ_REVIEW.md, полный FAQ_GUIDE.md, FAQ_FEATURE_COVERAGE.md,снимкидвухтем иverifiedZIP.",
-        "Сообщите замечания или подтвердите визуальную и контентную приёмку этого кандидата. Публикация требует последующего отдельного явного разрешения."
+        "Откройте docs/BETA_REVIEW.md и docs/FAQ_REVIEW.md; посмотрите unavailable/TEST ONLY screenshots,текст памятки иFAQ.",
+        "Сообщите замечания или подтвердите контентную/визуальную приёмку подготовки. Это неразрешениепубликации илираспространения APK."
       ],
       "blocked": "Только следующий этап приёмки/возможного website release. APK approval остаётся отдельной открытой задачей.",
-      "can_continue": "Все независимые approved Phase2 implementation/QA/review-package задачи выполнены. STOP перед production; новых функций/редизайна не начинать.",
-      "link": "https://github.com/sashaermin/ya-hudeyu/blob/work/website-v2/docs/FAQ_REVIEW.md"
+      "can_continue": "Независимая подготовка Phase3 реализована; после clean CI/preview/Telegram proof STOP перед owner review. Actual APK approval остаётся отдельным open действием.",
+      "link": "https://github.com/sashaermin/ya-hudeyu/blob/work/website-v2/docs/BETA_REVIEW.md"
     },
     {
       "id": "site-telegram-topic6-closed",

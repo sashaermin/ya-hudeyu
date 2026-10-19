@@ -1,0 +1,72 @@
+{
+  "status": "Phase3 implemented and locally verified; clean CI/archive proof pending; owner review pending",
+  "base_checkpoint": "cb1ce6c37cd4a92636ec2a9aafaeb49a202bbca5",
+  "authorization": "project_specs/PHASE3_BETA_AUTHORIZATION_2026-10-20.md",
+  "android": {
+    "sha": "878b027e53a24f8603e20dbcea1b771f5d466245",
+    "path": "app/build.gradle.kts",
+    "mode": "Read-only GitHub contents; development metadata only; no APK/build/device proof"
+  },
+  "production": {
+    "public_source": "8fb7bf2920a89f39e1ed3a56d53ada91f468b715",
+    "remote_main": "f308729f2cd4d7bde3574e08d8fd2fc05e92c4ab",
+    "public_git_diff": [],
+    "pages_status": "built",
+    "pages_source": {
+      "branch": "main",
+      "path": "/"
+    },
+    "https_enforced": true,
+    "scope": "Read-only GitHub API/Git comparison; no new live HTTP/browser production check"
+  },
+  "qa": {
+    "website_tests": 47,
+    "notification_tests": 68,
+    "beta_layouts": 96,
+    "beta_axe_runs": 24,
+    "beta_axe_violations": 0,
+    "beta_nojs": 12,
+    "beta_text_stress": 18,
+    "main_layouts": 16,
+    "main_axe_runs": 4,
+    "faq_layouts": 16,
+    "faq_axe_runs": 4,
+    "faq_nojs": 6,
+    "faq_disclosures": 33,
+    "screenshots": 8,
+    "workflow_yaml_files_valid": 2,
+    "final_copy_note": "Conditional installation copy refreshed and rechecked in Chromium; Firefox/WebKit same layout/gates with initial installation copy"
+  },
+  "apk_verifier": {
+    "actual_apk_tested": false,
+    "tool_output": "Mocked apksigner/aapt2 output; isolated byte fixture. Not a release-ready or genuine signature claim.",
+    "distribution_approved": false,
+    "beta_publication_approved": false
+  },
+  "privacy_sha256": "75f092afe2a0f9c51120abf61d8fbcb70dde6e83fb78b4e2633e232ea049481d",
+  "cname_sha256": "2a3a70232a30a4dcda28add45328c10e982ca1acf67d56e4f73f4e77a97aac77",
+  "preview": {
+    "scope": "Phase3 beta preparation; unavailable default; development review only",
+    "source_base_checkpoint": "cb1ce6c37cd4a92636ec2a9aafaeb49a202bbca5",
+    "archive_sha256": "d48f2d5a714faffb0bdecea8b19b75ec13ca94913f14776361a0407d70e55e8f",
+    "site_index_sha256": "6da371cfc832ef2ee97a8d7f09473c84b61745df5de1697ec5b366f975e944a3",
+    "qa_evidence": "docs/verification/beta-readiness.json",
+    "production_commit": "8fb7bf2920a89f39e1ed3a56d53ada91f468b715",
+    "publication_evidence": "docs/verification/uiux-production-release.json"
+  },
+  "limitations": [
+    "No approved APK, real signature/manifest/install/upgrade tests or release screenshots",
+    "No physical device, assistive technology or native zoom acceptance",
+    "Owner content/visual review and separate production authorization required"
+  ],
+  "updated_at": "2026-10-19T21:31:36.327911+00:00",
+  "local_archive_rehearsal": {
+    "sha256": "d48f2d5a714faffb0bdecea8b19b75ec13ca94913f14776361a0407d70e55e8f",
+    "files": 24,
+    "home_views": 4,
+    "download_views": 4,
+    "errors": [],
+    "dirty_source": true,
+    "scope": "Local rehearsal before commit; clean CI roundtrip still pending"
+  }
+}

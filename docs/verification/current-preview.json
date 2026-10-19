@@ -1,9 +1,9 @@
 {
-  "scope": "Categorized FAQ development candidate; owner review pending; no production approval",
-  "source_base_checkpoint": "1611a15b1aadf3c27953b935a9fb7670686846ff",
-  "archive_sha256": "d0b00ec9c67400a3ae308a3428b99733270f9fa30bd5207b2069b83275373dd8",
-  "site_index_sha256": "03082da8b169584418f2e04f717bdb4af1483000dde6c5f2a94fe406594df4ff",
-  "qa_evidence": "docs/verification/faq-review.json",
+  "scope": "Phase3 beta preparation; unavailable default; development review only",
+  "source_base_checkpoint": "cb1ce6c37cd4a92636ec2a9aafaeb49a202bbca5",
+  "archive_sha256": "d48f2d5a714faffb0bdecea8b19b75ec13ca94913f14776361a0407d70e55e8f",
+  "site_index_sha256": "6da371cfc832ef2ee97a8d7f09473c84b61745df5de1697ec5b366f975e944a3",
+  "qa_evidence": "docs/verification/beta-readiness.json",
   "production_commit": "8fb7bf2920a89f39e1ed3a56d53ada91f468b715",
   "publication_evidence": "docs/verification/uiux-production-release.json"
 }

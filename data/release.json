@@ -10,5 +10,10 @@
   "verification_note": null,
   "changes": [],
   "approved_for_distribution": false,
-  "approval_reference": null
+  "approval_reference": null,
+  "channel": "beta",
+  "version_code": null,
+  "known_issues": [],
+  "artifact_verification": null,
+  "approval_sha256": null
 }

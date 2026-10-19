@@ -1,0 +1,136 @@
+{
+  "engine": "chromium",
+  "matrix": [
+    {
+      "width": 320,
+      "theme": "light",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 360,
+      "theme": "light",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 430,
+      "theme": "light",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 1920,
+      "theme": "light",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 430,
+      "theme": "dark",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    },
+    {
+      "width": 1920,
+      "theme": "dark",
+      "overflow": false,
+      "menu_faq_links_images": "PASS"
+    }
+  ],
+  "interactions": [
+    "Theme persistence, reset to system and OS changes PASS",
+    "Gallery keyboard, focus trap, Escape/restore focus and image error PASS",
+    "Native tap and CDP touch swipe PASS",
+    "No-JS mobile navigation and native FAQ PASS"
+  ],
+  "axe": [
+    {
+      "width": 390,
+      "theme": "light",
+      "axe_version": "4.10.3",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "axe_version": "4.10.3",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "axe_version": "4.10.3",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "axe_version": "4.10.3",
+      "violations": []
+    }
+  ],
+  "page_errors": [],
+  "failed_requests": [],
+  "browser_version": "154.0.8037.57"
+}

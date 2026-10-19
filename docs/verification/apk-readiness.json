@@ -32,5 +32,12 @@
     "No physical-device, screen-reader or native zoom verification performed.",
     "No actual release APK or release screenshots approved.",
     "No new browser matrix: website bytes unchanged."
-  ]
+  ],
+  "phase3_extension": {
+    "evidence": "docs/verification/beta-readiness.json",
+    "schema": "docs/BETA_RELEASE_SCHEMA.md",
+    "procedure": "docs/BETA_APPROVAL_PROCEDURE.md",
+    "downloads_enabled": false,
+    "real_apk_verified": false
+  }
 }

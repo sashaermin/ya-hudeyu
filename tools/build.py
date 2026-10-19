@@ -5,10 +5,13 @@ import html
 import json
 import re
 import shutil
+import sys
 from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+import beta_release
 
 def escape(value):
     return html.escape(str(value), quote=True)
@@ -21,6 +24,8 @@ def https(value):
 
 def asset(value):
     path = Path(value)
+    if path.suffix.lower() not in ('.webp', '.png', '.jpg', '.jpeg', '.svg', '.avif'):
+        raise ValueError('Only image assets are allowed; no APK binaries in website artifacts')
     if not value.startswith('assets/') or '..' in path.parts or not (ROOT / path).is_file() or not (ROOT / path).resolve().is_relative_to((ROOT / 'assets').resolve()):
         raise ValueError(f'Missing or unsafe asset: {value}')
     return escape(value)
@@ -39,14 +44,20 @@ def validate(site, release, production=False):
             if not release.get(key):
                 raise ValueError(f'Missing verified release field: {key}')
         https(release['url'])
-        if not re.fullmatch(r'[a-f0-9]{64}', release['sha256']):
+        if not isinstance(release['sha256'],str) or not re.fullmatch(r'[a-f0-9]{64}', release['sha256']):
             raise ValueError('SHA-256 must contain 64 lowercase hex digits')
         if not isinstance(release['size_bytes'], int) or release['size_bytes'] <= 0:
             raise ValueError('Invalid APK size')
-        if not re.fullmatch(r'[a-f0-9]{40}', release['source_commit']):
+        if not isinstance(release['source_commit'],str) or not re.fullmatch(r'[a-f0-9]{40}', release['source_commit']):
             raise ValueError('Expected full Android source commit')
         from datetime import date
+        if not isinstance(release['date'],str):
+            raise ValueError('Release date must be an ISO date string')
         date.fromisoformat(release['date'])
+    if release.get('channel') not in (None, 'beta') or (release.get('channel') is None and 'artifact_verification' in release):
+        raise ValueError('Unknown or missing release channel for beta metadata')
+    if release.get('channel') == 'beta':
+        beta_release.validate_metadata(release)
     for area in site.get('planned_areas', []):
         if area.get('status') != 'in-development' or not re.fullmatch(r'[a-f0-9]{40}', area.get('source_commit', '')) or not area.get('source_path'):
             raise ValueError('Planned area requires development status and source evidence')
@@ -86,6 +97,9 @@ def render(site, release, production=False, publication=None):
         raise ValueError('Unknown website release mode')
     coming_soon = production and mode == 'coming-soon'
     verified = validate(site, release, production and not coming_soon)
+    beta = release.get('channel') == 'beta' and beta_release.active(release, publication)
+    if beta and coming_soon:
+        raise ValueError('Coming-soon website release must not contain an APK, features or screenshots')
     if production and (publication.get('approved') is not True or not isinstance(publication.get('approval_reference'), str) or not publication['approval_reference'].strip()):
         raise ValueError('Separate website publication approval required before enabling indexing')
     if coming_soon and (verified or site['features'] or site['screenshots']):
@@ -94,8 +108,9 @@ def render(site, release, production=False, publication=None):
     values['theme_init'] = '<script>' + (ROOT / 'scripts/theme.js').read_text() + '</script>'
     values['stylesheet'] = '<style>' + (ROOT / 'styles/site.css').read_text() + '</style>'
     values.update(robots='index,follow' if production and publication.get('indexing_approved', True) is True else 'noindex,nofollow',
-                  download_label='Скачать для Android' if verified else 'О выпуске для Android',
-                  hero_release_note=f'Android · Версия {escape(release["version"])}' if verified else 'Скоро для Android. Дата выпуска пока не объявлена.',
+                  download_label='Android · Бета' if beta else ('Скачать для Android' if verified else 'О выпуске для Android'),
+                  download_target='/download/' if beta else '#download',
+                  hero_release_note=f'Android · {"Бета · " if beta else ""}Версия {escape(release["version"])}' if verified else 'Скоро для Android. Дата выпуска пока не объявлена.',
                   features_intro='Возможности подтверждены для указанной ниже версии приложения.' if site['features'] else 'Пять направлений, над которыми мы работаем. Это замысел и текущая область разработки, а не список выпущенных функций.',
                   screens_intro='Настоящие экраны версии ' + escape(release['version']) + '.' if site['screenshots'] else 'Галерея экранов появится вместе с доступной версией приложения.',
                   release_summary='Проверенный файл и сведения о выпуске — в одном месте.' if verified else 'Готовим сведения о проверенном выпуске. Ссылка появится после проверки APK.')
@@ -121,10 +136,12 @@ def render(site, release, production=False, publication=None):
         values['gallery'] = '<div class="screen-empty"><div><h3>Приложение изнутри — скоро</h3><p>Добавим сюда скриншоты проверенного выпуска, чтобы вы могли познакомиться с приложением до установки.</p></div><div class="screen-reserved">Скриншоты появятся к выпуску</div></div>'
     if verified:
         fields = [('Версия', release['version']), ('Дата выпуска', release['date']), ('Размер файла', f'{release["size_bytes"]:,} байт'.replace(',', ' ')), ('Совместимость', 'Android ' + release['min_android']), ('SHA-256', release['sha256'])]
-        values['release'] = '<div class="release-status"><span class="status-label">Проверенный APK</span><dl class="release-data">' + ''.join(f'<dt>{escape(k)}</dt><dd>{escape(v)}</dd>' for k, v in fields) + f'</dl><a class="button" href="{escape(https(release["url"]))}" rel="noopener noreferrer">Скачать для Android ↓</a>' + ('<h3>Что нового</h3><ul>' + ''.join('<li>'+escape(c)+'</li>' for c in release.get('changes', [])) + '</ul>' if release.get('changes') else '') + '</div>'
+        values['release'] = '<div class="release-status"><span class="status-label">Проверенный APK</span><dl class="release-data">' + ''.join(f'<dt>{escape(k)}</dt><dd>{escape(v)}</dd>' for k, v in fields) + f'</dl><a class="button" href="{escape('/download/' if beta else https(release["url"]))}" rel="noopener noreferrer">Скачать для Android ↓</a>' + ('<h3>Что нового</h3><ul>' + ''.join('<li>'+escape(c)+'</li>' for c in release.get('changes', [])) + '</ul>' if release.get('changes') else '') + '</div>'
     else:
         pending = site['pending_release']
         values['release'] = '<div class="release-status"><span class="status-label">' + escape(pending['label']) + '</span><h3>' + escape(pending['title']) + '</h3><p>' + escape(pending['description']) + '</p><p><a href="mailto:' + escape(site['support']) + '">Связаться с поддержкой ↗</a></p></div>'
+    if not verified:
+        values['release'] = values['release'][:-6] + '<p class="beta-entry"><a href="/download/">О будущей бета-версии и установке →</a></p></div>'
     faq = list(site['faq'])
     if verified:
         faq[0] = dict(faq[0], question='Где скачать приложение?', answer='Проверенный Android APK доступен в разделе загрузки. Сверьте версию и контрольную сумму файла перед установкой.')
@@ -149,11 +166,42 @@ def render(site, release, production=False, publication=None):
         raise ValueError('Unresolved template field')
     return result
 
+def render_download(site, release, publication=None, home=None):
+    home = home or render(site, release, publication=publication)
+    available = release.get('channel') == 'beta' and beta_release.active(release, publication)
+    def root_paths(fragment):
+        fragment = re.sub(r'(href|src)="(assets/|scripts/|styles/)', r'\1="/\2', fragment)
+        fragment = re.sub(r'(srcset=")([^"]+)', lambda m: m[1]+re.sub(r'(?<!/)assets/', '/assets/', m[2]), fragment)
+        fragment = re.sub(r'href="#(top|features|screenshots|start|faq|download)"', r'href="/#\1"', fragment)
+        return fragment.replace('href="privacy.html"', 'href="/privacy.html"')
+    header = root_paths(re.search(r'<header class="site-header">.*?</header>', home, re.S)[0])
+    footer = root_paths(re.search(r'<footer class="site-footer">.*?</footer>', home, re.S)[0])
+    if available:
+        fields=[('Версия',release['version']),('Код версии',release['version_code']),('Дата публикации',release['date']),
+                ('Размер APK',f'{release["size_bytes"]:,} байт'.replace(',', ' ')),('Минимальная версия','Android '+release['min_android'])]
+        card='<span class="status-label">Бета · доступна для тестирования</span><h2 id="beta-status-title">Проверенный файл</h2><dl class="release-data">'+''.join(f'<dt>{escape(k)}</dt><dd>{escape(v)}</dd>' for k,v in fields)+'</dl>'
+        card+=f'<a class="button" data-apk-download href="{escape(beta_release.release_url(release["url"]))}" rel="noopener noreferrer">Скачать APK для Android ↓</a><p class="beta-small">Загрузка начнётся только после нажатия. Установка требует вашего подтверждения на устройстве.</p><p><a href="#installation">Как установить и обновить</a></p>'
+        card+='<h3>SHA-256</h3><code class="beta-checksum">'+escape(release['sha256'])+'</code><p class="beta-small">Сверьте всю строку с хешем скачанного файла до установки.</p>'
+        notes='<section class="section wrap beta-notes" aria-labelledby="notes-title"><h2 id="notes-title">Об этом выпуске</h2><div class="beta-columns"><article class="panel"><h3>Что изменилось</h3><ul>'+''.join('<li>'+escape(t)+'</li>' for t in release['changes'])+'</ul></article><article class="panel"><h3>Известные ограничения</h3>'+('<ul>'+''.join('<li>'+escape(t)+'</li>' for t in release['known_issues'])+'</ul>' if release['known_issues'] else '<p>В списке этого выпуска ограничения не указаны. Это не означает отсутствие ошибок в бета-версии.</p>')+'</article></div></section>'
+        title='Бета для Android';intro='Проверьте версию, сведения о файле и известные ограничения перед установкой. Бета может содержать ошибки.'
+    else:
+        title='Бета начинается с доверия';intro='Готовим «Я ХУдЕЮ» для Android: приложение о питании, движении и личном прогрессе. Сейчас оно в разработке.'
+        card='<span class="status-label">Бета ещё не доступна</span><h2 id="beta-status-title">Скоро для Android</h2><p>Публичная загрузка пока закрыта. APK не утверждён для распространения, дата начала тестирования не объявлена.</p><p>Когда бета будет готова и одобрена, здесь появятся точная версия, размер файла, контрольная сумма, изменения и известные ограничения.</p><p><a href="/#faq">Почитать справочник по разработке →</a></p>'
+        notes=''
+    body=(ROOT/'templates/download.html').read_text()
+    values=dict(header=header,footer=footer,title=escape(title),intro=escape(intro),card=card,notes=notes,
+                theme_init='<script>'+(ROOT/'scripts/theme.js').read_text()+'</script>',support=escape(site['support']),domain=escape(site['domain']),
+                robots='noindex,nofollow',
+                installation_label='УСТАНОВКА БЕТЫ' if available else 'ПАМЯТКА НА БУДУЩЕЕ',
+                installation_intro='Сверьте сведения о выпуске и ограничения. На устройстве потребуется ваше подтверждение установки.' if available else 'Эти шаги пригодятся после появления одобренной бета-версии. Сейчас памятка не означает доступность загрузки.')
+    return re.sub(r'\{\{(\w+)\}\}',lambda m:values[m[1]],body)
+
 def build(output, production=False):
     site = json.loads((ROOT / 'data/site.json').read_text())
     release = json.loads((ROOT / 'data/release.json').read_text())
     publication = json.loads((ROOT / 'data/publication.json').read_text())
     page = render(site, release, production, publication)
+    download_page = render_download(site, release, publication, page)
     if output.is_symlink():
         raise ValueError('Symlink output is not allowed')
     output = output.resolve()
@@ -179,6 +227,8 @@ def build(output, production=False):
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT / name, dest)
     (output / 'index.html').write_text(page)
+    (output / 'download').mkdir()
+    (output / 'download/index.html').write_text(download_page)
     (output / '.nojekyll').touch()
     (output / 'robots.txt').write_text('User-agent: *\n' + ('Allow: /\nSitemap: '+site['domain']+'/sitemap.xml\n' if production and publication.get('indexing_approved', True) is True else 'Disallow: /\n'))
     (output / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + ''.join('<url><loc>'+escape(site['domain']+path)+'</loc></url>' for path in ['/', '/privacy.html']) + '</urlset>\n')

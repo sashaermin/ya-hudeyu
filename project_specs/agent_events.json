@@ -569,6 +569,25 @@
       "next": "Ownercontentreview;дляTelegram нужнооткрытьexistingtopic6. STOP доpublication,APKapproval отдельноopen.",
       "status": "Review VERIFIED;Telegram BLOCKED topic closed;production unchanged",
       "artifact_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39325727846/artifacts/12221768739"
+    },
+    {
+      "id": "site-phase3-beta-preparation-20261020",
+      "at": "2026-10-19T21:31:36.328589+00:00",
+      "type": "stage_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Phase3",
+          "Beta preparation"
+        ],
+        "title": "Подготовка download UI иrelease gates"
+      },
+      "checkpoint": "cb1ce6c37cd4a92636ec2a9aafaeb49a202bbca5",
+      "verified": "47site+68notify tests,96beta layouts/24axe0violations/12noJS/18text;main/FAQ regression PASS;8screenshots. РеальныеAPK/signature/device tests не выполнялись.",
+      "done": "/download unavailable default иизолированныйTEST ONLY beta fixture;exact-artifact technical/distribution/website approvals;readonly verifier ибудущаяпроцедура. FAQ/Phase2/production/privacy/noindex сохранены.",
+      "next": "Clean remote CI/actual preview archive proof, затем owner content/visual review. STOP передAPK/publication/main.",
+      "status": "Development review only; downloads disabled; no APK approved"
     }
   ]
 }

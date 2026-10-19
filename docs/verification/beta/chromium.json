@@ -1,0 +1,340 @@
+{
+  "engine": "chromium",
+  "layouts": [
+    {
+      "state": "unavailable",
+      "theme": "light",
+      "width": 320,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "unavailable",
+      "theme": "light",
+      "width": 360,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "unavailable",
+      "theme": "light",
+      "width": 390,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "unavailable",
+      "theme": "light",
+      "width": 430,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "unavailable",
+      "theme": "light",
+      "width": 768,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "unavailable",
+      "theme": "light",
+      "width": 1024,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "unavailable",
+      "theme": "light",
+      "width": 1440,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "unavailable",
+      "theme": "light",
+      "width": 1920,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "unavailable",
+      "theme": "dark",
+      "width": 320,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "unavailable",
+      "theme": "dark",
+      "width": 360,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "unavailable",
+      "theme": "dark",
+      "width": 390,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "unavailable",
+      "theme": "dark",
+      "width": 430,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "unavailable",
+      "theme": "dark",
+      "width": 768,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "unavailable",
+      "theme": "dark",
+      "width": 1024,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "unavailable",
+      "theme": "dark",
+      "width": 1440,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "unavailable",
+      "theme": "dark",
+      "width": 1920,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "fixture",
+      "theme": "light",
+      "width": 320,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "fixture",
+      "theme": "light",
+      "width": 360,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "fixture",
+      "theme": "light",
+      "width": 390,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "fixture",
+      "theme": "light",
+      "width": 430,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "fixture",
+      "theme": "light",
+      "width": 768,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "fixture",
+      "theme": "light",
+      "width": 1024,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "fixture",
+      "theme": "light",
+      "width": 1440,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "fixture",
+      "theme": "light",
+      "width": 1920,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "fixture",
+      "theme": "dark",
+      "width": 320,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "fixture",
+      "theme": "dark",
+      "width": 360,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "fixture",
+      "theme": "dark",
+      "width": 390,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "fixture",
+      "theme": "dark",
+      "width": 430,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "fixture",
+      "theme": "dark",
+      "width": 768,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "fixture",
+      "theme": "dark",
+      "width": 1024,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "fixture",
+      "theme": "dark",
+      "width": 1440,
+      "overflow": false,
+      "keyboard": true
+    },
+    {
+      "state": "fixture",
+      "theme": "dark",
+      "width": 1920,
+      "overflow": false,
+      "keyboard": true
+    }
+  ],
+  "axe": [
+    {
+      "state": "unavailable",
+      "theme": "light",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "state": "unavailable",
+      "theme": "light",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "state": "unavailable",
+      "theme": "dark",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "state": "unavailable",
+      "theme": "dark",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "state": "fixture",
+      "theme": "light",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "state": "fixture",
+      "theme": "light",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "state": "fixture",
+      "theme": "dark",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "state": "fixture",
+      "theme": "dark",
+      "width": 1440,
+      "violations": []
+    }
+  ],
+  "nojs": [
+    {
+      "state": "unavailable",
+      "theme": "light",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "state": "unavailable",
+      "theme": "dark",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "state": "fixture",
+      "theme": "light",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "state": "fixture",
+      "theme": "dark",
+      "width": 320,
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "simulation": "TEST ONLY; no APK or owner approval",
+  "version": "154.0.8037.57",
+  "text_adaptation": [
+    {
+      "theme": "light",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 768,
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 768,
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "passed": true
+    }
+  ]
+}

@@ -96,3 +96,7 @@ U3 исполнен иverified: production8fb7bf2/Pages39129023427/live391291351
 ### Phase2 FAQ · development-only authorization20.10.2026
 
 Исходное задание project_specs/PHASE2_FAQ_AUTHORIZATION_2026-10-20.md разрешает categorized feature/workflow guide, не publication. Каждый answer связан stable ID сdocs/FAQ_FEATURE_COVERAGE.md иsource audit snapshot; источник UI/state/storage проверять, не выводитьповедение изназванияэкрана/поляentity. Source implementation≠verified APK. FAQ описывает текущую разработку сdisclaimer, нестабильное/неаудированное явно ограничено илиисключено. Native categoryanchors/details сохранять keyboard/noJS. Review package docs/FAQ_REVIEW.md дополняет Phase2. Послеverified source/artifact STOP дляowner content/visualreview; production/APK/noindex/privacy/прочиеrepo/workflows не менять. Telegram completed formatter changes сremote c91fdd4 сохранять.
+
+### Phase3 · beta distribution readiness
+
+[PHASE3_BETA_AUTHORIZATION_2026-10-20.md](project_specs/PHASE3_BETA_AUTHORIZATION_2026-10-20.md) разрешает после завершённого FAQ подготовку двух состояний /download и трёх независимых beta gates. Development/review only: APK отсутствует/не утверждён, downloads default off; никакого main/deploy/Release/upload/Android edit. Кандидат available — только явно TEST ONLY изолированный fixture. Схема и exact-artifact процедура — docs/BETA_RELEASE_SCHEMA.md,docs/BETA_APPROVAL_PROCEDURE.md. Сохранить Phase2/FAQ/privacy/noindex/существующие gates. После review package STOP перед публикацией. Не требовать APK для подготовки интерфейса.
