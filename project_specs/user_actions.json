@@ -101,7 +101,7 @@
     },
     {
       "id": "site-telegram-topic6-closed",
-      "status": "open",
+      "status": "resolved",
       "source": "Codex",
       "opened": "2026-10-20",
       "task": "Сайт · Telegram delivery",
@@ -114,7 +114,8 @@
       ],
       "blocked": "Только Telegram delivery. FAQ/source audit/browserQA/review artifact завершены независимо.",
       "can_continue": "Да: review package иdocumentation checkpoints;сайт/основнуюnotificationinfra не менять,непроситьзначениясекретов.",
-      "link": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39325727846"
+      "link": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39325727846",
+      "resolution": "Владелец сообщил: «Тема открыта». Existing failed-job reruns39325727846/attempt2 и39326114527/attempt2 завершены success. Telegram подтвердил message_thread_id6: сообщения318/319 (check118312924113),321/322/323 (check118313574283). Доставка восстановлена без смены назначения, секретов или кода; ежедневный дайджест вручную не запускался."
     }
   ]
 }

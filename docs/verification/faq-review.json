@@ -1,5 +1,5 @@
 {
-  "status": "Development FAQ verified; owner review pending; Telegram blocked by TOPIC_CLOSED",
+  "status": "Development FAQ verified; Telegram delivery confirmed; owner review pending",
   "base_development": "c91fdd446ce5dcf204aecf1f40f853a14f96e086",
   "android_snapshot": "787175c099f4bb9f7086a6b7953436c0caaffe12",
   "categories": 8,
@@ -38,7 +38,7 @@
   "development_ui_commit": "1611a15b1aadf3c27953b935a9fb7670686846ff",
   "ci": {
     "run_id": 39325727846,
-    "overall_conclusion": "failure due only to external Telegram topic closed",
+    "overall_conclusion": "success after owner reopened topic and failed-job rerun",
     "verify_job": "success",
     "verify_check_run": 118310945950,
     "unit_tests": 104,
@@ -49,10 +49,33 @@
     "artifact_id": 12221768739,
     "artifact_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39325727846/artifacts/12221768739",
     "artifact_expires_at": "2026-10-26T21:13:09Z",
-    "notify_job": "failure",
-    "notify_check_run": 118311148555,
-    "telegram_error": "HTTP400 TOPIC_CLOSED",
+    "notify_job": "success",
+    "notify_check_run": 118312924113,
     "telegram_topic": 6,
-    "delivery_confirmed": false
+    "delivery_confirmed": true,
+    "initial_attempt": {
+      "conclusion": "failure due only to external Telegram topic closed",
+      "notify_check_run": 118311148555,
+      "telegram_error": "HTTP400 TOPIC_CLOSED"
+    },
+    "run_attempt": 2,
+    "telegram_message_ids": [
+      318,
+      319
+    ]
+  },
+  "documentation_checkpoint": {
+    "sha": "a6bae68b5a9b420a05b1494c2e0308a7c07e8280",
+    "run_id": 39326114527,
+    "run_attempt": 2,
+    "conclusion": "success",
+    "notify_check_run": 118313574283,
+    "telegram_topic": 6,
+    "telegram_message_ids": [
+      321,
+      322,
+      323
+    ],
+    "delivery_confirmed": true
   }
 }
