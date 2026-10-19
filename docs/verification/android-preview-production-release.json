@@ -1,5 +1,5 @@
 {
-  "status": "PREPARED LOCAL COMMIT — not deployed; require readiness CI before main push",
+  "status": "DEPLOYED —46HTTPS file hashes verified;browser live QA pending",
   "approved_development_commit": "c3d8d9f6a659c7e698049af8f27cd50a00b54937",
   "prepared_production_commit": "d7ebfd8e6576e2c1fc286e9c46c6a8ea4a9060ac",
   "production_tree": "332457a415220c439546ce32c5be116acf771d3e",
@@ -296,6 +296,19 @@
     "reviewed_public_manifest_unchanged": 46,
     "privacy_revalidation": "Same reviewed bytes;previous11visual+OCR0targetedmatches/metadata checks verified;today/cards/GPS visually rechecked;no privacy-critical finding",
     "owner_request_sha256": "975bb19080c67d7b0cf19e5f385201afe7abf327ac68d2529057fd45e74cc710",
-    "production_readiness_ci": "PENDING"
-  }
+    "production_readiness_ci": {
+      "run_id": 39339183942,
+      "source_commit": "1a92562c50fe8e150187b6d508a1b702df30ca61",
+      "status": "success"
+    }
+  },
+  "published_commit": "d7ebfd8e6576e2c1fc286e9c46c6a8ea4a9060ac",
+  "pages_deployment": {
+    "run_id": 39339379755,
+    "status": "success",
+    "url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39339379755"
+  },
+  "live_verification": "PENDING — use existing read-only workflow after Pages success",
+  "rollback_used": false,
+  "http_verification": "docs/verification/android-preview-production-http.json"
 }
