@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Бета для Android — Я ХУдЕЮ</title>
+  <meta name="description" content="Статус бета-версии Я ХУдЕЮ для Android и памятка по безопасной установке.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="https://yahudeyu-app.ru/download/">
+  <meta name="theme-color" content="#F7F4EF">
+  <link rel="icon" type="image/png" href="/assets/brand/originals/ic_launcher_green.png">
+  <script>// Runs before CSS: avoid a flash of the wrong saved theme. Storage can be unavailable.
+(() => {
+  const system = matchMedia('(prefers-color-scheme: dark)');
+  let saved = null;
+  try { saved = localStorage.getItem('hudeyu-theme'); } catch { /* system preference */ }
+  const preference = ['light', 'dark'].includes(saved) ? saved : null;
+  document.documentElement.dataset.preference = preference || 'system';
+  document.documentElement.dataset.theme = preference || (system.matches ? 'dark' : 'light');
+  system.addEventListener('change', event => {
+    if (document.documentElement.dataset.preference === 'system') {
+      document.documentElement.dataset.theme = event.matches ? 'dark' : 'light';
+    }
+  });
+})();
+</script>
+  <link rel="preload" href="/assets/fonts/onest_regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/unbounded_semibold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles/site.css">
+  <script src="/scripts/site.js" defer></script>
+</head>
+<body id="top" class="beta-page">
+  <a class="skip" href="#main">Перейти к содержимому</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="/#top" aria-label="Я ХУдЕЮ — в начало">
+        <img class="wordmark-light" src="/assets/brand/web/wordmark-light-320.webp" srcset="/assets/brand/web/wordmark-light-160.webp 160w, /assets/brand/web/wordmark-light-320.webp 320w, /assets/brand/web/wordmark-light-480.webp 480w" sizes="(max-width: 800px) 140px, 160px" width="1000" height="360" alt="Я ХУдЕЮ">
+        <img class="wordmark-dark" src="/assets/brand/web/wordmark-dark-320.webp" srcset="/assets/brand/web/wordmark-dark-160.webp 160w, /assets/brand/web/wordmark-dark-320.webp 320w, /assets/brand/web/wordmark-dark-480.webp 480w" sizes="(max-width: 800px) 140px, 160px" width="1000" height="360" alt="Я ХУдЕЮ">
+      </a>
+      <nav class="nav" id="navigation" aria-label="Основная навигация">
+        <a href="/#features">Возможности</a><a href="/#screenshots">Скриншоты</a><a href="/#start">Как начать</a><a href="/#faq">Вопросы и ответы</a>
+      </nav>
+      <div class="header-actions">
+        <a class="button header-download" href="/#download">О выпуске для Android</a>
+        <button class="icon-button" id="theme-toggle" type="button" aria-label="Тема: системная. Переключить тему" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4M5.6 18.4 7 17m10-10 1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg>
+        </button>
+        <button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-controls="navigation" aria-expanded="false" aria-label="Открыть меню" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section class="wrap beta-hero" aria-labelledby="beta-title">
+      <div><p class="eyebrow"><span class="dot" aria-hidden="true"></span>Я ХУдЕЮ · Android</p><h1 id="beta-title">Бета начинается с доверия</h1><p class="lead">Готовим «Я ХУдЕЮ» для Android: приложение о питании, движении и личном прогрессе. Сейчас оно в разработке.</p><img class="beta-cat" src="/assets/brand/originals/mascot_calm.webp" width="440" height="512" alt="Рыжий котик — маскот Я ХУдЕЮ" fetchpriority="high"></div>
+      <section class="panel beta-status" aria-labelledby="beta-status-title"><span class="status-label">Бета ещё не доступна</span><h2 id="beta-status-title">Скоро для Android</h2><p>Публичная загрузка пока закрыта. APK не утверждён для распространения, дата начала тестирования не объявлена.</p><p>Когда бета будет готова и одобрена, здесь появятся точная версия, размер файла, контрольная сумма, изменения и известные ограничения.</p><p><a href="/#faq">Почитать справочник по разработке →</a></p></section>
+    </section>
+
+    <section class="section wrap" id="installation" tabindex="-1" aria-labelledby="installation-title">
+      <div class="section-head"><div><span class="section-number">ПАМЯТКА НА БУДУЩЕЕ</span><h2 id="installation-title">Установить осознанно</h2></div><p>Эти шаги пригодятся после появления одобренной бета-версии. Сейчас памятка не означает доступность загрузки.</p></div>
+      <ol class="steps-grid beta-steps">
+        <li class="panel step"><h3>Проверьте файл</h3><p>Начинайте на официальном сайте yahudeyu-app.ru. Ссылка будет вести на конкретный APK в GitHub Releases. Сверьте версию, требования Android, размер и SHA-256.</p></li>
+        <li class="panel step"><h3>Разрешите выбранный источник</h3><p>Откройте скачанный APK. Если Android запросит разрешение установки из этого браузера или файлового менеджера, подтвердите только этот источник. Название настройки зависит от устройства.</p></li>
+        <li class="panel step"><h3>Подтвердите установку</h3><p>Проверьте сведения на системном экране и подтвердите установку сами. Не отключайте Play Защиту и другие средства безопасности. После установки можно отозвать разрешение у выбранного источника.</p></li>
+      </ol>
+      <p class="install-note">Сайт не скачивает и не устанавливает приложение автоматически. Если Android показывает предупреждение, не обходите его вслепую: сверьте файл и уточните причину у поддержки.</p>
+    </section>
+    <section class="section wrap beta-help" aria-labelledby="update-title">
+      <h2 id="update-title">Обновления и частые вопросы</h2>
+      <details><summary>Как обновить уже установленную бету?</summary><p>Вернитесь на эту страницу и сравните версию с установленной: системные настройки Android → приложения → «Я ХУдЕЮ» → сведения о приложении. Названия пунктов могут отличаться. Для обновления поверх старой версии нужны совместимые идентификатор приложения, подпись и код версии. Автоматическое обновление не обещается. Не удаляйте старую версию ради обхода ошибки: это может удалить данные. Сохранность данных и миграции должны быть проверены для конкретного выпуска.</p></details>
+      <details><summary>Android пишет «Приложение не установлено». Что делать?</summary><p>Сверьте минимальную версию Android, свободное место, размер и хеш скачанного файла. Причиной может быть неполная загрузка, несовместимая подпись или попытка установить более старую версию. Не отключайте защиту и не удаляйте приложение без понимания последствий. Сообщите поддержке версию, модель телефона и точный текст ошибки.</p></details>
+      <details><summary>Как проверить контрольную сумму?</summary><p>SHA-256 — отпечаток всех байтов файла. На компьютере можно вычислить его командой ниже, подставив имя APK. Сравните всю строку с опубликованной. Если она отличается, не устанавливайте файл и сообщите поддержке. Совпадение хеша не заменяет проверку подписи и доверия к источнику.</p><p><code>sha256sum имя-файла.apk</code></p><p>На macOS: <code>shasum -a 256 имя-файла.apk</code>. На устройствах без такого инструмента не нужно устанавливать случайную утилиту ради проверки: запросите помощь поддержки.</p></details>
+      <details><summary>Где узнать о функциях и приватности?</summary><p><a href="/#faq">Справочник по текущей разработке</a> объясняет сценарии и ограничения аудита. Это не список проверенных функций будущего APK. <a href="/privacy.html">Политика конфиденциальности</a> доступна отдельно.</p></details>
+    </section>
+    <section class="section wrap" id="feedback" tabindex="-1" aria-labelledby="feedback-title">
+      <div class="beta-feedback panel"><div><span class="section-number">ОБРАТНАЯ СВЯЗЬ</span><h2 id="feedback-title">Помогите разобраться</h2><p>Сбой, расчёты, интерфейс, установка, потеря данных или предложение — начните с короткого описания. Укажите версию, модель телефона, Android, шаги и ожидаемый результат.</p><p>Не присылайте пароли, токены, медицинские сведения или необезличенные дневники. Снимок ошибки очистите от личных данных. Не удаляйте приложение при потере данных до выяснения причины.</p><a class="button secondary" href="mailto:sashaermin@gmail.com">Написать в поддержку ↗</a></div><img src="/assets/brand/originals/mascot_hint.webp" width="512" height="512" alt="Котик-маскот задумался" loading="lazy"></div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="wrap">
+    <div class="footer-top"><a class="brand" href="/#top" aria-label="Я ХУдЕЮ — в начало"><img class="wordmark-light" src="/assets/brand/web/wordmark-light-320.webp" srcset="/assets/brand/web/wordmark-light-160.webp 160w, /assets/brand/web/wordmark-light-320.webp 320w, /assets/brand/web/wordmark-light-480.webp 480w" sizes="(max-width: 800px) 140px, 160px" width="1000" height="360" alt="Я ХУдЕЮ" loading="lazy"><img class="wordmark-dark" src="/assets/brand/web/wordmark-dark-320.webp" srcset="/assets/brand/web/wordmark-dark-160.webp 160w, /assets/brand/web/wordmark-dark-320.webp 320w, /assets/brand/web/wordmark-dark-480.webp 480w" sizes="(max-width: 800px) 140px, 160px" width="1000" height="360" alt="Я ХУдЕЮ" loading="lazy"></a><div class="footer-links"><a href="/privacy.html">Конфиденциальность</a><a href="mailto:sashaermin@gmail.com">Поддержка</a><a href="/#top">Наверх ↑</a></div></div>
+    <div class="footer-bottom"><p>© 2026 Я ХУдЕЮ</p><p>Маленькие шаги к большим изменениям.</p></div>
+  </div></footer>
+</body>
+</html>
