@@ -647,6 +647,25 @@
       "next": "Разрешённыйвыпускзавершён. Новыхдействийвладельца длянего нет;APKapproval остаётсяотдельноopen. Безновойавторизациине redeploy/неразрабатыватьновыеfeatures.",
       "status": "Production VERIFIED;no critical regressions;downloads disabled",
       "artifact_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39331146457/artifacts/12223528746"
+    },
+    {
+      "id": "site-preview-gallery-input-audit-20261020",
+      "at": "2026-10-19T22:14:14.291702+00:00",
+      "type": "stage_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "G1",
+          "Source and asset audit"
+        ],
+        "title": "Проверены входы предварительной Android-галереи"
+      },
+      "checkpoint": "11d52412cf8457bb637ca073dad32bf4616c0a62",
+      "verified": "Четыре задания идентичны;вчате11rawscreens послеfollow-upСегодня. Approved anonymized local assets0/11;existing viewer/gates inspected. Двеhandoffпроверки PASS,previewZIPed78f72 неизменён.",
+      "done": "Сохраненыinventory11экранов,privacy findings,missing-approved-assets action иточныйhandoff. Приватныеисходники неимпортированы,кодсайта иproduction6810206 не менялись.",
+      "next": "Получить11approved anonymized individual files. Поусловиювладельца image-dependent implementation остановлена;непроситьосновнойСегодняповторно,онполучен.",
+      "status": "Input audit completed;full11-image gallery BLOCKED_BY_APPROVED_ASSETS,not implemented"
     }
   ]
 }

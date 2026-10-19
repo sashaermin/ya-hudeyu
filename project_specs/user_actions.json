@@ -117,6 +117,22 @@
       "can_continue": "Да: review package иdocumentation checkpoints;сайт/основнуюnotificationinfra не менять,непроситьзначениясекретов.",
       "link": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39325727846",
       "resolution": "Владелец сообщил: «Тема открыта». Existing failed-job reruns39325727846/attempt2 и39326114527/attempt2 завершены success. Telegram подтвердил message_thread_id6: сообщения318/319 (check118312924113),321/322/323 (check118313574283). Доставка восстановлена без смены назначения, секретов или кода; ежедневный дайджест вручную не запускался."
+    },
+    {
+      "id": "site-preview-gallery-approved-assets",
+      "status": "open",
+      "source": "Codex",
+      "opened": "2026-10-20",
+      "task": "Сайт · предварительная Android-галерея",
+      "subtask": "Предоставить11 отдельных обезличенных изображений",
+      "what": "В сообщениях виднывсе11 исходных inline-снимков (основной«Сегодня» полученследующимсообщением),ноутверждённых обезличенных локальных файлов нет. Исходники содержат личные/медицинские/GPS/device данные;вGit/preview неимпортированы. Поусловиюзадания image-dependent work остановлена доapproved anonymized assets.",
+      "steps": [
+        "Пришлите11 отдельных утверждённых обезличенных PNG/WebP/JPEG,удобнееоднимZIP:Сегодня(основнаяпанель),Питание,Активность,Прогресс,Профильицели,Дополнительныекарточки,Все цели,ХодьбасGPS,Мойпуть,Планпохудения,Графики.",
+        "Используйте согласованные вымышленные показатели;исключите личную/медицинскую/GPS/аккаунтную/системную информацию. НеотправляйтеAPK дляэтогоэтапа."
+      ],
+      "blocked": "Толькоimage-dependent preview gallery implementation/QA/review package. Production releaseP4 ужеcompleted;APKapproval отдельноopen.",
+      "can_continue": "Независимыйаудитисточников/компонентов выполнен;дальнейшуюgallery implementation безизображений задание запрещает. Код/production не меняются.",
+      "link": "https://github.com/sashaermin/ya-hudeyu/blob/work/website-v2/docs/ANDROID_PREVIEW_GALLERY_REVIEW.md"
     }
   ]
 }

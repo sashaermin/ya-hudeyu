@@ -1,0 +1,122 @@
+{
+  "status": "BLOCKED_BY_APPROVED_ASSETS",
+  "authorization": "project_specs/ANDROID_PREVIEW_GALLERY_AUTHORIZATION_2026-10-20.md",
+  "request_copies": 4,
+  "request_copies_identical": true,
+  "request_sha256": "d516272ca35227de2c37b76587073c07f5116659cb38349c88f99b8abe18af3c",
+  "required_images": 11,
+  "inline_raw_images_visible": 11,
+  "approved_anonymized_local_images": 0,
+  "image_dependent_implementation_started": false,
+  "private_images_committed": false,
+  "composite_available": false,
+  "repository_assets": "Branding/fonts only; no Android screenshot assets; data/site.json screenshots=[]",
+  "development_base": "11d52412cf8457bb637ca073dad32bf4616c0a62",
+  "production_sha": "6810206125ccf72080c8a7aa29072041d5812f0f",
+  "production_pages_status": "built",
+  "items": [
+    {
+      "order": 1,
+      "title": "Сегодня — основная панель",
+      "inline_position": 1,
+      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
+      "local_path": null,
+      "sha256": null,
+      "privacy_approved": false,
+      "inline_message": "Owner follow-up after initial10"
+    },
+    {
+      "order": 2,
+      "title": "Питание",
+      "inline_position": 10,
+      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
+      "local_path": null,
+      "sha256": null,
+      "privacy_approved": false
+    },
+    {
+      "order": 3,
+      "title": "Активность",
+      "inline_position": 9,
+      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
+      "local_path": null,
+      "sha256": null,
+      "privacy_approved": false
+    },
+    {
+      "order": 4,
+      "title": "Прогресс",
+      "inline_position": 8,
+      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
+      "local_path": null,
+      "sha256": null,
+      "privacy_approved": false
+    },
+    {
+      "order": 5,
+      "title": "Профиль и цели",
+      "inline_position": 7,
+      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
+      "local_path": null,
+      "sha256": null,
+      "privacy_approved": false
+    },
+    {
+      "order": 6,
+      "title": "Дополнительные карточки",
+      "inline_position": 1,
+      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
+      "local_path": null,
+      "sha256": null,
+      "privacy_approved": false
+    },
+    {
+      "order": 7,
+      "title": "Все цели",
+      "inline_position": 2,
+      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
+      "local_path": null,
+      "sha256": null,
+      "privacy_approved": false
+    },
+    {
+      "order": 8,
+      "title": "Ходьба с GPS",
+      "inline_position": 3,
+      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
+      "local_path": null,
+      "sha256": null,
+      "privacy_approved": false
+    },
+    {
+      "order": 9,
+      "title": "Мой путь",
+      "inline_position": 4,
+      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
+      "local_path": null,
+      "sha256": null,
+      "privacy_approved": false
+    },
+    {
+      "order": 10,
+      "title": "План похудения",
+      "inline_position": 5,
+      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
+      "local_path": null,
+      "sha256": null,
+      "privacy_approved": false
+    },
+    {
+      "order": 11,
+      "title": "Графики",
+      "inline_position": 6,
+      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
+      "local_path": null,
+      "sha256": null,
+      "privacy_approved": false
+    }
+  ],
+  "verification_scope": "Visual review of current message and local source/inventory; no asset import, EXIF inspection, image edits, UI or new gallery browser QA",
+  "updated_at": "2026-10-19T22:13:15.995308+00:00",
+  "follow_up": "Main Today received in subsequent user message; all11 raw screens visible. No missing raw screen; approved anonymized assets remain0."
+}
