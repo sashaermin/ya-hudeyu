@@ -30,7 +30,7 @@ class EscapingTest(unittest.TestCase):
         self.assertIn('href="https://github.com/o/r/commit/' + "a" * 40 + '"', text)
         for label in ("Изменение:", "Что сделано:", "Проверки:", "Агент:", "Ветка:", "Коммит:"):
             self.assertIn(label, text)
-        self.assertTrue(text.startswith('<b>САЙТ «Я ХУдЕЮ» — новый коммит</b>'))
+        self.assertTrue(text.startswith('<b>Я ХУдЕЮ | DEV REPORTS</b>\nWebsite\n<b>новый коммит</b>'))
 
     def test_overlong_fields_keep_link_and_html_entities_within_limit(self):
         msg = 'x\n\nReport-Summary: Изменение ' + '&' * 5000 + '\nReport-Done: Сделано ' + '&' * 5000 + '\nReport-Checks: Проверено ' + '&' * 5000
@@ -135,7 +135,7 @@ def evfile(*events): return json.dumps({"events": list(events)})
 class TransitionEventTest(unittest.TestCase):
     def test_transition_message_matches_the_requested_russian_format(self):
         text = tn.event_message("o/r", "w", "e" * 40, ev("e1"))
-        self.assertTrue(text.startswith("<b>САЙТ «Я ХУдЕЮ» — ")); self.assertIn("<b>Агент:</b> Claude Code",text); self.assertIn("переход к следующей задаче",text)
+        self.assertTrue(text.startswith("<b>Я ХУдЕЮ | DEV REPORTS</b>\nWebsite\n<b>")); self.assertIn("<b>Агент:</b> Claude Code",text); self.assertIn("переход к следующей задаче",text)
         self.assertIn("<b>Завершено:</b>\n<code>Task03</code> › <code>G</code> — Share Studio &lt;2.0&gt;", text)
         self.assertIn("<b>Начато:</b>\n<code>Task03</code> › <code>H</code> › <code>H1</code> — Сравнение", text)
         self.assertIn("<b>Статус:</b>\nразработка продолжается", text)
@@ -149,7 +149,7 @@ class TransitionEventTest(unittest.TestCase):
             if typ == "preview_artifact_ready": e["artifact_url"] = "https://github.com/sashaermin/ya-hudeyu/actions/runs/1/artifacts/2"
             self.assertIsNone(tn.event_problem(e), typ)
             text = tn.event_message("o/r", "w", "e" * 40, e)
-            self.assertIn(heading, text); self.assertIn("<b>Агент:</b> Codex", text); self.assertTrue(text.startswith("<b>САЙТ «Я ХУдЕЮ» — "))
+            self.assertIn(heading, text); self.assertIn("<b>Агент:</b> Codex", text); self.assertTrue(text.startswith("<b>Я ХУдЕЮ | DEV REPORTS</b>\nWebsite\n<b>"))
             self.assertIn(' › '.join('<code>'+x+'</code>' for x in deep['path'])+' — x', text)
 
     def test_completion_without_verification_and_malformed_events_are_never_sent(self):
@@ -187,7 +187,7 @@ class TransitionEventTest(unittest.TestCase):
                 if expected:
                     self.assertIn("новый коммит", sent[0])
                     self.assertIn("задача завершена и проверена",sent[1]); self.assertIn("<b>Агент:</b> Claude Code",sent[1])  # explicit source wins
-                    self.assertIn("— начата задача</b>",sent[2]); self.assertIn("<b>Агент:</b> Codex",sent[2])
+                    self.assertIn("<b>начата задача</b>",sent[2]); self.assertIn("<b>Агент:</b> Codex",sent[2])
 
     def test_add_event_cli_is_deterministic_validated_and_refuses_unverified_completion(self):
         with tempfile.TemporaryDirectory() as d:
@@ -249,7 +249,7 @@ def alert(i="tok", status="open", **kw):
 class UserActionTest(unittest.TestCase):
     def test_message_has_all_required_sections_escaped(self):
         text = tn.action_message("o/r", "b", "a" * 40, json.loads(alert())["alerts"][0])
-        self.assertTrue(text.startswith("<b>САЙТ «Я ХУдЕЮ» — "))
+        self.assertTrue(text.startswith("<b>Я ХУдЕЮ | DEV REPORTS</b>\nWebsite\n<b>"))
         for label in ("Задача:", "ТРЕБУЕТСЯ ВАШЕ ДЕЙСТВИЕ:", "Что произошло:", "Что нужно сделать:", "Что заблокировано:", "Можно ли продолжать другие задачи:"):
             self.assertIn(label, text)
         self.assertIn("Секрет &lt;bot&gt;", text); self.assertIn("InvalidURL &amp; co", text)
@@ -316,7 +316,7 @@ class AgentEventTest(unittest.TestCase):
     def test_interruption_handoff_resume_headings_only_from_fixed_values(self):
         self.assertTrue(tn.commit_message("o/r", "b", "a" * 40, "n", "x\n\nAgent-Event: handoff\nAgent: Codex").__contains__("🔁 Передача работы"))
         self.assertTrue(tn.commit_message("o/r", "b", "a" * 40, "n", "x\n\nAgent-Event: interruption").__contains__("⏸️"))
-        self.assertTrue(tn.commit_message("o/r", "b", "a" * 40, "n", "x\n\nAgent-Event: <b>x</b>").startswith("<b>САЙТ «Я ХУдЕЮ» — новый коммит</b>"))
+        self.assertTrue(tn.commit_message("o/r", "b", "a" * 40, "n", "x\n\nAgent-Event: <b>x</b>").startswith("<b>Я ХУдЕЮ | DEV REPORTS</b>\nWebsite\n<b>новый коммит</b>"))
 
 
 class DigestSourceTest(unittest.TestCase):
@@ -549,7 +549,7 @@ class TelegramPresentationTest(unittest.TestCase):
             def __init__(self):
                 super().__init__(convert_charrefs=False); self.stack=[]; self.links=[]
             def handle_starttag(self,tag,attrs):
-                case.assertIn(tag,('b','i','code','pre','a'))
+                case.assertIn(tag,('b','i','code','pre','a','blockquote'))
                 if tag=='a':
                     case.assertEqual(['href'],[k for k,v in attrs]); self.links.append(dict(attrs)['href'])
                     url=urlparse(dict(attrs)['href']); case.assertEqual('https',url.scheme); case.assertFalse(url.username or url.password)
@@ -561,8 +561,8 @@ class TelegramPresentationTest(unittest.TestCase):
             def handle_charref(self,name):case.assertGreater(int(name[1:],16) if name.startswith('x') else int(name),0)
         parser=Validate();parser.feed(text);parser.close();self.assertFalse(parser.stack)
         self.assertLessEqual(len(text),tn.TELEGRAM_LIMIT)
-        self.assertRegex(text,r'^<b>САЙТ «Я ХУдЕЮ» — [^\n]+</b>\n\n')
-        self.assertIn('<b>Проект:</b>',text);self.assertRegex(text,r'<b>Агент(?:ы)?:</b>')
+        self.assertRegex(text,r'^<b>Я ХУдЕЮ \| DEV REPORTS</b>\nWebsite\n<b>[^\n]+</b>\n────────\n\n?')
+        self.assertRegex(text,r'(?:<b>)?Проект:(?:</b>)?');self.assertRegex(text,r'(?:<b>)?Агент(?:ы)?:(?:</b>)?')
         self.assertTrue(parser.links,'Every supported report has a descriptive link')
         return parser
 
@@ -609,3 +609,4 @@ class TelegramPresentationTest(unittest.TestCase):
             self.assertNotIn('<a ',rendered);self.assertNotIn('SECRET_TEST_ONLY',rendered)
         link=tn.safe_link('https://github.com/o/r?a=1&b=2','Открыть <настройки> & "x"')
         self.assertIn('a=1&amp;b=2',link);self.assertIn('&lt;настройки&gt; &amp; &quot;x&quot;',link)
+
