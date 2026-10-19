@@ -46,12 +46,11 @@ remain intact. Static function-body checks confirm no non-format function change
   content is never shortened further for branding: compact layout removes optional
   styling first. A pathological full card may retain the old frame if adding the
   new one cannot fit; data and links take priority over decoration.
-- Previously invalid emoji-heavy payloads can exceed the visible Telegram limit
-  despite passing the old character test. Only those payloads shorten free prose
-  with the explicit existing Russian truncation marker, on codepoint/entity-safe
-  boundaries, reserving space for the frame. Links/code identifiers are retained.
-  Preserving an arbitrarily over-limit input in one Telegram message is impossible;
-  no new splitting, delivery or retry behavior is introduced.
+- Existing oversized Unicode payloads retain their original data/truncation
+  behavior verbatim instead of receiving a new clipping policy. They may still
+  exceed Telegram's visible UTF-16 limit: this is a known legacy limitation,
+  demonstrated by the long_unicode fixture, not a successful delivery claim.
+  It cannot safely be fixed as part of this presentation-only rollout.
 - Windows' separate manual plaintext routing-test message is unchanged; it is not
   a production report formatter. No fake timestamps or provenance fields are added
   to report types that did not have them.

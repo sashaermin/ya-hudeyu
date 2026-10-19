@@ -48,12 +48,12 @@ STATUS_TITLES = {
 }
 
 
-# Presentation only: keep the existing formatter's data selection and length budget.
+# Presentation only: preserve the existing formatter's data and truncation policy.
 class _PresentationHTML(HTMLParser):
     """Balance legacy truncation boundaries without executing or trusting markup."""
     def __init__(self):
         super().__init__(convert_charrefs=False)
-        self.parts, self.stack, self.prose = [], [], []
+        self.parts, self.stack = [], []
 
     def handle_starttag(self, tag, attrs):
         if tag not in ('b', 'i', 'code', 'pre', 'a', 'blockquote'):
@@ -71,53 +71,17 @@ class _PresentationHTML(HTMLParser):
                 current = self.stack.pop(); self.parts.append('</' + current + '>')
                 if current == tag: break
 
-    def _text(self, encoded):
-        eligible = not any(tag in self.stack for tag in ('a', 'code'))
-        if eligible and self.prose and self.prose[-1] == len(self.parts) - 1:
-            self.parts[-1] += encoded
-        else:
-            if eligible and encoded.strip(): self.prose.append(len(self.parts))
-            self.parts.append(encoded)
-
     def handle_data(self, text):
-        self._text(html.escape(text, quote=False))
+        self.parts.append(html.escape(text, quote=False))
 
     def handle_entityref(self, name):
-        self._text('&' + name + ';')
+        self.parts.append('&' + name + ';')
 
     def handle_charref(self, name):
-        self._text('&#' + name + ';')
+        self.parts.append('&#' + name + ';')
 
     def result(self):
         return ''.join(self.parts) + ''.join('</' + tag + '>' for tag in reversed(self.stack))
-
-
-def _visible_units(text):
-    return len(html.unescape(re.sub(r'<[^>]*>', '', text)).encode('utf-16-le')) // 2
-
-
-def _cap_legacy_visible(text):
-    """Repair only previously over-limit Unicode payloads, not style overhead.
-
-    Keep links and code identifiers. Reserve 96 units for the new frame only
-    when the old payload was already invalid. Trim free text on a codepoint boundary,
-    mark the omission and balance tags; the existing 4096-unit Telegram cap stays.
-    """
-    if _visible_units(text) <= 4096: return text
-    parser = _PresentationHTML(); parser.feed(text); parser.close()
-    marker = '… (обрезано по лимиту Telegram)'
-    while _visible_units(parser.result()) > 4000:
-        candidates = [i for i in parser.prose if len(html.unescape(parser.parts[i])) > len(marker)]
-        if not candidates: return text  # No safe free-text field to shorten.
-        i = max(candidates, key=lambda n: len(parser.parts[n]))
-        value = html.unescape(parser.parts[i]); low, high = 0, len(value)
-        while low < high:
-            mid = (low + high + 1) // 2
-            parser.parts[i] = html.escape(value[:mid], quote=False) + marker
-            if _visible_units(parser.result()) <= 4000: low = mid
-            else: high = mid - 1
-        parser.parts[i] = html.escape(value[:low], quote=False) + marker
-    return parser.result()
 
 
 def style_message(text, platform, limit=4096):
@@ -134,8 +98,6 @@ def style_message(text, platform, limit=4096):
     }
     match = re.match(patterns[platform], text)
     if not match: return text
-    text = _cap_legacy_visible(text)
-    match = re.match(patterns[platform], text)
     parser = _PresentationHTML(); parser.feed(text[match.end():]); parser.close()
     body = parser.result().lstrip('\n')
     # Preserve all event wording/icons; only replace the old project frame.
@@ -159,22 +121,19 @@ def style_message(text, platform, limit=4096):
     # may exceed 4096 HTML bytes); keep that behavior instead of dropping text.
     visible = html.unescape(re.sub(r'<[^>]*>', '', decorated))
     windows_fits = platform == 'Windows' and limit == 4096 and len(visible.encode('utf-16-le')) // 2 <= limit
-    if (len(decorated) <= limit and _visible_units(decorated) <= 4096) or windows_fits: return decorated
+    if (len(decorated) <= limit and len(visible.encode('utf-16-le')) // 2 <= 4096) or windows_fits: return decorated
     # Compact only formatting, never source text or hrefs. Existing field-level
     # abbreviation and truncation remain owned by the original formatter.
     compact = re.sub(r'</?(?:code|i)>', '', decorated)
     compact = re.sub(r'<b>((?:Агент|Источник|Проект|Ветка|Коммит|Автор|Алерт|Событие|Механизм|Период|Этап|SHA|Статус|Последний checkpoint):)</b>', r'\1', compact)
     compact = compact.replace('\n\n', '\n')
-    if len(compact) <= limit and _visible_units(compact) <= 4096: return compact
+    if len(compact) <= limit and len(html.unescape(re.sub(r'<[^>]*>', '', compact)).encode('utf-16-le')) // 2 <= 4096: return compact
     compact = compact.replace('<blockquote>', '').replace('</blockquote>', '').replace('\n────────', '')
-    if len(compact) <= limit and _visible_units(compact) <= 4096: return compact
-    # A pathological already-full legacy card must keep its information, not
-    # acquire another truncation merely to add branding. Balanced metadata tags
-    # may be omitted where the original cut ended inside one of them.
-    original = text[:match.end()] + '\n\n' + body
-    if len(original) <= limit: return original
-    original = re.sub(r'</?(?:b|i|code|pre)>', '', original)
-    return original
+    if len(compact) <= limit and len(html.unescape(re.sub(r'<[^>]*>', '', compact)).encode('utf-16-le')) // 2 <= 4096: return compact
+    # Never alter the old data selection/truncation merely to add decoration.
+    # Existing oversized or malformed legacy payloads are retained verbatim;
+    # fixing those would be a separate functional change.
+    return text
 
 
 
