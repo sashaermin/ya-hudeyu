@@ -1,0 +1,237 @@
+{
+  "scope": "Live production HTTPS UI verification",
+  "privacy_matrix": [
+    {
+      "width": 320,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 360,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 430,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 1920,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 430,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 1920,
+      "theme": "dark",
+      "status": "PASS"
+    }
+  ],
+  "nojs": [
+    {
+      "width": 320,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "status": "PASS"
+    }
+  ],
+  "focus": [
+    "Keyboard open focuses first link; Tab traverses nav; Escape restores trigger; selection focuses target; hidden-nav resize restores trigger"
+  ],
+  "privacy_axe": [
+    {
+      "width": 390,
+      "theme": "light",
+      "violations": 0,
+      "axe_version": "4.10.3"
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "violations": 0,
+      "axe_version": "4.10.3"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "violations": 0,
+      "axe_version": "4.10.3"
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "violations": 0,
+      "axe_version": "4.10.3"
+    }
+  ],
+  "privacy_text_adaptation": [
+    {
+      "width": 320,
+      "theme": "light",
+      "mode": "text-200",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "mode": "text-spacing",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "mode": "text-200",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "mode": "text-spacing",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "mode": "text-200",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "mode": "text-spacing",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "mode": "text-200",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "mode": "text-spacing",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "mode": "text-200",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "mode": "text-spacing",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "mode": "text-200",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "mode": "text-spacing",
+      "status": "PASS",
+      "method": "CSS simulation, not native zoom"
+    }
+  ],
+  "page_errors": [],
+  "legal_content_unchanged": true,
+  "engine": "chromium",
+  "browser_version": "155.0.8059.39",
+  "shared_theme_persistence": "PASS: main/privacy saved dark override and reset to system"
+}

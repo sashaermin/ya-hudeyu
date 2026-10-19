@@ -2,6 +2,8 @@
 
 Единственная общая дорожная карта Codex / Claude Code / других агентов. Основание: неизменённый [мастер-ТЗ](project_specs/WEBSITE_MASTER_TZ_2026-10-18.md). Общие правила — AGENTS.md, текущее продолжение — AGENT_HANDOFF.md.
 
+**Актуальный production P4:** `6810206125ccf72080c8a7aa29072041d5812f0f`, Phase2+FAQ33/8+/download unavailable. Pages39330940936 иlive39331146457 success:24hashes/25private404/64layouts/20axe0violations,normalTLS,noindex/APK-off. Ниже сохранён журнал прежних выпусков;полный master остаётся частично открыт поAPK/device/AT/indexing dependencies.
+
 **Исторический срез R7/R8 (актуальный U3 ниже):** первый coming-soon website release опубликован и проверен: production9b39ffa, Pages39114713056 success, live browser39125147955 PASS. Это **не завершение мастер-ТЗ**. Исторические записи ниже — журнал, текущее состояние и независимые next tasks определяет следующая таблица. APK не блокирует уже опубликованный сайт; только соответствующие пункты deferred. Production без новой авторизации не менять.
 
 | Этап ТЗ | Текущее состояние | Проверенные критерии и незавершённое |
@@ -246,3 +248,5 @@ Production build/preview24files совпадают;approved previewd48f2d5 во�
 Preflight47site+68notify,64layouts/20axe0violations,FAQ33 keyboard/native disclosures,download16layouts/6noJS/menu/themes/privacy/gallery PASS. Main push pending доreadiness CI;затем actual Pages/normalTLS live verification иfinal report. Cloud browser proxy CA issue не обойдена: runnernormalTLS используется дляlive.
 
 P4 readiness6ac3227/run39330797845 success/115tests/actual24files/4home+4download views/noindex/APKfalse,Telegram333/334. ControlledmainFFf308729f→6810206 выполнен послеgates;Pages39330940936 success. ActualnormalTLS24publichashes,/downloadredirect/unavailable иunchangedPagesconfig verified. LivebrowserQA запускаетсяследующимcheckpoint;pending,невыдаватьdeploysuccessзаcompleteverification.
+
+P4 COMPLETED:actual live39331146457 verified24publichashes/25internal404/64layouts/20axe0violations,FAQ33/8,5developmentcards/4journeysteps,downloadunavailable/noJS/themes/keyboard/privacy/gallery. Lighthouse98/100/100/69,SEOизintentionalnoindex. Actualartifact12223528746 скачан;JSON и4live download screenshots сохранены вGit. Criticalregressions отсутствуют,rollbackunused. Ownerreview actionresolved;APKapprovalopen. Единичнаяавторизацияисполнена,новыйmain/deploy/APK/редизайннеразрешён;никакогоrepeatdeployment. Далееfinaldocs/remote/Telegram proof иSTOP.

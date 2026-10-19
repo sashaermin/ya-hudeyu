@@ -627,6 +627,26 @@
       "done": "Подготовлен public-only6810206:Phase2,FAQ33/8,unavailable download. Четыреpublicpaths,privacy/CNAME/noindex/APK-off/GitHubinfra сохранены. Main ещё не изменён.",
       "next": "После readinessCI — разрешённый mainpush,Pages иnormalTLS liveQA. APK неразрешён.",
       "status": "Prepared; publication pending readiness success"
+    },
+    {
+      "id": "site-phase2-faq-beta-production-verified-20261020",
+      "at": "2026-10-19T21:59:22.218740+00:00",
+      "type": "stage_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "P4",
+          "Production verified"
+        ],
+        "title": "Выпущены Phase2,FAQ и недоступная бета"
+      },
+      "checkpoint": "dcc5068026aa58c4df3b47b01ab9f4c2ce1fd8e4",
+      "verified": "Pages39330940936/live39331146457 success;24HTTPS hashes/25private404/64layouts/20axe0violations;FAQ33/8,downloadunavailable,noJS/themes/keyboard/privacy.Lighthouse98/100/100/69;SEOизnoindex.",
+      "done": "Наhttps://yahudeyu-app.ru/ опубликован public-only6810206. Phase2/FAQ/download проверены;APKoff/noindex/CNAME/privacy/config сохранены. Rollbackf308729f verified,неиспользован.",
+      "next": "Разрешённыйвыпускзавершён. Новыхдействийвладельца длянего нет;APKapproval остаётсяотдельноopen. Безновойавторизациине redeploy/неразрабатыватьновыеfeatures.",
+      "status": "Production VERIFIED;no critical regressions;downloads disabled",
+      "artifact_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39331146457/artifacts/12223528746"
     }
   ]
 }

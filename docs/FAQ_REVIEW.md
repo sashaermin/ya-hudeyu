@@ -1,6 +1,6 @@
 # Phase2 FAQ — пакет приёмки
 
-**Текущий выпуск20.10.2026:** владелец разрешил единый Phase2+FAQ33/8+/download unavailable production release. Текущий combined source561971b;происхождение всехтрёхпакетов сверено в[release manifest](verification/phase2-faq-beta-production-release.json). Original approved ZIPd48f2d5… воспроизведён точно;только4пробела пустой generated HTML-строки удалены дляwhitespace gate,безизменениятекста/UX. Current artifacted78f72…;publication pending доactual Pages/live verification. Ниже — сохранённая историяdevelopment review,неповторный запрос уже данногоразрешения.
+**Текущий выпуск20.10.2026:** владелец разрешил единый Phase2+FAQ33/8+/download unavailable production release. Текущий combined source561971b;происхождение всехтрёхпакетов сверено в[release manifest](verification/phase2-faq-beta-production-release.json). Original approved ZIPd48f2d5… воспроизведён точно;только4пробела пустой generated HTML-строки удалены дляwhitespace gate,безизменениятекста/UX. Current artifacted78f72…;**Опубликовано и проверено:** production6810206,Pages39330940936/live39331146457 success,24hashes/64layouts/20axe0violations. [Сайт](https://yahudeyu-app.ru/) · [Недоступная бета](https://yahudeyu-app.ru/download/). APK выключен, noindex сохранён. Ниже — сохранённая историяdevelopment review,неповторный запрос уже данногоразрешения.
 
 
 Статус: development/review only, STOP перед publication. Основание — дословное [задание владельца](../project_specs/PHASE2_FAQ_AUTHORIZATION_2026-10-20.md), дополнение кmaster иPhase2, не replacement specification.

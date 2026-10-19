@@ -85,7 +85,7 @@
     },
     {
       "id": "site-phase2-owner-review",
-      "status": "open",
+      "status": "resolved",
       "source": "Codex",
       "opened": "2026-10-18",
       "task": "Сайт · Phase2",
@@ -97,7 +97,8 @@
       ],
       "blocked": "Только следующий этап приёмки/возможного website release. APK approval остаётся отдельной открытой задачей.",
       "can_continue": "Вся независимая Phase3 preparation завершена;clean CI39328336826/115tests/actual24file preview/Telegram topic6 verified. STOP передowner review. Actual APK approval остаётся отдельным open действием.",
-      "link": "https://github.com/sashaermin/ya-hudeyu/blob/work/website-v2/docs/BETA_REVIEW.md"
+      "link": "https://github.com/sashaermin/ya-hudeyu/blob/work/website-v2/docs/BETA_REVIEW.md",
+      "resolution": "Владелец явно разрешил единичную production публикацию Phase2+FAQ33/8+unavailable /download. Release6810206 реально deployed Pages39330940936 иliveverified39331146457 (24hashes/64layouts/20axe0violations/noindex/APKfalse). Эта приёмка закрыта дляуказанногосостава;available TEST ONLY fixture не опубликован,реальныйAPK ибудущаяbeta требуютотдельныхразрешений. site-approved-android-release остаётсяopen."
     },
     {
       "id": "site-telegram-topic6-closed",

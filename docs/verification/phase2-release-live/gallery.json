@@ -1,0 +1,34 @@
+[
+  {
+    "engine": "chromium",
+    "browser_version": "155.0.8059.39",
+    "theme": "light",
+    "loading_status": true,
+    "stale_image_hidden": true,
+    "loaded": true,
+    "error": true,
+    "retry": true,
+    "cancel_focus": true,
+    "rapid_reopen": true,
+    "page_errors": [],
+    "loading_axe_violations": 0,
+    "error_axe_violations": 0,
+    "fixture": "Original mascot, not released Android screen"
+  },
+  {
+    "engine": "chromium",
+    "browser_version": "155.0.8059.39",
+    "theme": "dark",
+    "loading_status": true,
+    "stale_image_hidden": true,
+    "loaded": true,
+    "error": true,
+    "retry": true,
+    "cancel_focus": true,
+    "rapid_reopen": true,
+    "page_errors": [],
+    "loading_axe_violations": 0,
+    "error_axe_violations": 0,
+    "fixture": "Original mascot, not released Android screen"
+  }
+]

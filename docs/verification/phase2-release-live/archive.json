@@ -1,0 +1,69 @@
+{
+  "source_commit": "dcc5068026aa58c4df3b47b01ab9f4c2ce1fd8e4",
+  "archive_sha256": "ed78f72f6701e26a4d143e15e5f2b142d09aa6d8469f59c234c3222c3a3d1bee",
+  "source_worktree_dirty": false,
+  "archive_files_verified": 24,
+  "rendered": [
+    {
+      "width": 390,
+      "theme": "light",
+      "status": "PASS",
+      "coming_soon": true,
+      "apk_download": false,
+      "noindex": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "status": "PASS",
+      "coming_soon": true,
+      "apk_download": false,
+      "noindex": true
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "status": "PASS",
+      "coming_soon": true,
+      "apk_download": false,
+      "noindex": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "status": "PASS",
+      "coming_soon": true,
+      "apk_download": false,
+      "noindex": true
+    }
+  ],
+  "page_errors": [],
+  "scope": "Downloaded CI archive on loopback; no hosted preview or production deployment",
+  "browser_version": "155.0.8059.39",
+  "download_rendered": [
+    {
+      "width": 390,
+      "theme": "light",
+      "apk_download": false,
+      "noindex": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "apk_download": false,
+      "noindex": true
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "apk_download": false,
+      "noindex": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "apk_download": false,
+      "noindex": true
+    }
+  ]
+}
