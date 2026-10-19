@@ -90,14 +90,31 @@
       "opened": "2026-10-18",
       "task": "Сайт · Phase2",
       "subtask": "Визуальная и контентная приёмка Phase2",
-      "what": "Development27247f4 иreview package verified:99unit tests,48responsive cases,12axe0violations;actual ZIP23files/4views. Production не изменён. Требуется предусмотренная заданием owner review, не решение об APK.",
+      "what": "Phase2+FAQ candidate1611a15 готов:33вопроса/8категорий,source matrix24chains,8новыхснимков;verify104unit/64layouts/16axe0violations иactualZIP23files/4views. Требуется предусмотреннаявладельцем content/visual review;production unchanged.",
       "steps": [
-        "Откройте docs/PHASE2_REVIEW.md: before/after desktop/mobile вдвух темах,section screenshots,claim/source table ипроверенный ZIP.",
+        "Откройте docs/FAQ_REVIEW.md, полный FAQ_GUIDE.md, FAQ_FEATURE_COVERAGE.md,снимкидвухтем иverifiedZIP.",
         "Сообщите замечания или подтвердите визуальную и контентную приёмку этого кандидата. Публикация требует последующего отдельного явного разрешения."
       ],
       "blocked": "Только следующий этап приёмки/возможного website release. APK approval остаётся отдельной открытой задачей.",
       "can_continue": "Все независимые approved Phase2 implementation/QA/review-package задачи выполнены. STOP перед production; новых функций/редизайна не начинать.",
-      "link": "https://github.com/sashaermin/ya-hudeyu/blob/work/website-v2/docs/PHASE2_REVIEW.md"
+      "link": "https://github.com/sashaermin/ya-hudeyu/blob/work/website-v2/docs/FAQ_REVIEW.md"
+    },
+    {
+      "id": "site-telegram-topic6-closed",
+      "status": "open",
+      "source": "Codex",
+      "opened": "2026-10-20",
+      "task": "Сайт · Telegram delivery",
+      "subtask": "Открыть существующую Telegram тему6",
+      "what": "Notify check118311148555/run39325727846:Telegram HTTP400 TOPIC_CLOSED дляcommit1611a15 иэтапаFAQ. Check-config bindings passed;это закрытая тема, не missing secrets.",
+      "steps": [
+        "Откройте «Я худею GROUP» → «Сайт | Я ХУдЕЮ».",
+        "В меню темы выберите «Открыть тему» (нужны права администратора темы).",
+        "Сообщите, что тема открыта; агент проверитexisting notify retry без смены chat/topic и без повторного ежедневного дайджеста."
+      ],
+      "blocked": "Только Telegram delivery. FAQ/source audit/browserQA/review artifact завершены независимо.",
+      "can_continue": "Да: review package иdocumentation checkpoints;сайт/основнуюnotificationinfra не менять,непроситьзначениясекретов.",
+      "link": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39325727846"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "scope": "Categorized FAQ development candidate; owner review pending; no production approval",
-  "source_base_checkpoint": "c91fdd446ce5dcf204aecf1f40f853a14f96e086",
+  "source_base_checkpoint": "1611a15b1aadf3c27953b935a9fb7670686846ff",
   "archive_sha256": "d0b00ec9c67400a3ae308a3428b99733270f9fa30bd5207b2069b83275373dd8",
   "site_index_sha256": "03082da8b169584418f2e04f717bdb4af1483000dde6c5f2a94fe406594df4ff",
   "qa_evidence": "docs/verification/faq-review.json",

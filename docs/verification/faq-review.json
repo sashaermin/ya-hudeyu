@@ -1,5 +1,5 @@
 {
-  "status": "Local FAQ QA PASS; clean CI review artifact pending",
+  "status": "Development FAQ verified; owner review pending; Telegram blocked by TOPIC_CLOSED",
   "base_development": "c91fdd446ce5dcf204aecf1f40f853a14f96e086",
   "android_snapshot": "787175c099f4bb9f7086a6b7953436c0caaffe12",
   "categories": 8,
@@ -34,5 +34,25 @@
     "FAQ describes development, not public release.",
     "No physical Android/iOS/Safari or assistive-technology/native-zoom verification.",
     "Unverified integrations, cloud guarantees, medical/AI functionality and media export details omitted."
-  ]
+  ],
+  "development_ui_commit": "1611a15b1aadf3c27953b935a9fb7670686846ff",
+  "ci": {
+    "run_id": 39325727846,
+    "overall_conclusion": "failure due only to external Telegram topic closed",
+    "verify_job": "success",
+    "verify_check_run": 118310945950,
+    "unit_tests": 104,
+    "archive_roundtrip_files": 23,
+    "rendered_views": 4,
+    "page_errors": 0,
+    "source_worktree_dirty": false,
+    "artifact_id": 12221768739,
+    "artifact_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39325727846/artifacts/12221768739",
+    "artifact_expires_at": "2026-10-26T21:13:09Z",
+    "notify_job": "failure",
+    "notify_check_run": 118311148555,
+    "telegram_error": "HTTP400 TOPIC_CLOSED",
+    "telegram_topic": 6,
+    "delivery_confirmed": false
+  }
 }

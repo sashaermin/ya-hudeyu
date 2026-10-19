@@ -549,6 +549,26 @@
       "done": "33вопроса/8категорий,24source chains UI/state/model/storage наAndroid787175c read-only. Partial/unverified/omitted явно отделены;native anchors/details безновогоJS. Phase2design/release guards сохранены.",
       "next": "Clean CI/archive/sourceSHA proof иexisting owner review; STOP доpublication. НикакихAndroid builds,main/deploy/APK/indexing.",
       "status": "Development FAQ candidate; owner content review pending"
+    },
+    {
+      "id": "site-faq-review-artifact-20261020",
+      "at": "2026-10-19T21:15:05.685014+00:00",
+      "type": "preview_artifact_ready",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Phase2",
+          "FAQ review"
+        ],
+        "title": "Source-backed FAQ пакетприёмки"
+      },
+      "checkpoint": "1611a15b1aadf3c27953b935a9fb7670686846ff",
+      "verified": "Verify39325727846 success104tests/actual23files/4renderedviews/clean source/noindex/APK-disabled. Local64layouts/16axe0violations/18noJS. Overallrunnotify failure TOPIC_CLOSED,delivery notconfirmed.",
+      "done": "33вопроса/8категорий,полныйтекст/Android source matrix/omittedlist/8PNG/точныйSHA иreviewZIP готовы. UI/Main/production guardsscope preserved.",
+      "next": "Ownercontentreview;дляTelegram нужнооткрытьexistingtopic6. STOP доpublication,APKapproval отдельноopen.",
+      "status": "Review VERIFIED;Telegram BLOCKED topic closed;production unchanged",
+      "artifact_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39325727846/artifacts/12221768739"
     }
   ]
 }

@@ -1569,6 +1569,27 @@
           "line": 715,
           "symbol": "composable(\"more\")",
           "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/profile/ProfileScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 495,
+          "symbol": "appSettings.setThemeMode(id)",
+          "sha256": "1ee56dabd359ab28974b75617202d7a1247727568c73d7fe186c8cacfa936676"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/profile/ProfileScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 512,
+          "symbol": "appSettings.setAccent(id)",
+          "sha256": "1ee56dabd359ab28974b75617202d7a1247727568c73d7fe186c8cacfa936676"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/profile/ProfileScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 543,
+          "symbol": "appSettings.imperialUnits = imp",
+          "sha256": "1ee56dabd359ab28974b75617202d7a1247727568c73d7fe186c8cacfa936676"
         }
       ],
       "website_source": null
