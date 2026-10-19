@@ -48,6 +48,95 @@ STATUS_TITLES = {
 }
 
 
+# Presentation only: preserve the existing formatter's data and truncation policy.
+class _PresentationHTML(HTMLParser):
+    """Balance legacy truncation boundaries without executing or trusting markup."""
+    def __init__(self):
+        super().__init__(convert_charrefs=False)
+        self.parts, self.stack = [], []
+
+    def handle_starttag(self, tag, attrs):
+        if tag not in ('b', 'i', 'code', 'pre', 'a', 'blockquote'):
+            self.handle_data(self.get_starttag_text()); return
+        if tag == 'a':
+            href = dict(attrs).get('href', '')
+            self.parts.append('<a href="' + html.escape(href, quote=True) + '">')
+        else:
+            self.parts.append('<' + tag + '>')
+        self.stack.append(tag)
+
+    def handle_endtag(self, tag):
+        if tag in self.stack:
+            while self.stack:
+                current = self.stack.pop(); self.parts.append('</' + current + '>')
+                if current == tag: break
+
+    def handle_data(self, text):
+        self.parts.append(html.escape(text, quote=False))
+
+    def handle_entityref(self, name):
+        self.parts.append('&' + name + ';')
+
+    def handle_charref(self, name):
+        self.parts.append('&#' + name + ';')
+
+    def result(self):
+        return ''.join(self.parts) + ''.join('</' + tag + '>' for tag in reversed(self.stack))
+
+
+def style_message(text, platform, limit=4096):
+    """Decorate an already selected/bounded report; never discard extra content.
+
+    Very full cards use a compact layout. If even that cannot fit, preserve the
+    original layout rather than drop an author, disclaimer, timestamp or link.
+    No delivery, provenance or event-selection policy belongs in this function.
+    """
+    patterns = {
+        'Android': r'<b>(.*?)ANDROID «Я ХУдЕЮ» — (.*?)</b>',
+        'Website': r'<b>()САЙТ «Я ХУдЕЮ» — (.*?)</b>',
+        'Windows': r'<b>()WINDOWS «Я ХУдЕЮ» \| (.*?)</b>',
+    }
+    match = re.match(patterns[platform], text)
+    if not match: return text
+    parser = _PresentationHTML(); parser.feed(text[match.end():]); parser.close()
+    body = parser.result().lstrip('\n')
+    # Preserve all event wording/icons; only replace the old project frame.
+    header = '<b>Я ХУдЕЮ | DEV REPORTS</b>\n' + platform + '\n<b>' + match[1] + match[2] + '</b>'
+    lines, result, index = body.split('\n'), [], 0
+    while index < len(lines):
+        line = lines[index]
+        evidence = re.match(r'^(<b>(?:Проверки[^<]*|Состояние проверок|Описание:)</b>) *(.*)$', line)
+        if evidence:
+            details = [evidence[2]] if evidence[2] else []
+            index += 1
+            while index < len(lines) and lines[index] and not lines[index].startswith('<b>'):
+                details.append(lines[index]); index += 1
+            result.append(evidence[1])
+            if details: result.append('<blockquote>' + '\n'.join(details) + '</blockquote>')
+            continue
+        line = re.sub(r'^(<b>(?:Изменение:|Что сделано:)</b>) +', r'\1\n', line)
+        result.append(line); index += 1
+    decorated = header + '\n────────\n\n' + '\n'.join(result)
+    # Windows historically budgets decoded Telegram text (its escaped progress
+    # may exceed 4096 HTML bytes); keep that behavior instead of dropping text.
+    visible = html.unescape(re.sub(r'<[^>]*>', '', decorated))
+    windows_fits = platform == 'Windows' and limit == 4096 and len(visible.encode('utf-16-le')) // 2 <= limit
+    if (len(decorated) <= limit and len(visible.encode('utf-16-le')) // 2 <= 4096) or windows_fits: return decorated
+    # Compact only formatting, never source text or hrefs. Existing field-level
+    # abbreviation and truncation remain owned by the original formatter.
+    compact = re.sub(r'</?(?:code|i)>', '', decorated)
+    compact = re.sub(r'<b>((?:Агент|Источник|Проект|Ветка|Коммит|Автор|Алерт|Событие|Механизм|Период|Этап|SHA|Статус|Последний checkpoint):)</b>', r'\1', compact)
+    compact = compact.replace('\n\n', '\n')
+    if len(compact) <= limit and len(html.unescape(re.sub(r'<[^>]*>', '', compact)).encode('utf-16-le')) // 2 <= 4096: return compact
+    compact = compact.replace('<blockquote>', '').replace('</blockquote>', '').replace('\n────────', '')
+    if len(compact) <= limit and len(html.unescape(re.sub(r'<[^>]*>', '', compact)).encode('utf-16-le')) // 2 <= 4096: return compact
+    # Never alter the old data selection/truncation merely to add decoration.
+    # Existing oversized or malformed legacy payloads are retained verbatim;
+    # fixing those would be a separate functional change.
+    return text
+
+
+
 def esc(text: str) -> str:
     return html.escape(str(text or ""), quote=True)
 
@@ -222,7 +311,7 @@ def presentation(event: str, metadata: list[tuple], sections: list[str], links: 
     content = '\n\n'.join([f'<b>{esc(PROJECT)} — {esc(event)}</b>', '\n'.join(meta), *sections])
     footer = '\n\n' + '\n'.join(safe_link(url, title) for url, title in links[:3]) if links else ''
     # Reserve descriptive links even if a long section must be shortened.
-    return fit(content, TELEGRAM_LIMIT - len(footer)) + footer
+    return style_message(fit(content, TELEGRAM_LIMIT - len(footer)) + footer, "Website", TELEGRAM_LIMIT)
 
 
 # ---------------------------------------------------------------- source
@@ -980,3 +1069,4 @@ def main(argv=None) -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+
