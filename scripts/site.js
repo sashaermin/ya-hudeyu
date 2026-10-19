@@ -73,9 +73,23 @@
   const image = document.querySelector('#viewer-image');
   const error = document.querySelector('#viewer-error');
   const loading = document.querySelector('#viewer-loading');
+  const zoomButton = document.querySelector('#viewer-zoom');
+  function resetZoom() {
+    dialog.removeAttribute('data-zoomed');
+    zoomButton?.setAttribute('aria-pressed', 'false');
+    const canvas = dialog.querySelector('.viewer-canvas');
+    if (canvas) { canvas.scrollTop = 0; canvas.scrollLeft = 0; }
+  }
+  zoomButton?.addEventListener('click', () => {
+    const zoomed = dialog.dataset.zoomed !== 'true';
+    dialog.dataset.zoomed = String(zoomed);
+    zoomButton.setAttribute('aria-pressed', String(zoomed));
+  });
   let selected = 0;
   let opener;
   function show(index) {
+    resetZoom();
+    if (zoomButton) zoomButton.disabled = true;
     selected = (index + screens.length) % screens.length;
     const source = screens[selected].querySelector('img');
     error.hidden = true;
@@ -93,6 +107,7 @@
     image.setAttribute('aria-busy', 'false');
     image.hidden = failed;
     error.hidden = !failed;
+    if (zoomButton) zoomButton.disabled = failed;
   }
   image.addEventListener('load', () => {
     if (image.complete && image.naturalWidth > 0) finishLoading();
@@ -123,17 +138,18 @@
       if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
     }
+    if (dialog.dataset.zoomed === 'true' && event.target.classList.contains('viewer-canvas')) return;
     if (event.key === 'ArrowLeft') { event.preventDefault(); show(selected - 1); }
     if (event.key === 'ArrowRight') { event.preventDefault(); show(selected + 1); }
   });
   document.querySelector('#viewer-prev').addEventListener('click', () => show(selected - 1));
   document.querySelector('#viewer-next').addEventListener('click', () => show(selected + 1));
   const track = document.querySelector('.gallery-track');
-  document.querySelectorAll('[data-gallery-direction]').forEach(button => button.addEventListener('click', () => {
+  document.querySelectorAll('[data-gallery-direction]').forEach(button => { button.hidden = false; button.addEventListener('click', () => {
     track.scrollBy({left: Number(button.dataset.galleryDirection) * (screens[0].offsetWidth + 24), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
-  }));
+  }); });
   let startX = null;
-  image.addEventListener('touchstart', event => { if (event.touches.length === 1) startX = event.touches[0].clientX; else startX = null; }, {passive:true});
+  image.addEventListener('touchstart', event => { if (dialog.dataset.zoomed !== 'true' && event.touches.length === 1) startX = event.touches[0].clientX; else startX = null; }, {passive:true});
   image.addEventListener('touchend', event => {
     if (startX !== null) {
       const delta = event.changedTouches[0].clientX - startX;
