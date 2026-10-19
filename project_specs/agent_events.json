@@ -588,6 +588,26 @@
       "done": "/download unavailable default иизолированныйTEST ONLY beta fixture;exact-artifact technical/distribution/website approvals;readonly verifier ибудущаяпроцедура. FAQ/Phase2/production/privacy/noindex сохранены.",
       "next": "Clean remote CI/actual preview archive proof, затем owner content/visual review. STOP передAPK/publication/main.",
       "status": "Development review only; downloads disabled; no APK approved"
+    },
+    {
+      "id": "site-phase3-beta-review-artifact-20261020",
+      "at": "2026-10-19T21:34:25.368603+00:00",
+      "type": "preview_artifact_ready",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Phase3",
+          "Review package"
+        ],
+        "title": "Beta UI review безраздачиAPK"
+      },
+      "checkpoint": "011eb4b146552aa79a30e91ed04a26b7f0f4bc46",
+      "verified": "CI39328336826 success115tests,actual upload→download24files/4home+4download views/clean source/noindex=true/APK=false/errors0;Telegramtopic6/messages328–329.",
+      "done": "Готовы /download unavailable default иTEST ONLY available screenshots,схема3разрешений,signing/version/installation procedure иregression evidence. FAQ/production сохранены.",
+      "next": "Визуальная/контентная приёмка владельца. Дляреальнойбеты — отдельные exact APK иwebsite approvals;STOP передpublication.",
+      "status": "Phase3 preparation COMPLETE;owner review pending;downloads disabled",
+      "artifact_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39328336826/artifacts/12224030587"
     }
   ]
 }

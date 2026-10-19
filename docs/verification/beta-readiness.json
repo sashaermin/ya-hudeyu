@@ -1,5 +1,5 @@
 {
-  "status": "Phase3 implemented and locally verified; clean CI/archive proof pending; owner review pending",
+  "status": "Phase3 preparation COMPLETE; clean CI/archive/Telegram verified; owner content/visual review pending",
   "base_checkpoint": "cb1ce6c37cd4a92636ec2a9aafaeb49a202bbca5",
   "authorization": "project_specs/PHASE3_BETA_AUTHORIZATION_2026-10-20.md",
   "android": {
@@ -17,7 +17,13 @@
       "path": "/"
     },
     "https_enforced": true,
-    "scope": "Read-only GitHub API/Git comparison; no new live HTTP/browser production check"
+    "scope": "Read-only GitHub API/Git comparison; no new live HTTP/browser production check",
+    "latest_pages_build": {
+      "commit": "f308729f2cd4d7bde3574e08d8fd2fc05e92c4ab",
+      "status": "built",
+      "updated_at": "2026-10-19T19:06:22Z",
+      "note": "Only Telegram .github differs from public release8fb7bf2; no website redeployment by this task"
+    }
   },
   "qa": {
     "website_tests": 47,
@@ -68,5 +74,30 @@
     "errors": [],
     "dirty_source": true,
     "scope": "Local rehearsal before commit; clean CI roundtrip still pending"
+  },
+  "development_ui_commit": "011eb4b146552aa79a30e91ed04a26b7f0f4bc46",
+  "ci": {
+    "run_id": 39328336826,
+    "conclusion": "success",
+    "verify_check_run": 118319846802,
+    "notify_check_run": 118320042419,
+    "tests": 115,
+    "clean_source": true,
+    "archive_files": 24,
+    "home_views": 4,
+    "download_views": 4,
+    "page_errors": 0,
+    "noindex": true,
+    "apk_download": false,
+    "artifact_id": 12224030587,
+    "artifact_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39328336826/artifacts/12224030587",
+    "artifact_expires_at": "2026-10-26T21:32:57Z",
+    "archive_sha256": "d48f2d5a714faffb0bdecea8b19b75ec13ca94913f14776361a0407d70e55e8f",
+    "telegram_delivery_confirmed": true,
+    "telegram_topic": 6,
+    "telegram_message_ids": [
+      328,
+      329
+    ]
   }
 }

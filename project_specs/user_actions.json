@@ -96,7 +96,7 @@
         "Сообщите замечания или подтвердите контентную/визуальную приёмку подготовки. Это неразрешениепубликации илираспространения APK."
       ],
       "blocked": "Только следующий этап приёмки/возможного website release. APK approval остаётся отдельной открытой задачей.",
-      "can_continue": "Независимая подготовка Phase3 реализована; после clean CI/preview/Telegram proof STOP перед owner review. Actual APK approval остаётся отдельным open действием.",
+      "can_continue": "Вся независимая Phase3 preparation завершена;clean CI39328336826/115tests/actual24file preview/Telegram topic6 verified. STOP передowner review. Actual APK approval остаётся отдельным open действием.",
       "link": "https://github.com/sashaermin/ya-hudeyu/blob/work/website-v2/docs/BETA_REVIEW.md"
     },
     {

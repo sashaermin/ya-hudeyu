@@ -1,6 +1,6 @@
 {
   "scope": "Phase3 beta preparation; unavailable default; development review only",
-  "source_base_checkpoint": "cb1ce6c37cd4a92636ec2a9aafaeb49a202bbca5",
+  "source_base_checkpoint": "011eb4b146552aa79a30e91ed04a26b7f0f4bc46",
   "archive_sha256": "d48f2d5a714faffb0bdecea8b19b75ec13ca94913f14776361a0407d70e55e8f",
   "site_index_sha256": "6da371cfc832ef2ee97a8d7f09473c84b61745df5de1697ec5b366f975e944a3",
   "qa_evidence": "docs/verification/beta-readiness.json",

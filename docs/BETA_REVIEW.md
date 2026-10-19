@@ -1,6 +1,6 @@
 # Phase3 — пакет приёмки beta preparation
 
-Development/review only. Ни APK, ни новый website release не утверждены. Production public source8fb7bf2920a89f39e1ed3a56d53ada91f468b715 неизменён; mainf308729f2cd4d7bde3574e08d8fd2fc05e92c4ab содержит только отдельно согласованную Telegram инфраструктуру сверх production. FAQ33/8 иPhase2 сохранены. Exact code SHA иartifact — следующий verified checkpoint, не незакоммиченный кандидат.
+Development/review only. Ни APK, ни новый website release не утверждены. Production public source8fb7bf2920a89f39e1ed3a56d53ada91f468b715 неизменён; mainf308729f2cd4d7bde3574e08d8fd2fc05e92c4ab содержит только отдельно согласованную Telegram инфраструктуру сверх production. FAQ33/8 иPhase2 сохранены. Exact UI source — `011eb4b146552aa79a30e91ed04a26b7f0f4bc46`; clean CI39328336826 success,115unit tests,actual archive24files/4home+4download views/noindex/APK-disabled/page_errors0. Telegram topic6/messages328–329 подтверждены API.
 
 - [Архитектура](BETA_DISTRIBUTION.md): GitHub Pages +versioned GitHub Releases APK, никакого нового backend/hosting/publisher.
 - [Схема](BETA_RELEASE_SCHEMA.md): единственный release.json, независимые technical /owner distribution /website approvals; fail-closed.
@@ -37,3 +37,11 @@ Development/review only. Ни APK, ни новый website release не утве
 ## Предмет решения владельца
 
 Посмотреть unavailable/TEST ONLY states ипринять layout/русский текст либо дать замечания. Приёмка подготовки **не разрешает** публиковать website/APK. Для первой реальной беты нужны точный APK, доверенный signer/source/version metadata,проверки реальнойсборки иотдельные разрешения artifact distribution иwebsite publication. APK не требуется дляприёмки этой подготовки. Noindex/indexing,legaltext иproduction отдельно сохраняются.
+
+## Проверенный архив и checkpoint
+
+[Скачать review artifact](https://github.com/sashaermin/ya-hudeyu/actions/runs/39328336826/artifacts/12224030587) из [успешного CI](https://github.com/sashaermin/ya-hudeyu/actions/runs/39328336826). Source `011eb4b146552aa79a30e91ed04a26b7f0f4bc46`,attempt1,artifact12224030587; хранится до **27.10.2026 00:32 МСК** (7дней). Это downloadable ZIP, не публичный preview URL. Распаковать внешний bundle, затем `website-preview.zip` в отдельную папку на своём компьютере и запустить локальный сервер по инструкции выше.
+
+Inner ZIP SHA-256: `d48f2d5a714faffb0bdecea8b19b75ec13ca94913f14776361a0407d70e55e8f`. Проверены upload→download,24file hashes,clean source,4home+4download renders,обе темы,noindex=true,APK=false. Fixture page отсутствует в ZIP; её видны восемь снимков выше ивоспроизводит QA harness. При истечении срока пересобрать exact source черезpackage_preview.py и сверить этот digest, не выбирать случайный artifact.
+
+Последующие documentation-only checkpoint сохраняют эти UI bytes; актуальный development HEAD брать черезGit. Production page `/download/` этой задачей не публикуется. Последний Pages build commit по API —f308729f; public website files побайтно равны уже выпущенному8fb7bf2.
