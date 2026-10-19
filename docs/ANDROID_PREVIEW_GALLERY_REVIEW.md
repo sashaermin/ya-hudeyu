@@ -1,5 +1,7 @@
 # Предварительная Android-галерея: аудит входов
 
+**Уточнение владельца:** «сам обезличь и выполни тз» ([авторизация](../project_specs/ANDROID_PREVIEW_ANONYMIZATION_AUTHORIZATION_2026-10-20.md)). Агент сам выполняет обезличивание; готовыеapprovedversions от владельца больше не требуются. Текущий статус **BLOCKED_BY_SOURCE_FILES**:11 исходников видны в чате, но не доступны локальными файлами. Нужен ZIP исходных, ещё не обезличенных изображений, затем обработку/QA выполняет агент. Старое условие approved-inputs ниже — история первоначального задания, а не текущий запрос повторного разрешения.
+
 Статус: **BLOCKED_BY_APPROVED_ASSETS**, реализация галереи не начата. Основание — [задание владельца](../project_specs/ANDROID_PREVIEW_GALLERY_AUTHORIZATION_2026-10-20.md), development/review only. Четыре присланных текстовых файла побайтно одинаковы (SHA-256 `d516272ca35227de2c37b76587073c07f5116659cb38349c88f99b8abe18af3c`); сохранён один исходный текст, не новое ТЗ.
 
 В конце задания прямо указано: “If the required individual anonymized images are unavailable, stop the image-dependent implementation and request the missing assets instead of inventing them.” Это условие остановки владельца; APK для этой предварительной галереи не требуется.
