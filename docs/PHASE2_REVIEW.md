@@ -1,5 +1,8 @@
 # Phase 2 — пакет визуальной и контентной приёмки
 
+**Текущий выпуск20.10.2026:** владелец разрешил единый Phase2+FAQ33/8+/download unavailable production release. Текущий combined source561971b;происхождение всехтрёхпакетов сверено в[release manifest](verification/phase2-faq-beta-production-release.json). Original approved ZIPd48f2d5… воспроизведён точно;только4пробела пустой generated HTML-строки удалены дляwhitespace gate,безизменениятекста/UX. Current artifacted78f72…;publication pending доactual Pages/live verification. Ниже — сохранённая историяdevelopment review,неповторный запрос уже данногоразрешения.
+
+
 **Обновление20.10.2026:** текущая расширенная FAQ-версия и её новый review package — [FAQ_REVIEW.md](FAQ_REVIEW.md), полный текст [FAQ_GUIDE.md](FAQ_GUIDE.md), coverage matrix [FAQ_FEATURE_COVERAGE.md](FAQ_FEATURE_COVERAGE.md). Снимки иZIP ниже сохраняют исторический кандидат до33-question FAQ; длятекущего просмотра используйте новыйпакет.
 
 Статус: development candidate, **не опубликован**. Основание — [исходная авторизация Phase2](../project_specs/PHASE2_CONTENT_AUTHORIZATION_2026-10-18.md), дополнение к неизменённому мастер-ТЗ. Текущая production-вёрстка8fb7bf2 сохранена; main3cf7825 не менялся. Telegram COMPLETED, никаких workflow/schedule изменений.

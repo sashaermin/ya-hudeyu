@@ -1,5 +1,8 @@
 # Phase3 — пакет приёмки beta preparation
 
+**Текущий выпуск20.10.2026:** владелец разрешил единый Phase2+FAQ33/8+/download unavailable production release. Текущий combined source561971b;происхождение всехтрёхпакетов сверено в[release manifest](verification/phase2-faq-beta-production-release.json). Original approved ZIPd48f2d5… воспроизведён точно;только4пробела пустой generated HTML-строки удалены дляwhitespace gate,безизменениятекста/UX. Current artifacted78f72…;publication pending доactual Pages/live verification. Ниже — сохранённая историяdevelopment review,неповторный запрос уже данногоразрешения.
+
+
 Development/review only. Ни APK, ни новый website release не утверждены. Production public source8fb7bf2920a89f39e1ed3a56d53ada91f468b715 неизменён; mainf308729f2cd4d7bde3574e08d8fd2fc05e92c4ab содержит только отдельно согласованную Telegram инфраструктуру сверх production. FAQ33/8 иPhase2 сохранены. Exact UI source — `011eb4b146552aa79a30e91ed04a26b7f0f4bc46`; clean CI39328336826 success,115unit tests,actual archive24files/4home+4download views/noindex/APK-disabled/page_errors0. Telegram topic6/messages328–329 подтверждены API.
 
 - [Архитектура](BETA_DISTRIBUTION.md): GitHub Pages +versioned GitHub Releases APK, никакого нового backend/hosting/publisher.

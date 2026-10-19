@@ -608,6 +608,25 @@
       "next": "Визуальная/контентная приёмка владельца. Дляреальнойбеты — отдельные exact APK иwebsite approvals;STOP передpublication.",
       "status": "Phase3 preparation COMPLETE;owner review pending;downloads disabled",
       "artifact_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39328336826/artifacts/12224030587"
+    },
+    {
+      "id": "site-phase2-faq-beta-release-prepared-20261020",
+      "at": "2026-10-19T21:51:57.633515+00:00",
+      "type": "stage_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "P4",
+          "Production readiness"
+        ],
+        "title": "Подготовлен разрешённый public-only выпуск"
+      },
+      "checkpoint": "561971b2cb7724b48622cd315989a4f5763b600e",
+      "verified": "47site+68notify tests;64layouts/20axe0violations;24file allowlist/production gates;rollback22actualHTTPS hashes+remote tag.",
+      "done": "Подготовлен public-only6810206:Phase2,FAQ33/8,unavailable download. Четыреpublicpaths,privacy/CNAME/noindex/APK-off/GitHubinfra сохранены. Main ещё не изменён.",
+      "next": "После readinessCI — разрешённый mainpush,Pages иnormalTLS liveQA. APK неразрешён.",
+      "status": "Prepared; publication pending readiness success"
     }
   ]
 }

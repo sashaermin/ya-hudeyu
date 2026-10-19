@@ -1,5 +1,8 @@
 # Phase2 FAQ — пакет приёмки
 
+**Текущий выпуск20.10.2026:** владелец разрешил единый Phase2+FAQ33/8+/download unavailable production release. Текущий combined source561971b;происхождение всехтрёхпакетов сверено в[release manifest](verification/phase2-faq-beta-production-release.json). Original approved ZIPd48f2d5… воспроизведён точно;только4пробела пустой generated HTML-строки удалены дляwhitespace gate,безизменениятекста/UX. Current artifacted78f72…;publication pending доactual Pages/live verification. Ниже — сохранённая историяdevelopment review,неповторный запрос уже данногоразрешения.
+
+
 Статус: development/review only, STOP перед publication. Основание — дословное [задание владельца](../project_specs/PHASE2_FAQ_AUTHORIZATION_2026-10-20.md), дополнение кmaster иPhase2, не replacement specification.
 
 **33 вопроса /8категорий.** Полный русский текст — [FAQ_GUIDE.md](FAQ_GUIDE.md). Каждый вопрос, workflow, implementation status, immutable AndroidSHA/file/line иpublication boundary — [FAQ_FEATURE_COVERAGE.md](FAQ_FEATURE_COVERAGE.md), [машинная матрица](verification/faq-feature-coverage.json). [Аудит](verification/faq-source-audit.json) фиксирует24цепочки UI/state/models/persistence иhashes; Android snapshot787175c, веткаwork/activity-progress-v6-4daeaa5 прочитана без изменения, сборки иливмешательства впроцессы. Website baselinec91fdd4 включает последующие Telegram formatter changes, они сохранены.
