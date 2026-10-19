@@ -1,9 +1,9 @@
 {
-  "scope": "Phase2 owner-authorized development enrichment only; review pending; never production permission",
-  "source_base_checkpoint": "27247f4bf8b5df0efedf4d79a98a972d1d6d8e3c",
-  "archive_sha256": "37e3a7a063fcc443d80606b681949d07f9755ddabbbba39928b64ca1bc7bc6d1",
-  "site_index_sha256": "6bcb1876386e65ad2630d882f1ff23508ed6c26ecc8dbc2a4c1e1213197790a6",
-  "qa_evidence": "docs/verification/phase2-review.json",
+  "scope": "Categorized FAQ development candidate; owner review pending; no production approval",
+  "source_base_checkpoint": "c91fdd446ce5dcf204aecf1f40f853a14f96e086",
+  "archive_sha256": "d0b00ec9c67400a3ae308a3428b99733270f9fa30bd5207b2069b83275373dd8",
+  "site_index_sha256": "03082da8b169584418f2e04f717bdb4af1483000dde6c5f2a94fe406594df4ff",
+  "qa_evidence": "docs/verification/faq-review.json",
   "production_commit": "8fb7bf2920a89f39e1ed3a56d53ada91f468b715",
   "publication_evidence": "docs/verification/uiux-production-release.json"
 }

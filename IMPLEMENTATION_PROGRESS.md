@@ -36,6 +36,12 @@ Owner authorization сохранена дословно project_specs/PHASE2_CON
 
 P2C локально verified:31site+68notify tests,48responsive layout cases в3engines/12axe0violations/12text adaptation/6noJS/privacy320×2;before/after20PNG иsource/claim table. P2C COMPLETED: UI source27247f4/run39146021733 success, actual artifact12143292977/23files/4views/99unit tests; Telegram55/56 topic6. P2D pending owner visual/content review; actual source/link/expiry вPHASE2_REVIEW.md. Existing7release-blocked/2manual UI items не закрыты intent-card текстами. Main/publicproduction/privacy/release+publication configs/workflows untouched; Telegram COMPLETED. Review/evidence — docs/PHASE2_REVIEW.md иdocs/verification/phase2-review.json.
 
+## Phase2 FAQ · owner authorization20.10.2026
+
+P2F-A source audit completed: Androidwork787175c,24 UI/state/models/persistence chains,manual runtime/APK/device tests не выполнялись. P2F-B33questions/8categories иnative category anchors/details implemented, безreleased claims.24chain source inventory/33topic matrix/omitted scope сохранены; note bodymeasurement field не обещан безUI,photos editing/deletion ограничены доотдельнойпроверки.
+
+P2F-C локальный QA PASS:36site+68notify,48FAQ+16main responsive cases,16axe0violations,18noJS,12text adaptation;33native disclosures вкаждомиз3engines;8actual FAQ screenshots. Clean CI/source/artifact proof pendingpush, послеего фиксации P2F-C completed/P2F-D ownerreview pending, STOP передpublication. FAQ_REVIEW/FAQ_GUIDE/FAQ_FEATURE_COVERAGE — текущий пакет, Phase2original пакеты сохранены какhistory. Main/production/privacy/APK/indexing/workflows/otherrepo untouched.
+
 ## Актуальный production срез U3
 
 Owner-authorized UI fixes из0b706e3 опубликованы public-only8fb7bf2 (4 files,22file allowlist), Pages39129023427 success. Normal-TLS live39129135130 success:78unit,22public hashes/16private404,16main+16privacy layouts,6noJS/keyboard focus/legal-text/gallery loading/error/retry/reopen,12axe0violations. Lighthouse mobile99/100/100/69; intentional noindex сохранён, APK disabled. Rollback9b39ffa/tag website-uiux-release-2026-10-18 истарый9a0857c доступны. Подробный manifest/notices — docs/verification/uiux-production-release.json. Полный master не закрыт: UI audit35 complete/7releaseblocked/2manual; дальнейшие inputs иограничения остаются вчеклисте. Никакого дополнительного release/редизайна/digest этим разрешением не начато.

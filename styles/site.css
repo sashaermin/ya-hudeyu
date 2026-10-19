@@ -30,3 +30,6 @@ body.policy{max-width:800px;margin:0 auto;padding:48px 24px}.policy h1{font-fami
 @media(max-width:480px){.motivation{grid-template-columns:1fr;gap:16px}.motivation img{width:160px;margin:auto}.journey-list li{gap:16px}.journey-list h3{font-size:19px}}
 
 .intent-label svg{width:24px;height:24px;fill:currentColor;margin-right:8px}
+
+/* FAQ guide: ordinary anchors + native details work without JS or a custom tab widget. */
+.faq-categories{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}.faq-categories a{display:inline-flex;align-items:center;gap:10px;min-height:44px;max-width:100%;padding:10px 14px;border:1px solid var(--outline);border-radius:var(--interactive);font-size:14px;line-height:1.4;text-decoration:none;background:var(--surface)}.faq-categories a:hover{background:var(--steps)}.faq-categories span{color:var(--muted);font-size:12px}.faq-group{padding-top:24px;margin-bottom:32px;border-top:1px solid var(--line)}.faq-group h3{font-size:22px;margin-bottom:20px}.faq-back{display:inline-flex;align-items:center;min-height:44px;font-size:14px;color:var(--steps-ink);padding:8px 0}.faq-development-note{font-size:15px}.faq-development-note strong{color:var(--ink);display:block;margin-bottom:8px}

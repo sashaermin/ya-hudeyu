@@ -1,5 +1,7 @@
 # Phase 2 — пакет визуальной и контентной приёмки
 
+**Обновление20.10.2026:** текущая расширенная FAQ-версия и её новый review package — [FAQ_REVIEW.md](FAQ_REVIEW.md), полный текст [FAQ_GUIDE.md](FAQ_GUIDE.md), coverage matrix [FAQ_FEATURE_COVERAGE.md](FAQ_FEATURE_COVERAGE.md). Снимки иZIP ниже сохраняют исторический кандидат до33-question FAQ; длятекущего просмотра используйте новыйпакет.
+
 Статус: development candidate, **не опубликован**. Основание — [исходная авторизация Phase2](../project_specs/PHASE2_CONTENT_AUTHORIZATION_2026-10-18.md), дополнение к неизменённому мастер-ТЗ. Текущая production-вёрстка8fb7bf2 сохранена; main3cf7825 не менялся. Telegram COMPLETED, никаких workflow/schedule изменений.
 
 ## До / после

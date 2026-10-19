@@ -1,0 +1,38 @@
+{
+  "status": "Local FAQ QA PASS; clean CI review artifact pending",
+  "base_development": "c91fdd446ce5dcf204aecf1f40f853a14f96e086",
+  "android_snapshot": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+  "categories": 8,
+  "questions": 33,
+  "qa": {
+    "website_tests": 36,
+    "notification_tests": 68,
+    "faq_layouts": 48,
+    "main_layouts": 16,
+    "axe_runs": 16,
+    "axe_violations": 0,
+    "nojs_faq_cases": 18,
+    "all_question_disclosures": 33,
+    "engines": [
+      "Chromium154",
+      "Firefox153",
+      "WebKit26.5"
+    ],
+    "text_adaptation_cases": 12,
+    "privacy_bytes_unchanged": true
+  },
+  "preview": {
+    "sha256": "d0b00ec9c67400a3ae308a3428b99733270f9fa30bd5207b2069b83275373dd8",
+    "files": 23,
+    "size_bytes": 442807,
+    "scope": "Local draft rehearsal, clean source verified after checkpoint"
+  },
+  "production_public_source": "8fb7bf2920a89f39e1ed3a56d53ada91f468b715",
+  "main_unchanged": "f308729f2cd4d7bde3574e08d8fd2fc05e92c4ab",
+  "limitations": [
+    "Android audit is source-level only, no APK/build/device tests.",
+    "FAQ describes development, not public release.",
+    "No physical Android/iOS/Safari or assistive-technology/native-zoom verification.",
+    "Unverified integrations, cloud guarantees, medical/AI functionality and media export details omitted."
+  ]
+}

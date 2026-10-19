@@ -530,6 +530,25 @@
       "next": "STOP дляowner visual/content review. Production/main/deploy не разрешены; APK approval отдельно open.",
       "status": "Review package VERIFIED; owner acceptance pending; production unchanged",
       "artifact_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39146021733/artifacts/12143292977"
+    },
+    {
+      "id": "site-phase2-faq-implementation-20261020",
+      "at": "2026-10-19T21:12:54.450612+00:00",
+      "type": "stage_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "Phase2",
+          "FAQ audit+implementation"
+        ],
+        "title": "Категоризированный справочник сAndroid source evidence"
+      },
+      "checkpoint": "c91fdd446ce5dcf204aecf1f40f853a14f96e086",
+      "verified": "36site+68notify tests;48FAQ+16main layouts/16axe0violations/18noJS/12text cases;33disclosures в3engines. Privacy bytes unchanged,8screenshots inspected.",
+      "done": "33вопроса/8категорий,24source chains UI/state/model/storage наAndroid787175c read-only. Partial/unverified/omitted явно отделены;native anchors/details безновогоJS. Phase2design/release guards сохранены.",
+      "next": "Clean CI/archive/sourceSHA proof иexisting owner review; STOP доpublication. НикакихAndroid builds,main/deploy/APK/indexing.",
+      "status": "Development FAQ candidate; owner content review pending"
     }
   ]
 }

@@ -1,0 +1,1750 @@
+{
+  "android_snapshot": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+  "source_branch": "work/activity-progress-v6-4daeaa5",
+  "scope": "Source-level audit only, no Android runtime/APK verification; all public FAQ is development guidance",
+  "category_count": 8,
+  "question_count": 33,
+  "topics": [
+    {
+      "id": "available",
+      "category": "basics",
+      "question": "Можно ли уже скачать приложение?",
+      "answer": "Пока нет: публичное распространение APK не открыто, дата выпуска не объявлена. Официальные сведения появятся на этом сайте после проверки и утверждения конкретной сборки. Описание ниже относится к разработке и не означает доступность этих функций в публичном релизе.",
+      "evidence": [
+        "owner"
+      ],
+      "status": "PLANNED_RELEASE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [],
+      "website_source": "project_specs/PHASE2_FAQ_AUTHORIZATION_2026-10-20.md"
+    },
+    {
+      "id": "navigation",
+      "category": "basics",
+      "question": "Как устроена навигация приложения?",
+      "answer": "В текущей разработке пять основных разделов: «Сегодня», «Питание», «Активность», «Прогресс» и «Ещё». «Сегодня» собирает дневную картину, остальные разделы раскрывают отдельные записи и настройки. Через «Ещё» открываются профиль и дополнительные инструменты.",
+      "evidence": [
+        "nav",
+        "more"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 342,
+          "symbol": "BottomDestination(\"today\"",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 710,
+          "symbol": "composable(\"today\")",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/more/MoreScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 29,
+          "symbol": "fun MoreScreen",
+          "sha256": "a1dc53638200d9117f0b0f7bc171eebbc97ae27dc3bbc7e45cd9ac2b42fd0acf"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 715,
+          "symbol": "composable(\"more\")",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "today",
+      "category": "basics",
+      "question": "Что показывает экран «Сегодня»?",
+      "answer": "Это обзор выбранного дня: сведения о шагах, питании, весе, замерах и тренировках поступают из соответствующих записей. Из карточек можно перейти к нужному разделу, чтобы добавить данные или разобраться в деталях. Пустая карточка не означает, что значение равно нулю: нужных записей может ещё не быть.",
+      "evidence": [
+        "nav",
+        "today"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 342,
+          "symbol": "BottomDestination(\"today\"",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 710,
+          "symbol": "composable(\"today\")",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/today/TodayViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 50,
+          "symbol": "val meals =",
+          "sha256": "703b00646acf73322fff0716da30d30ed48583503bff1472946b1c5031262d7b"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/today/TodayViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 45,
+          "symbol": "val allSteps",
+          "sha256": "703b00646acf73322fff0716da30d30ed48583503bff1472946b1c5031262d7b"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/today/TodayScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 71,
+          "symbol": "fun TodayScreen",
+          "sha256": "2a8ac4462ea167cd3439c265cc4dc37e624f6be9e6af63e03b689bea999d3614"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "first-step",
+      "category": "basics",
+      "question": "С чего предполагается начать работу?",
+      "answer": "После появления утверждённой версии сначала проверьте её требования и настройте профиль. Затем можно последовательно добавлять записи о питании, весе и занятиях, а не заполнять все разделы сразу. Персональные параметры сохраняются через профиль; точный порядок первого запуска ещё может измениться.",
+      "evidence": [
+        "profile",
+        "nav"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/profile/ProfileScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 122,
+          "symbol": "fun ProfileScreen",
+          "sha256": "1ee56dabd359ab28974b75617202d7a1247727568c73d7fe186c8cacfa936676"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/profile/ProfileViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 58,
+          "symbol": "store.save(profile)",
+          "sha256": "83139317e39a25d606289518a99fb94844973a382e581efbd6d2f0744267d1b5"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/profile/ProfileViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 41,
+          "symbol": "_saveError.value",
+          "sha256": "83139317e39a25d606289518a99fb94844973a382e581efbd6d2f0744267d1b5"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 342,
+          "symbol": "BottomDestination(\"today\"",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 710,
+          "symbol": "composable(\"today\")",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "meal-add",
+      "category": "nutrition",
+      "question": "Как добавить еду за нужный день?",
+      "answer": "В «Питании» сначала выбирают день и приём пищи. Далее указывают продукт или название записи, количество и доступные сведения о калориях и БЖУ. Сохранённая запись относится к выбранному дню дневника; сводка сверху показывает данные этого дня, а не обязательно сегодняшнего.",
+      "evidence": [
+        "meal",
+        "quantity"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/nutrition/NutritionScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 148,
+          "symbol": "internal suspend fun addMealEntry",
+          "sha256": "c14ddd9e70a515c2e6c8a6e80df1a710b4c56d7009d9c0593e00cc9af6e91bc3"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/MealEntryDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 13,
+          "symbol": "suspend fun getDiaryDay",
+          "sha256": "b6f25076127a204166756fc12aab6469892cddefd59f3a47dafa4faeb110f045"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/entity/MealEntryEntity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 9,
+          "symbol": "data class MealEntryEntity",
+          "sha256": "c676015127099c64349950745d054ffcb28d36566b6612d7ac6d450e12545150"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/NutritionMath.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 23,
+          "symbol": "fun forBasis",
+          "sha256": "b7ac94df7fa656258fe2328f255a56a1ca5b4cd5104a881f7a110c2664377913"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/NutritionMath.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 57,
+          "symbol": "fun consumed",
+          "sha256": "b7ac94df7fa656258fe2328f255a56a1ca5b4cd5104a881f7a110c2664377913"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/nutrition/NutritionScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 155,
+          "symbol": "nutritionSnapshot",
+          "sha256": "c14ddd9e70a515c2e6c8a6e80df1a710b4c56d7009d9c0593e00cc9af6e91bc3"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "portion",
+      "category": "nutrition",
+      "question": "Как связаны количество продукта и калории?",
+      "answer": "Расчёт использует количество и основу пищевой ценности: например, данные на 100 г, на 100 мл или на заданную порцию. Для перевода между массой и объёмом нужна плотность, а для нестандартной порции — её коэффициент. Поэтому граммы и миллилитры нельзя считать взаимозаменяемыми без исходных данных.",
+      "evidence": [
+        "quantity"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/NutritionMath.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 23,
+          "symbol": "fun forBasis",
+          "sha256": "b7ac94df7fa656258fe2328f255a56a1ca5b4cd5104a881f7a110c2664377913"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/NutritionMath.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 57,
+          "symbol": "fun consumed",
+          "sha256": "b7ac94df7fa656258fe2328f255a56a1ca5b4cd5104a881f7a110c2664377913"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/nutrition/NutritionScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 155,
+          "symbol": "nutritionSnapshot",
+          "sha256": "c14ddd9e70a515c2e6c8a6e80df1a710b4c56d7009d9c0593e00cc9af6e91bc3"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "missing-nutrients",
+      "category": "nutrition",
+      "question": "Что делать, если у продукта не все значения БЖУ?",
+      "answer": "Неизвестное значение и известный ноль различаются. Если исходные сведения неполные, не стоит считать пустое поле доказательством отсутствия нутриента. Проверьте данные продукта или уточните запись вручную; полнота и точность итогов зависят от введённых сведений.",
+      "evidence": [
+        "unknown",
+        "meal-edit"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/NutritionModels.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 3,
+          "symbol": "Nullable nutrient means unknown",
+          "sha256": "26df4e1c25412d977b3f2c7080311937ac711bfc991c100c0c7ea3d04fcea844"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/NutritionMath.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 48,
+          "symbol": "fun product",
+          "sha256": "b7ac94df7fa656258fe2328f255a56a1ca5b4cd5104a881f7a110c2664377913"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/nutrition/NutritionScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 1052,
+          "symbol": "NutritionWrites(db).delete",
+          "sha256": "c14ddd9e70a515c2e6c8a6e80df1a710b4c56d7009d9c0593e00cc9af6e91bc3"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/NutritionWrites.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 26,
+          "symbol": "suspend fun edit",
+          "sha256": "612a72d65729f65436e37fad98c9a0de82352f97fc911690fb87b98bb83902aa"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/MealEntryDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 26,
+          "symbol": "suspend fun restore",
+          "sha256": "b6f25076127a204166756fc12aab6469892cddefd59f3a47dafa4faeb110f045"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "meal-edit",
+      "category": "nutrition",
+      "question": "Можно ли исправить или удалить запись еды?",
+      "answer": "Откройте нужную запись дневника, измените сведения и сохраните её либо выберите удаление. В разработке предусмотрена отмена удаления, пока соответствующее действие доступно на экране. Если запись успела измениться в другом месте, сохранение может попросить закрыть форму и открыть её заново, чтобы не затереть новые данные.",
+      "evidence": [
+        "meal-edit"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/nutrition/NutritionScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 1052,
+          "symbol": "NutritionWrites(db).delete",
+          "sha256": "c14ddd9e70a515c2e6c8a6e80df1a710b4c56d7009d9c0593e00cc9af6e91bc3"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/NutritionWrites.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 26,
+          "symbol": "suspend fun edit",
+          "sha256": "612a72d65729f65436e37fad98c9a0de82352f97fc911690fb87b98bb83902aa"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/MealEntryDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 26,
+          "symbol": "suspend fun restore",
+          "sha256": "b6f25076127a204166756fc12aab6469892cddefd59f3a47dafa4faeb110f045"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "meal-repeat",
+      "category": "nutrition",
+      "question": "Чем отличаются повтор, копирование и перенос еды?",
+      "answer": "Повтор и копирование создают записи на выбранный день, сохраняя сведения о еде и количестве. Перенос меняет день существующей записи. После такой операции проверьте оба дня: дневные суммы и состояние заполненности могут измениться.",
+      "evidence": [
+        "repeat",
+        "meal"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/nutrition/NutritionScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 1266,
+          "symbol": "NutritionWrites(db).repeat",
+          "sha256": "c14ddd9e70a515c2e6c8a6e80df1a710b4c56d7009d9c0593e00cc9af6e91bc3"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/nutrition/NutritionScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 1601,
+          "symbol": "NutritionWrites(db).move",
+          "sha256": "c14ddd9e70a515c2e6c8a6e80df1a710b4c56d7009d9c0593e00cc9af6e91bc3"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/NutritionWrites.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 49,
+          "symbol": "suspend fun copyEntry",
+          "sha256": "612a72d65729f65436e37fad98c9a0de82352f97fc911690fb87b98bb83902aa"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/nutrition/NutritionScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 148,
+          "symbol": "internal suspend fun addMealEntry",
+          "sha256": "c14ddd9e70a515c2e6c8a6e80df1a710b4c56d7009d9c0593e00cc9af6e91bc3"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/MealEntryDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 13,
+          "symbol": "suspend fun getDiaryDay",
+          "sha256": "b6f25076127a204166756fc12aab6469892cddefd59f3a47dafa4faeb110f045"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/entity/MealEntryEntity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 9,
+          "symbol": "data class MealEntryEntity",
+          "sha256": "c676015127099c64349950745d054ffcb28d36566b6612d7ac6d450e12545150"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "recipes",
+      "category": "nutrition",
+      "question": "Как устроены рецепты и порции?",
+      "answer": "В разработке есть работа с рецептами: составом ингредиентов, выходом готового блюда и порциями. Пищевая ценность рассчитывается из исходных данных ингредиентов и количества готового блюда. Изменение выхода или порции влияет на расчёт, поэтому эти поля важно заполнять осмысленно; результат не заменяет проверку исходных данных.",
+      "evidence": [
+        "recipe"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/recipes/RecipesScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 45,
+          "symbol": "fun RecipesScreen",
+          "sha256": "c704dc39b1e1d6b977f2b0b9f5486f4702a00d6f62111d7b2a601eba79ec25cf"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/RecipeRepository.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 51,
+          "symbol": "suspend fun save",
+          "sha256": "9e6b7a2032688a89d10febe2fc24547ccdad8e5d6eb90392903f55c3b362171c"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/RecipeNutrition.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 9,
+          "symbol": "object RecipeNutrition",
+          "sha256": "3fa993dff18239aa7901f97bfcf76907bf8bbf84487b1a7b704c832572b30112"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/NutritionModels.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 44,
+          "symbol": "data class Recipe(",
+          "sha256": "26df4e1c25412d977b3f2c7080311937ac711bfc991c100c0c7ea3d04fcea844"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "weigh-in",
+      "category": "body",
+      "question": "Как записывать вес и смотреть историю?",
+      "answer": "В разделе веса выбирают дату и вводят результат взвешивания. В истории сохраняются отдельные измерения, а не только одно число на весь день; одинаковая запись за тот же день может быть распознана как повтор. История и график помогают просматривать изменения за выбранный период.",
+      "evidence": [
+        "weight",
+        "charts"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/weight/WeightScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 82,
+          "symbol": "var editEntry",
+          "sha256": "be0154d2a17ede7a1f15644a36ff05e3316c9b3f2c36ea0203e7e59e74912349"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/WeightDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 80,
+          "symbol": "suspend fun addWeighIn",
+          "sha256": "4c472b03fe0e8a0dfe80391b49ee01e66d0d9ed932c6940545dd889cac1b1f55"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/entity/WeightEntryEntity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 9,
+          "symbol": "data class WeightEntryEntity",
+          "sha256": "ccb4118f8cfff9eaba44da89fe957e52a07af1b1b8c020a1d301fc2aeb9dd328"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 823,
+          "symbol": "composable(\"analytics\")",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/analytics/AnalyticsScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 87,
+          "symbol": "enum class AnalyticsPeriod",
+          "sha256": "8919122e4fe44f008815784a4fc39b2932984fb6c1eddeb4045e442bbea28d5c"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/stats/StatsViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 35,
+          "symbol": "combine(",
+          "sha256": "c6ee3dc8fd6d284d948a849dc96dbcf04205a88c7fc2f628594d26c24e3b0154"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/analytics/AnalyticsScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 224,
+          "symbol": "db.mealEntryDao().observeAll()",
+          "sha256": "8919122e4fe44f008815784a4fc39b2932984fb6c1eddeb4045e442bbea28d5c"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "weight-edit",
+      "category": "body",
+      "question": "Как исправить ошибочный вес?",
+      "answer": "Выберите запись в истории, откройте редактирование и сохраните правильное значение. Удаление также предусмотрено отдельно; удалённая запись исключается из активной истории. После исправления проверьте выбранные дату и период графика.",
+      "evidence": [
+        "weight-edit",
+        "charts"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/weight/WeightScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 82,
+          "symbol": "deleteConfirmId",
+          "sha256": "be0154d2a17ede7a1f15644a36ff05e3316c9b3f2c36ea0203e7e59e74912349"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/WeightDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 94,
+          "symbol": "suspend fun softDelete",
+          "sha256": "4c472b03fe0e8a0dfe80391b49ee01e66d0d9ed932c6940545dd889cac1b1f55"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/WeightDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 59,
+          "symbol": "suspend fun upsert",
+          "sha256": "4c472b03fe0e8a0dfe80391b49ee01e66d0d9ed932c6940545dd889cac1b1f55"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 823,
+          "symbol": "composable(\"analytics\")",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/analytics/AnalyticsScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 87,
+          "symbol": "enum class AnalyticsPeriod",
+          "sha256": "8919122e4fe44f008815784a4fc39b2932984fb6c1eddeb4045e442bbea28d5c"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/stats/StatsViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 35,
+          "symbol": "combine(",
+          "sha256": "c6ee3dc8fd6d284d948a849dc96dbcf04205a88c7fc2f628594d26c24e3b0154"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/analytics/AnalyticsScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 224,
+          "symbol": "db.mealEntryDao().observeAll()",
+          "sha256": "8919122e4fe44f008815784a4fc39b2932984fb6c1eddeb4045e442bbea28d5c"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "measurements",
+      "category": "body",
+      "question": "Какие замеры можно вести?",
+      "answer": "Форма замеров содержит окружности талии, живота, груди, бёдер, бедра и шеи, и дату. Необязательно заполнять все доступные поля, но для сравнения полезно измерять одинаковым способом. Записи можно просматривать в истории и редактировать; удаление исключает запись из активного списка.",
+      "evidence": [
+        "measure"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/measurements/BodyMeasurementsScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 136,
+          "symbol": "Сохранить замеры",
+          "sha256": "8145c87c9a55b806c0ace046af8392a388ac0f2ca771cd98abec46a4803edbba"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/BodyMeasurementDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 13,
+          "symbol": "suspend fun softDelete",
+          "sha256": "033b5c64c989a43fbe042635b3d1d2a896f38bf7322077611b144bb587229247"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/entity/BodyMeasurementEntity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 9,
+          "symbol": "data class BodyMeasurementEntity",
+          "sha256": "10891244323a8f1511c772e035b16f7f14e486071ea06df63b95307d7af7fec1"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "body-results",
+      "category": "body",
+      "question": "Почему вес и замеры могут меняться по-разному?",
+      "answer": "Приложение хранит эти измерения отдельно. Чтобы сравнить их, выберите сопоставимые даты и посмотрите, какие записи действительно внесены. Само наличие графика не объясняет медицинскую причину изменений и не гарантирует снижение веса.",
+      "evidence": [
+        "weight",
+        "measure",
+        "charts"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/weight/WeightScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 82,
+          "symbol": "var editEntry",
+          "sha256": "be0154d2a17ede7a1f15644a36ff05e3316c9b3f2c36ea0203e7e59e74912349"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/WeightDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 80,
+          "symbol": "suspend fun addWeighIn",
+          "sha256": "4c472b03fe0e8a0dfe80391b49ee01e66d0d9ed932c6940545dd889cac1b1f55"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/entity/WeightEntryEntity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 9,
+          "symbol": "data class WeightEntryEntity",
+          "sha256": "ccb4118f8cfff9eaba44da89fe957e52a07af1b1b8c020a1d301fc2aeb9dd328"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/measurements/BodyMeasurementsScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 136,
+          "symbol": "Сохранить замеры",
+          "sha256": "8145c87c9a55b806c0ace046af8392a388ac0f2ca771cd98abec46a4803edbba"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/BodyMeasurementDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 13,
+          "symbol": "suspend fun softDelete",
+          "sha256": "033b5c64c989a43fbe042635b3d1d2a896f38bf7322077611b144bb587229247"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/entity/BodyMeasurementEntity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 9,
+          "symbol": "data class BodyMeasurementEntity",
+          "sha256": "10891244323a8f1511c772e035b16f7f14e486071ea06df63b95307d7af7fec1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 823,
+          "symbol": "composable(\"analytics\")",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/analytics/AnalyticsScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 87,
+          "symbol": "enum class AnalyticsPeriod",
+          "sha256": "8919122e4fe44f008815784a4fc39b2932984fb6c1eddeb4045e442bbea28d5c"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/stats/StatsViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 35,
+          "symbol": "combine(",
+          "sha256": "c6ee3dc8fd6d284d948a849dc96dbcf04205a88c7fc2f628594d26c24e3b0154"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/analytics/AnalyticsScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 224,
+          "symbol": "db.mealEntryDao().observeAll()",
+          "sha256": "8919122e4fe44f008815784a4fc39b2932984fb6c1eddeb4045e442bbea28d5c"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "steps-day",
+      "category": "activity",
+      "question": "Где смотреть шаги за день?",
+      "answer": "В «Активности» есть карточка шагов с выбранной датой и дневной целью; сводка также используется на экране «Сегодня». Переход из карточки открывает более подробный просмотр. В основе дневного значения лежит выбранный источник шагов, а не простая сумма любых поступивших данных.",
+      "evidence": [
+        "steps",
+        "today"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/ActivityHubScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 141,
+          "symbol": "Text(\"Шаги\"",
+          "sha256": "a15e480ae23efed62b95bdda7846a9457965efdaaa2c65490d714997f14a5f35"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/StepsRepository.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 31,
+          "symbol": "suspend fun setSteps",
+          "sha256": "abad8aa3a8f84d2df5a056b387fe6f87cbdeca5392d95c535de5186e4c91f1f1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/DailyStepsDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 32,
+          "symbol": "fun observeAllAsc",
+          "sha256": "59434e9808446efa9706c2f774dbc4cd677083d2420319f4316569105fb12d73"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/today/TodayViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 50,
+          "symbol": "val meals =",
+          "sha256": "703b00646acf73322fff0716da30d30ed48583503bff1472946b1c5031262d7b"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/today/TodayViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 45,
+          "symbol": "val allSteps",
+          "sha256": "703b00646acf73322fff0716da30d30ed48583503bff1472946b1c5031262d7b"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/today/TodayScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 71,
+          "symbol": "fun TodayScreen",
+          "sha256": "2a8ac4462ea167cd3439c265cc4dc37e624f6be9e6af63e03b689bea999d3614"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "activity-estimates",
+      "category": "activity",
+      "question": "Что означают расстояние и расход энергии по шагам?",
+      "answer": "Это расчётные показатели, связанные с числом шагов и параметрами профиля. Например, расстояние использует длину шага. Такие оценки не равны измерению маршрута GPS или медицинскому измерению расхода энергии; ошибка в профиле влияет на результат.",
+      "evidence": [
+        "estimate"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/StepsRepository.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 34,
+          "symbol": "val distance = safeSteps * profile.strideMeters",
+          "sha256": "abad8aa3a8f84d2df5a056b387fe6f87cbdeca5392d95c535de5186e4c91f1f1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/StepsRepository.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 40,
+          "symbol": "refreshDerived",
+          "sha256": "abad8aa3a8f84d2df5a056b387fe6f87cbdeca5392d95c535de5186e4c91f1f1"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "missing-activity",
+      "category": "activity",
+      "question": "Почему активность может не отображаться?",
+      "answer": "Для выбранного дня может не быть записей или доступного источника. Работа с датчиками и разрешениями зависит от устройства и версии Android; запись GPS требует разрешения геолокации. Сначала проверьте дату, настройки и системные разрешения, а не добавляйте одни и те же данные повторно. Совместимость интеграций для будущего выпуска ещё предстоит проверить.",
+      "evidence": [
+        "steps",
+        "gps"
+      ],
+      "status": "PARTIAL_DEVICE_VERIFICATION",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/ActivityHubScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 141,
+          "symbol": "Text(\"Шаги\"",
+          "sha256": "a15e480ae23efed62b95bdda7846a9457965efdaaa2c65490d714997f14a5f35"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/StepsRepository.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 31,
+          "symbol": "suspend fun setSteps",
+          "sha256": "abad8aa3a8f84d2df5a056b387fe6f87cbdeca5392d95c535de5186e4c91f1f1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/DailyStepsDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 32,
+          "symbol": "fun observeAllAsc",
+          "sha256": "59434e9808446efa9706c2f774dbc4cd677083d2420319f4316569105fb12d73"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 719,
+          "symbol": "Включите геолокацию",
+          "sha256": "15f6fe687f37d7f84ab3bfd41c717cef1dbd3aae2e787b97ac19198a470d94d3"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/location/WorkoutTrackingService.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 158,
+          "symbol": "ACCESS_FINE_LOCATION",
+          "sha256": "bc04786069232f2cbd5259eaa527fe3f63ab40ca24c7f1d95b5f4189aa13800e"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 99,
+          "symbol": "fun start(type:",
+          "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "workout-start",
+      "category": "workouts",
+      "question": "Как предполагается запускать тренировку?",
+      "answer": "Из «Активности» открывается экран начала тренировки: выбирают тип занятия и при необходимости программу. До старта стоит проверить параметры и разрешения. Запуск и завершение — разные действия: появление таймера ещё не означает, что итоговая запись уже сохранена.",
+      "evidence": [
+        "nav",
+        "gps",
+        "manual"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 342,
+          "symbol": "BottomDestination(\"today\"",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 710,
+          "symbol": "composable(\"today\")",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 719,
+          "symbol": "Включите геолокацию",
+          "sha256": "15f6fe687f37d7f84ab3bfd41c717cef1dbd3aae2e787b97ac19198a470d94d3"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/location/WorkoutTrackingService.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 158,
+          "symbol": "ACCESS_FINE_LOCATION",
+          "sha256": "bc04786069232f2cbd5259eaa527fe3f63ab40ca24c7f1d95b5f4189aa13800e"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 99,
+          "symbol": "fun start(type:",
+          "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 60,
+          "symbol": "fun startManual",
+          "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 65,
+          "symbol": "fun pauseResumeManual",
+          "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/WorkoutRepository.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 101,
+          "symbol": "suspend fun saveManualWorkout",
+          "sha256": "a1e4f06c68eefb92a24a24589fc69a2e72a4682c74602ef4130cd95184cbdc15"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "gps-manual",
+      "category": "workouts",
+      "question": "Чем отличается тренировка с GPS от занятия без маршрута?",
+      "answer": "В режиме GPS собирается маршрут при доступной геолокации. Для занятия без GPS предусмотрен отдельный таймер и сохранение сведений о тренировке без обязательной линии маршрута. Наличие карты, дистанции или пульса зависит от режима и фактически полученных данных; пустые значения не следует принимать за измеренный ноль.",
+      "evidence": [
+        "gps",
+        "manual",
+        "finish"
+      ],
+      "status": "PARTIAL_DEVICE_VERIFICATION",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 719,
+          "symbol": "Включите геолокацию",
+          "sha256": "15f6fe687f37d7f84ab3bfd41c717cef1dbd3aae2e787b97ac19198a470d94d3"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/location/WorkoutTrackingService.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 158,
+          "symbol": "ACCESS_FINE_LOCATION",
+          "sha256": "bc04786069232f2cbd5259eaa527fe3f63ab40ca24c7f1d95b5f4189aa13800e"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 99,
+          "symbol": "fun start(type:",
+          "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 60,
+          "symbol": "fun startManual",
+          "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 65,
+          "symbol": "fun pauseResumeManual",
+          "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/WorkoutRepository.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 101,
+          "symbol": "suspend fun saveManualWorkout",
+          "sha256": "a1e4f06c68eefb92a24a24589fc69a2e72a4682c74602ef4130cd95184cbdc15"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 122,
+          "symbol": "fun stop(",
+          "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 122,
+          "symbol": "onFailed",
+          "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/WorkoutRepository.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 48,
+          "symbol": "suspend fun saveSession",
+          "sha256": "a1e4f06c68eefb92a24a24589fc69a2e72a4682c74602ef4130cd95184cbdc15"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "pause-finish",
+      "category": "workouts",
+      "question": "Что происходит при паузе и завершении?",
+      "answer": "Пауза приостанавливает текущую сессию, после чего её можно продолжить. Завершение запускает сохранение итоговой записи. Если сохранение сообщает об ошибке, не считайте тренировку записанной только потому, что таймер остановился: прочитайте сообщение и повторите доступное действие. Отмена сессии отличается от её сохранения.",
+      "evidence": [
+        "manual",
+        "finish"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 60,
+          "symbol": "fun startManual",
+          "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 65,
+          "symbol": "fun pauseResumeManual",
+          "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/WorkoutRepository.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 101,
+          "symbol": "suspend fun saveManualWorkout",
+          "sha256": "a1e4f06c68eefb92a24a24589fc69a2e72a4682c74602ef4130cd95184cbdc15"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 122,
+          "symbol": "fun stop(",
+          "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 122,
+          "symbol": "onFailed",
+          "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/WorkoutRepository.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 48,
+          "symbol": "suspend fun saveSession",
+          "sha256": "a1e4f06c68eefb92a24a24589fc69a2e72a4682c74602ef4130cd95184cbdc15"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "templates",
+      "category": "workouts",
+      "question": "Для чего нужны шаблоны тренировок?",
+      "answer": "В разделе программ можно создать шаблон с названием и упражнениями, а затем использовать его при начале занятия. Шаблон задаёт план, но сам по себе не является выполненной тренировкой. Фактическое занятие сохраняется отдельно после выполнения и завершения.",
+      "evidence": [
+        "template",
+        "manual"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutTemplatesScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 105,
+          "symbol": "Новый шаблон",
+          "sha256": "5f932a47c66cd1ce99a7b1cf48fa70f15c1001fef2ae1a909994b9c1cac7b78e"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/entity/WorkoutTemplateEntity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 14,
+          "symbol": "data class WorkoutTemplateEntity",
+          "sha256": "5b04bdbb090198c15a2e310c40349ff53338a26a41373f6d28da8c84bcb6d5f6"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/WorkoutTemplateDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 26,
+          "symbol": "upsert",
+          "sha256": "47ba4fa00889a9e82e759acf104567d0ca7932c0e572cfd72fc2d36ab8043247"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 60,
+          "symbol": "fun startManual",
+          "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 65,
+          "symbol": "fun pauseResumeManual",
+          "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/WorkoutRepository.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 101,
+          "symbol": "suspend fun saveManualWorkout",
+          "sha256": "a1e4f06c68eefb92a24a24589fc69a2e72a4682c74602ef4130cd95184cbdc15"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "workout-history",
+      "category": "workouts",
+      "question": "Как просмотреть или удалить тренировку?",
+      "answer": "В «Активности» есть переход к истории: выберите занятие и откройте подробности. В текущей разработке подробности загружаются отдельно, с состояниями загрузки и ошибки. Удаление выполняется отдельным действием и убирает запись из активной истории; это не то же самое, что удалить шаблон будущего занятия.",
+      "evidence": [
+        "history",
+        "nav",
+        "template"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/history/HistoryViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 47,
+          "symbol": "fun loadDetail",
+          "sha256": "3d0e6dde0a2abc626af0814fcae116c2a83beb05cb38de8eb790afb9c7ddacfc"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/history/HistoryViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 60,
+          "symbol": "fun delete(",
+          "sha256": "3d0e6dde0a2abc626af0814fcae116c2a83beb05cb38de8eb790afb9c7ddacfc"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/WorkoutRepository.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 26,
+          "symbol": "suspend fun delete(",
+          "sha256": "a1e4f06c68eefb92a24a24589fc69a2e72a4682c74602ef4130cd95184cbdc15"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 342,
+          "symbol": "BottomDestination(\"today\"",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 710,
+          "symbol": "composable(\"today\")",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutTemplatesScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 105,
+          "symbol": "Новый шаблон",
+          "sha256": "5f932a47c66cd1ce99a7b1cf48fa70f15c1001fef2ae1a909994b9c1cac7b78e"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/entity/WorkoutTemplateEntity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 14,
+          "symbol": "data class WorkoutTemplateEntity",
+          "sha256": "5b04bdbb090198c15a2e310c40349ff53338a26a41373f6d28da8c84bcb6d5f6"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/WorkoutTemplateDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 26,
+          "symbol": "upsert",
+          "sha256": "47ba4fa00889a9e82e759acf104567d0ca7932c0e572cfd72fc2d36ab8043247"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "periods",
+      "category": "progress",
+      "question": "Как смотреть изменения за разные периоды?",
+      "answer": "Раздел «Прогресс» собирает обзоры записей. Выберите нужный показатель и период — например, день, неделю или месяц. График зависит от записей, попавших в этот диапазон; результат за одну неделю нельзя напрямую читать как результат за весь срок ведения дневника.",
+      "evidence": [
+        "charts"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 823,
+          "symbol": "composable(\"analytics\")",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/analytics/AnalyticsScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 87,
+          "symbol": "enum class AnalyticsPeriod",
+          "sha256": "8919122e4fe44f008815784a4fc39b2932984fb6c1eddeb4045e442bbea28d5c"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/stats/StatsViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 35,
+          "symbol": "combine(",
+          "sha256": "c6ee3dc8fd6d284d948a849dc96dbcf04205a88c7fc2f628594d26c24e3b0154"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/analytics/AnalyticsScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 224,
+          "symbol": "db.mealEntryDao().observeAll()",
+          "sha256": "8919122e4fe44f008815784a4fc39b2932984fb6c1eddeb4045e442bbea28d5c"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "chart-empty",
+      "category": "progress",
+      "question": "Почему на графике мало точек или он пуст?",
+      "answer": "График строится по доступной истории, поэтому отсутствие записи не заменяется автоматически новым измерением. Проверьте период и наличие данных в соответствующем разделе — питании, весе или активности. При сравнении разных дней учитывайте, насколько полно они заполнены.",
+      "evidence": [
+        "charts",
+        "weight",
+        "meal",
+        "steps"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 823,
+          "symbol": "composable(\"analytics\")",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/analytics/AnalyticsScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 87,
+          "symbol": "enum class AnalyticsPeriod",
+          "sha256": "8919122e4fe44f008815784a4fc39b2932984fb6c1eddeb4045e442bbea28d5c"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/stats/StatsViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 35,
+          "symbol": "combine(",
+          "sha256": "c6ee3dc8fd6d284d948a849dc96dbcf04205a88c7fc2f628594d26c24e3b0154"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/analytics/AnalyticsScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 224,
+          "symbol": "db.mealEntryDao().observeAll()",
+          "sha256": "8919122e4fe44f008815784a4fc39b2932984fb6c1eddeb4045e442bbea28d5c"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/weight/WeightScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 82,
+          "symbol": "var editEntry",
+          "sha256": "be0154d2a17ede7a1f15644a36ff05e3316c9b3f2c36ea0203e7e59e74912349"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/WeightDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 80,
+          "symbol": "suspend fun addWeighIn",
+          "sha256": "4c472b03fe0e8a0dfe80391b49ee01e66d0d9ed932c6940545dd889cac1b1f55"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/entity/WeightEntryEntity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 9,
+          "symbol": "data class WeightEntryEntity",
+          "sha256": "ccb4118f8cfff9eaba44da89fe957e52a07af1b1b8c020a1d301fc2aeb9dd328"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/nutrition/NutritionScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 148,
+          "symbol": "internal suspend fun addMealEntry",
+          "sha256": "c14ddd9e70a515c2e6c8a6e80df1a710b4c56d7009d9c0593e00cc9af6e91bc3"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/MealEntryDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 13,
+          "symbol": "suspend fun getDiaryDay",
+          "sha256": "b6f25076127a204166756fc12aab6469892cddefd59f3a47dafa4faeb110f045"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/entity/MealEntryEntity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 9,
+          "symbol": "data class MealEntryEntity",
+          "sha256": "c676015127099c64349950745d054ffcb28d36566b6612d7ac6d450e12545150"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/ActivityHubScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 141,
+          "symbol": "Text(\"Шаги\"",
+          "sha256": "a15e480ae23efed62b95bdda7846a9457965efdaaa2c65490d714997f14a5f35"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/StepsRepository.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 31,
+          "symbol": "suspend fun setSteps",
+          "sha256": "abad8aa3a8f84d2df5a056b387fe6f87cbdeca5392d95c535de5186e4c91f1f1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/DailyStepsDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 32,
+          "symbol": "fun observeAllAsc",
+          "sha256": "59434e9808446efa9706c2f774dbc4cd677083d2420319f4316569105fb12d73"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "history-changes",
+      "category": "progress",
+      "question": "Как исправления записей связаны со статистикой?",
+      "answer": "Экраны используют наблюдаемые записи из хранилища. Изменение еды, веса или удаление тренировки меняет набор данных для обзоров. При проверке результата вернитесь к тому же показателю и периоду, чтобы не сравнивать разные выборки.",
+      "evidence": [
+        "charts",
+        "today",
+        "meal-edit",
+        "history"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 823,
+          "symbol": "composable(\"analytics\")",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/analytics/AnalyticsScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 87,
+          "symbol": "enum class AnalyticsPeriod",
+          "sha256": "8919122e4fe44f008815784a4fc39b2932984fb6c1eddeb4045e442bbea28d5c"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/stats/StatsViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 35,
+          "symbol": "combine(",
+          "sha256": "c6ee3dc8fd6d284d948a849dc96dbcf04205a88c7fc2f628594d26c24e3b0154"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/analytics/AnalyticsScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 224,
+          "symbol": "db.mealEntryDao().observeAll()",
+          "sha256": "8919122e4fe44f008815784a4fc39b2932984fb6c1eddeb4045e442bbea28d5c"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/today/TodayViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 50,
+          "symbol": "val meals =",
+          "sha256": "703b00646acf73322fff0716da30d30ed48583503bff1472946b1c5031262d7b"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/today/TodayViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 45,
+          "symbol": "val allSteps",
+          "sha256": "703b00646acf73322fff0716da30d30ed48583503bff1472946b1c5031262d7b"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/today/TodayScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 71,
+          "symbol": "fun TodayScreen",
+          "sha256": "2a8ac4462ea167cd3439c265cc4dc37e624f6be9e6af63e03b689bea999d3614"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/nutrition/NutritionScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 1052,
+          "symbol": "NutritionWrites(db).delete",
+          "sha256": "c14ddd9e70a515c2e6c8a6e80df1a710b4c56d7009d9c0593e00cc9af6e91bc3"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/NutritionWrites.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 26,
+          "symbol": "suspend fun edit",
+          "sha256": "612a72d65729f65436e37fad98c9a0de82352f97fc911690fb87b98bb83902aa"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/MealEntryDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 26,
+          "symbol": "suspend fun restore",
+          "sha256": "b6f25076127a204166756fc12aab6469892cddefd59f3a47dafa4faeb110f045"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/history/HistoryViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 47,
+          "symbol": "fun loadDetail",
+          "sha256": "3d0e6dde0a2abc626af0814fcae116c2a83beb05cb38de8eb790afb9c7ddacfc"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/history/HistoryViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 60,
+          "symbol": "fun delete(",
+          "sha256": "3d0e6dde0a2abc626af0814fcae116c2a83beb05cb38de8eb790afb9c7ddacfc"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/WorkoutRepository.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 26,
+          "symbol": "suspend fun delete(",
+          "sha256": "a1e4f06c68eefb92a24a24589fc69a2e72a4682c74602ef4130cd95184cbdc15"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "photos",
+      "category": "progress",
+      "question": "Что известно о фотографиях прогресса?",
+      "answer": "В разработке есть каталог фотографий прогресса с датами и ракурсами. Для просмотра нужен доступный файл изображения; отсутствующий или нечитаемый файл не является полноценным снимком. Сценарии изменения и удаления медиа ещё требуют отдельной проверки конкретной версии. Здесь не заявляются автоматический анализ тела, распознавание результатов или гарантированная синхронизация фотографий.",
+      "evidence": [
+        "photo"
+      ],
+      "status": "PARTIAL_SOURCE_AUDIT",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/photos/PhotosHubScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 74,
+          "symbol": "fun PhotosHubScreen",
+          "sha256": "18564ec78e3b4f59bf13d200b6f00637aaba7ba8b16971fcb1435ccd4b8272a6"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/progressphotos/ProgressPhotoStore.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 83,
+          "symbol": "suspend fun add(",
+          "sha256": "29881b94010b95b0525b0b1497006690a01d588ae36469290ec120cedffcb5aa"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/progressphotos/ProgressPhotoStore.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 117,
+          "symbol": "suspend fun delete(",
+          "sha256": "29881b94010b95b0525b0b1497006690a01d588ae36469290ec120cedffcb5aa"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "profile",
+      "category": "settings",
+      "question": "Какие параметры настраиваются в профиле?",
+      "answer": "Через «Ещё» открывается профиль с персональными параметрами, используемыми в расчётах, например ростом и возрастом. Изменения нужно сохранить; при ошибке сохранения приложение сообщает об этом отдельно. Проверяйте значения и единицы измерения: от них зависят расчётные показатели, а не только подписи на экране.",
+      "evidence": [
+        "profile",
+        "more",
+        "estimate"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/profile/ProfileScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 122,
+          "symbol": "fun ProfileScreen",
+          "sha256": "1ee56dabd359ab28974b75617202d7a1247727568c73d7fe186c8cacfa936676"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/profile/ProfileViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 58,
+          "symbol": "store.save(profile)",
+          "sha256": "83139317e39a25d606289518a99fb94844973a382e581efbd6d2f0744267d1b5"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/profile/ProfileViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 41,
+          "symbol": "_saveError.value",
+          "sha256": "83139317e39a25d606289518a99fb94844973a382e581efbd6d2f0744267d1b5"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/more/MoreScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 29,
+          "symbol": "fun MoreScreen",
+          "sha256": "a1dc53638200d9117f0b0f7bc171eebbc97ae27dc3bbc7e45cd9ac2b42fd0acf"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 715,
+          "symbol": "composable(\"more\")",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/StepsRepository.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 34,
+          "symbol": "val distance = safeSteps * profile.strideMeters",
+          "sha256": "abad8aa3a8f84d2df5a056b387fe6f87cbdeca5392d95c535de5186e4c91f1f1"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/StepsRepository.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 40,
+          "symbol": "refreshDerived",
+          "sha256": "abad8aa3a8f84d2df5a056b387fe6f87cbdeca5392d95c535de5186e4c91f1f1"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "appearance",
+      "category": "settings",
+      "question": "Можно ли выбрать тему и единицы измерения?",
+      "answer": "В настройках оформления предусмотрены системная, светлая и тёмная темы, а также выбор акцента. В разработке есть настройка единиц измерения. Эти предпочтения сохраняются отдельно от записей дневника; изменение темы не создаёт новых измерений и не меняет историю питания.",
+      "evidence": [
+        "theme",
+        "more"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/settings/AppSettingsStore.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 12,
+          "symbol": "fun themeMode",
+          "sha256": "d656ea570dad555fb4f0547d35ea70d1ce794bef28157700d588d82fed3391b3"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/settings/AppSettingsStore.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 14,
+          "symbol": "fun accent",
+          "sha256": "d656ea570dad555fb4f0547d35ea70d1ce794bef28157700d588d82fed3391b3"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/settings/AppSettingsStore.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 79,
+          "symbol": "imperial_units",
+          "sha256": "d656ea570dad555fb4f0547d35ea70d1ce794bef28157700d588d82fed3391b3"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/more/MoreScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 29,
+          "symbol": "fun MoreScreen",
+          "sha256": "a1dc53638200d9117f0b0f7bc171eebbc97ae27dc3bbc7e45cd9ac2b42fd0acf"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 715,
+          "symbol": "composable(\"more\")",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "other-sections",
+      "category": "settings",
+      "question": "Что ещё находится в меню «Ещё»?",
+      "answer": "Это точка входа в профиль, оформление, настройки питания и другие инструменты. Часть дополнительных разделов ещё требует отдельной проверки сценариев, поэтому этот справочник не обещает их готовность. Для понимания конкретной функции ориентируйтесь на описанные здесь проверенные сценарии разработки и будущие сведения об утверждённой версии.",
+      "evidence": [
+        "more"
+      ],
+      "status": "PARTIAL_SOURCE_AUDIT",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/more/MoreScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 29,
+          "symbol": "fun MoreScreen",
+          "sha256": "a1dc53638200d9117f0b0f7bc171eebbc97ae27dc3bbc7e45cd9ac2b42fd0acf"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 715,
+          "symbol": "composable(\"more\")",
+          "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "local-data",
+      "category": "data",
+      "question": "Как записи хранятся в текущей разработке?",
+      "answer": "Для дневниковых записей используется локальное хранилище приложения, а для части настроек — отдельное хранилище предпочтений. Это не означает, что каждая функция работает без интернета или что данные переживут удаление приложения. До проверки конкретного выпуска не полагайтесь на неописанный способ восстановления.",
+      "evidence": [
+        "local",
+        "theme"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/AppDatabase.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 27,
+          "symbol": "abstract class AppDatabase",
+          "sha256": "5f351947395fab72d99a57357ef00744696c20470c858979fd8f48c65d373652"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/MealEntryDao.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 8,
+          "symbol": "fun observeAll",
+          "sha256": "b6f25076127a204166756fc12aab6469892cddefd59f3a47dafa4faeb110f045"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/settings/AppSettingsStore.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 12,
+          "symbol": "prefs.getString",
+          "sha256": "d656ea570dad555fb4f0547d35ea70d1ce794bef28157700d588d82fed3391b3"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/settings/AppSettingsStore.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 12,
+          "symbol": "fun themeMode",
+          "sha256": "d656ea570dad555fb4f0547d35ea70d1ce794bef28157700d588d82fed3391b3"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/settings/AppSettingsStore.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 14,
+          "symbol": "fun accent",
+          "sha256": "d656ea570dad555fb4f0547d35ea70d1ce794bef28157700d588d82fed3391b3"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/settings/AppSettingsStore.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 79,
+          "symbol": "imperial_units",
+          "sha256": "d656ea570dad555fb4f0547d35ea70d1ce794bef28157700d588d82fed3391b3"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "privacy-cloud",
+      "category": "data",
+      "question": "Что известно о приватности, резервной копии и облаке?",
+      "answer": "Действующая политика конфиденциальности доступна по ссылке внизу сайта; её текст сохранён без изменений. Она описывает Google-аккаунт и хранение данных, но не заменяет проверку конкретных сценариев резервного копирования и восстановления. Здесь не обещаются автоматическая синхронизация, отсутствие потерь или перенос всех данных между устройствами.",
+      "evidence": [
+        "privacy"
+      ],
+      "status": "UNVERIFIED_RELEASE_BEHAVIOR",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [],
+      "website_source": "privacy.html"
+    },
+    {
+      "id": "permissions",
+      "category": "data",
+      "question": "Нужно ли выдавать все разрешения заранее?",
+      "answer": "Разрешения связаны с конкретными действиями: например, геолокация нужна для GPS-тренировки. Доступность отдельных сценариев зависит от системных настроек и версии Android. Этот сайт не предлагает отключать защиту устройства и не гарантирует работу всех датчиков или внешних сервисов.",
+      "evidence": [
+        "gps"
+      ],
+      "status": "PARTIAL_DEVICE_VERIFICATION",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutScreen.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 719,
+          "symbol": "Включите геолокацию",
+          "sha256": "15f6fe687f37d7f84ab3bfd41c717cef1dbd3aae2e787b97ac19198a470d94d3"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/location/WorkoutTrackingService.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 158,
+          "symbol": "ACCESS_FINE_LOCATION",
+          "sha256": "bc04786069232f2cbd5259eaa527fe3f63ab40ca24c7f1d95b5f4189aa13800e"
+        },
+        {
+          "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+          "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+          "line": 99,
+          "symbol": "fun start(type:",
+          "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+        }
+      ],
+      "website_source": null
+    },
+    {
+      "id": "support",
+      "category": "data",
+      "question": "Как задать вопрос или сообщить об ошибке?",
+      "answer": "Напишите на sashaermin@gmail.com. Для вопроса о будущей тестируемой сборке укажите её версию, модель телефона, выбранный раздел и последовательность действий. Не присылайте пароли, токены или лишние персональные данные; при необходимости обезличьте пример.",
+      "evidence": [
+        "support"
+      ],
+      "status": "IMPLEMENTED_IN_SOURCE",
+      "safe_to_publish": "Development-labelled candidate only; owner review required before publication",
+      "sources": [],
+      "website_source": "data/site.json:support"
+    }
+  ],
+  "omitted": [
+    {
+      "feature": "ИИ, голосовые рекомендации и автоматическая оценка еды/тела",
+      "status": "UNVERIFIED_OR_PARTIAL_SOURCE_AUDIT",
+      "reason": "Не подтверждены качество, доступность и полный пользовательский сценарий; не рекламируются."
+    },
+    {
+      "feature": "Health Connect, BLE и фоновая работа на всех устройствах",
+      "status": "UNVERIFIED_OR_PARTIAL_SOURCE_AUDIT",
+      "reason": "Видны входы/зависимости, но интеграции и разрешения не тестировались на устройствах."
+    },
+    {
+      "feature": "Облачная синхронизация, backup/restore, экспорт видео",
+      "status": "UNVERIFIED_OR_PARTIAL_SOURCE_AUDIT",
+      "reason": "Нужны независимые проверки целостности и конкретного выпуска; никаких гарантий."
+    },
+    {
+      "feature": "Лекарства, цикл, голодание, травмы, сон, кастомные трекеры и достижения",
+      "status": "UNVERIFIED_OR_PARTIAL_SOURCE_AUDIT",
+      "reason": "Обнаружены маршруты/меню, но детали UI→state→persistence не исследованы полностью; подробные инструкции исключены."
+    },
+    {
+      "feature": "Релиз, APK, совместимость и дата",
+      "status": "UNVERIFIED_OR_PARTIAL_SOURCE_AUDIT",
+      "reason": "Владелец ещё не разрешил распространение конкретной сборки."
+    }
+  ]
+}

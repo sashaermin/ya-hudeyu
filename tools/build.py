@@ -52,6 +52,16 @@ def validate(site, release, production=False):
             raise ValueError('Planned area requires development status and source evidence')
         if area.get('id') not in ('food', 'weight', 'activity', 'training', 'stats'):
             raise ValueError('Unknown planned area')
+    categories = site.get('faq_categories', [])
+    if categories:
+        ids = [c['id'] for c in categories]
+        questions = [q.get('id', '') for q in site['faq']]
+        if len(ids) != len(set(ids)) or any(not re.fullmatch(r'[a-z][a-z0-9-]*', i) for i in ids + questions) or len(questions) != len(set(questions)):
+            raise ValueError('FAQ category/question identifiers must be unique and safe')
+        if any(not c.get('title') for c in categories) or any(q.get('category') not in ids or not q.get('question') or not q.get('answer') for q in site['faq']):
+            raise ValueError('FAQ requires known categories and complete answers')
+        if any(not any(q['category'] == i for q in site['faq']) for i in ids):
+            raise ValueError('Empty FAQ category')
     for feature in site['features']:
         if feature.get('verified_version') != release.get('version') or not verified or not feature.get('evidence'):
             raise ValueError('Feature is not verified against this APK')
@@ -117,8 +127,17 @@ def render(site, release, production=False, publication=None):
         values['release'] = '<div class="release-status"><span class="status-label">' + escape(pending['label']) + '</span><h3>' + escape(pending['title']) + '</h3><p>' + escape(pending['description']) + '</p><p><a href="mailto:' + escape(site['support']) + '">Связаться с поддержкой ↗</a></p></div>'
     faq = list(site['faq'])
     if verified:
-        faq[0] = dict(question='Где скачать приложение?', answer='Проверенный Android APK доступен в разделе загрузки. Сверьте версию и контрольную сумму файла перед установкой.')
-    values['faq'] = ''.join(f'<details><summary>{escape(f["question"])}</summary><p>{escape(f["answer"])}</p></details>' for f in faq)
+        faq[0] = dict(faq[0], question='Где скачать приложение?', answer='Проверенный Android APK доступен в разделе загрузки. Сверьте версию и контрольную сумму файла перед установкой.')
+    def answer(item):
+        return '<details' + (' id="question-' + escape(item['id']) + '"' if item.get('id') else '') + '><summary>' + escape(item['question']) + '</summary><p>' + escape(item['answer']) + '</p></details>'
+    if site.get('faq_categories'):
+        values['faq'] = '<nav class="faq-categories" id="faq-categories" tabindex="-1" aria-label="Темы справочника">' + ''.join(
+            '<a href="#faq-' + escape(c['id']) + '">' + escape(c['title']) + '<span>' + str(sum(q['category'] == c['id'] for q in faq)) + '</span></a>' for c in site['faq_categories']) + '</nav>'
+        for category in site['faq_categories']:
+            key = escape(category['id'])
+            values['faq'] += '<section class="faq-group" id="faq-' + key + '" tabindex="-1" aria-labelledby="faq-heading-' + key + '"><h3 id="faq-heading-' + key + '">' + escape(category['title']) + '</h3>' + ''.join(answer(q) for q in faq if q['category'] == category['id']) + '<a class="faq-back" href="#faq-categories">К темам <span aria-hidden="true">↑</span></a></section>'
+    else:
+        values['faq'] = ''.join(answer(q) for q in faq)
     # No ratings, price, release version, or unverified platform compatibility in structured data.
     application = {'@context': 'https://schema.org', '@type': 'SoftwareApplication', 'name': site['name'], 'operatingSystem': 'Android', 'url': site['domain'] + '/'}
     if verified:

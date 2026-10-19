@@ -1,0 +1,547 @@
+{
+  "snapshot": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+  "branch": "work/activity-progress-v6-4daeaa5",
+  "audit_date": "2026-10-20 Europe/Moscow",
+  "read_only": true,
+  "android_build_or_device_tests_run": false,
+  "evidence": {
+    "nav": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 342,
+        "symbol": "BottomDestination(\"today\"",
+        "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 710,
+        "symbol": "composable(\"today\")",
+        "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+      }
+    ],
+    "today": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/today/TodayViewModel.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 50,
+        "symbol": "val meals =",
+        "sha256": "703b00646acf73322fff0716da30d30ed48583503bff1472946b1c5031262d7b"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/today/TodayViewModel.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 45,
+        "symbol": "val allSteps",
+        "sha256": "703b00646acf73322fff0716da30d30ed48583503bff1472946b1c5031262d7b"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/today/TodayScreen.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 71,
+        "symbol": "fun TodayScreen",
+        "sha256": "2a8ac4462ea167cd3439c265cc4dc37e624f6be9e6af63e03b689bea999d3614"
+      }
+    ],
+    "meal": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/nutrition/NutritionScreen.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 148,
+        "symbol": "internal suspend fun addMealEntry",
+        "sha256": "c14ddd9e70a515c2e6c8a6e80df1a710b4c56d7009d9c0593e00cc9af6e91bc3"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/MealEntryDao.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 13,
+        "symbol": "suspend fun getDiaryDay",
+        "sha256": "b6f25076127a204166756fc12aab6469892cddefd59f3a47dafa4faeb110f045"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/entity/MealEntryEntity.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 9,
+        "symbol": "data class MealEntryEntity",
+        "sha256": "c676015127099c64349950745d054ffcb28d36566b6612d7ac6d450e12545150"
+      }
+    ],
+    "quantity": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/NutritionMath.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 23,
+        "symbol": "fun forBasis",
+        "sha256": "b7ac94df7fa656258fe2328f255a56a1ca5b4cd5104a881f7a110c2664377913"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/NutritionMath.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 57,
+        "symbol": "fun consumed",
+        "sha256": "b7ac94df7fa656258fe2328f255a56a1ca5b4cd5104a881f7a110c2664377913"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/nutrition/NutritionScreen.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 155,
+        "symbol": "nutritionSnapshot",
+        "sha256": "c14ddd9e70a515c2e6c8a6e80df1a710b4c56d7009d9c0593e00cc9af6e91bc3"
+      }
+    ],
+    "unknown": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/NutritionModels.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 3,
+        "symbol": "Nullable nutrient means unknown",
+        "sha256": "26df4e1c25412d977b3f2c7080311937ac711bfc991c100c0c7ea3d04fcea844"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/NutritionMath.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 48,
+        "symbol": "fun product",
+        "sha256": "b7ac94df7fa656258fe2328f255a56a1ca5b4cd5104a881f7a110c2664377913"
+      }
+    ],
+    "meal-edit": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/nutrition/NutritionScreen.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 1052,
+        "symbol": "NutritionWrites(db).delete",
+        "sha256": "c14ddd9e70a515c2e6c8a6e80df1a710b4c56d7009d9c0593e00cc9af6e91bc3"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/NutritionWrites.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 26,
+        "symbol": "suspend fun edit",
+        "sha256": "612a72d65729f65436e37fad98c9a0de82352f97fc911690fb87b98bb83902aa"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/MealEntryDao.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 26,
+        "symbol": "suspend fun restore",
+        "sha256": "b6f25076127a204166756fc12aab6469892cddefd59f3a47dafa4faeb110f045"
+      }
+    ],
+    "repeat": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/nutrition/NutritionScreen.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 1266,
+        "symbol": "NutritionWrites(db).repeat",
+        "sha256": "c14ddd9e70a515c2e6c8a6e80df1a710b4c56d7009d9c0593e00cc9af6e91bc3"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/nutrition/NutritionScreen.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 1601,
+        "symbol": "NutritionWrites(db).move",
+        "sha256": "c14ddd9e70a515c2e6c8a6e80df1a710b4c56d7009d9c0593e00cc9af6e91bc3"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/NutritionWrites.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 49,
+        "symbol": "suspend fun copyEntry",
+        "sha256": "612a72d65729f65436e37fad98c9a0de82352f97fc911690fb87b98bb83902aa"
+      }
+    ],
+    "recipe": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/recipes/RecipesScreen.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 45,
+        "symbol": "fun RecipesScreen",
+        "sha256": "c704dc39b1e1d6b977f2b0b9f5486f4702a00d6f62111d7b2a601eba79ec25cf"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/RecipeRepository.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 51,
+        "symbol": "suspend fun save",
+        "sha256": "9e6b7a2032688a89d10febe2fc24547ccdad8e5d6eb90392903f55c3b362171c"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/RecipeNutrition.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 9,
+        "symbol": "object RecipeNutrition",
+        "sha256": "3fa993dff18239aa7901f97bfcf76907bf8bbf84487b1a7b704c832572b30112"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/nutrition/NutritionModels.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 44,
+        "symbol": "data class Recipe(",
+        "sha256": "26df4e1c25412d977b3f2c7080311937ac711bfc991c100c0c7ea3d04fcea844"
+      }
+    ],
+    "weight": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/weight/WeightScreen.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 82,
+        "symbol": "var editEntry",
+        "sha256": "be0154d2a17ede7a1f15644a36ff05e3316c9b3f2c36ea0203e7e59e74912349"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/WeightDao.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 80,
+        "symbol": "suspend fun addWeighIn",
+        "sha256": "4c472b03fe0e8a0dfe80391b49ee01e66d0d9ed932c6940545dd889cac1b1f55"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/entity/WeightEntryEntity.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 9,
+        "symbol": "data class WeightEntryEntity",
+        "sha256": "ccb4118f8cfff9eaba44da89fe957e52a07af1b1b8c020a1d301fc2aeb9dd328"
+      }
+    ],
+    "weight-edit": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/weight/WeightScreen.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 82,
+        "symbol": "deleteConfirmId",
+        "sha256": "be0154d2a17ede7a1f15644a36ff05e3316c9b3f2c36ea0203e7e59e74912349"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/WeightDao.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 94,
+        "symbol": "suspend fun softDelete",
+        "sha256": "4c472b03fe0e8a0dfe80391b49ee01e66d0d9ed932c6940545dd889cac1b1f55"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/WeightDao.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 59,
+        "symbol": "suspend fun upsert",
+        "sha256": "4c472b03fe0e8a0dfe80391b49ee01e66d0d9ed932c6940545dd889cac1b1f55"
+      }
+    ],
+    "measure": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/measurements/BodyMeasurementsScreen.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 136,
+        "symbol": "Сохранить замеры",
+        "sha256": "8145c87c9a55b806c0ace046af8392a388ac0f2ca771cd98abec46a4803edbba"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/BodyMeasurementDao.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 13,
+        "symbol": "suspend fun softDelete",
+        "sha256": "033b5c64c989a43fbe042635b3d1d2a896f38bf7322077611b144bb587229247"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/entity/BodyMeasurementEntity.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 9,
+        "symbol": "data class BodyMeasurementEntity",
+        "sha256": "10891244323a8f1511c772e035b16f7f14e486071ea06df63b95307d7af7fec1"
+      }
+    ],
+    "steps": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/ActivityHubScreen.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 141,
+        "symbol": "Text(\"Шаги\"",
+        "sha256": "a15e480ae23efed62b95bdda7846a9457965efdaaa2c65490d714997f14a5f35"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/StepsRepository.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 31,
+        "symbol": "suspend fun setSteps",
+        "sha256": "abad8aa3a8f84d2df5a056b387fe6f87cbdeca5392d95c535de5186e4c91f1f1"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/DailyStepsDao.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 32,
+        "symbol": "fun observeAllAsc",
+        "sha256": "59434e9808446efa9706c2f774dbc4cd677083d2420319f4316569105fb12d73"
+      }
+    ],
+    "estimate": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/StepsRepository.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 34,
+        "symbol": "val distance = safeSteps * profile.strideMeters",
+        "sha256": "abad8aa3a8f84d2df5a056b387fe6f87cbdeca5392d95c535de5186e4c91f1f1"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/StepsRepository.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 40,
+        "symbol": "refreshDerived",
+        "sha256": "abad8aa3a8f84d2df5a056b387fe6f87cbdeca5392d95c535de5186e4c91f1f1"
+      }
+    ],
+    "gps": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutScreen.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 719,
+        "symbol": "Включите геолокацию",
+        "sha256": "15f6fe687f37d7f84ab3bfd41c717cef1dbd3aae2e787b97ac19198a470d94d3"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/location/WorkoutTrackingService.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 158,
+        "symbol": "ACCESS_FINE_LOCATION",
+        "sha256": "bc04786069232f2cbd5259eaa527fe3f63ab40ca24c7f1d95b5f4189aa13800e"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 99,
+        "symbol": "fun start(type:",
+        "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+      }
+    ],
+    "manual": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 60,
+        "symbol": "fun startManual",
+        "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 65,
+        "symbol": "fun pauseResumeManual",
+        "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/WorkoutRepository.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 101,
+        "symbol": "suspend fun saveManualWorkout",
+        "sha256": "a1e4f06c68eefb92a24a24589fc69a2e72a4682c74602ef4130cd95184cbdc15"
+      }
+    ],
+    "finish": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 122,
+        "symbol": "fun stop(",
+        "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutViewModel.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 122,
+        "symbol": "onFailed",
+        "sha256": "628d060f12e0c8f615e25004cf0f8195678b6850043fae049085ff3521ae38a1"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/WorkoutRepository.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 48,
+        "symbol": "suspend fun saveSession",
+        "sha256": "a1e4f06c68eefb92a24a24589fc69a2e72a4682c74602ef4130cd95184cbdc15"
+      }
+    ],
+    "template": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/workout/WorkoutTemplatesScreen.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 105,
+        "symbol": "Новый шаблон",
+        "sha256": "5f932a47c66cd1ce99a7b1cf48fa70f15c1001fef2ae1a909994b9c1cac7b78e"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/entity/WorkoutTemplateEntity.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 14,
+        "symbol": "data class WorkoutTemplateEntity",
+        "sha256": "5b04bdbb090198c15a2e310c40349ff53338a26a41373f6d28da8c84bcb6d5f6"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/WorkoutTemplateDao.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 26,
+        "symbol": "upsert",
+        "sha256": "47ba4fa00889a9e82e759acf104567d0ca7932c0e572cfd72fc2d36ab8043247"
+      }
+    ],
+    "history": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/history/HistoryViewModel.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 47,
+        "symbol": "fun loadDetail",
+        "sha256": "3d0e6dde0a2abc626af0814fcae116c2a83beb05cb38de8eb790afb9c7ddacfc"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/history/HistoryViewModel.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 60,
+        "symbol": "fun delete(",
+        "sha256": "3d0e6dde0a2abc626af0814fcae116c2a83beb05cb38de8eb790afb9c7ddacfc"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/WorkoutRepository.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 26,
+        "symbol": "suspend fun delete(",
+        "sha256": "a1e4f06c68eefb92a24a24589fc69a2e72a4682c74602ef4130cd95184cbdc15"
+      }
+    ],
+    "charts": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 823,
+        "symbol": "composable(\"analytics\")",
+        "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/analytics/AnalyticsScreen.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 87,
+        "symbol": "enum class AnalyticsPeriod",
+        "sha256": "8919122e4fe44f008815784a4fc39b2932984fb6c1eddeb4045e442bbea28d5c"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/stats/StatsViewModel.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 35,
+        "symbol": "combine(",
+        "sha256": "c6ee3dc8fd6d284d948a849dc96dbcf04205a88c7fc2f628594d26c24e3b0154"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/analytics/AnalyticsScreen.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 224,
+        "symbol": "db.mealEntryDao().observeAll()",
+        "sha256": "8919122e4fe44f008815784a4fc39b2932984fb6c1eddeb4045e442bbea28d5c"
+      }
+    ],
+    "photo": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/photos/PhotosHubScreen.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 74,
+        "symbol": "fun PhotosHubScreen",
+        "sha256": "18564ec78e3b4f59bf13d200b6f00637aaba7ba8b16971fcb1435ccd4b8272a6"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/progressphotos/ProgressPhotoStore.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 83,
+        "symbol": "suspend fun add(",
+        "sha256": "29881b94010b95b0525b0b1497006690a01d588ae36469290ec120cedffcb5aa"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/progressphotos/ProgressPhotoStore.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 117,
+        "symbol": "suspend fun delete(",
+        "sha256": "29881b94010b95b0525b0b1497006690a01d588ae36469290ec120cedffcb5aa"
+      }
+    ],
+    "profile": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/profile/ProfileScreen.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 122,
+        "symbol": "fun ProfileScreen",
+        "sha256": "1ee56dabd359ab28974b75617202d7a1247727568c73d7fe186c8cacfa936676"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/profile/ProfileViewModel.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 58,
+        "symbol": "store.save(profile)",
+        "sha256": "83139317e39a25d606289518a99fb94844973a382e581efbd6d2f0744267d1b5"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/profile/ProfileViewModel.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 41,
+        "symbol": "_saveError.value",
+        "sha256": "83139317e39a25d606289518a99fb94844973a382e581efbd6d2f0744267d1b5"
+      }
+    ],
+    "theme": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/settings/AppSettingsStore.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 12,
+        "symbol": "fun themeMode",
+        "sha256": "d656ea570dad555fb4f0547d35ea70d1ce794bef28157700d588d82fed3391b3"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/settings/AppSettingsStore.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 14,
+        "symbol": "fun accent",
+        "sha256": "d656ea570dad555fb4f0547d35ea70d1ce794bef28157700d588d82fed3391b3"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/settings/AppSettingsStore.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 79,
+        "symbol": "imperial_units",
+        "sha256": "d656ea570dad555fb4f0547d35ea70d1ce794bef28157700d588d82fed3391b3"
+      }
+    ],
+    "more": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/ui/more/MoreScreen.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 29,
+        "symbol": "fun MoreScreen",
+        "sha256": "a1dc53638200d9117f0b0f7bc171eebbc97ae27dc3bbc7e45cd9ac2b42fd0acf"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/MainActivity.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 715,
+        "symbol": "composable(\"more\")",
+        "sha256": "346d16479bf77aa0394bec379056b518ed536529459cacf2547624598786c4de"
+      }
+    ],
+    "local": [
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/AppDatabase.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 27,
+        "symbol": "abstract class AppDatabase",
+        "sha256": "5f351947395fab72d99a57357ef00744696c20470c858979fd8f48c65d373652"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/data/dao/MealEntryDao.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 8,
+        "symbol": "fun observeAll",
+        "sha256": "b6f25076127a204166756fc12aab6469892cddefd59f3a47dafa4faeb110f045"
+      },
+      {
+        "path": "app/src/main/java/com/aleksandr/stepstracker/settings/AppSettingsStore.kt",
+        "commit": "787175c099f4bb9f7086a6b7953436c0caaffe12",
+        "line": 12,
+        "symbol": "prefs.getString",
+        "sha256": "d656ea570dad555fb4f0547d35ea70d1ce794bef28157700d588d82fed3391b3"
+      }
+    ]
+  }
+}
