@@ -48,7 +48,7 @@ def body(text):
 
 class PresentationTest(unittest.TestCase):
     def test_every_message_preserves_selected_information_links_and_html_limits(self):
-        directory = Path(__file__).resolve().parents[2] / 'docs/telegram-presentation'
+        directory = Path(__file__).resolve().parents[2] / '.github/telegram-presentation'
         expected = json.loads((directory / 'snapshots.json').read_text())
         with patch('urllib.request.urlopen', side_effect=AssertionError('Network forbidden')):
             actual = preview.samples()
@@ -74,7 +74,7 @@ class PresentationTest(unittest.TestCase):
                 self.assertEqual(notify.style_message(text, preview.PLATFORM, limit), text)
 
     def test_gallery_is_reproducible_and_contains_no_active_assets(self):
-        directory = Path(__file__).resolve().parents[2] / 'docs/telegram-presentation'
+        directory = Path(__file__).resolve().parents[2] / '.github/telegram-presentation'
         pairs = json.loads((directory / 'snapshots.json').read_text())
         gallery = (directory / 'preview.html').read_text()
         self.assertEqual(preview.gallery(pairs), gallery)

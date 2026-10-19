@@ -75,7 +75,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--write', action='store_true', help='Write the local HTML gallery only; no delivery')
     args = parser.parse_args()
-    directory = Path(__file__).resolve().parents[2] / 'docs/telegram-presentation'
+    directory = Path(__file__).resolve().parents[2] / '.github/telegram-presentation'
     pairs = json.loads((directory / 'snapshots.json').read_text())
     actual = samples()
     assert set(actual) == set(pairs)
