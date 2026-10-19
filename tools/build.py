@@ -12,6 +12,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 import beta_release
+import preview_gallery
 
 def escape(value):
     return html.escape(str(value), quote=True)
@@ -90,7 +91,7 @@ def validate(site, release, production=False):
         raise ValueError('Publication blocked: verified APK, feature evidence and approved real screenshots required')
     return verified
 
-def render(site, release, production=False, publication=None):
+def render(site, release, production=False, publication=None, preview=None):
     publication = publication or {}
     mode = publication.get('release_mode', 'full')
     if mode not in ('full', 'coming-soon'):
@@ -105,6 +106,8 @@ def render(site, release, production=False, publication=None):
     if coming_soon and (verified or site['features'] or site['screenshots']):
         raise ValueError('Coming-soon website release must not contain an APK, features or screenshots')
     values = {key: escape(site[key]) for key in ('description', 'domain', 'support')}
+    preliminary = preview_gallery.validate(preview, ROOT, production, publication)
+    values['gallery_title'] = 'Посмотрите, как выглядит приложение' if preliminary else 'Знакомый ритм.<br>Свой характер.'
     values['theme_init'] = '<script>' + (ROOT / 'scripts/theme.js').read_text() + '</script>'
     values['stylesheet'] = '<style>' + (ROOT / 'styles/site.css').read_text() + '</style>'
     values.update(robots='index,follow' if production and publication.get('indexing_approved', True) is True else 'noindex,nofollow',
@@ -142,6 +145,11 @@ def render(site, release, production=False, publication=None):
         values['release'] = '<div class="release-status"><span class="status-label">' + escape(pending['label']) + '</span><h3>' + escape(pending['title']) + '</h3><p>' + escape(pending['description']) + '</p><p><a href="mailto:' + escape(site['support']) + '">Связаться с поддержкой ↗</a></p></div>'
     if not verified:
         values['release'] = values['release'][:-6] + '<p class="beta-entry"><a href="/download/">О будущей бета-версии и установке →</a></p></div>'
+    if preliminary:
+        if site['screenshots']:
+            raise ValueError('Keep preliminary gallery separate from release screenshots')
+        values['gallery'] = preview_gallery.render(preview)
+        values['screens_intro'] = 'Демонстрационные изображения на основе текущего интерфейса Android-приложения «Я ХУдЕЮ».'
     faq = list(site['faq'])
     if verified:
         faq[0] = dict(faq[0], question='Где скачать приложение?', answer='Проверенный Android APK доступен в разделе загрузки. Сверьте версию и контрольную сумму файла перед установкой.')
@@ -162,6 +170,9 @@ def render(site, release, production=False, publication=None):
     values['structured_data'] = '<script type="application/ld+json">' + json.dumps(application, ensure_ascii=False).replace('<', r'\u003c') + '</script>'
     template = (ROOT / 'index.html').read_text()
     result = re.sub(r'\{\{(\w+)\}\}', lambda match: values[match[1]], template)
+    if preliminary:
+        result = result.replace('<img id="viewer-image" alt="" aria-busy="false">', '<div class="viewer-canvas" tabindex="0" role="region" aria-label="Область увеличенного изображения"><img id="viewer-image" alt="" aria-busy="false"></div>')
+        result = result.replace('<button class="icon-button" id="viewer-close"', '<button class="button secondary" id="viewer-zoom" type="button" aria-pressed="false">Масштаб 100%</button><button class="icon-button" id="viewer-close"')
     if '{{' in result:
         raise ValueError('Unresolved template field')
     return result
@@ -200,7 +211,9 @@ def build(output, production=False):
     site = json.loads((ROOT / 'data/site.json').read_text())
     release = json.loads((ROOT / 'data/release.json').read_text())
     publication = json.loads((ROOT / 'data/publication.json').read_text())
-    page = render(site, release, production, publication)
+    preview_path = ROOT / 'data/android_preview.json'
+    preview = json.loads(preview_path.read_text()) if preview_path.exists() else None
+    page = render(site, release, production, publication, preview)
     download_page = render_download(site, release, publication, page)
     if output.is_symlink():
         raise ValueError('Symlink output is not allowed')
@@ -216,6 +229,8 @@ def build(output, production=False):
     files += [str(p.relative_to(ROOT)) for p in (ROOT / 'assets/brand/web').glob('*.webp')]
     files += [f['icon'] for f in site['features'] if f.get('icon')]
     files += [s['src'] for s in site['screenshots']]
+    if preview and preview.get('enabled') is True:
+        files += [i[field] for i in preview['items'] for field in ('src', 'full')]
     # Refuse symlink targets: never delete unrelated output or write through external links.
     if output.is_symlink() or any(p.is_symlink() for p in output.rglob('*')):
         raise ValueError('Symlink found in output directory')

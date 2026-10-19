@@ -1,0 +1,77 @@
+{
+  "scope": "Single local mobile Lighthouse simulation; HTTP loopback, no production deployment or device testing",
+  "url": "http://127.0.0.1:8032/",
+  "version": "12.8.2",
+  "fetch_time": "2026-10-19T22:48:41.958Z",
+  "scores": {
+    "performance": 93,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 69
+  },
+  "metrics": {
+    "first-contentful-paint": 1355.2322,
+    "largest-contentful-paint": 3155.2321999999995,
+    "total-blocking-time": 0,
+    "cumulative-layout-shift": 1.365014439498769e-05
+  },
+  "warnings": [],
+  "failed_audits": [
+    {
+      "id": "first-contentful-paint",
+      "title": "First Contentful Paint",
+      "score": 0.98
+    },
+    {
+      "id": "largest-contentful-paint",
+      "title": "Largest Contentful Paint",
+      "score": 0.74
+    },
+    {
+      "id": "interactive",
+      "title": "Time to Interactive",
+      "score": 0.95
+    },
+    {
+      "id": "largest-contentful-paint-element",
+      "title": "Largest Contentful Paint element",
+      "score": 0
+    },
+    {
+      "id": "uses-long-cache-ttl",
+      "title": "Serve static assets with an efficient cache policy",
+      "score": 0.5
+    },
+    {
+      "id": "uses-text-compression",
+      "title": "Enable text compression",
+      "score": 0
+    },
+    {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "score": 0
+    },
+    {
+      "id": "cache-insight",
+      "title": "Use efficient cache lifetimes",
+      "score": 0
+    },
+    {
+      "id": "document-latency-insight",
+      "title": "Document request latency",
+      "score": 0.5
+    },
+    {
+      "id": "image-delivery-insight",
+      "title": "Improve image delivery",
+      "score": 0
+    },
+    {
+      "id": "network-dependency-tree-insight",
+      "title": "Network dependency tree",
+      "score": 0
+    }
+  ],
+  "limitation": "SEO noindex intentional; local HTTP loopback audit is not HTTPS production or field/device performance."
+}

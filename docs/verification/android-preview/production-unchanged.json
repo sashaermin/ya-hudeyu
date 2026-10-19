@@ -1,0 +1,7 @@
+{
+  "scope": "Read-only HTTPS homepage byte comparison; TLS verification enabled, no deployment",
+  "production_commit": "6810206125ccf72080c8a7aa29072041d5812f0f",
+  "url": "https://yahudeyu-app.ru/",
+  "index_sha256": "6da371cfc832ef2ee97a8d7f09473c84b61745df5de1697ec5b366f975e944a3",
+  "matches_existing_production": true
+}

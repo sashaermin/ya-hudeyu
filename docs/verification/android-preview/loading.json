@@ -1,0 +1,7 @@
+{
+  "scope": "Actual gallery first full-image request held, then fulfilled; local Chromium",
+  "loading_visible": true,
+  "image_hidden_until_load": true,
+  "zoom_disabled_until_load": true,
+  "loading_cleared_after_success": true
+}

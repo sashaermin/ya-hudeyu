@@ -1,9 +1,9 @@
 {
-  "scope": "Authorized Phase2+FAQ+unavailable beta release; only generated empty-line indentation corrected",
-  "source_base_checkpoint": "6ac322753d80b0b84d6cb7b51dde4376b912edfb",
-  "archive_sha256": "ed78f72f6701e26a4d143e15e5f2b142d09aa6d8469f59c234c3222c3a3d1bee",
-  "site_index_sha256": "6da371cfc832ef2ee97a8d7f09473c84b61745df5de1697ec5b366f975e944a3",
-  "qa_evidence": "docs/verification/phase2-faq-beta-production-release.json",
-  "production_commit": "6810206125ccf72080c8a7aa29072041d5812f0f",
+  "scope": "Development-only edited11-screen Android gallery; not approved for publication",
+  "source_base_checkpoint": "e8e1818b8210106ae61f17e95efa64ef0f9052b0",
+  "archive_sha256": "faa3c3e406cb0baab71155572ae95bc901aa7abc2760c41d07d512c6c2c03c51",
+  "site_index_sha256": "609eb804eb91ca6f8d57c46029273c694c53f3af7be5a053bfcca08697fa5f4d",
+  "qa_evidence": "docs/ANDROID_PREVIEW_GALLERY_REVIEW.md",
+  "production_unchanged": "6810206125ccf72080c8a7aa29072041d5812f0f",
   "publication_evidence": "docs/verification/phase2-faq-beta-production-release.json"
 }

@@ -1,0 +1,69 @@
+{
+  "source_commit": "e8e1818b8210106ae61f17e95efa64ef0f9052b0",
+  "archive_sha256": "faa3c3e406cb0baab71155572ae95bc901aa7abc2760c41d07d512c6c2c03c51",
+  "source_worktree_dirty": true,
+  "archive_files_verified": 46,
+  "rendered": [
+    {
+      "width": 390,
+      "theme": "light",
+      "status": "PASS",
+      "coming_soon": true,
+      "apk_download": false,
+      "noindex": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "status": "PASS",
+      "coming_soon": true,
+      "apk_download": false,
+      "noindex": true
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "status": "PASS",
+      "coming_soon": true,
+      "apk_download": false,
+      "noindex": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "status": "PASS",
+      "coming_soon": true,
+      "apk_download": false,
+      "noindex": true
+    }
+  ],
+  "page_errors": [],
+  "scope": "Local archive rehearsal only",
+  "browser_version": "154.0.8037.57",
+  "download_rendered": [
+    {
+      "width": 390,
+      "theme": "light",
+      "apk_download": false,
+      "noindex": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "apk_download": false,
+      "noindex": true
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "apk_download": false,
+      "noindex": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "apk_download": false,
+      "noindex": true
+    }
+  ]
+}

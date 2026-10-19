@@ -120,18 +120,35 @@
     },
     {
       "id": "site-preview-gallery-approved-assets",
-      "status": "open",
+      "status": "resolved",
       "source": "Codex",
       "opened": "2026-10-20",
       "task": "Сайт · предварительная Android-галерея",
-      "subtask": "Передать оригинальные файлы11 изображений для обработки агентом",
-      "what": "Владелец разрешил агенту самостоятельно обезличить изображения. Все11 исходников видны в чате,ноихлокальныефайлы недоступны:всредупереданытолькотекстовыевложения. Это технический блокер исходныхфайлов,неотсутствиеprivacyapproval.",
+      "subtask": "Исходники получены и самостоятельно обезличены",
+      "what": "Владелец прислал ZIP всех11 оригинальных JPEG и ранее разрешил агенту выполнить обезличивание. Source-files blocker устранён.",
       "steps": [
         "Пришлите исходные11 PNG/JPEG/WebP одним ZIP;обезличиватьсамостоятельноне нужно.",
         "После получения файлов агент сам заменит личные/медицинские/GPS/device данные,проверитсогласованностьпримеров ивыполнитgalleryТЗ. Повторногоразрешенияобезличивания илиAPK нетребуется."
       ],
-      "blocked": "Полноценное редактирование всех11 исходных снимков без их файлов. Галереяостаётсяdevelopment-only,production не меняется.",
-      "can_continue": "Техническийдоступпроверен,авторизацияобезличиваниясохранена;неподменятьстарыеизображенияреконструкциейизпамяти. ПослеZIP продол­житьсамостоятельно.",
+      "blocked": "Блокер исходников устранён; APK не нужен для предварительной галереи.",
+      "can_continue": "Галерея11screens/5categories реализована и проверена. Далее clean CI иowner visual/content review; не запрашивать ZIP/processing approval повторно.",
+      "link": "https://github.com/sashaermin/ya-hudeyu/blob/work/website-v2/docs/ANDROID_PREVIEW_GALLERY_REVIEW.md",
+      "resolution": "20.10.2026:11/11 файлов получены, source-based image editing завершено. Визуальная+rus/engOCR проверка:0 targeted sensitive matches;metadata удалены;22WebP и11captioned cards включены только вdevelopment. Оригиналы/ZIP/privateOCR не публикуются. Review evidence:docs/ANDROID_PREVIEW_GALLERY_REVIEW.md."
+    },
+    {
+      "id": "site-preview-gallery-owner-review",
+      "status": "open",
+      "source": "Codex",
+      "opened": "2026-10-20",
+      "task": "Сайт · предварительная Android-галерея",
+      "subtask": "Контентная и визуальная приёмка development-кандидата",
+      "what": "Галерея11 отредактированных демонстрационных экранов готова:5категорий,viewer/zoom/mobile swipe,видимые предварительные labels/disclaimer. Это не exact release screenshots и не разрешённый APK.",
+      "steps": [
+        "Откройте docs/ANDROID_PREVIEW_GALLERY_REVIEW.md и снимки сайта в обеих темах; при желании скачайте проверенный CI preview ZIP для интерактивного просмотра.",
+        "Сообщите замечания или подтвердите визуальную/контентную приёмку. Сейчас публикация не выполняется, отдельный APK approval не меняется."
+      ],
+      "blocked": "Дальнейшая визуальная приёмка и возможная будущая отдельно разрешённая публикация галереи.",
+      "can_continue": "Approved gallery development/QA завершены; production6810206 сохраняется. STOP перед owner review, без новых функций/редизайна/deploy.",
       "link": "https://github.com/sashaermin/ya-hudeyu/blob/work/website-v2/docs/ANDROID_PREVIEW_GALLERY_REVIEW.md"
     }
   ]

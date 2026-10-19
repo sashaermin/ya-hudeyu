@@ -1,0 +1,190 @@
+{
+  "scope": "Actual served unavailable page; no simulated APK state",
+  "matrix": [
+    {
+      "width": 320,
+      "theme": "light",
+      "unavailable": true,
+      "noindex": true,
+      "apk_download": false,
+      "keyboard": true
+    },
+    {
+      "width": 360,
+      "theme": "light",
+      "unavailable": true,
+      "noindex": true,
+      "apk_download": false,
+      "keyboard": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "unavailable": true,
+      "noindex": true,
+      "apk_download": false,
+      "keyboard": true
+    },
+    {
+      "width": 430,
+      "theme": "light",
+      "unavailable": true,
+      "noindex": true,
+      "apk_download": false,
+      "keyboard": true
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "unavailable": true,
+      "noindex": true,
+      "apk_download": false,
+      "keyboard": true
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "unavailable": true,
+      "noindex": true,
+      "apk_download": false,
+      "keyboard": true
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "unavailable": true,
+      "noindex": true,
+      "apk_download": false,
+      "keyboard": true
+    },
+    {
+      "width": 1920,
+      "theme": "light",
+      "unavailable": true,
+      "noindex": true,
+      "apk_download": false,
+      "keyboard": true
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "unavailable": true,
+      "noindex": true,
+      "apk_download": false,
+      "keyboard": true
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "unavailable": true,
+      "noindex": true,
+      "apk_download": false,
+      "keyboard": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "unavailable": true,
+      "noindex": true,
+      "apk_download": false,
+      "keyboard": true
+    },
+    {
+      "width": 430,
+      "theme": "dark",
+      "unavailable": true,
+      "noindex": true,
+      "apk_download": false,
+      "keyboard": true
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "unavailable": true,
+      "noindex": true,
+      "apk_download": false,
+      "keyboard": true
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "unavailable": true,
+      "noindex": true,
+      "apk_download": false,
+      "keyboard": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "unavailable": true,
+      "noindex": true,
+      "apk_download": false,
+      "keyboard": true
+    },
+    {
+      "width": 1920,
+      "theme": "dark",
+      "unavailable": true,
+      "noindex": true,
+      "apk_download": false,
+      "keyboard": true
+    }
+  ],
+  "axe": [
+    {
+      "width": 390,
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "violations": []
+    }
+  ],
+  "nojs": [
+    {
+      "width": 320,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "status": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "status": "PASS"
+    }
+  ],
+  "page_errors": [],
+  "failed_requests": [],
+  "browser_version": "154.0.8037.57"
+}

@@ -666,6 +666,24 @@
       "done": "Сохраненыinventory11экранов,privacy findings,missing-approved-assets action иточныйhandoff. Приватныеисходники неимпортированы,кодсайта иproduction6810206 не менялись.",
       "next": "Получить11approved anonymized individual files. Поусловиювладельца image-dependent implementation остановлена;непроситьосновнойСегодняповторно,онполучен.",
       "status": "Input audit completed;full11-image gallery BLOCKED_BY_APPROVED_ASSETS,not implemented"
+    },
+    {
+      "id": "site-preview-gallery-development-completed-20261020",
+      "at": "2026-10-19T22:51:34.925362+00:00",
+      "type": "stage_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "G1",
+          "Предварительная Android-галерея"
+        ],
+        "title": "Реализованы11 обезличенных демонстрационных экранов"
+      },
+      "verified": "56website+68notify tests;3движка/48layouts/24axe0violations/24noJS/528opens;CDPswipes;main/FAQ/download regressions PASS;11visual+OCRprivacy checks/0targetedmatches;LH93/100/100/69.",
+      "done": "11source-basededitedscreens/22WebP/5категорий,дисклеймер,viewer/zoom/focus/swipe. SourceZIPblockerresolved;reviewpackage/screenshotssaved. Production/main/APK/noindex/workflows не менялись.",
+      "next": "Проверить clean CI/remoteSHA/Telegram послеpush,затем STOP передowner visual/content review. APKapproval остаётсяотдельноopen;публикация не разрешена.",
+      "status": "Development locally VERIFIED; owner review next; production unchanged"
     }
   ]
 }

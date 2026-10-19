@@ -1,134 +1,357 @@
 {
-  "status": "BLOCKED_BY_SOURCE_FILES",
-  "authorization": "project_specs/ANDROID_PREVIEW_GALLERY_AUTHORIZATION_2026-10-20.md",
-  "request_copies": 4,
-  "request_copies_identical": true,
-  "request_sha256": "d516272ca35227de2c37b76587073c07f5116659cb38349c88f99b8abe18af3c",
-  "required_images": 11,
-  "inline_raw_images_visible": 11,
-  "approved_anonymized_local_images": 0,
-  "image_dependent_implementation_started": false,
-  "private_images_committed": false,
-  "composite_available": false,
-  "repository_assets": "Branding/fonts only; no Android screenshot assets; data/site.json screenshots=[]",
-  "development_base": "11d52412cf8457bb637ca073dad32bf4616c0a62",
-  "production_sha": "6810206125ccf72080c8a7aa29072041d5812f0f",
-  "production_pages_status": "built",
+  "status": "11 edited demonstration screens; development only",
+  "authorization": "project_specs/ANDROID_PREVIEW_ANONYMIZATION_AUTHORIZATION_2026-10-20.md",
+  "source_count": 11,
+  "edited_count": 11,
+  "asset_files": 22,
+  "total_asset_bytes": 1091352,
+  "source_zip_sha256": "6a553538a838660adbbfda291db5f3bb433e84746d88cbeabcd3bfdc8311c7f1",
+  "source_privacy": "Original photos, full OCR transcripts, and sensitive search terms are private and excluded from Git/public preview.",
+  "visual_review_count": 11,
+  "ocr_completed": 11,
+  "targeted_residual_sensitive_matches": 0,
+  "ocr_scope": "Supplementary rus+eng OCR against source-specific identifiers, health values and medical text; zero matches is not proof of perfect anonymization. Visual inspection also performed.",
+  "metadata_chunks_found": 0,
+  "fictional_dataset": {
+    "name": "Гость",
+    "date": "2026-01-20",
+    "weight_start_kg": 84,
+    "weight_current_kg": 82,
+    "weight_target_kg": 78,
+    "energy_target_kcal": 1800,
+    "protein_g": 100,
+    "fat_g": 60,
+    "carbohydrate_g": 215,
+    "steps_target": 8000,
+    "weekly_weight_change_kg": -0.5,
+    "deficit_target_kcal": 550,
+    "target_date": "2026-03-17"
+  },
+  "privacy_changes": [
+    "Device status/navigation bars removed, identifiers/notifications erased",
+    "Name, dates, weight history, goals, health and activity values replaced with examples",
+    "Medication identity, dose and personal reminders replaced with neutral placeholders",
+    "Actual map and position removed entirely; schematic unidentifiable geometry only",
+    "Weight plot replaced with illustrative history; plan label wrapping repaired in demonstration asset only"
+  ],
+  "limitations": [
+    "Image editing may change small typography/geometry; these are edited demonstrations, never exact final or approved APK screenshots",
+    "No Android source changes, runtime verification, APK validation, physical-device or owner visual acceptance claimed",
+    "Fictional chart points/forecast are illustrations, not a validated health calculation"
+  ],
   "items": [
     {
-      "order": 1,
-      "title": "Сегодня — основная панель",
-      "inline_position": 1,
-      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
-      "local_path": null,
-      "sha256": null,
-      "privacy_approved": false,
-      "inline_message": "Owner follow-up after initial10"
+      "id": "today",
+      "source_sha256": "4f76e2e622d636dcc9414985428542272df2addfc139d193b113b97ef66c9176",
+      "original_size": [
+        948,
+        2100
+      ],
+      "edited_size": [
+        843,
+        1866
+      ],
+      "encoding": "WebP metadata stripped;420px card and original-edited-resolution full image",
+      "files": [
+        {
+          "path": "assets/previews/today.webp",
+          "sha256": "9b321cff4570781d89c592ca159d73c9722025c110e04dceed66826cd7d07f20",
+          "size_bytes": 28458
+        },
+        {
+          "path": "assets/previews/today-full.webp",
+          "sha256": "403fcbb0908a36bae3f9fd352abae0fce0b5d5fe4b630512f41aad9eb736e759",
+          "size_bytes": 83818
+        }
+      ],
+      "editing": "Image editing tool with exact source reference, fictional replacement values; not an exact release screenshot",
+      "privacy_review": "Visual inspection and rus+eng OCR completed; targeted residual matches=0; metadata stripped",
+      "source_reference": "Owner ZIP; original JPEG today (private, not committed)"
     },
     {
-      "order": 2,
-      "title": "Питание",
-      "inline_position": 10,
-      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
-      "local_path": null,
-      "sha256": null,
-      "privacy_approved": false
+      "id": "nutrition",
+      "source_sha256": "bc63cfe6f6b96a70b622e1b191747e91e64e8546730f788d32e8d8f018af50eb",
+      "original_size": [
+        948,
+        2100
+      ],
+      "edited_size": [
+        843,
+        1866
+      ],
+      "encoding": "WebP metadata stripped;420px card and original-edited-resolution full image",
+      "files": [
+        {
+          "path": "assets/previews/nutrition.webp",
+          "sha256": "9364fed833c02bc15a2b40b6c14c415eb2d173397e2c33fa3fecbac973a39bdf",
+          "size_bytes": 22152
+        },
+        {
+          "path": "assets/previews/nutrition-full.webp",
+          "sha256": "2aefa1569c7012d56bf4e26922b6abe3c840fc4fa57c5ca88bd791256c978171",
+          "size_bytes": 68830
+        }
+      ],
+      "editing": "Image editing tool with exact source reference, fictional replacement values; not an exact release screenshot",
+      "privacy_review": "Visual inspection and rus+eng OCR completed; targeted residual matches=0; metadata stripped",
+      "source_reference": "Owner ZIP; original JPEG nutrition (private, not committed)"
     },
     {
-      "order": 3,
-      "title": "Активность",
-      "inline_position": 9,
-      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
-      "local_path": null,
-      "sha256": null,
-      "privacy_approved": false
+      "id": "activity",
+      "source_sha256": "0d398503825f98642a3c87325846208bf97cfbe99f3631f88ef776938df138db",
+      "original_size": [
+        948,
+        2100
+      ],
+      "edited_size": [
+        843,
+        1866
+      ],
+      "encoding": "WebP metadata stripped;420px card and original-edited-resolution full image",
+      "files": [
+        {
+          "path": "assets/previews/activity.webp",
+          "sha256": "5c046615d683bade22774ae54057c1ea0e6c17f9726e012943d1871c7fe48784",
+          "size_bytes": 19466
+        },
+        {
+          "path": "assets/previews/activity-full.webp",
+          "sha256": "2d0d036b686030051c79a4651e1a2b4cd8be77502b98f5f1e4c2a5fc353bc463",
+          "size_bytes": 60248
+        }
+      ],
+      "editing": "Image editing tool with exact source reference, fictional replacement values; not an exact release screenshot",
+      "privacy_review": "Visual inspection and rus+eng OCR completed; targeted residual matches=0; metadata stripped",
+      "source_reference": "Owner ZIP; original JPEG activity (private, not committed)"
     },
     {
-      "order": 4,
-      "title": "Прогресс",
-      "inline_position": 8,
-      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
-      "local_path": null,
-      "sha256": null,
-      "privacy_approved": false
+      "id": "progress",
+      "source_sha256": "0238832e7fb0a6f09b487eec5fb9dce5c10e48202e926aa7eb032b89e8059f77",
+      "original_size": [
+        948,
+        2100
+      ],
+      "edited_size": [
+        843,
+        1866
+      ],
+      "encoding": "WebP metadata stripped;420px card and original-edited-resolution full image",
+      "files": [
+        {
+          "path": "assets/previews/progress.webp",
+          "sha256": "6f6431d6076721359cabc4e9af14e6c20f48da791ab6b221df0d2a0792255e46",
+          "size_bytes": 21490
+        },
+        {
+          "path": "assets/previews/progress-full.webp",
+          "sha256": "f12956b84caec50e5464e660d01700a4680d4984e72eb30bfef3dd9527e45463",
+          "size_bytes": 66100
+        }
+      ],
+      "editing": "Image editing tool with exact source reference, fictional replacement values; not an exact release screenshot",
+      "privacy_review": "Visual inspection and rus+eng OCR completed; targeted residual matches=0; metadata stripped",
+      "source_reference": "Owner ZIP; original JPEG progress (private, not committed)"
     },
     {
-      "order": 5,
-      "title": "Профиль и цели",
-      "inline_position": 7,
-      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
-      "local_path": null,
-      "sha256": null,
-      "privacy_approved": false
+      "id": "profile",
+      "source_sha256": "225109f9c9d56aa680bdeda2cb5feb76494003de8d95f7e1a84f51e4f04019d0",
+      "original_size": [
+        948,
+        2100
+      ],
+      "edited_size": [
+        843,
+        1866
+      ],
+      "encoding": "WebP metadata stripped;420px card and original-edited-resolution full image",
+      "files": [
+        {
+          "path": "assets/previews/profile.webp",
+          "sha256": "94e47a87c431cc330175374a5fe88a153409a4966c824b47eb5f1801a4095be7",
+          "size_bytes": 26970
+        },
+        {
+          "path": "assets/previews/profile-full.webp",
+          "sha256": "8c830a3609fb7757ac83ab2c07acacafc9432af699b6c8ba822d753545664c34",
+          "size_bytes": 83578
+        }
+      ],
+      "editing": "Image editing tool with exact source reference, fictional replacement values; not an exact release screenshot",
+      "privacy_review": "Visual inspection and rus+eng OCR completed; targeted residual matches=0; metadata stripped",
+      "source_reference": "Owner ZIP; original JPEG profile (private, not committed)"
     },
     {
-      "order": 6,
-      "title": "Дополнительные карточки",
-      "inline_position": 1,
-      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
-      "local_path": null,
-      "sha256": null,
-      "privacy_approved": false
+      "id": "cards",
+      "source_sha256": "ee6c2f64f624ee35726b4e2521bae80171f2e318e88e43a2b2741531409c12e3",
+      "original_size": [
+        948,
+        2100
+      ],
+      "edited_size": [
+        843,
+        1866
+      ],
+      "encoding": "WebP metadata stripped;420px card and original-edited-resolution full image",
+      "files": [
+        {
+          "path": "assets/previews/cards.webp",
+          "sha256": "31e4b5d9f0947ca2cdb3666223009768b2122ece61470065bd7162d8664a8412",
+          "size_bytes": 27442
+        },
+        {
+          "path": "assets/previews/cards-full.webp",
+          "sha256": "4f04b36eb155857e6cff963cf00a494312a547d01fae565ff0f89c8fb8d76604",
+          "size_bytes": 83468
+        }
+      ],
+      "editing": "Image editing tool with exact source reference, fictional replacement values; not an exact release screenshot",
+      "privacy_review": "Visual inspection and rus+eng OCR completed; targeted residual matches=0; metadata stripped",
+      "source_reference": "Owner ZIP; original JPEG cards (private, not committed)"
     },
     {
-      "order": 7,
-      "title": "Все цели",
-      "inline_position": 2,
-      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
-      "local_path": null,
-      "sha256": null,
-      "privacy_approved": false
+      "id": "goals",
+      "source_sha256": "6f5616bf1b110cd358113c397b0a5c34ae2e8d0c0139dba070afafbe2fcfe0c6",
+      "original_size": [
+        948,
+        2100
+      ],
+      "edited_size": [
+        843,
+        1866
+      ],
+      "encoding": "WebP metadata stripped;420px card and original-edited-resolution full image",
+      "files": [
+        {
+          "path": "assets/previews/goals.webp",
+          "sha256": "16365a95bccbc031613a12fd0740bfda3e01c2fd179ee4ee37f7d0e9a62fe00e",
+          "size_bytes": 21982
+        },
+        {
+          "path": "assets/previews/goals-full.webp",
+          "sha256": "eb092eec574e99cc5809b45c0e91d38fc247638bad81243c8c281841771f782b",
+          "size_bytes": 66636
+        }
+      ],
+      "editing": "Image editing tool with exact source reference, fictional replacement values; not an exact release screenshot",
+      "privacy_review": "Visual inspection and rus+eng OCR completed; targeted residual matches=0; metadata stripped",
+      "source_reference": "Owner ZIP; original JPEG goals (private, not committed)"
     },
     {
-      "order": 8,
-      "title": "Ходьба с GPS",
-      "inline_position": 3,
-      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
-      "local_path": null,
-      "sha256": null,
-      "privacy_approved": false
+      "id": "gps",
+      "source_sha256": "4f4c9fc321df5889a0163143489f0fb9caf0763bd5dbdacfa322541d0ae76904",
+      "original_size": [
+        948,
+        2100
+      ],
+      "edited_size": [
+        843,
+        1866
+      ],
+      "encoding": "WebP metadata stripped;420px card and original-edited-resolution full image",
+      "files": [
+        {
+          "path": "assets/previews/gps.webp",
+          "sha256": "36a1770078bbc8aad95eaa38e069a5d29a6bd5d64744f429823a8fdf2098c8ef",
+          "size_bytes": 24822
+        },
+        {
+          "path": "assets/previews/gps-full.webp",
+          "sha256": "2cf3b3d395e0929a40307fcac07eb26412f66c59c30b4d4b002ba818f697c2c2",
+          "size_bytes": 72818
+        }
+      ],
+      "editing": "Image editing tool with exact source reference, fictional replacement values; not an exact release screenshot",
+      "privacy_review": "Visual inspection and rus+eng OCR completed; targeted residual matches=0; metadata stripped",
+      "source_reference": "Owner ZIP; original JPEG gps (private, not committed)"
     },
     {
-      "order": 9,
-      "title": "Мой путь",
-      "inline_position": 4,
-      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
-      "local_path": null,
-      "sha256": null,
-      "privacy_approved": false
+      "id": "journey",
+      "source_sha256": "4abaedff934ea9305e18e4ee3829377bbee897cfcf81ed8f75adb3a1d4602bcb",
+      "original_size": [
+        948,
+        2100
+      ],
+      "edited_size": [
+        843,
+        1866
+      ],
+      "encoding": "WebP metadata stripped;420px card and original-edited-resolution full image",
+      "files": [
+        {
+          "path": "assets/previews/journey.webp",
+          "sha256": "c9e92e062c0637f721939a32a033e82098ecbe5b5ae9e4bc849c25e153a56e4c",
+          "size_bytes": 30322
+        },
+        {
+          "path": "assets/previews/journey-full.webp",
+          "sha256": "dc006296cdf5b59d1bc61d836937186e59b345c789a45a41633892400618b463",
+          "size_bytes": 89418
+        }
+      ],
+      "editing": "Image editing tool with exact source reference, fictional replacement values; not an exact release screenshot",
+      "privacy_review": "Visual inspection and rus+eng OCR completed; targeted residual matches=0; metadata stripped",
+      "source_reference": "Owner ZIP; original JPEG journey (private, not committed)"
     },
     {
-      "order": 10,
-      "title": "План похудения",
-      "inline_position": 5,
-      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
-      "local_path": null,
-      "sha256": null,
-      "privacy_approved": false
+      "id": "plan",
+      "source_sha256": "0fb3c82546640b92c0f5276b9640c7c906be7a2941da1466385d6bbd10443df4",
+      "original_size": [
+        948,
+        2100
+      ],
+      "edited_size": [
+        843,
+        1866
+      ],
+      "encoding": "WebP metadata stripped;420px card and original-edited-resolution full image",
+      "files": [
+        {
+          "path": "assets/previews/plan.webp",
+          "sha256": "1dbcfc079bc3752d0c7da63caea0b35157f1658d11b9e2a41f12417083e81592",
+          "size_bytes": 27176
+        },
+        {
+          "path": "assets/previews/plan-full.webp",
+          "sha256": "4265764e5fba442c278da2db05c90519f3ec9bbe4f5bb31eb425442322bce696",
+          "size_bytes": 80478
+        }
+      ],
+      "editing": "Image editing tool with exact source reference, fictional replacement values; not an exact release screenshot",
+      "privacy_review": "Visual inspection and rus+eng OCR completed; targeted residual matches=0; metadata stripped",
+      "source_reference": "Owner ZIP; original JPEG plan (private, not committed)"
     },
     {
-      "order": 11,
-      "title": "Графики",
-      "inline_position": 6,
-      "source_state": "RAW_INLINE_REQUIRES_ANONYMIZATION",
-      "local_path": null,
-      "sha256": null,
-      "privacy_approved": false
+      "id": "charts",
+      "source_sha256": "23fefbd582502cec8180f30a0b925224244c8f9d7131ad5157416827505cd310",
+      "original_size": [
+        948,
+        2100
+      ],
+      "edited_size": [
+        843,
+        1866
+      ],
+      "encoding": "WebP metadata stripped;420px card and original-edited-resolution full image",
+      "files": [
+        {
+          "path": "assets/previews/charts.webp",
+          "sha256": "464de57bbdd55fa31db1847d69947500dd1e97570ed35e1a5ca5db3907271982",
+          "size_bytes": 20772
+        },
+        {
+          "path": "assets/previews/charts-full.webp",
+          "sha256": "62ed09ad42e65bcf932787ed37d30d9be7f8146719de717d4367278fcc3a0871",
+          "size_bytes": 64908
+        }
+      ],
+      "editing": "Image editing tool with exact source reference, fictional replacement values; not an exact release screenshot",
+      "privacy_review": "Visual inspection and rus+eng OCR completed; targeted residual matches=0; metadata stripped",
+      "source_reference": "Owner ZIP; original JPEG charts (private, not committed)"
     }
   ],
-  "verification_scope": "Visual review of current message and local source/inventory; no asset import, EXIF inspection, image edits, UI or new gallery browser QA",
-  "updated_at": "2026-10-19T22:13:15.995308+00:00",
-  "follow_up": "Main Today received in subsequent user message; all11 raw screens visible. No missing raw screen; approved anonymized assets remain0.",
-  "agent_anonymization_authorized": true,
-  "anonymization_authorization": "project_specs/ANDROID_PREVIEW_ANONYMIZATION_AUTHORIZATION_2026-10-20.md",
-  "required_owner_input": "Original11 image files/ZIP, NOT already anonymized files or another permission",
-  "local_original_images": 0,
-  "source_availability_evidence": {
-    "attachments": "11 files, all text; no decodable images",
-    "library-files": 0,
-    "shared": 0,
-    "scratch": 0,
-    "image_edit_conversation_limit": 5,
-    "complete_set_via_existing_references": false
+  "ocr_model": {
+    "language": "rus+eng",
+    "russian_model_git_blob_sha1": "b146cb2263acbc6383f8e92ea0ce759537687bb8",
+    "source": "Official tesseract-ocr/tessdata_fast, downloaded with TLS verification and verified git blob identity"
   }
 }

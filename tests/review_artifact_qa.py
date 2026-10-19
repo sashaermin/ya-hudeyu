@@ -79,7 +79,15 @@ def run(archive, checkpoint, output, executable, local=False):
                         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
                         assert page.locator('.hero-cat').evaluate('el => el.complete && el.naturalWidth > 0')
                         for href in page.locator('a[href]').evaluate_all('els => els.map(el => el.getAttribute("href"))'):
-                            assert href.startswith(('#', 'mailto:')) or href in ('privacy.html', '/download/'), href
+                            assert href.startswith(('#', 'mailto:')) or href in ('privacy.html', '/download/') or (href.startswith('assets/previews/') and href.endswith('-full.webp') and href in records), href
+                        if page.locator('.preview-item').count():
+                            assert page.locator('.preview-item').count() == 11
+                            assert page.locator('.preview-categories a').count() == 5
+                            assert 'В разработке' in page.locator('.preview-label').inner_text()
+                            assert 'не точные скриншоты' in page.locator('.preview-disclaimer').inner_text()
+                            for preview in page.locator('.preview-item img').all():
+                                preview.scroll_into_view_if_needed()
+                                preview.evaluate('el => el.decode()')
                         if width == 390:
                             page.locator('#menu-toggle').click()
                             assert page.locator('#menu-toggle').get_attribute('aria-expanded') == 'true'

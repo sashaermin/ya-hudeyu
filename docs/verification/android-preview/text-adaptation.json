@@ -1,0 +1,47 @@
+{
+  "scope": "CSS200% body size/spacing simulation, not native browser zoom or screen reader",
+  "cases": [
+    {
+      "width": 320,
+      "height": 568,
+      "theme": "light",
+      "css_text_adaptation": true,
+      "viewer_scroll_and_focus": true
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "theme": "dark",
+      "css_text_adaptation": true,
+      "viewer_scroll_and_focus": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "css_text_adaptation": true,
+      "viewer_scroll_and_focus": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "theme": "dark",
+      "css_text_adaptation": true,
+      "viewer_scroll_and_focus": true
+    },
+    {
+      "width": 768,
+      "height": 600,
+      "theme": "light",
+      "css_text_adaptation": true,
+      "viewer_scroll_and_focus": true
+    },
+    {
+      "width": 768,
+      "height": 600,
+      "theme": "dark",
+      "css_text_adaptation": true,
+      "viewer_scroll_and_focus": true
+    }
+  ]
+}
