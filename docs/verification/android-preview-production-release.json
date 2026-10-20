@@ -1,5 +1,5 @@
 {
-  "status": "DEPLOYED —46HTTPS file hashes verified;browser live QA pending",
+  "status": "VERIFIED — authorized release deployed and actual live QA passed",
   "approved_development_commit": "c3d8d9f6a659c7e698049af8f27cd50a00b54937",
   "prepared_production_commit": "d7ebfd8e6576e2c1fc286e9c46c6a8ea4a9060ac",
   "production_tree": "332457a415220c439546ce32c5be116acf771d3e",
@@ -305,10 +305,29 @@
   "published_commit": "d7ebfd8e6576e2c1fc286e9c46c6a8ea4a9060ac",
   "pages_deployment": {
     "run_id": 39339379755,
-    "status": "success",
+    "source_commit": "d7ebfd8e6576e2c1fc286e9c46c6a8ea4a9060ac",
+    "conclusion": "success",
     "url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39339379755"
   },
-  "live_verification": "PENDING — use existing read-only workflow after Pages success",
+  "live_verification": {
+    "status": "success",
+    "run_id": 39339685332,
+    "source_commit": "d373bfad7138fca25f42ab05bc8e47cbd94ab9eb",
+    "evidence": "docs/verification/android-preview-production-live.json"
+  },
   "rollback_used": false,
-  "http_verification": "docs/verification/android-preview-production-http.json"
+  "http_verification": "docs/verification/android-preview-production-http.json",
+  "lighthouse": {
+    "performance": 98,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 69
+  },
+  "remaining_limitations": [
+    "One simulated mobile Lighthouse run, not field/device metrics",
+    "Physical devices/native Safari/VoiceOver/TalkBack and manual zoom not verified",
+    "Intentional noindex preserves SEO69;do not enable indexing to improve score",
+    "Images are edited preliminary demonstrations,not final APK screenshots"
+  ],
+  "resume_http_verification": "docs/verification/android-preview-production-resume-http.json"
 }

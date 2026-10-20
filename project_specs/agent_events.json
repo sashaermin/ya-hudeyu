@@ -702,6 +702,26 @@
       "done": "Ownerapproval exactmanifest применён;prepared locald7ebfd8e,25publicpaths;download/privacy/CNAME/robots/.github unchanged. Main/production пока6810206;APKoff/noindex.",
       "next": "ДождатьсяcleanreadinessCI,повторно refs/config/filetree gates,пушить толькоpreparedproductioncommit вmain,waitPages иactualHTTPS liveQA. Ownerconfirmation не требуется.",
       "status": "PREPARED — deployment not yet performed"
+    },
+    {
+      "id": "site-preview-gallery-production-verified-20261020",
+      "at": "2026-10-20T10:03:06.900807+00:00",
+      "type": "stage_completed",
+      "source": "Codex",
+      "from": {
+        "path": [
+          "Сайт",
+          "G2",
+          "Production verified"
+        ],
+        "title": "Одобренная Android-галерея опубликована и проверена"
+      },
+      "checkpoint": "d373bfad7138fca25f42ab05bc8e47cbd94ab9eb",
+      "verified": "Pages39339379755 и live39339685332 success;46 HTTPS-хэшей совпали,35 внутренних404,80 адаптивных сценариев и28 axe без нарушений. Галерея11/5,176 открытий,8 no-JS, CDP-свайпы PASS. Lighthouse98/100/100/69;SEO из noindex.",
+      "done": "Productiond7ebfd8e:11 обезличенных экранов,5 категорий, viewer и disclaimer. FAQ33, download unavailable, privacy/CNAME/config сохранены; APK выключен, noindex сохранён. Rollback6810206 проверен и не использован. Evidence сохранён в Git; Telegram368/topic6 подтверждён.",
+      "next": "Выпуск завершён. STOP; не повторять deployment/live QA. APK approval остаётся отдельным открытым решением. Для новых функций и выпусков нужны новые указания.",
+      "status": "PRODUCTION VERIFIED;no critical regressions;APK disabled",
+      "artifact_url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39339685332/artifacts/12228194004"
     }
   ]
 }

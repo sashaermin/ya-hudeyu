@@ -1,0 +1,251 @@
+{
+  "checked_at": "2026-10-20T10:01:15.759071+00:00",
+  "scope": "Resume read-only normal-TLS confirmation;no deployment/build/browser rerun",
+  "production_commit": "d7ebfd8e6576e2c1fc286e9c46c6a8ea4a9060ac",
+  "public_files_verified": 46,
+  "edited_images_verified": 22,
+  "gallery_screens": 11,
+  "faq_questions": 33,
+  "download_unavailable": true,
+  "noindex": true,
+  "apk_download": false,
+  "results": [
+    {
+      "path": ".nojekyll",
+      "status": 200,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "CNAME",
+      "status": 200,
+      "sha256": "2a3a70232a30a4dcda28add45328c10e982ca1acf67d56e4f73f4e77a97aac77"
+    },
+    {
+      "path": "assets/brand/originals/ic_launcher_green.png",
+      "status": 200,
+      "sha256": "b19aa5fead4918a270e312d4d86e39c0d0f52838e22b2d52040e315b7d4c1d23"
+    },
+    {
+      "path": "assets/brand/originals/mascot_calm.webp",
+      "status": 200,
+      "sha256": "eb132957731427d11da8048befd4a872da0e0ec4af612f8286e3e05fcd23cb3e"
+    },
+    {
+      "path": "assets/brand/originals/mascot_hint.webp",
+      "status": 200,
+      "sha256": "9543b17f4cef188821a82a359b20151caf4cd083f119912b022e1c68d658bf1d"
+    },
+    {
+      "path": "assets/brand/web/wordmark-dark-160.webp",
+      "status": 200,
+      "sha256": "ef3577d99e4370d9545e4dcc9d7d18bf16073da548506cc7713b7a8685a46d6b"
+    },
+    {
+      "path": "assets/brand/web/wordmark-dark-320.webp",
+      "status": 200,
+      "sha256": "0527bbd97549f89b2bbc15c10dded393f1fd71683236e906b5a384f28f87aa22"
+    },
+    {
+      "path": "assets/brand/web/wordmark-dark-480.webp",
+      "status": 200,
+      "sha256": "fbb5d9e8472405e0017fe8b080ee930f6ab8ea41475cdbcc7aa5742f8e352fc4"
+    },
+    {
+      "path": "assets/brand/web/wordmark-light-160.webp",
+      "status": 200,
+      "sha256": "44e79df96c62e5cbedb9e59103c419d7fc62a2e3f02e94a08371e3fdf62a172f"
+    },
+    {
+      "path": "assets/brand/web/wordmark-light-320.webp",
+      "status": 200,
+      "sha256": "687f2003cd77d4f4d67f8d716bfdb6bd1fcb35b6d99b0d9e2aa425ce7991872e"
+    },
+    {
+      "path": "assets/brand/web/wordmark-light-480.webp",
+      "status": 200,
+      "sha256": "a39f7ab2a11842bf34789d352afaed053492fb1e76ddf854caf0ad1fc75b573a"
+    },
+    {
+      "path": "assets/fonts/Onest-OFL.txt",
+      "status": 200,
+      "sha256": "00ef123e979c8657a8b3e453736649a4ebe5926ff17c232106b987199987eaef"
+    },
+    {
+      "path": "assets/fonts/Unbounded-OFL.txt",
+      "status": 200,
+      "sha256": "4e13f7ff626e0ba79cfed3882539c9a5ec4e22af6e9ab64f4ef7af961f0287b4"
+    },
+    {
+      "path": "assets/fonts/onest_regular.woff2",
+      "status": 200,
+      "sha256": "d72b7b71008accef7565318691819c1ec3b1133b035d6cf6feb19d2a5de8fbbd"
+    },
+    {
+      "path": "assets/fonts/onest_semibold.woff2",
+      "status": 200,
+      "sha256": "1a1fb2eadc50dd78afe7982119b2ad34d614df0543f02bd4e1fea99e78882285"
+    },
+    {
+      "path": "assets/fonts/unbounded_semibold.woff2",
+      "status": 200,
+      "sha256": "93e7424d209cd12e74832985d7ef48fc09a09159b119fb4bd10b884e207aa19b"
+    },
+    {
+      "path": "assets/previews/activity-full.webp",
+      "status": 200,
+      "sha256": "2d0d036b686030051c79a4651e1a2b4cd8be77502b98f5f1e4c2a5fc353bc463"
+    },
+    {
+      "path": "assets/previews/activity.webp",
+      "status": 200,
+      "sha256": "5c046615d683bade22774ae54057c1ea0e6c17f9726e012943d1871c7fe48784"
+    },
+    {
+      "path": "assets/previews/cards-full.webp",
+      "status": 200,
+      "sha256": "4f04b36eb155857e6cff963cf00a494312a547d01fae565ff0f89c8fb8d76604"
+    },
+    {
+      "path": "assets/previews/cards.webp",
+      "status": 200,
+      "sha256": "31e4b5d9f0947ca2cdb3666223009768b2122ece61470065bd7162d8664a8412"
+    },
+    {
+      "path": "assets/previews/charts-full.webp",
+      "status": 200,
+      "sha256": "62ed09ad42e65bcf932787ed37d30d9be7f8146719de717d4367278fcc3a0871"
+    },
+    {
+      "path": "assets/previews/charts.webp",
+      "status": 200,
+      "sha256": "464de57bbdd55fa31db1847d69947500dd1e97570ed35e1a5ca5db3907271982"
+    },
+    {
+      "path": "assets/previews/goals-full.webp",
+      "status": 200,
+      "sha256": "eb092eec574e99cc5809b45c0e91d38fc247638bad81243c8c281841771f782b"
+    },
+    {
+      "path": "assets/previews/goals.webp",
+      "status": 200,
+      "sha256": "16365a95bccbc031613a12fd0740bfda3e01c2fd179ee4ee37f7d0e9a62fe00e"
+    },
+    {
+      "path": "assets/previews/gps-full.webp",
+      "status": 200,
+      "sha256": "2cf3b3d395e0929a40307fcac07eb26412f66c59c30b4d4b002ba818f697c2c2"
+    },
+    {
+      "path": "assets/previews/gps.webp",
+      "status": 200,
+      "sha256": "36a1770078bbc8aad95eaa38e069a5d29a6bd5d64744f429823a8fdf2098c8ef"
+    },
+    {
+      "path": "assets/previews/journey-full.webp",
+      "status": 200,
+      "sha256": "dc006296cdf5b59d1bc61d836937186e59b345c789a45a41633892400618b463"
+    },
+    {
+      "path": "assets/previews/journey.webp",
+      "status": 200,
+      "sha256": "c9e92e062c0637f721939a32a033e82098ecbe5b5ae9e4bc849c25e153a56e4c"
+    },
+    {
+      "path": "assets/previews/nutrition-full.webp",
+      "status": 200,
+      "sha256": "2aefa1569c7012d56bf4e26922b6abe3c840fc4fa57c5ca88bd791256c978171"
+    },
+    {
+      "path": "assets/previews/nutrition.webp",
+      "status": 200,
+      "sha256": "9364fed833c02bc15a2b40b6c14c415eb2d173397e2c33fa3fecbac973a39bdf"
+    },
+    {
+      "path": "assets/previews/plan-full.webp",
+      "status": 200,
+      "sha256": "4265764e5fba442c278da2db05c90519f3ec9bbe4f5bb31eb425442322bce696"
+    },
+    {
+      "path": "assets/previews/plan.webp",
+      "status": 200,
+      "sha256": "1dbcfc079bc3752d0c7da63caea0b35157f1658d11b9e2a41f12417083e81592"
+    },
+    {
+      "path": "assets/previews/profile-full.webp",
+      "status": 200,
+      "sha256": "8c830a3609fb7757ac83ab2c07acacafc9432af699b6c8ba822d753545664c34"
+    },
+    {
+      "path": "assets/previews/profile.webp",
+      "status": 200,
+      "sha256": "94e47a87c431cc330175374a5fe88a153409a4966c824b47eb5f1801a4095be7"
+    },
+    {
+      "path": "assets/previews/progress-full.webp",
+      "status": 200,
+      "sha256": "f12956b84caec50e5464e660d01700a4680d4984e72eb30bfef3dd9527e45463"
+    },
+    {
+      "path": "assets/previews/progress.webp",
+      "status": 200,
+      "sha256": "6f6431d6076721359cabc4e9af14e6c20f48da791ab6b221df0d2a0792255e46"
+    },
+    {
+      "path": "assets/previews/today-full.webp",
+      "status": 200,
+      "sha256": "403fcbb0908a36bae3f9fd352abae0fce0b5d5fe4b630512f41aad9eb736e759"
+    },
+    {
+      "path": "assets/previews/today.webp",
+      "status": 200,
+      "sha256": "9b321cff4570781d89c592ca159d73c9722025c110e04dceed66826cd7d07f20"
+    },
+    {
+      "path": "download/index.html",
+      "status": 200,
+      "sha256": "5341b38cc3ca4749b228b84b6fd06e5aab88a38919fd0cc8c6e37733c5afcfee"
+    },
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "609eb804eb91ca6f8d57c46029273c694c53f3af7be5a053bfcca08697fa5f4d"
+    },
+    {
+      "path": "privacy.html",
+      "status": 200,
+      "sha256": "75f092afe2a0f9c51120abf61d8fbcb70dde6e83fb78b4e2633e232ea049481d"
+    },
+    {
+      "path": "robots.txt",
+      "status": 200,
+      "sha256": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1"
+    },
+    {
+      "path": "scripts/site.js",
+      "status": 200,
+      "sha256": "8f8852b0369f940c071db64a1ccd8982fae44c9caf6b05217bda6b2afcbe33f5"
+    },
+    {
+      "path": "scripts/theme.js",
+      "status": 200,
+      "sha256": "f7b304c9bb0855b5583980e89922887a0d5efd566771da1e34e815fc5c4eba2f"
+    },
+    {
+      "path": "sitemap.xml",
+      "status": 200,
+      "sha256": "35bb9a30eaca52143f8878bd998d51fa7da264239f56e5111f6d24947547a87f"
+    },
+    {
+      "path": "styles/site.css",
+      "status": 200,
+      "sha256": "2bf61e14150df3f89b9531ddf7c88c87f7663daf0237f3c4e94891ac0b06e4c0"
+    }
+  ],
+  "unchanged_from_rollback": {
+    "faq_section_sha256": "4b13f6026259a8a8788e02bb770ebdf37978eec0f439cc8dc8acf528d8bd12f4",
+    "download/index.html": "5341b38cc3ca4749b228b84b6fd06e5aab88a38919fd0cc8c6e37733c5afcfee",
+    "privacy.html": "75f092afe2a0f9c51120abf61d8fbcb70dde6e83fb78b4e2633e232ea049481d",
+    "robots.txt": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1",
+    "CNAME": "2a3a70232a30a4dcda28add45328c10e982ca1acf67d56e4f73f4e77a97aac77"
+  }
+}

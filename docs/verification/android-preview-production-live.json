@@ -1,0 +1,165 @@
+{
+  "status": "VERIFIED",
+  "checked_at": "2026-10-20T10:03:06.898722+00:00",
+  "production_commit": "d7ebfd8e6576e2c1fc286e9c46c6a8ea4a9060ac",
+  "deployment": {
+    "run_id": 39339379755,
+    "source_commit": "d7ebfd8e6576e2c1fc286e9c46c6a8ea4a9060ac",
+    "conclusion": "success",
+    "url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39339379755"
+  },
+  "live_qa": {
+    "run_id": 39339685332,
+    "source_commit": "d373bfad7138fca25f42ab05bc8e47cbd94ab9eb",
+    "conclusion": "success",
+    "url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39339685332",
+    "verify_check_id": 118357852598,
+    "notify_check_id": 118359149711
+  },
+  "gallery": {
+    "production_commit": "d7ebfd8e6576e2c1fc286e9c46c6a8ea4a9060ac",
+    "screens": 11,
+    "categories": 5,
+    "layouts": 16,
+    "opens": 176,
+    "axe_runs": 8,
+    "axe_violations": 0,
+    "nojs_cases": 8,
+    "viewer_touch": true,
+    "track_touch": true,
+    "error_retry": true,
+    "manifest_sha256": "33718228f5f81036c1d735d8782a009d7b1a8ec2efa56c2305e8be89fb95052d",
+    "scope": "Actual HTTPS production gallery with approved edited demonstration images; no TLS bypass"
+  },
+  "expanded": {
+    "production_commit": "d7ebfd8e6576e2c1fc286e9c46c6a8ea4a9060ac",
+    "faq_layouts": 16,
+    "faq_categories": 8,
+    "faq_questions": 33,
+    "faq_nojs": 6,
+    "download_layouts": 16,
+    "download_nojs": 6,
+    "axe_runs": 8,
+    "axe_violations": 0,
+    "development_intent_cards": 5,
+    "journey_steps": 4,
+    "download_unavailable": true,
+    "no_fixture_publication": true
+  },
+  "uiux": {
+    "production_commit": "d7ebfd8e6576e2c1fc286e9c46c6a8ea4a9060ac",
+    "privacy_matrix": 16,
+    "nojs_cases": 6,
+    "legal_text_unchanged": true,
+    "keyboard_focus": [
+      "Keyboard open focuses first link; Tab traverses nav; Escape restores trigger; selection focuses target; hidden-nav resize restores trigger"
+    ],
+    "gallery_theme_cases": 2,
+    "axe_runs": 12,
+    "axe_violations": 0,
+    "gallery_scope": "Browser-only mascot fixtures with actual deployed JS/assets, not published Android screenshots"
+  },
+  "lighthouse": {
+    "url": "https://yahudeyu-app.ru/",
+    "fetched_at": "2026-10-19T23:12:01.771Z",
+    "lighthouse_version": "12.8.2",
+    "form_factor": "mobile",
+    "scores": {
+      "performance": 98,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 69
+    },
+    "targets": {
+      "performance": 90,
+      "accessibility": 95,
+      "best-practices": 95,
+      "seo": 95
+    },
+    "metrics": {
+      "first-contentful-paint": 1204.6770000000001,
+      "largest-contentful-paint": 2404.677,
+      "speed-index": 1204.6770000000001,
+      "total-blocking-time": 0,
+      "cumulative-layout-shift": 5.770945705108072e-05
+    },
+    "below_target": [
+      "seo"
+    ],
+    "run_warnings": [],
+    "failed_audits": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.91
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.98
+      },
+      {
+        "id": "uses-long-cache-ttl",
+        "title": "Serve static assets with an efficient cache policy",
+        "score": 0.5
+      },
+      {
+        "id": "is-crawlable",
+        "title": "Page is blocked from indexing",
+        "score": 0
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ],
+    "limitation": "One simulated mobile lab run on GitHub runner; not real-user/device metrics. SEO below target is expected while intentional noindex is retained; do not enable indexing solely to improve the score."
+  },
+  "production_summary": "commit d7ebfd8e6576e2c1fc286e9c46c6a8ea4a9060ac; public_files 46; internal_404 35; browser_matrix 16; noindex=true; APK=false; TLS=true; page_errors=0",
+  "total_responsive_layouts": 80,
+  "total_axe_runs": 28,
+  "axe_violations": 0,
+  "notify_annotations": [
+    {
+      "title": "Telegram accepted",
+      "message": "commit d373bfad7138fca25f42ab05bc8e47cbd94ab9eb message_id 368"
+    },
+    {
+      "title": "Telegram topic confirmed",
+      "message": "message_thread_id 6; message_id 368"
+    }
+  ],
+  "verification_artifact": {
+    "id": 12228194004,
+    "url": "https://github.com/sashaermin/ya-hudeyu/actions/runs/39339685332/artifacts/12228194004",
+    "retention_days": 7,
+    "local_download": {
+      "downloaded": false,
+      "exit_code": 1,
+      "diagnostic": "Artifact storage access unavailable;remote check annotations retained instead. Raw error/temporary signed URLs are not printed."
+    }
+  },
+  "evidence_source": "Actual GitHub check-run annotations retrieved via authenticated API;full artifact download unavailable in this cloud session. No downloaded runner JSON or screenshots claimed.",
+  "limitations": [
+    "One simulated mobile Lighthouse run, not field/device metrics",
+    "Physical devices/native Safari/VoiceOver/TalkBack and manual zoom not verified",
+    "Intentional noindex preserves SEO69;do not enable indexing to improve score",
+    "Images are edited preliminary demonstrations,not final APK screenshots"
+  ]
+}
