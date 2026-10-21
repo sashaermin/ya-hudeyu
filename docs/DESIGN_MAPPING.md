@@ -33,3 +33,9 @@
 
 
 UI audit U1/U2: current Android960e43b Theme/Color/Components/System/AccentColors и original fonts/logo/mascot совпали с source (uiux-android-reference.json). Privacy presentation теперь использует shared palette/Onest/theme control; Onest для длинного document heading сохраняет слово на320px без произвольного разрыва, legal text/URL неизменны. No-JS использует те же Android dark tokens; palette не инвертировалась автоматически. Gallery status/error остаются в существующей системе компонентов; никаких новых mascot poses/screens/дизайн-концепций. Это development changes, production9b39ffa прежний.
+
+## Website-only Android alignment assignment · 21.10.2026
+
+This assignment keeps the website aligned with approved Android design and content evidence while treating the Android repository as read-only reference material. Evidence may be used only when its source path and commit are recorded in `docs/ASSET_SOURCES.json` or the corresponding verification artifact. Do not infer unreleased Android behavior, APK availability, screens, metrics, or user claims from source code alone.
+
+The website workflow owns all implementation, QA, documentation, and release decisions. Android builds, Gradle tasks, JDK installation, Android branch changes, and Android processes are outside this environment's prerequisites. Preserve the existing noindex, APK/download, publication, legal, and historical evidence gates. The next implementation task is to compare the updated website specification with this mapping and the approved Android evidence, then record any concrete website-only gaps before changing public code.

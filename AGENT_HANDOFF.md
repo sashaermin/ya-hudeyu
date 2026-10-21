@@ -3,11 +3,17 @@
 ## Текущее состояние и точка продолжения
 
 - Проект: официальный сайт «Я ХУдЕЮ», repository `sashaermin/ya-hudeyu`, branch `work/website-v2`.
-- Последний проверенный remote checkpoint: `d373bfad7138fca25f42ab05bc8e47cbd94ab9eb`; live CI39339685332 success, Telegram topic6/message368. Текущий документационный SHA сверить через Git/ls-remote: самоссылка в коммите невозможна.
+- Последний проверенный remote checkpoint: `52e228941ba9fc41af352606c65b293aedc69ac1`; `origin/work/website-v2` и checkout `work/website-v2` совпадают. Android остаётся read-only reference; main не изменён.
 - Ответственный агент: Codex. Другой активный website writer не известен; чужую сессию и Android/Windows не трогать. Общий порядок — AGENT_DEVELOPMENT_PROTOCOL.md.
 - **G2 COMPLETED / PRODUCTION VERIFIED**: `d7ebfd8e6576e2c1fc286e9c46c6a8ea4a9060ac`, https://yahudeyu-app.ru/#screenshots. Pages39339379755 и live39339685332 завершены успешно. Повторный deployment не требуется.
 
-**Exact next:** **STOP**. Выпуск галереи и его проверка завершены. Сохранить документационный checkpoint, проверить remote и штатный CI, затем остановиться. Не повторять deployment, live QA, разработку галереи или исторические Telegram-уведомления. Дальнейшие функции и выпуски требуют новых указаний. Отдельное действие `site-approved-android-release` остаётся OPEN: после выбора и явного разрешения конкретного APK продолжить по docs/RELEASE_CONTENT.md и docs/BETA_APPROVAL_PROCEDURE.md. Не включать скачивание или индексирование самостоятельно. Полное мастер-ТЗ не объявлять закрытым.
+**Exact next:** получить и прочитать обновлённую website-спецификацию целиком, затем сопоставить её требования с `docs/DESIGN_MAPPING.md`, `docs/ASSET_SOURCES.json` и approved verification evidence. В текущем сообщении и workspace вложение отсутствует; требования не реконструировать. До получения файла не менять website code, Android, main, deployment или release gates.
+
+## Website-only environment assignment · 21.10.2026
+
+Checkout attached to the existing `work/website-v2` branch at remote checkpoint `52e228941ba9fc41af352606c65b293aedc69ac1`; local work was preserved. The environment draft is website-only: website install/QA/build commands remain; Android checkout is retained solely for read-only approved design/content evidence. Android builds, Gradle, JDK installation, Android branch changes, and Android processes are excluded.
+
+Blocker: the reattached updated website specification is still inaccessible in the user message and filesystem. No hidden requirements have been reconstructed. Exact next is to read that specification completely, record its authorized assignment here and in the roadmap/design mapping, then run the smallest website-only implementation and focused checks.
 
 ## Проверенные результаты G2
 
