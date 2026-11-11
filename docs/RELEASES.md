@@ -1,9 +1,5 @@
 # Release manifest
 
-`releases.json` is an array ordered newest first. Keep it empty until an APK is published. Each entry uses `version`, `url` (HTTPS), `size`, `date`, `android`, `sha256` and `changes` (array of strings). APKs belong in GitHub Releases, not this repository. Example shape (do not publish as a release):
+`releases.json` is an array ordered newest first. Keep it empty until an official signed APK is published to GitHub Releases. Each entry requires `version`, `url` (HTTPS link to the `.apk` asset), `size` (with units), `date` (`YYYY-MM-DD`), `android` (minimum supported Android version), `sha256` (64 hexadecimal characters from the APK), and `changes` (array of Russian strings). An invalid or unavailable manifest leaves the APK action hidden. The homepage shows the latest three entries and `/download/` shows the full history.
 
-```json
-{"version":"1.0","url":"https://example.com/app.apk","size":"25 MB","date":"2026-01-01","android":"8.0+","sha256":"...","changes":["First release"]}
-```
-
-Set `CONTACT_EMAIL` in `scripts/v12.js` when the owner provides the address. Until then contact links are unavailable.
+Set `CONTACT_EMAIL` in `scripts/v12.js` when the owner provides the address. The site displays contact availability text until then.
