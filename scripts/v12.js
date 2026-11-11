@@ -119,9 +119,18 @@ if (helpSearch) {
     input.focus();
   });
   topicList.addEventListener("click", (event) => {
+    if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey)
+      return;
     const link = event.target.closest('a[href^="#"]');
     const target = link && document.getElementById(link.hash.slice(1));
     if (target?.hidden) resetHelp();
+  });
+  window.addEventListener("hashchange", () => {
+    const target = document.getElementById(location.hash.slice(1));
+    if (target?.parentElement !== topicList || !target.hidden) return;
+    resetHelp();
+    target.focus({ preventScroll: true });
+    target.scrollIntoView();
   });
   filterHelp();
   helpSearch.hidden = false;
