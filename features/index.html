@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Возможности приложения — Я ХУдЕЮ</title>
+    <meta
+      name="description"
+      content="Питание, тренировки, прогресс, здоровье и помощник в «Я ХУдЕЮ». Как работают дневник и подключение данных."
+    />
+    <link rel="canonical" href="https://yahudeyu-app.ru/features/" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Возможности приложения — Я ХУдЕЮ" />
+    <meta
+      property="og:description"
+      content="Питание, тренировки, прогресс, здоровье и помощник в «Я ХУдЕЮ»."
+    />
+    <meta property="og:url" content="https://yahudeyu-app.ru/features/" />
+    <meta
+      property="og:image"
+      content="https://yahudeyu-app.ru/assets/v12/og.png"
+    />
+    <meta property="og:image:alt" content="Я ХУдЕЮ и котик в фиолетовом худи" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="theme-color"
+      content="#FFF8F6"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0D1025"
+      media="(prefers-color-scheme: dark)"
+    />
+    <link rel="icon" href="/assets/v12/favicon.png" />
+    <link rel="stylesheet" href="/styles/v12.css" />
+    <link
+      rel="preload"
+      href="/assets/v12/fonts/manrope_regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/v12/fonts/playfair_display_bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/v12/fonts/manrope_semibold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <script>
+      try {
+        const saved = localStorage.getItem("theme");
+        if (saved === "light" || saved === "dark")
+          document.documentElement.dataset.theme = saved;
+      } catch {}
+    </script>
+    <script src="/scripts/v12.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">К содержимому</a>
+    <header class="header">
+      <div class="wrap bar">
+        <a class="logo" href="/" aria-label="Я ХУдЕЮ — главная">
+          <span>Я ХУдЕЮ<img src="/assets/v12/brand/tape.svg" width="221" height="14" alt="" /></span>
+        </a>
+        <nav aria-label="Основная навигация">
+          <a href="/features/" aria-current="page">Возможности</a>
+          <a href="/#how">Как начать</a>
+          <a href="/#screens">Экраны приложения</a>
+          <a href="/#faq">Частые вопросы</a>
+        </nav>
+        <a class="button small" href="/download/" data-release-label="Загрузка">О загрузке</a
+        ><button
+          class="theme"
+          type="button"
+          aria-label="Тёмная тема"
+          aria-pressed="false"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M20.9 13.4A9 9 0 0 1 10.6 3.1a9 9 0 1 0 10.3 10.3Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </header>
+    <main id="main" class="wrap prose section">
+      <h1>Возможности приложения</h1>
+      <p class="lead">
+        Что можно записывать и отслеживать в «Я ХУдЕЮ», от питания и
+        тренировок до сна и самочувствия.
+      </p>
+      <nav class="page-links" aria-label="Разделы возможностей">
+        <a href="#nutrition">Питание и вода</a>
+        <a href="#activity">Активность</a>
+        <a href="#progress">Прогресс</a>
+        <a href="#health">Здоровье</a>
+        <a href="#assistant">Помощник</a>
+        <a href="#data">Данные и приватность</a>
+      </nav>
+      <div class="feature-guide">
+        <section class="card" aria-labelledby="nutrition">
+          <h2 id="nutrition">Питание и вода</h2>
+          <ul>
+            <li><strong>Дневник питания.</strong> Записывайте блюда и порции,
+              смотрите калории, белки, жиры и углеводы за день.</li>
+            <li><strong>Добавление еды.</strong> Ищите продукты в своей базе
+              или вводите их вручную. Для поиска в глобальных базах нужен интернет.</li>
+            <li><strong>Вода.</strong> Отмечайте выпитое и сравнивайте итог с
+              дневной целью.</li>
+          </ul>
+        </section>
+        <section class="card" aria-labelledby="activity">
+          <h2 id="activity">Активность</h2>
+          <ul>
+            <li><strong>Шаги.</strong> Смотрите данные датчика телефона или
+              подключите Health Connect, если шаги туда передают часы или другое приложение.</li>
+            <li><strong>Тренировки.</strong> Записывайте занятия дома или в зале.
+              Для записи маршрута и дистанции на прогулке или пробежке
+              разрешите доступ к геолокации.</li>
+            <li><strong>Пульс на тренировке.</strong> По желанию подключите
+              совместимый Bluetooth-пульсометр.</li>
+          </ul>
+        </section>
+        <section class="card" aria-labelledby="progress">
+          <h2 id="progress">Прогресс</h2>
+          <ul>
+            <li><strong>Вес и замеры.</strong> Ведите историю веса, отмечайте
+              обхват талии, груди и бёдер. На графиках видно, как меняются показатели.</li>
+            <li><strong>Цель.</strong> Выберите снижение, поддержание или набор
+              веса либо ведите записи без цели. При снижении веса приложение
+              может оценить срок достижения цели по истории записей.</li>
+          </ul>
+        </section>
+        <section class="card" aria-labelledby="health">
+          <h2 id="health">Здоровье</h2>
+          <ul>
+            <li><strong>Сон.</strong> Записывайте время сна вручную или
+              смотрите историю сна из Health Connect.</li>
+            <li><strong>Препараты.</strong> Отмечайте приём назначенных
+              препаратов и инъекции. Можно настроить напоминания и разрешить
+              уведомления в Android.</li>
+            <li><strong>Самочувствие.</strong> Отмечайте настроение и уровень
+              энергии, добавляйте заметку о дне.</li>
+          </ul>
+        </section>
+        <section class="card" aria-labelledby="assistant">
+          <h2 id="assistant">Помощник</h2>
+          <p>
+            Котик открывает разделы и показывает остаток калорий, количество
+            записанной воды и последний вес. Текстовые команды обрабатываются
+            на телефоне.
+          </p>
+          <p>
+            Например, «Запиши вес 82,5» откроет форму с заполненным значением.
+            Проверьте запись и сохраните её.
+          </p>
+        </section>
+        <section class="card" aria-labelledby="data">
+          <h2 id="data">Данные и приватность</h2>
+          <ul>
+            <li><strong>Офлайн.</strong> Записи хранятся на телефоне. Еду, воду,
+              вес и тренировки можно записывать вручную без интернета.</li>
+            <li><strong>Копия и перенос.</strong> Сохраните файл резервной копии
+              для восстановления записей или перенесите данные напрямую на другой телефон.</li>
+            <li><strong>Подключения.</strong> Для синхронизации через
+              Google Drive нужен интернет. Можно разрешить обмен с Health
+              Connect по отдельным видам данных.</li>
+          </ul>
+          <p><a href="/privacy/">Как хранятся и передаются данные</a></p>
+        </section>
+      </div>
+      <p><a href="/#faq">Частые вопросы об использовании приложения</a></p>
+    </main>
+    <footer>
+      <div class="wrap footer">
+        <a class="logo" href="/" aria-label="Я ХУдЕЮ — главная">
+          <span>Я ХУдЕЮ<img src="/assets/v12/brand/tape.svg" width="221" height="14" alt="" /></span>
+        </a>
+        <div>
+          <a href="/privacy/">Конфиденциальность</a
+          ><a href="/download/">Загрузка и установка</a
+          ><a href="/#support">Поддержка</a>
+        </div>
+        <p class="muted">
+          Глобальная база:
+          <a href="https://world.openfoodfacts.org/">Open Food Facts</a>,
+          <a href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL</a> /
+          <a href="https://opendatacommons.org/licenses/dbcl/1-0/">DbCL</a>.
+          Лицензии шрифтов:
+          <a href="/assets/v12/fonts/Manrope-OFL.txt">Manrope</a>,
+          <a href="/assets/v12/fonts/PlayfairDisplay-OFL.txt"
+            >Playfair Display</a
+          >. <span data-version>Скоро для Android</span>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

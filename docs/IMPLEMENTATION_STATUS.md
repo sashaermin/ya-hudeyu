@@ -10,7 +10,7 @@ Reviewed [WEBSITE_TZ.md](https://github.com/sashaermin/ya-hudeyu-android/blob/f0
 | --- | --- |
 | §0–1, status and contact | «О загрузке» and «Скоро для Android» before release, distinct manifest errors, one support destination from every footer, contextual privacy contact and a prefilled release email draft once an address is configured and the manifest is confirmed empty. |
 | §2, design identity | Approved v1.2 assets and tokens in both themes. The landing hero uses the canonical mascot and the gallery labels all five design references. The early Today mockup stays in the gallery pending current approved imagery. |
-| §3, pages and flows | Landing page, download guide and changelog, privacy page, and legacy privacy redirect. Help is available through the existing guide and FAQ, including goals, adding food, offline use, Health Connect, backup, restore, transfer and updates. |
+| §3, pages and flows | Landing page, dedicated features guide, download guide and changelog, privacy page, and legacy privacy redirect. The FAQ retains setup and troubleshooting guidance. |
 | §4, quality and metadata | Responsive and accessibility checks, self-hosted assets, distinct descriptions and Open Graph text for each page, canonical URLs, social image, sitemap, robots and SoftwareApplication structured data. |
 | §5, process and evidence | Implementation and verification recorded on the review branch. Full-page renders at all required widths and themes are linked below. |
 
@@ -37,6 +37,25 @@ Reviewed [WEBSITE_TZ.md](https://github.com/sashaermin/ya-hudeyu-android/blob/f0
 - Shared navigation and headings use direct destination labels. The installation and version history links, release status links, support and privacy labels, and release email wording were reviewed across the three pages. A genuine release remains required for the APK action.
 - On narrow screens, the navigation uses a flex row with wider targets for the longer labels. The header remained 93 px high at 320 and 375 px, with targets at least 44 × 44 px. Header captures at 320 and 1440 px were visually inspected in both themes.
 - Playwright passed 24 responsive checks, 48 keyboard activations of the four main links across all three pages at 375 and 1440 px in both themes, and the legacy privacy redirect. Each activation revealed its destination heading below the sticky header. Twelve axe scans reported zero WCAG 2.0/2.1 A/AA violations. Gallery and FAQ keyboard checks, theme persistence, 30 release-state cases and six contact cases also passed. Static checks confirmed 62 local links and anchor destinations.
+
+### Features guide
+
+The homepage overview and its `/#features` anchor remain available. The main menu and a link in that overview open [the dedicated guide](../features/), which has six jump links and shares the site's cards, typography, and light and dark themes. The guide uses text and the existing site branding. The labelled mockups remain in the gallery.
+
+The Android implementation reference is the pinned revision above. This review checked source behavior and did not test the app on a device.
+
+| Topic | Source checked |
+| --- | --- |
+| Food and water | `NutritionScreen.kt`, `NutritionV12.kt`, `NutritionAddActionGroups.kt`, `HelpContent.kt`, `WaterTrackerStore.kt` for meals, portions, calories and macros, search and manual entry, and daily water goals. |
+| Activity | `HelpContent.kt`, `ManualWorkoutTracker.kt`, `WorkoutEntity.kt`, `WorkoutTrackingService.kt` and `MoreScreen.kt` for step sources, workouts, outdoor routes with location permission, and optional Bluetooth heart rate. |
+| Progress | `WeightScreen.kt`, `BodyMeasurementsScreen.kt`, `WeightLossPlanScreen.kt` and `HelpContent.kt` for charts, measurements, weight-goal modes and the estimated time to a weight-loss goal. |
+| Health | `SleepVitalsScreen.kt`, `MedicationScreen.kt` and `MoodCard.kt` for manual and imported sleep, medication records and reminders, and mood, energy and daily notes. |
+| Assistant | `AssistantScreen.kt` for local text commands, opening sections, reading totals and preparing a weight entry for confirmation. |
+| Data and privacy | `HelpContent.kt`, `BackupManager.kt`, `TransferScreen.kt`, `CloudSyncManager.kt` and `HealthConnectScreen.kt` for offline recording, backup and restore, transfer, and optional integrations. |
+
+Playwright passed 32 route, width and theme checks across the four pages at 320, 375, 768 and 1440 px. At 375 and 1440 px it passed 64 main-menu keyboard activations, 24 guide jump-link activations, and four activations of the homepage guide link. Sixteen axe-core WCAG A/AA scans found zero violations. Forty release-state cases and six contact cases passed. Static verification covered 133 local links and resources, all four canonical sitemap URLs, the original homepage anchor, the empty release manifest and the unset email. Four guide captures at 375 and 1440 px were visually inspected in both themes.
+
+The branch workflow now includes the guide in its mobile Lighthouse audit.
 
 ## Hosted Lighthouse
 
