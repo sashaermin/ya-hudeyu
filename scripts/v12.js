@@ -123,6 +123,13 @@ if (helpSearch) {
     const target = link && document.getElementById(link.hash.slice(1));
     if (target?.hidden) resetHelp();
   });
+  window.addEventListener("hashchange", () => {
+    const section = topics.find(({ section }) => `#${section.id}` === location.hash);
+    if (section?.section.hidden) {
+      resetHelp();
+      section.section.scrollIntoView();
+    }
+  });
   filterHelp();
   helpSearch.hidden = false;
 }
