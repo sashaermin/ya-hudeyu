@@ -35,12 +35,12 @@ Reviewed [WEBSITE_TZ.md](https://github.com/sashaermin/ya-hudeyu-android/blob/f0
 
 - «Экраны приложения» names the gallery in the shared menu and the page heading. The introduction identifies the images as mockups and explains that the finished app may look different. The early Today caption remains visible.
 - Shared navigation and headings use direct destination labels. The installation and version history links, release status links, support and privacy labels, and release email wording were reviewed across the three pages. A genuine release remains required for the APK action.
-- Four navigation columns let longer labels wrap within their targets on narrow screens. The header remained 93 px high at 320 and 375 px, with targets at least 44 × 44 px. Header captures at 320 and 1440 px were visually inspected in both themes.
+- On narrow screens, the navigation uses a flex row with wider targets for the longer labels. The header remained 93 px high at 320 and 375 px, with targets at least 44 × 44 px. Header captures at 320 and 1440 px were visually inspected in both themes.
 - Playwright passed 24 responsive checks, 48 keyboard activations of the four main links across all three pages at 375 and 1440 px in both themes, and the legacy privacy redirect. Each activation revealed its destination heading below the sticky header. Twelve axe scans reported zero WCAG 2.0/2.1 A/AA violations. Gallery and FAQ keyboard checks, theme persistence, 30 release-state cases and six contact cases also passed. Static checks confirmed 62 local links and anchor destinations.
 
 ## Hosted Lighthouse
 
-Mobile Lighthouse 13.0.3 passed on website source [`e512fc88e0cfd742f4df2de60de63539f035cebf`](https://github.com/sashaermin/ya-hudeyu/commit/e512fc88e0cfd742f4df2de60de63539f035cebf) in [run 43016340465, attempt 1](https://github.com/sashaermin/ya-hudeyu/actions/runs/43016340465/attempts/1). The subsequent verification-record commit changes only this document.
+Mobile Lighthouse 13.0.3 passed on website source [`e87c01adfb7168287188d88b275fdda5c340d556`](https://github.com/sashaermin/ya-hudeyu/commit/e87c01adfb7168287188d88b275fdda5c340d556) in [run 43020242740](https://github.com/sashaermin/ya-hudeyu/actions/runs/43020242740). The subsequent verification-record commit changes only this document.
 
 | Page | Performance | Accessibility | Best practices | SEO |
 | --- | ---: | ---: | ---: | ---: |
@@ -48,7 +48,7 @@ Mobile Lighthouse 13.0.3 passed on website source [`e512fc88e0cfd742f4df2de60de6
 | Download | 100 | 100 | 100 | 100 |
 | Privacy | 100 | 100 | 100 | 100 |
 
-Total blocking time was 80 ms on home and 0 ms on the subpages. Layout shift was 0 on home and download, and 0.009 on privacy. The [previous run](https://github.com/sashaermin/ya-hudeyu/actions/runs/43014113058) remains evidence for the earlier site revision.
+Total blocking time was 110 ms on home and 0 ms on the subpages. Layout shift was 0 on all three pages. The initial navigation revision scored 71 on home performance on both [hosted attempts](https://github.com/sashaermin/ya-hudeyu/actions/runs/43019617758), with 1,770 ms and 1,430 ms of blocking time. The passing revision uses the existing flex layout for narrow navigation. The [earlier site audit](https://github.com/sashaermin/ya-hudeyu/actions/runs/43016340465) remains historical evidence.
 
 ## Owner review and release dependencies
 
