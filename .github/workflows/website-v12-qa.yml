@@ -19,6 +19,9 @@ jobs:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
         with:
           persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - name: Run mobile Lighthouse
         run: |
           set -euo pipefail
@@ -49,6 +52,14 @@ jobs:
                   for key, category in report["categories"].items()
               }
               print(page, scores)
+              audits = report['audits']
+              keys = ('first-contentful-paint', 'largest-contentful-paint', 'speed-index', 'total-blocking-time', 'cumulative-layout-shift', 'mainthread-work-breakdown', 'render-blocking-insight', 'lcp-breakdown-insight')
+              for key in keys:
+                  if key in audits:
+                      audit = audits[key]
+                      print(key, audit.get('displayValue', ''), audit.get('errorMessage', ''))
+                      if key in ('mainthread-work-breakdown', 'lcp-breakdown-insight', 'render-blocking-insight'):
+                          print(json.dumps(audit.get('details', {}))[:2500])
               passes &= all(score is not None and score >= 90 for score in scores.values())
           raise SystemExit(0 if passes else 1)
           PY
