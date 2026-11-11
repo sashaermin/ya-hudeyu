@@ -1,6 +1,6 @@
 # Website v1.2 verification
 
-The site follows the approved Android v1.2 package and the implementation at [`c6ffc1f31e793dd7ac3c64bcbbb000fe929b26f8`](https://github.com/sashaermin/ya-hudeyu-android/commit/c6ffc1f31e793dd7ac3c64bcbbb000fe929b26f8). The tracked APK manifest is empty and the support email is unset.
+The site follows the approved Android v1.2 package and the implementation at [`c6ffc1f31e793dd7ac3c64bcbbb000fe929b26f8`](https://github.com/sashaermin/ya-hudeyu-android/commit/c6ffc1f31e793dd7ac3c64bcbbb000fe929b26f8). The tracked APK manifest is empty. The working branch configures the owner-provided support address in `CONTACT_EMAIL`.
 
 ## Specification review
 
@@ -27,7 +27,7 @@ Reviewed [WEBSITE_TZ.md](https://github.com/sashaermin/ya-hudeyu-android/blob/f0
 
 - Playwright with headless Chromium 143.0.7499.0 passed 24 route, width and theme combinations at 320, 375, 768 and 1440 px. Checks covered reflow, image and font loading, wordmark bounds, 44 px header targets, and gallery labels. The 375 px header is 93 px high and the hero is 410 px high.
 - Twelve axe-core 4.11.1 scans at 375 and 1440 px found zero WCAG 2.0/2.1 A/AA violations. The home scans were also checked with all sections rendered. Seven keyboard checks covered the skip link, mobile navigation, download anchors, support access, gallery open and Escape with focus return, and FAQ disclosure. Follow-up checks confirmed that the skip link advances keyboard focus into the main content on all three pages. Theme choice persisted on reload and the gallery could be themed independently. These are automated browser and targeted keyboard checks.
-- Thirty checks covered ten release-manifest variants across the three pages. They verified the pre-release state, valid unordered releases and same-day ties, release metadata and changelog, rejection of invalid entries, and distinct errors for unavailable release information and history. Six contact cases used an intercepted script with a synthetic address and verified visibility and the release-email subject. The tracked manifest is empty and the address remains unset.
+- Thirty checks covered ten release-manifest variants across the three pages. They verified the pre-release state, valid unordered releases and same-day ties, release metadata and changelog, rejection of invalid entries, and distinct errors for unavailable release information and history. Six contact cases used an intercepted script with a synthetic address and verified visibility and the release-email subject before the support address was configured.
 - The legacy privacy redirect passed browser navigation. Static checks verified 103 local references, anchor targets, canonical metadata, sitemap, robots and the absence of external scripts. The three attribution and licence URLs resolved. Google's Russian Pixel help confirmed the installation settings route.
 - [Full-page renders](renders/) cover home, download and privacy at 375, 768 and 1440 px in both themes. All 18 were inspected for layout and completeness on `e512fc88e0cfd742f4df2de60de63539f035cebf` before the navigation wording update. The previous [first-screen review](https://github.com/sashaermin/ya-hudeyu/tree/9e958a34f6d0dbcc6d77d9af9257ed8d371c9b57/docs/renders) and Android emulator captures remain available as historical evidence.
 
@@ -53,9 +53,15 @@ The guide's claim sources were reviewed at the pinned Android revision above and
 | Assistant | `AssistantScreen.kt` for local text commands, opening sections, reading totals and preparing a weight entry for confirmation. |
 | Data and privacy | `HelpContent.kt`, `BackupManager.kt`, `TransferScreen.kt`, `CloudSyncManager.kt` and `HealthConnectScreen.kt` for offline recording, backup and restore, transfer, and optional integrations. |
 
-Playwright passed 32 route, width and theme checks across the four pages at 320, 375, 768 and 1440 px. At 375 and 1440 px it passed 64 main-menu keyboard activations, 24 guide jump-link activations, and four activations of the homepage guide link. Sixteen axe-core WCAG A/AA scans found zero violations. Forty release-state cases and six contact cases passed. Static verification covered 133 local links and resources, all four canonical sitemap URLs, the original homepage anchor, the empty release manifest and the unset email. Four guide captures at 375 and 1440 px were visually inspected in both themes.
+Playwright passed 32 route, width and theme checks across the four pages at 320, 375, 768 and 1440 px. At 375 and 1440 px it passed 64 main-menu keyboard activations, 24 guide jump-link activations, and four activations of the homepage guide link. Sixteen axe-core WCAG A/AA scans found zero violations. Forty release-state cases and six contact cases passed. Static verification covered 133 local links and resources, all four canonical sitemap URLs, the original homepage anchor and the empty release manifest. Four guide captures at 375 and 1440 px were visually inspected in both themes.
 
 The branch workflow now includes the guide in its mobile Lighthouse audit.
+
+### Support contacts and bug reports
+
+The homepage support section displays the configured address and offers «Сообщить об ошибке». The action opens a mail draft with prompts for the problem, reproduction steps, device, Android version and app version. The nearby note explains that screenshots can be attached in the mail app. The privacy page opens a draft with a privacy-specific subject. All four footers link to the same support section.
+
+Playwright passed 32 layout checks in both themes across the four pages at 320, 375, 768 and 1440 px, 32 generated mail-link checks, four footer keyboard paths and eight axe WCAG A/AA scans with zero violations. The tests checked empty, populated, invalid and unavailable manifests and the unset-contact fallback. The repository's APK manifest remains empty. Mail links were decoded and checked in the browser. Sending and attachment handling are performed by the visitor's email app.
 
 ## Hosted Lighthouse
 
@@ -72,7 +78,7 @@ The guide scored 100 in all categories on both hosted attempts. [Attempt 1](http
 
 ## Owner review and release dependencies
 
-- **Support email.** Supply the address to enable contact links. The configuration still uses the placeholder.
+- **Support update.** Review and approve publication of the configured address and the email-based bug-report action.
 - **Signed APK and release metadata.** Provide the signed APK and its [manifest fields](RELEASES.md). Real installation and in-place update testing on Android requires that build. The emulator capture verifies settings screens only.
 - **Approved current screenshots or footage.** Approve current v1.2 app screenshots for the gallery. An optional demonstration video requires approved real footage.
 - **Owner visual review and approval.** Review the current renders and approve any merge, publication or deployment separately. Browser checks, screenshots and Lighthouse are verification evidence. Owner acceptance is pending.

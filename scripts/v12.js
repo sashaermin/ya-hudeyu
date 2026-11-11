@@ -1,6 +1,6 @@
 "use strict";
 
-const CONTACT_EMAIL = "CONTACT_EMAIL";
+const CONTACT_EMAIL = "sashaermin@gmail.com";
 const contactAvailable = CONTACT_EMAIL !== "CONTACT_EMAIL";
 const root = document.documentElement;
 const systemTheme = matchMedia("(prefers-color-scheme: dark)");
@@ -78,16 +78,46 @@ if (viewer && typeof viewer.showModal === "function") {
 }
 
 if (contactAvailable) {
+  const contacts = {
+    support: { label: CONTACT_EMAIL },
+    privacy: {
+      label: "Написать по вопросам конфиденциальности",
+      subject: "Вопрос о конфиденциальности «Я ХУдЕЮ»",
+    },
+    bug: {
+      label: "Сообщить об ошибке",
+      className: "button secondary",
+      subject: "Ошибка в приложении «Я ХУдЕЮ»",
+      body: [
+        "Что произошло и чего вы ожидали:",
+        "",
+        "Шаги для воспроизведения:",
+        "1. ",
+        "",
+        "Устройство:",
+        "Версия Android:",
+        "Версия приложения:",
+      ].join("\r\n"),
+    },
+    release: {
+      label: "Спросить о выпуске по почте",
+      subject: "Сообщите о выходе «Я ХУдЕЮ»",
+    },
+  };
   document.querySelectorAll("[data-contact]").forEach((placeholder) => {
+    const { label, className, subject, body } =
+      contacts[placeholder.dataset.contact] ?? contacts.support;
+    const fields = [];
+    if (subject) fields.push(`subject=${encodeURIComponent(subject)}`);
+    if (body) fields.push(`body=${encodeURIComponent(body)}`);
+
     const link = document.createElement("a");
-    const aboutRelease = placeholder.dataset.contact === "release";
-    link.textContent = aboutRelease ? "Спросить о выпуске по почте" : "Написать в поддержку";
-    const subject = aboutRelease
-      ? "?subject=" + encodeURIComponent("Сообщите о выходе «Я ХУдЕЮ»")
-      : "";
-    link.href = `mailto:${CONTACT_EMAIL}${subject}`;
+    link.textContent = label;
+    if (className) link.className = className;
+    link.href = `mailto:${CONTACT_EMAIL}${fields.length ? "?" + fields.join("&") : ""}`;
     placeholder.replaceChildren(link);
   });
+  document.querySelector("[data-bug-report]")?.removeAttribute("hidden");
 }
 
 function validRelease(entry) {
