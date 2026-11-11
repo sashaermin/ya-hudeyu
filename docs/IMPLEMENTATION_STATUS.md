@@ -1,6 +1,6 @@
 # Website v1.2 verification
 
-The site follows the approved Android v1.2 package and the implementation at [`c6ffc1f31e793dd7ac3c64bcbbb000fe929b26f8`](https://github.com/sashaermin/ya-hudeyu-android/commit/c6ffc1f31e793dd7ac3c64bcbbb000fe929b26f8). The tracked APK manifest is empty. The working branch configures the owner-provided support address in `CONTACT_EMAIL`.
+The site follows the approved Android v1.2 package and the implementation at [`c6ffc1f31e793dd7ac3c64bcbbb000fe929b26f8`](https://github.com/sashaermin/ya-hudeyu-android/commit/c6ffc1f31e793dd7ac3c64bcbbb000fe929b26f8). The tracked APK manifest is empty. The owner-provided support address is configured in `CONTACT_EMAIL`.
 
 ## Specification review
 
@@ -10,7 +10,7 @@ Reviewed [WEBSITE_TZ.md](https://github.com/sashaermin/ya-hudeyu-android/blob/f0
 | --- | --- |
 | §0–1, status and contact | «О загрузке» and «Скоро для Android» before release, distinct manifest errors, one support destination from every footer, contextual privacy contact and a prefilled release email draft once an address is configured and the manifest is confirmed empty. |
 | §2, design identity | Approved v1.2 assets and tokens in both themes. The landing hero uses the canonical mascot and the gallery labels all five design references. The early Today mockup stays in the gallery pending current approved imagery. |
-| §3, pages and flows | Landing page, dedicated features guide, download guide and changelog, privacy page, and legacy privacy redirect. The FAQ retains setup and troubleshooting guidance. |
+| §3, pages and flows | Landing page, dedicated features and Help guides, download guide and changelog, privacy page, and legacy privacy redirect. The FAQ provides short answers and links to the relevant Help topics. |
 | §4, quality and metadata | Responsive and accessibility checks, self-hosted assets, distinct descriptions and Open Graph text for each page, canonical URLs, social image, sitemap, robots and SoftwareApplication structured data. |
 | §5, process and evidence | Implementation and verification recorded on the review branch. Full-page renders at all required widths and themes are linked below. |
 
@@ -59,9 +59,28 @@ The branch workflow now includes the guide in its mobile Lighthouse audit.
 
 ### Support contacts and bug reports
 
-The homepage support section displays the configured address and offers «Сообщить об ошибке». The action opens a mail draft with prompts for the problem, reproduction steps, device, Android version and app version. The nearby note explains that screenshots can be attached in the mail app. The privacy page opens a draft with a privacy-specific subject. All four footers link to the same support section.
+The homepage support section displays the configured address and offers «Сообщить об ошибке». The action opens a mail draft with prompts for the problem, reproduction steps, device, Android version and app version. The nearby note explains that screenshots can be attached in the mail app. The privacy page opens a draft with a privacy-specific subject. Every footer links to the same support section.
 
 Playwright passed 32 layout checks in both themes across the four pages at 320, 375, 768 and 1440 px, 32 generated mail-link checks, four footer keyboard paths and eight axe WCAG A/AA scans with zero violations. The tests checked empty, populated, invalid and unavailable manifests and the unset-contact fallback. The repository's APK manifest remains empty. Mail links were decoded and checked in the browser. Sending and attachment handling are performed by the visitor's email app.
+
+The support update was approved and published from `main` at [`94a058631b24825b9486613b9ea6c58ebacf6026`](https://github.com/sashaermin/ya-hudeyu/commit/94a058631b24825b9486613b9ea6c58ebacf6026) in [deployment 43042521348](https://github.com/sashaermin/ya-hudeyu/actions/runs/43042521348). The Help update starts from that revision on `chatgpt/website-v12`.
+
+### Help and documentation
+
+The main navigation links to [«Помощь»](../help/). The homepage keeps «Как начать», the FAQ and the support destination. Help contains nine short step-by-step topics and links to the existing installation illustrations, release history, privacy page and support. The search filters the page locally, announces results and keeps all topics readable when JavaScript is disabled. The release manifest controls the pre-release notice.
+
+The instructions were reviewed against Android source at [`e1fbf724ae520c1216a208bf1c145754d27e295e`](https://github.com/sashaermin/ya-hudeyu-android/commit/e1fbf724ae520c1216a208bf1c145754d27e295e).
+
+| Topic | Source reviewed |
+| --- | --- |
+| Goal and progress | `MainActivity.kt`, `OnboardingScreen.kt`, `MoreScreen.kt`, `WeightLossPlanScreen.kt`, `AnalyticsScreen.kt` and `WeightScreen.kt` for weight modes, the plan route, recording weight and opening charts. |
+| Food, water and workouts | `NutritionScreen.kt`, `NutritionAddActionGroups.kt`, `NutritionV12.kt`, `TodayScreen.kt`, `ActivityHubScreen.kt`, `WorkoutScreen.kt` and `HelpContent.kt` for recording food, water and workouts and the location permission for outdoor routes. |
+| Health Connect and local data | `HealthConnectScreen.kt`, `MoreScreen.kt`, `ProfileScreen.kt`, `BackupManager.kt`, `TransferScreen.kt` and `HelpContent.kt` for permissions, manual sync, ZIP export, restore and the Wi-Fi transfer flow with QR and code confirmation. |
+| Installation and updates | `app/build.gradle.kts`, the existing Android 14 settings captures and the current download guide. A signed release is required for install and in-place update testing. |
+
+Playwright with Chromium 143 passed 40 layout checks across five routes at 320, 375, 768 and 1440 px in both themes. It passed 16 keyboard entries from the main menu to Help, 32 search cases and four keyboard search flows including an empty query, no results and focus after clearing. Nine topic and FAQ deep links and four keyboard routes to the existing support address and bug-report draft passed. All 24 axe-core 4.11.1 WCAG 2.0/2.1 A/AA scans, including the no-results state, reported zero violations. Four Help views at 375 and 1440 px were visually inspected. Empty, populated, invalid and unavailable manifest cases passed for Help and download. A no-JavaScript check verified topic visibility and anchor navigation. Static checks found 184 valid local references and five sitemap URLs. Search generated no network requests and the tracked manifest remained empty. The branch Lighthouse workflow includes Help.
+
+Android guidance is source-reviewed. On the signed release, confirm exact labels and navigation for the first records, the Health Connect flow with a supported source, ZIP export and restore, two-device QR transfer, and APK installation and update. Device settings and permissions may vary.
 
 ## Hosted Lighthouse
 
@@ -78,9 +97,8 @@ The guide scored 100 in all categories on both hosted attempts. [Attempt 1](http
 
 ## Owner review and release dependencies
 
-- **Support update.** Review and approve publication of the configured address and the email-based bug-report action.
 - **Signed APK and release metadata.** Provide the signed APK and its [manifest fields](RELEASES.md). Real installation and in-place update testing on Android requires that build. The emulator capture verifies settings screens only.
 - **Approved current screenshots or footage.** Approve current v1.2 app screenshots for the gallery. An optional demonstration video requires approved real footage.
-- **Owner visual review and approval.** Review the current renders and approve any merge, publication or deployment separately. Browser checks, screenshots and Lighthouse are verification evidence. Owner acceptance is pending.
+- **Help review and publication.** Review the Help guide and approve its publication. Browser checks and visual inspection cover the web flows. Release-device verification remains pending.
 
 Independent work in the current scope is complete. Release-specific and publication work depends on the inputs and approvals above.

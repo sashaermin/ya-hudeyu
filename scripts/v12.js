@@ -77,6 +77,56 @@ if (viewer && typeof viewer.showModal === "function") {
     .addEventListener("click", () => viewer.close());
 }
 
+const helpSearch = document.querySelector(".help-search");
+if (helpSearch) {
+  const input = helpSearch.querySelector("input");
+  const clear = helpSearch.querySelector("button");
+  const status = helpSearch.querySelector('[role="status"]');
+  const links = document.querySelector("[data-help-links]");
+  const topicList = document.querySelector(".help-topics");
+  const normalize = (value) => value.toLocaleLowerCase("ru").replace(/ё/g, "е");
+  const topics = Array.from(topicList.children, (section) => ({
+    section,
+    link: links.querySelector(`a[href="#${section.id}"]`),
+    text: normalize(`${section.textContent} ${section.dataset.helpKeywords}`),
+  }));
+
+  function filterHelp() {
+    const terms = normalize(input.value).trim().split(/\s+/).filter(Boolean);
+    let count = 0;
+    for (const { section, link, text } of topics) {
+      const matches = terms.every((term) => text.includes(term));
+      section.hidden = link.hidden = !matches;
+      if (matches) count++;
+    }
+    links.hidden = count === 0;
+    status.textContent = !terms.length
+      ? "Показаны все темы."
+      : count
+        ? `Найдено тем: ${count}.`
+        : "Ничего не найдено. Попробуйте другое слово или очистите поиск.";
+  }
+
+  function resetHelp() {
+    input.value = "";
+    filterHelp();
+  }
+
+  helpSearch.addEventListener("submit", (event) => event.preventDefault());
+  input.addEventListener("input", filterHelp);
+  clear.addEventListener("click", () => {
+    resetHelp();
+    input.focus();
+  });
+  topicList.addEventListener("click", (event) => {
+    const link = event.target.closest('a[href^="#"]');
+    const target = link && document.getElementById(link.hash.slice(1));
+    if (target?.hidden) resetHelp();
+  });
+  filterHelp();
+  helpSearch.hidden = false;
+}
+
 if (contactAvailable) {
   const contacts = {
     support: { label: CONTACT_EMAIL },

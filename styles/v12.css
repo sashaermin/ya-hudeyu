@@ -440,6 +440,33 @@ footer {
 .feature-guide .card > :last-child {
   margin-bottom: 0;
 }
+.help-search-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-block: 8px;
+}
+.help-search input {
+  flex: 1 1 16rem;
+  min-width: 0;
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1px solid var(--muted);
+  border-radius: 18px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+}
+.help-search input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+.help-topics {
+  grid-template-columns: 1fr;
+}
+.help-topics ol {
+  padding-inline-start: 1.4em;
+}
 .release h2 {
   margin-top: 0;
 }

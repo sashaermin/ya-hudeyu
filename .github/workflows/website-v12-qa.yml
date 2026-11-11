@@ -31,7 +31,7 @@ jobs:
           server_pid=$!
           trap 'kill "$server_pid"' EXIT
           curl --retry 10 --retry-connrefused --silent --fail http://127.0.0.1:8765/ -o /dev/null
-          for page in home features download privacy; do
+          for page in home features help download privacy; do
             route="$page/"
             if [ "$page" = home ]; then route=""; fi
             "$RUNNER_TEMP/website-qa/node_modules/.bin/lighthouse" "http://127.0.0.1:8765/$route" \
@@ -45,7 +45,7 @@ jobs:
           from pathlib import Path
 
           passes = True
-          for page in ("home", "features", "download", "privacy"):
+          for page in ("home", "features", "help", "download", "privacy"):
               report = json.loads((Path(os.environ["RUNNER_TEMP"]) / f"{page}.json").read_text())
               scores = {
                   key: None if category["score"] is None else round(category["score"] * 100)

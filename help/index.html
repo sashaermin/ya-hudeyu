@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Помощь — Я ХУдЕЮ</title>
+    <meta
+      name="description"
+      content="Инструкции для «Я ХУдЕЮ»: первые записи, Health Connect, резервные копии, перенос данных и обновление."
+    />
+    <link rel="canonical" href="https://yahudeyu-app.ru/help/" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Помощь — Я ХУдЕЮ" />
+    <meta
+      property="og:description"
+      content="Первые записи, Health Connect, резервные копии, перенос данных и обновление."
+    />
+    <meta property="og:url" content="https://yahudeyu-app.ru/help/" />
+    <meta
+      property="og:image"
+      content="https://yahudeyu-app.ru/assets/v12/og.png"
+    />
+    <meta property="og:image:alt" content="Я ХУдЕЮ и котик в фиолетовом худи" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="theme-color"
+      content="#FFF8F6"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0D1025"
+      media="(prefers-color-scheme: dark)"
+    />
+    <link rel="icon" href="/assets/v12/favicon.png" />
+    <link rel="stylesheet" href="/styles/v12.css" />
+    <link
+      rel="preload"
+      href="/assets/v12/fonts/manrope_regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/v12/fonts/playfair_display_bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/v12/fonts/manrope_semibold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <script>
+      try {
+        const saved = localStorage.getItem("theme");
+        if (saved === "light" || saved === "dark")
+          document.documentElement.dataset.theme = saved;
+      } catch {}
+    </script>
+    <script src="/scripts/v12.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">К содержимому</a>
+    <header class="header">
+      <div class="wrap bar">
+        <a class="logo" href="/" aria-label="Я ХУдЕЮ — главная">
+          <span>Я ХУдЕЮ<img src="/assets/v12/brand/tape.svg" width="221" height="14" alt="" /></span>
+        </a>
+        <nav aria-label="Основная навигация">
+          <a href="/features/">Возможности</a>
+          <a href="/help/" aria-current="page">Помощь</a>
+          <a href="/#screens">Экраны приложения</a>
+          <a href="/#faq">Частые вопросы</a>
+        </nav>
+        <a class="button small" href="/download/" data-release-label="Загрузка">О загрузке</a
+        ><button
+          class="theme"
+          type="button"
+          aria-label="Тёмная тема"
+          aria-pressed="false"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M20.9 13.4A9 9 0 0 1 10.6 3.1a9 9 0 1 0 10.3 10.3Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </header>
+    <main id="main" class="wrap prose section">
+      <h1>Помощь</h1>
+      <p class="lead">Как начать вести дневник, подключить данные с часов и сохранить записи при смене телефона.</p>
+      <p class="muted" data-release-default>
+        <span data-release-status>Приложение готовится к выпуску.</span>
+        Названия и расположение пунктов могут измениться.
+      </p>
+      <p><a href="/#support">Написать в поддержку или сообщить об ошибке</a></p>
+
+      <form class="help-search" role="search" aria-label="Поиск по справке" hidden>
+        <label for="help-query"><strong>Поиск по справке</strong></label>
+        <div class="help-search-controls">
+          <input id="help-query" type="search" placeholder="Например, резервная копия" autocomplete="off" />
+          <button class="button small secondary" type="button">Очистить</button>
+        </div>
+        <p class="muted" role="status" aria-atomic="true">Показаны все темы.</p>
+      </form>
+
+      <nav class="page-links" aria-label="Темы справки" data-help-links>
+        <a href="#goal">Цель</a>
+        <a href="#food-water">Еда и вода</a>
+        <a href="#activity">Тренировки</a>
+        <a href="#progress">Прогресс</a>
+        <a href="#health-connect">Health Connect</a>
+        <a href="#backup">Резервная копия</a>
+        <a href="#transfer">Перенос данных</a>
+        <a href="#install">Установка</a>
+        <a href="#update">Обновление</a>
+      </nav>
+
+      <div class="feature-guide help-topics">
+        <section class="card" id="goal" aria-labelledby="goal-title" data-help-keywords="онбординг настройка похудение набор поддержание вес">
+          <h2 id="goal-title">Как задать или изменить цель</h2>
+          <ol>
+            <li>При первом запуске выберите режим: «Снизить вес», «Удерживать вес», «Набрать вес» или «Без цели по весу».</li>
+            <li>Чтобы изменить цель позже, откройте «Ещё» → «План» и измените настройки в разделе «План по весу».</li>
+          </ol>
+        </section>
+        <section class="card" id="food-water" aria-labelledby="food-water-title" data-help-keywords="еда дневник прием пищи калории кбжу завтрак обед ужин питье стакан">
+          <h2 id="food-water-title">Как записать еду и воду</h2>
+          <ol>
+            <li>В «Питании» выберите день и нажмите «Добавить еду».</li>
+            <li>В «Поиске» найдите продукт. Если его нет в списке, выберите «Вручную» и введите данные с упаковки. Укажите порцию и сохраните запись.</li>
+            <li>Чтобы записать воду, на экране «Сегодня» нажмите «+» → «Вода» и выберите объём. Если учёт воды включён, в «Питании» на карточке «Вода» можно нажать «+250 мл».</li>
+          </ol>
+        </section>
+        <section class="card" id="activity" aria-labelledby="activity-title" data-help-keywords="записать активность шаги бег ходьба зал gps геолокация">
+          <h2 id="activity-title">Как записать тренировку</h2>
+          <ol>
+            <li>Откройте «Активность» и нажмите «Начать тренировку».</li>
+            <li>Выберите вид тренировки и начните запись. Для записи маршрута на улице понадобится доступ к геолокации.</li>
+            <li>По окончании завершите тренировку и проверьте запись в истории тренировок.</li>
+          </ol>
+        </section>
+        <section class="card" id="progress" aria-labelledby="progress-title" data-help-keywords="измерения динамика статистика записать взвешивание">
+          <h2 id="progress-title">Как посмотреть изменения веса</h2>
+          <ol>
+            <li>Откройте «Прогресс». Чтобы добавить первое измерение, нажмите «Записать» в блоке веса.</li>
+            <li>Откройте «Графики» и выберите период, за который хотите посмотреть изменения.</li>
+          </ol>
+        </section>
+        <section class="card" id="health-connect" aria-labelledby="health-connect-title" data-help-keywords="хелс коннект healthconnect фитнес браслет шаги сон пульс синхронизация импорт разрешения">
+          <h2 id="health-connect-title">Как подключить Health Connect</h2>
+          <ol>
+            <li>Откройте «Ещё» → «Health Connect». Если сервис недоступен, проверьте его состояние на этом экране.</li>
+            <li>Нажмите «Разрешить доступ» и выберите показатели, которыми хотите обмениваться. Например, разрешите чтение шагов или веса.</li>
+            <li>Убедитесь, что приложение часов записывает нужные показатели в Health Connect. Вернитесь в «Я ХУдЕЮ» и нажмите «Синхронизировать сейчас».</li>
+          </ol>
+          <p class="muted">Набор данных зависит от устройства, источника и выданных разрешений. Дневник можно вести вручную без подключения.</p>
+        </section>
+        <section class="card" id="backup" aria-labelledby="backup-title" data-help-keywords="бэкап бекап backup резервная копия восстановление восстановить экспорт zip сохранить">
+          <h2 id="backup-title">Как сохранить копию и восстановить записи</h2>
+          <ol>
+            <li>Откройте «Ещё» → «Резервные копии». В блоке «Локальные копии» нажмите «Экспортировать» и выберите место для ZIP-файла. Аккаунт Google для этого не нужен.</li>
+            <li>Чтобы загрузить записи из копии, в том же блоке нажмите «Восстановить», выберите файл и прочитайте предупреждение перед подтверждением.</li>
+          </ol>
+          <p class="muted">Восстановление заменяет текущие записи содержимым файла. Если они вам нужны, заранее экспортируйте отдельную копию.</p>
+        </section>
+        <section class="card" id="transfer" aria-labelledby="transfer-title" data-help-keywords="перенести новый телефон старый смартфон nearby qr вай фай wifi гугл google диск drive">
+          <h2 id="transfer-title">Как перенести записи на новый телефон</h2>
+          <ol>
+            <li>На обоих телефонах откройте «Ещё» → «Перенос данных». На новом выберите получение данных, на старом — отправку.</li>
+            <li>Подключите оба телефона к одной сети Wi-Fi и выберите перенос через QR-код. Старым телефоном отсканируйте QR-код с экрана нового. Сверьте код подтверждения на обоих устройствах.</li>
+            <li>На новом телефоне проверьте полученные данные и подтвердите замену. Разрешения Android на новом устройстве выдаются заново.</li>
+          </ol>
+          <p>Можно также перенести ZIP-файл и <a href="#backup">восстановить записи из копии</a>.</p>
+        </section>
+        <section class="card" id="install" aria-labelledby="install-title" data-help-keywords="установить скачать apk андроид android загрузить выпуск">
+          <h2 id="install-title">Как установить приложение после выпуска</h2>
+          <ol>
+            <li>Проверьте наличие официального APK на <a href="/download/">странице загрузки</a>.</li>
+            <li>Когда файл станет доступен, откройте скачанный APK. Если Android запросит разрешение для браузера или файлового менеджера, следуйте <a href="/download/#install">инструкции по установке</a>.</li>
+          </ol>
+        </section>
+        <section class="card" id="update" aria-labelledby="update-title" data-help-keywords="обновить версия changelog релиз apk обновления">
+          <h2 id="update-title">Как проверить обновление и сохранить записи</h2>
+          <ol>
+            <li>Посмотрите <a href="/download/#releases">историю версий</a> и проверьте, появился ли новый выпуск.</li>
+            <li>Перед обновлением <a href="#backup">сохраните резервную копию</a>.</li>
+            <li>Установите новый официальный APK поверх текущей версии. Для обновления Android проверяет, что подпись приложения совпадает.</li>
+          </ol>
+        </section>
+      </div>
+
+      <nav class="page-links" aria-label="Другие материалы">
+        <a href="/#faq">Частые вопросы</a>
+        <a href="/privacy/">Конфиденциальность</a>
+      </nav>
+    </main>
+    <footer>
+      <div class="wrap footer">
+        <a class="logo" href="/" aria-label="Я ХУдЕЮ — главная">
+          <span>Я ХУдЕЮ<img src="/assets/v12/brand/tape.svg" width="221" height="14" alt="" /></span>
+        </a>
+        <div>
+          <a href="/privacy/">Конфиденциальность</a
+          ><a href="/download/">Загрузка и установка</a
+          ><a href="/#support">Поддержка</a>
+        </div>
+        <p class="muted">
+          Глобальная база:
+          <a href="https://world.openfoodfacts.org/">Open Food Facts</a>,
+          <a href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL</a> /
+          <a href="https://opendatacommons.org/licenses/dbcl/1-0/">DbCL</a>.
+          Лицензии шрифтов:
+          <a href="/assets/v12/fonts/Manrope-OFL.txt">Manrope</a>,
+          <a href="/assets/v12/fonts/PlayfairDisplay-OFL.txt"
+            >Playfair Display</a
+          >. <span data-version>Скоро для Android</span>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
