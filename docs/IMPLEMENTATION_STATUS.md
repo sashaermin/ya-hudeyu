@@ -42,7 +42,7 @@ Reviewed [WEBSITE_TZ.md](https://github.com/sashaermin/ya-hudeyu-android/blob/f0
 
 The homepage overview and its `/#features` anchor remain available. The main menu and a link in that overview open [the dedicated guide](../features/), which has six jump links and shares the site's cards, typography, and light and dark themes. The guide uses text and the existing site branding. The labelled mockups remain in the gallery.
 
-The Android implementation reference is the pinned revision above. This review checked source behavior and did not test the app on a device.
+The guide's claim sources were reviewed at the pinned Android revision above and checked against the newer [Android HEAD `9d0cd8e69f511cf60f6d92d60f03fb2bdee3ba47`](https://github.com/sashaermin/ya-hudeyu-android/commit/9d0cd8e69f511cf60f6d92d60f03fb2bdee3ba47). The only Kotlin change between them was an icon import in the shared theme components. This was source verification. Release-device testing remains pending.
 
 | Topic | Source checked |
 | --- | --- |
@@ -59,15 +59,16 @@ The branch workflow now includes the guide in its mobile Lighthouse audit.
 
 ## Hosted Lighthouse
 
-Mobile Lighthouse 13.0.3 passed on website source [`e87c01adfb7168287188d88b275fdda5c340d556`](https://github.com/sashaermin/ya-hudeyu/commit/e87c01adfb7168287188d88b275fdda5c340d556) in [run 43020242740](https://github.com/sashaermin/ya-hudeyu/actions/runs/43020242740). The subsequent verification-record commit changes only this document.
+Mobile Lighthouse 13.0.3 passed on website source [`0f1e3181f21d05ba1f48428d36b7c0c2d5874b10`](https://github.com/sashaermin/ya-hudeyu/commit/0f1e3181f21d05ba1f48428d36b7c0c2d5874b10) in [run 43034485307, attempt 2](https://github.com/sashaermin/ya-hudeyu/actions/runs/43034485307/attempts/2). The subsequent verification-record commit changes only this document.
 
 | Page | Performance | Accessibility | Best practices | SEO |
 | --- | ---: | ---: | ---: | ---: |
 | Home | 98 | 100 | 100 | 100 |
+| Features | 100 | 100 | 100 | 100 |
 | Download | 100 | 100 | 100 | 100 |
 | Privacy | 100 | 100 | 100 | 100 |
 
-Total blocking time was 110 ms on home and 0 ms on the subpages. Layout shift was 0 on all three pages. The initial navigation revision scored 71 on home performance on both [hosted attempts](https://github.com/sashaermin/ya-hudeyu/actions/runs/43019617758), with 1,770 ms and 1,430 ms of blocking time. The passing revision uses the existing flex layout for narrow navigation. The [earlier site audit](https://github.com/sashaermin/ya-hudeyu/actions/runs/43016340465) remains historical evidence.
+The guide scored 100 in all categories on both hosted attempts. [Attempt 1](https://github.com/sashaermin/ya-hudeyu/actions/runs/43034485307/attempts/1) measured 78 for home performance and 910 ms total blocking time. On the same commit, attempt 2 measured 98 and 40 ms for home, and 0 ms total blocking time on the other pages. The [navigation audit](https://github.com/sashaermin/ya-hudeyu/actions/runs/43020242740) remains evidence for the previous revision.
 
 ## Owner review and release dependencies
 
