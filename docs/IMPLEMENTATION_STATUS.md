@@ -1,6 +1,18 @@
 # Website v1.2 verification
 
-The design and release-state update follows the approved Android v1.2 package and the implementation at [`c6ffc1f31e793dd7ac3c64bcbbb000fe929b26f8`](https://github.com/sashaermin/ya-hudeyu-android/commit/c6ffc1f31e793dd7ac3c64bcbbb000fe929b26f8). The tracked APK manifest is empty and the support email is unset.
+The site follows the approved Android v1.2 package and the implementation at [`c6ffc1f31e793dd7ac3c64bcbbb000fe929b26f8`](https://github.com/sashaermin/ya-hudeyu-android/commit/c6ffc1f31e793dd7ac3c64bcbbb000fe929b26f8). The tracked APK manifest is empty and the support email is unset.
+
+## Specification review
+
+Reviewed [WEBSITE_TZ.md](https://github.com/sashaermin/ya-hudeyu-android/blob/f0ec9c49e398c036c30ed9851d84b7e57a22948b/consulting/website/WEBSITE_TZ.md) and the [consultation decisions](https://github.com/sashaermin/ya-hudeyu-android/blob/f0ec9c49e398c036c30ed9851d84b7e57a22948b/consulting/website/WEBSITE_CONSULTING.md) at consultation revision `f0ec9c49e398c036c30ed9851d84b7e57a22948b`. Website starting HEAD was `9e958a34f6d0dbcc6d77d9af9257ed8d371c9b57`. The [initial site audit](WEBSITE_AUDIT.md) remains the record of the migration from the old production design.
+
+| Scope | Verified implementation |
+| --- | --- |
+| §0–1, status and contact | Honest coming-soon and manifest-error states, one support destination from every footer, contextual privacy contact and a prefilled release email draft once an address is configured and the manifest is confirmed empty. |
+| §2, design identity | Approved v1.2 assets and tokens in both themes. The landing hero uses the canonical mascot and the gallery labels all five design references. The early Today mockup stays in the gallery pending current approved imagery. |
+| §3, pages and flows | Landing page, download guide and changelog, privacy page, and legacy privacy redirect. The landing steps and FAQ cover setting goals, adding food, offline use, Health Connect, backup, restore, transfer and updates. The optional help page is covered by the existing guide and FAQ. |
+| §4, quality and metadata | Responsive and accessibility checks, self-hosted assets, distinct descriptions and Open Graph text for each page, canonical URLs, social image, sitemap, robots and SoftwareApplication structured data. |
+| §5, process and evidence | Implementation and verification recorded on the review branch. Full-page renders at all required widths and themes are linked below. |
 
 ## Brand and Android source comparison
 
@@ -13,23 +25,21 @@ The design and release-state update follows the approved Android v1.2 package an
 
 ## Targeted browser verification
 
-- Playwright with headless Chromium 143.0.7499.0 passed 24 route, width and theme combinations at 320, 375, 768 and 1440 px. Checks covered reflow, font and image loading, wordmark bounds, 44 px header targets and gallery labels. At 375 px the header measured 93 px versus 143 px previously. The homepage hero measured 410 px versus 1,107 px, and the first feature card measured 106 px versus 224 px.
-- Twelve axe-core 4.11.1 scans at 375 and 1440 px found zero WCAG 2.0/2.1 A/AA violations. Keyboard checks covered the skip link, mobile navigation and sticky-header anchor offset, gallery open, Escape and focus return, and FAQ disclosure. The theme persisted after reload, and the gallery theme could be selected independently. This covers automated checks and targeted keyboard interactions.
-- Twenty-four release-state checks covered eight manifest variants on all three pages. The valid fixture checked unsorted dates and the publisher's order within a day. The empty, invalid and unavailable cases left APK actions hidden. Shared status and link labels update across pages. The home and download pages display the latest APK and metadata when the manifest is valid. The privacy page links to the download page. See the [manifest contract](RELEASES.md).
-- [Mobile first-screen renders](renders/v12-polish-mobile.webp) cover all three pages in both themes. [Desktop first-screen renders](renders/v12-polish-desktop.webp) cover the homepage in both themes. The previous 18 full-page renders remain in [the earlier checkpoint](https://github.com/sashaermin/ya-hudeyu/tree/0173d6ca070493d724958b7efd056688ce52ad1e/docs/renders).
+- Playwright with headless Chromium 143.0.7499.0 passed 24 route, width and theme combinations at 320, 375, 768 and 1440 px. Checks covered reflow, image and font loading, wordmark bounds, 44 px header targets, and gallery labels. The 375 px header is 93 px high and the hero is 410 px high.
+- Twelve axe-core 4.11.1 scans at 375 and 1440 px found zero WCAG 2.0/2.1 A/AA violations. The home scans were also checked with all sections rendered. Seven keyboard checks covered the skip link, mobile navigation, download anchors, support access, gallery open and Escape with focus return, and FAQ disclosure. Theme choice persisted on reload and the gallery could be themed independently. These are automated browser and targeted keyboard checks.
+- Thirty checks covered ten release-manifest variants across the three pages. They verified the pre-release state, valid unordered releases and same-day ties, release metadata and changelog, rejection of invalid entries, and distinct errors for unavailable release information and history. Six contact cases used an intercepted script with a synthetic address and verified visibility and the release-email subject. The tracked manifest is empty and the address remains unset.
+- The legacy privacy redirect passed browser navigation. Static checks verified 103 local references, anchor targets, canonical metadata, sitemap, robots and the absence of external scripts. The three attribution and licence URLs resolved. Google's Russian Pixel help confirmed the installation settings route.
+- [Full-page renders](renders/) cover home, download and privacy at 375, 768 and 1440 px in both themes. All 18 were inspected for layout and completeness. The previous [first-screen review](https://github.com/sashaermin/ya-hudeyu/tree/9e958a34f6d0dbcc6d77d9af9257ed8d371c9b57/docs/renders) and Android emulator captures remain available as historical evidence.
 
 ## Hosted Lighthouse
 
-Mobile Lighthouse 13.0.3 passed on site source [`fe9e43bee7426c3eeaf2ae40cb2c7d3ca4cfaa56`](https://github.com/sashaermin/ya-hudeyu/commit/fe9e43bee7426c3eeaf2ae40cb2c7d3ca4cfaa56) in [run 43014113058](https://github.com/sashaermin/ya-hudeyu/actions/runs/43014113058). This record update leaves the audited site files identical.
+The [previous hosted run](https://github.com/sashaermin/ya-hudeyu/actions/runs/43014113058) passed on `fe9e43bee7426c3eeaf2ae40cb2c7d3ca4cfaa56`, with 98/100/100 performance on home, download and privacy and 100 in each other category. The branch workflow will verify the current site files on push.
 
-| Page | Performance | Accessibility | Best practices | SEO |
-| --- | ---: | ---: | ---: | ---: |
-| Home | 98 | 100 | 100 | 100 |
-| Download | 100 | 100 | 100 | 100 |
-| Privacy | 100 | 100 | 100 | 100 |
+## Owner review and release dependencies
 
-Total blocking time was 0 ms on all three pages. Layout shift was 0 on home and download, and 0.009 on privacy. The [previous Lighthouse run](https://github.com/sashaermin/ya-hudeyu/actions/runs/42997260373/attempts/2) remains linked to the earlier site source.
+- **Support email.** Supply the address to enable contact links. The configuration still uses the placeholder.
+- **Signed APK and release metadata.** Provide the signed APK and its [manifest fields](RELEASES.md). Real installation and in-place update testing on Android requires that build. The emulator capture verifies settings screens only.
+- **Approved current screenshots or footage.** Approve current v1.2 app screenshots for the gallery. An optional demonstration video requires approved real footage.
+- **Owner visual review and approval.** Review the current renders and approve any merge, publication or deployment separately. Browser checks, screenshots and Lighthouse are verification evidence. Owner acceptance is pending.
 
-## Release dependencies
-
-The owner needs to provide the support email and a signed APK with release metadata. Installation and update verification on a device remains pending that build. Approved current app screenshots can replace the gallery mockups when available.
+The independent work in the current scope is complete after the current hosted check is recorded. Release-specific and publication work depends on the inputs and approvals above.

@@ -141,7 +141,7 @@
               loading="lazy"
             />
             <h3>Питание</h3>
-            <p>Ручные записи и поиск по локальной базе.</p>
+            <p>Дневник блюд, калорий и БЖУ. Поиск по своей базе работает офлайн.</p>
           </article>
           <article class="card feature">
             <img
@@ -163,7 +163,7 @@
               loading="lazy"
             />
             <h3>Активность</h3>
-            <p>Тренировки, прогулки и маршруты с GPS.</p>
+            <p>Тренировки и прогулки. Для записи маршрутов нужен доступ к геолокации.</p>
           </article>
           <article class="card feature">
             <img
@@ -174,7 +174,7 @@
               loading="lazy"
             />
             <h3>Вес и замеры</h3>
-            <p>Отслеживайте изменения и прогноз достижения цели.</p>
+            <p>График веса, замеры и прогноз по фактическому темпу.</p>
           </article>
           <article class="card feature">
             <img
@@ -185,7 +185,7 @@
               loading="lazy"
             />
             <h3>Препараты</h3>
-            <p>Записывайте приём и следите за интервалом.</p>
+            <p>Отмечайте приём препаратов и инъекции, следите за интервалом.</p>
           </article>
           <article class="card feature">
             <img
@@ -196,21 +196,21 @@
               loading="lazy"
             />
             <h3>Помощник-котик</h3>
-            <p>Подсказки и команды для записей в дневнике.</p>
+            <p>Котик открывает разделы и помогает внести запись. Текстовые команды обрабатываются на телефоне.</p>
           </article>
         </div>
         <div class="privacy-note card">
-          <strong>Ваши данные — ваши</strong>
+          <strong>Хранение и подключения</strong>
           <p>
-            Данные хранятся на телефоне. Для переноса можно создать файл
-            резервной копии или подключить синхронизацию через Google Drive.
+            Записи хранятся на телефоне. По желанию можно подключить Health
+            Connect для импорта показателей и Google Drive для синхронизации
+            или облачных копий.
           </p>
           <a href="/privacy/">Подробнее о конфиденциальности →</a>
         </div>
       </section>
       <section class="section wrap" id="how">
-        <p class="eyebrow">ТРИ ПРОСТЫХ ШАГА</p>
-        <h2>Начать легко</h2>
+        <h2>Как начать</h2>
         <ol class="steps">
           <li class="card">
             <img
@@ -235,7 +235,7 @@
               loading="lazy"
             />
             <h3>Задайте цель</h3>
-            <p>Выберите то, что важно именно вам.</p>
+            <p>При первом запуске выберите режим веса. Его можно изменить в разделе «План по весу».</p>
           </li>
           <li class="card">
             <img
@@ -245,8 +245,8 @@
               alt=""
               loading="lazy"
             />
-            <h3>Записывайте</h3>
-            <p>Добавляйте еду, воду и активность в удобном темпе.</p>
+            <h3>Сделайте первую запись</h3>
+            <p>В разделе «Питание» нажмите «+» рядом с приёмом пищи и добавьте продукт.</p>
           </li>
         </ol>
       </section>
@@ -353,14 +353,14 @@
             <p class="muted" data-version>Скоро для Android</p>
             <p data-release-status role="status">
               Приложение готовится к выпуску. После публикации здесь появится
-              ссылка на APK.
+              версия и ссылка на APK.
             </p>
             <div data-release-details></div>
             <a class="button" data-apk hidden>Скачать APK</a
             ><a class="button secondary" href="/download/">О загрузке и установке</a>
-            <span data-contact="release" class="contact-note"
-              >Контакт для вопросов о выпуске появится позже</span
-            >
+            <p class="contact-note" data-release-default>
+              <a href="/download/#releases">Где смотреть обновления</a>
+            </p>
             <div data-releases data-limit="3" hidden></div>
           </div>
         </div>
@@ -371,9 +371,10 @@
           <div class="faq-group">
             <h3>Начало</h3>
             <details>
-              <summary>Что такое «Я ХУдЕЮ»?</summary>
+              <summary>Можно ли вести дневник без цели похудеть?</summary>
               <p>
-                Приложение для питания, активности и отслеживания изменений.
+                Да. Можно выбрать снижение, поддержание или набор веса
+                либо вести дневник без цели по весу.
               </p>
             </details>
             <details>
@@ -388,8 +389,11 @@
           <div class="faq-group">
             <h3>Питание</h3>
             <details>
-              <summary>Можно ли записать свою еду?</summary>
-              <p>Да, можно добавить продукт или запись вручную.</p>
+              <summary>Что делать, если продукт не найден?</summary>
+              <p>
+                В меню добавления еды выберите «Вручную». Введите название
+                и данные с упаковки, укажите порцию и сохраните запись.
+              </p>
             </details>
             <details>
               <summary>Можно ли следить за водой?</summary>
@@ -440,12 +444,12 @@
               </p>
             </details>
             <details>
-              <summary>Нужен ли Health Connect?</summary>
+              <summary>Как подключить Health Connect?</summary>
               <p>
-                Подключение по желанию. Health Connect может передавать,
-                например, шаги, вес и сон от других приложений. Разрешения на
-                чтение и запись задаются отдельно для каждого типа данных.
-                Ручной ввод доступен без подключения.
+                Откройте «Ещё → Health Connect» и разрешите доступ к нужным
+                показателям, например к шагам, весу или сну. Разрешения на
+                чтение и запись можно менять по типам данных. Ручной ввод
+                доступен без подключения.
               </p>
             </details>
           </div>
@@ -479,6 +483,11 @@
           </div>
         </div>
       </section>
+      <section class="section wrap" id="support">
+        <h2>Поддержка</h2>
+        <p>Вопросы об установке, работе приложения и ваших данных.</p>
+        <p data-contact="support">Адрес поддержки появится здесь.</p>
+      </section>
     </main>
     <dialog id="viewer" aria-labelledby="viewer-title">
       <div class="viewer-head">
@@ -486,18 +495,16 @@
         ><button type="button" id="close-viewer" aria-label="Закрыть">×</button>
       </div>
       <img id="viewer-image" alt="" />
-      <p id="viewer-caption"></p>
     </dialog>
     <footer>
       <div class="wrap footer">
         <a class="logo" href="/" aria-label="Я ХУдЕЮ — главная">
           <span>Я ХУдЕЮ<img src="/assets/v12/brand/tape.svg" width="221" height="14" alt="" /></span>
         </a>
-        <p>Маленькие шаги к большим изменениям.</p>
         <div>
           <a href="/privacy/">Конфиденциальность</a
           ><a href="/download/">Установка и обновления</a
-          ><span data-contact>Контакт появится позже</span>
+          ><a href="/#support">Поддержка</a>
         </div>
         <p class="muted">
           Глобальная база:

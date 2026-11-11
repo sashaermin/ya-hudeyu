@@ -431,6 +431,17 @@ footer {
 .release dt {
   color: var(--muted);
 }
+.page-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 20px;
+  margin-top: 12px;
+}
+.page-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
 dialog {
   max-width: min(600px, calc(100% - 32px));
   max-height: 90vh;

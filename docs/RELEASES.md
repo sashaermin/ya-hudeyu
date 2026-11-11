@@ -6,4 +6,4 @@ The latest release has the most recent date. For releases on the same date, put 
 
 An empty array displays the coming-soon state. An invalid or unavailable manifest displays a status error. Both states keep APK actions hidden. A valid nonempty manifest updates the shared release labels on all three pages and displays APK details and download actions on the home and download pages.
 
-Set `CONTACT_EMAIL` in `scripts/v12.js` when the owner provides the address. The site displays contact availability text until then.
+Set `CONTACT_EMAIL` in `scripts/v12.js` when the owner provides the address. The support and privacy contacts then open an email draft. The download page also offers a prefilled release-notification email when the manifest is confirmed empty.

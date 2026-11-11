@@ -1,6 +1,7 @@
 "use strict";
 
 const CONTACT_EMAIL = "CONTACT_EMAIL";
+const contactAvailable = CONTACT_EMAIL !== "CONTACT_EMAIL";
 const root = document.documentElement;
 const systemTheme = matchMedia("(prefers-color-scheme: dark)");
 const themeButton = document.querySelector(".theme");
@@ -76,13 +77,11 @@ if (viewer && typeof viewer.showModal === "function") {
     .addEventListener("click", () => viewer.close());
 }
 
-if (CONTACT_EMAIL !== "CONTACT_EMAIL") {
+if (contactAvailable) {
   document.querySelectorAll("[data-contact]").forEach((placeholder) => {
     const link = document.createElement("a");
     const aboutRelease = placeholder.dataset.contact === "release";
-    link.textContent = aboutRelease
-      ? "Сообщить о выходе"
-      : "Связаться по электронной почте";
+    link.textContent = aboutRelease ? "Сообщить о выходе" : "Написать в поддержку";
     const subject = aboutRelease
       ? "?subject=" + encodeURIComponent("Сообщите о выходе «Я ХУдЕЮ»")
       : "";
@@ -211,9 +210,18 @@ fetch("/releases.json")
       throw new Error("Duplicate release versions");
     // Stable sort keeps the publisher's order for releases on the same day.
     releases.sort((a, b) => b.date.localeCompare(a.date));
-    if (releases.length) renderReleases(releases);
+    if (releases.length) {
+      renderReleases(releases);
+    } else if (contactAvailable) {
+      document.querySelectorAll('[data-contact="release"]').forEach((contact) => {
+        contact.hidden = false;
+      });
+    }
   })
   .catch(() => {
     setReleaseVersion("Статус выпуска недоступен");
     setReleaseStatus("Не удалось загрузить информацию о выпуске. Попробуйте обновить страницу.");
+    document.querySelectorAll("[data-release-history-status]").forEach((status) => {
+      status.textContent = "Не удалось загрузить историю версий.";
+    });
   });

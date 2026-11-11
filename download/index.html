@@ -6,15 +6,15 @@
     <title>Загрузка и установка — Я ХУдЕЮ</title>
     <meta
       name="description"
-      content="Дневник питания, активности и веса для Android. Информация о выпуске и установке «Я ХУдЕЮ»."
+      content="Статус выпуска «Я ХУдЕЮ» для Android, инструкция по установке APK и история версий."
     />
     <link rel="canonical" href="https://yahudeyu-app.ru/download/" />
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Загрузка — Я ХУдЕЮ" />
+    <meta property="og:title" content="Загрузка и установка — Я ХУдЕЮ" />
     <meta
       property="og:description"
-      content="Питание, активность и вес в одном месте"
+      content="Статус выпуска, инструкция по установке APK и история версий."
     />
     <meta property="og:url" content="https://yahudeyu-app.ru/download/" />
     <meta
@@ -77,7 +77,7 @@
           ><a href="/#how">Как начать</a><a href="/#screens">Макеты</a
           ><a href="/#faq">Вопросы</a>
         </nav>
-        <a class="button small" href="/download/" data-release-label="Загрузка">О загрузке</a
+        <a class="button small" href="/download/" aria-current="page" data-release-label="Загрузка">О загрузке</a
         ><button
           class="theme"
           type="button"
@@ -108,12 +108,12 @@
         <p class="muted" data-release-default>Требуется Android 8.0 или новее.</p>
         <div data-release-details></div>
         <a class="button" data-apk hidden>Скачать APK</a>
-        <p>
-          <span data-contact="release" class="contact-note"
-            >Контакт для вопросов о выпуске появится позже</span
-          >
-        </p>
+        <p class="contact-note" data-contact="release" hidden></p>
       </div>
+      <nav class="page-links" aria-label="На этой странице">
+        <a href="#install">Как установить</a>
+        <a href="#releases">Что нового</a>
+      </nav>
       <h2 id="install">Как установить</h2>
       <ol>
         <li>
@@ -184,7 +184,7 @@
       </p>
       <h2 id="releases">Что нового</h2>
       <div data-releases>
-        <p>История обновлений появится после первого выпуска.</p>
+        <p data-release-history-status>Здесь появятся версии и списки изменений после первого выпуска.</p>
       </div>
       <p><a href="/">← На главную</a></p>
     </main>
@@ -193,11 +193,10 @@
         <a class="logo" href="/" aria-label="Я ХУдЕЮ — главная">
           <span>Я ХУдЕЮ<img src="/assets/v12/brand/tape.svg" width="221" height="14" alt="" /></span>
         </a>
-        <p>Маленькие шаги к большим изменениям.</p>
         <div>
           <a href="/privacy/">Конфиденциальность</a
           ><a href="/download/">Установка и обновления</a
-          ><span data-contact>Контакт появится позже</span>
+          ><a href="/#support">Поддержка</a>
         </div>
         <p class="muted">
           Глобальная база:
