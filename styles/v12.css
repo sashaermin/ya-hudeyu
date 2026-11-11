@@ -516,6 +516,14 @@ dialog img {
   .wrap {
     width: calc(100% - 32px);
   }
+  .bar nav {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(min-content, 1fr));
+  }
+  .bar nav a {
+    line-height: 1.25;
+    text-align: center;
+  }
   .logo {
     font-size: 23px;
   }

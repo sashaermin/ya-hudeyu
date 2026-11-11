@@ -81,7 +81,7 @@ if (contactAvailable) {
   document.querySelectorAll("[data-contact]").forEach((placeholder) => {
     const link = document.createElement("a");
     const aboutRelease = placeholder.dataset.contact === "release";
-    link.textContent = aboutRelease ? "Сообщить о выходе" : "Написать в поддержку";
+    link.textContent = aboutRelease ? "Спросить о выпуске по почте" : "Написать в поддержку";
     const subject = aboutRelease
       ? "?subject=" + encodeURIComponent("Сообщите о выходе «Я ХУдЕЮ»")
       : "";
@@ -170,7 +170,7 @@ function renderReleases(releases) {
     const limit = Number(container.dataset.limit);
     const history = limit ? releases.slice(0, limit) : releases;
     container.replaceChildren();
-    if (limit) container.append(element("h3", "Что нового"));
+    if (limit) container.append(element("h3", "Последние версии"));
     history.forEach((release) => {
       const article = element("article");
       article.append(
@@ -189,7 +189,7 @@ function renderReleases(releases) {
       container.append(article);
     });
     if (limit) {
-      const all = element("a", "Все обновления");
+      const all = element("a", "Полная история версий");
       all.href = "/download/#releases";
       container.append(all);
     }
