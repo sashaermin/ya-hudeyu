@@ -517,12 +517,15 @@ dialog img {
     width: calc(100% - 32px);
   }
   .bar nav {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(min-content, 1fr));
+    flex-wrap: nowrap;
   }
   .bar nav a {
+    flex: 1;
     line-height: 1.25;
     text-align: center;
+  }
+  .bar nav a:nth-child(odd) {
+    flex-grow: 1.5;
   }
   .logo {
     font-size: 23px;
