@@ -20,7 +20,15 @@ The design and release-state update follows the approved Android v1.2 package an
 
 ## Hosted Lighthouse
 
-The previous source revision [`fc04d52e`](https://github.com/sashaermin/ya-hudeyu/commit/fc04d52e365be46110b1f7291f3f34d60be9aa69) measured 99/100/100 for mobile performance on home, download and privacy, with 100 in each other category on the [passing attempt](https://github.com/sashaermin/ya-hudeyu/actions/runs/42997260373/attempts/2). That run is historical because this update changes site files. The branch's Lighthouse workflow will check the updated source once on push.
+Mobile Lighthouse 13.0.3 passed on site source [`fe9e43bee7426c3eeaf2ae40cb2c7d3ca4cfaa56`](https://github.com/sashaermin/ya-hudeyu/commit/fe9e43bee7426c3eeaf2ae40cb2c7d3ca4cfaa56) in [run 43014113058](https://github.com/sashaermin/ya-hudeyu/actions/runs/43014113058). This record update leaves the audited site files identical.
+
+| Page | Performance | Accessibility | Best practices | SEO |
+| --- | ---: | ---: | ---: | ---: |
+| Home | 98 | 100 | 100 | 100 |
+| Download | 100 | 100 | 100 | 100 |
+| Privacy | 100 | 100 | 100 | 100 |
+
+Total blocking time was 0 ms on all three pages. Layout shift was 0 on home and download, and 0.009 on privacy. The [previous Lighthouse run](https://github.com/sashaermin/ya-hudeyu/actions/runs/42997260373/attempts/2) remains linked to the earlier site source.
 
 ## Release dependencies
 
