@@ -16,9 +16,15 @@ jobs:
           test -e /dev/kvm
           sudo setfacl -m "u:$USER:rw" /dev/kvm
           export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
+          export ANDROID_USER_HOME="$RUNNER_TEMP/android-user"
+          export ANDROID_EMULATOR_HOME="$ANDROID_USER_HOME"
+          export ANDROID_AVD_HOME="$ANDROID_USER_HOME/avd"
+          mkdir -p "$ANDROID_AVD_HOME"
           image='system-images;android-34;google_apis;x86_64'
           sdkmanager "emulator" "platform-tools" "$image"
-          printf 'no\n' | avdmanager create avd --name website-guide --package "$image" --force
+          printf 'no\n' | avdmanager create avd --name website-guide --package "$image" --path "$ANDROID_AVD_HOME/website-guide.avd" --device pixel_2 --force
+          emulator -list-avds
+          test -f "$ANDROID_AVD_HOME/website-guide.ini"
           df -h "$RUNNER_TEMP" "$HOME"
           emulator -accel-check
           adb start-server
