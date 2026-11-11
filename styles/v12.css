@@ -130,6 +130,10 @@ p {
   gap: 24px;
 }
 .logo {
+  display: inline-block;
+  justify-self: start;
+  width: max-content;
+  max-width: 100%;
   font:
     700 27px/1 Playfair,
     Georgia,
