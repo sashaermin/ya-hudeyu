@@ -82,6 +82,8 @@ Playwright with Chromium 143 passed 40 layout checks across five routes at 320, 
 
 Android guidance is source-reviewed. On the signed release, confirm exact labels and navigation for the first records, the Health Connect flow with a supported source, ZIP export and restore, two-device QR transfer, and APK installation and update. Device settings and permissions may vary.
 
+On [website revision `4545d61a726d4f7e50d42c2142a60ee2a7a24e6e`](https://github.com/sashaermin/ya-hudeyu/commit/4545d61a726d4f7e50d42c2142a60ee2a7a24e6e), follow-up browser checks passed for theme persistence, keyboard use of the gallery, the legacy privacy redirect and the privacy email link. [Hosted mobile Lighthouse run 43049746405](https://github.com/sashaermin/ya-hudeyu/actions/runs/43049746405) passed on the same revision. Home and Help scored 99 for performance. Features, Download and Privacy scored 100. All five pages scored 100 for accessibility, best practices and SEO.
+
 ## Hosted Lighthouse
 
 Mobile Lighthouse 13.0.3 passed on website source [`0f1e3181f21d05ba1f48428d36b7c0c2d5874b10`](https://github.com/sashaermin/ya-hudeyu/commit/0f1e3181f21d05ba1f48428d36b7c0c2d5874b10) in [run 43034485307, attempt 2](https://github.com/sashaermin/ya-hudeyu/actions/runs/43034485307/attempts/2). The subsequent verification-record commit changes only this document.
