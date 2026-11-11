@@ -84,6 +84,14 @@ Android guidance is source-reviewed. On the signed release, confirm exact labels
 
 On [website revision `4545d61a726d4f7e50d42c2142a60ee2a7a24e6e`](https://github.com/sashaermin/ya-hudeyu/commit/4545d61a726d4f7e50d42c2142a60ee2a7a24e6e), follow-up browser checks passed for theme persistence, keyboard use of the gallery, the legacy privacy redirect and the privacy email link. [Hosted mobile Lighthouse run 43049746405](https://github.com/sashaermin/ya-hudeyu/actions/runs/43049746405) passed on the same revision. Home and Help scored 99 for performance. Features, Download and Privacy scored 100. All five pages scored 100 for accessibility, best practices and SEO.
 
+### Visitor review and Help navigation
+
+The original Help guide was published from [`8b4c059e0790d9317d80993afd3df215efb89151`](https://github.com/sashaermin/ya-hudeyu/commit/8b4c059e0790d9317d80993afd3df215efb89151) in [GitHub Pages run 43051125478](https://github.com/sashaermin/ya-hudeyu/actions/runs/43051125478). In that revision, Back could return to `#backup` while the current search still hid the topic. The [consultant's patch](https://github.com/sashaermin/ya-hudeyu/commit/c6746d09aa573ff9438a075f010003d713b5cedb) restored the topic and its scroll position in Chromium. The working-branch fix also moves keyboard focus to the restored topic and leaves the current query intact when opening a topic in a separate tab.
+
+Tested website revision [`17fcb70c11a18bdd0c6bc78c569d3211ee00a640`](https://github.com/sashaermin/ya-hudeyu/commit/17fcb70c11a18bdd0c6bc78c569d3211ee00a640) with Playwright and Chromium 143. At 375 and 1440 px in both themes, direct and keyboard links, Back and Forward, repeated activation of the same anchor, and sticky-header clearance passed. The review included 20 first-screen captures of the five pages, feature links, both gallery themes, keyboard opening and closing of the gallery viewer, the installation figures, support and bug-report drafts, the privacy contact and legacy redirect. The broader suite passed 40 layout checks, 32 search cases, 24 axe-core WCAG A/AA scans with zero violations, and the empty, populated, invalid and unavailable manifest cases. The no-JavaScript Help topics and anchor fallback passed. The checked-in manifest remains empty. The release fixtures were confined to the browser tests.
+
+The review rechecked affected Help paths and minimum Android version against [Android revision `8c3718927658def6a1f40d9594d970418d6ea290`](https://github.com/sashaermin/ya-hudeyu-android/commit/8c3718927658def6a1f40d9594d970418d6ea290), including the food and water entries, workout start, weight entry, Health Connect, local backup and restore, and the direction of QR scanning. The public pre-release notice now explicitly says the instructions still need verification on a signed build. Exact device behavior, installation and in-place updates still await that build.
+
 ## Hosted Lighthouse
 
 Mobile Lighthouse 13.0.3 passed on website source [`0f1e3181f21d05ba1f48428d36b7c0c2d5874b10`](https://github.com/sashaermin/ya-hudeyu/commit/0f1e3181f21d05ba1f48428d36b7c0c2d5874b10) in [run 43034485307, attempt 2](https://github.com/sashaermin/ya-hudeyu/actions/runs/43034485307/attempts/2). The subsequent verification-record commit changes only this document.
@@ -101,6 +109,6 @@ The guide scored 100 in all categories on both hosted attempts. [Attempt 1](http
 
 - **Signed APK and release metadata.** Provide the signed APK and its [manifest fields](RELEASES.md). Real installation and in-place update testing on Android requires that build. The emulator capture verifies settings screens only.
 - **Approved current screenshots or footage.** Approve current v1.2 app screenshots for the gallery. An optional demonstration video requires approved real footage.
-- **Help review and publication.** Review the Help guide and approve its publication. Browser checks and visual inspection cover the web flows. Release-device verification remains pending.
+- **Help follow-up publication.** Review and approve the Help navigation fix and the updated pre-release notice on the working branch.
 
 Independent work in the current scope is complete. Release-specific and publication work depends on the inputs and approvals above.
