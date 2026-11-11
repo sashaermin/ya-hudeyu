@@ -618,3 +618,30 @@ main > section[id] {
     filter: none;
   }
 }
+
+.install-figures {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-block: 24px;
+}
+.install-figures figure {
+  margin: 0;
+}
+.install-figures a {
+  display: block;
+  max-width: 220px;
+}
+.install-figures img {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+.install-figures figcaption {
+  margin-top: 12px;
+  max-width: 32ch;
+}
+@media (max-width: 520px) {
+  .install-figures {
+    grid-template-columns: 1fr;
+  }
+}
