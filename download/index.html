@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Загрузка — Я ХУдЕЮ</title>
+    <title>Загрузка и установка — Я ХУдЕЮ</title>
     <meta
       name="description"
-      content="Питание, активность и вес в одном приложении для Android. Я ХУдЕЮ — скоро в бете."
+      content="Дневник питания, активности и веса для Android. Информация о выпуске и установке «Я ХУдЕЮ»."
     />
     <link rel="canonical" href="https://yahudeyu-app.ru/download/" />
     <meta property="og:locale" content="ru_RU" />
@@ -69,15 +69,15 @@
     <a class="skip" href="#main">К содержимому</a>
     <header class="header">
       <div class="wrap bar">
-        <a class="logo" href="/" aria-label="Я ХУдЕЮ — главная"
-          >Я ХУдЕЮ<span></span
-        ></a>
+        <a class="logo" href="/" aria-label="Я ХУдЕЮ — главная">
+          <span>Я ХУдЕЮ<img src="/assets/v12/brand/tape.svg" width="221" height="14" alt="" /></span>
+        </a>
         <nav aria-label="Основная навигация">
-          <a href="/#features">Возможности</a
-          ><a href="/#how">Как это работает</a><a href="/#screens">Скриншоты</a
+          <a href="/#features">Функции</a
+          ><a href="/#how">Как начать</a><a href="/#screens">Макеты</a
           ><a href="/#faq">Вопросы</a>
         </nav>
-        <a class="button small" href="/download/">Скачать</a
+        <a class="button small" href="/download/" data-release-label="Загрузка">О загрузке</a
         ><button
           class="theme"
           type="button"
@@ -98,14 +98,14 @@
     </header>
     <main id="main" class="wrap prose section">
       <p class="eyebrow">ДЛЯ ANDROID</p>
-      <h1>Скачать «Я ХУдЕЮ»</h1>
+      <h1>Загрузка и установка</h1>
       <div class="card release">
-        <h2 data-release-title>Скоро в бете</h2>
-        <p data-release-status>
-          Мы готовим приложение к выпуску. После публикации здесь появятся
-          версия, размер, дата выпуска и контрольная сумма APK. Понадобится
-          Android 8.0 или новее.
+        <h2 data-release-title>Скоро для Android</h2>
+        <p data-release-status role="status">
+          Приложение готовится к выпуску. После публикации здесь появится
+          ссылка на APK.
         </p>
+        <p class="muted" data-release-default>Требуется Android 8.0 или новее.</p>
         <div data-release-details></div>
         <a class="button" data-apk hidden>Скачать APK</a>
         <p>
@@ -117,7 +117,7 @@
       <h2 id="install">Как установить</h2>
       <ol>
         <li>
-          Скачайте APK с этой страницы, когда появится кнопка «Скачать APK».
+          Если выпуск доступен, нажмите «Скачать APK» на этой странице.
         </li>
         <li>
           Откройте скачанный файл. Если Android попросит разрешение, нажмите
@@ -171,15 +171,16 @@
         </figure>
       </div>
       <p class="muted">
-        На снимках — настройки Android 14 на примере Chrome. Названия пунктов
-        могут отличаться в зависимости от устройства и версии Android. См.
+        На снимках — русскоязычные настройки Android 14 на примере Chrome.
+        Названия и расположение пунктов могут отличаться на вашем устройстве. См.
         <a href="https://support.google.com/pixelphone/answer/7391672?hl=ru"
           >справку Android для Pixel</a
         >.
       </p>
       <p>
-        Для обновления установите новый APK поверх текущей версии. Перед
-        обновлением можно сохранить резервную копию в приложении.
+        Перед обновлением сохраните резервную копию. Когда выйдет новая версия,
+        установите официальный APK поверх текущей версии. Android проверит,
+        что подпись приложения совпадает.
       </p>
       <h2 id="releases">Что нового</h2>
       <div data-releases>
@@ -189,7 +190,9 @@
     </main>
     <footer>
       <div class="wrap footer">
-        <a class="logo" href="/">Я ХУдЕЮ<span></span></a>
+        <a class="logo" href="/" aria-label="Я ХУдЕЮ — главная">
+          <span>Я ХУдЕЮ<img src="/assets/v12/brand/tape.svg" width="221" height="14" alt="" /></span>
+        </a>
         <p>Маленькие шаги к большим изменениям.</p>
         <div>
           <a href="/privacy/">Конфиденциальность</a
@@ -205,7 +208,7 @@
           <a href="/assets/v12/fonts/Manrope-OFL.txt">Manrope</a>,
           <a href="/assets/v12/fonts/PlayfairDisplay-OFL.txt"
             >Playfair Display</a
-          >. <span data-version>Скоро в бете</span>
+          >. <span data-version>Скоро для Android</span>
         </p>
       </div>
     </footer>

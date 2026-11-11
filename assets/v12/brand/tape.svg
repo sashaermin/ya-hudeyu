@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220.8 13.44">
+  <!-- Geometry and colours from Android's HudeyuWordmark Canvas. -->
+  <defs>
+    <linearGradient id="yellow" gradientUnits="userSpaceOnUse" x2="220.8" y2="0">
+      <stop stop-color="#ffe27a"/>
+      <stop offset="1" stop-color="#f2b526"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke-linecap="round">
+    <path d="M17.664 8.333C77.280 13.171 154.560 9.408 216.384 2.419" stroke="#8750dd" stroke-opacity=".85" stroke-width="3.494"/>
+    <path d="M17.664 8.333C77.280 13.171 154.560 9.408 216.384 2.419" stroke="url(#yellow)" stroke-width="2.688"/>
+    <path d="M41.65 8.31L41.57 10.08 M49.23 9.27L49.20 10.23 M56.88 9.48L56.86 10.45 M64.54 9.62L64.53 10.59 M72.14 9.02L72.13 10.79 M79.80 9.70L79.80 10.67 M87.45 9.66L87.46 10.63 M95.14 9.55L95.15 10.52 M102.77 8.73L102.81 10.50 M110.46 9.19L110.49 10.16 M118.07 8.94L118.11 9.90 M125.69 8.63L125.73 9.60 M133.35 7.61L133.44 9.38 M140.98 7.89L141.04 8.86 M148.64 7.45L148.70 8.41 M156.27 6.96L156.33 7.93 M163.88 5.77L164.01 7.53 M171.53 5.87L171.61 6.83 M179.15 5.25L179.23 6.22 M186.77 4.60L186.86 5.56 M194.31 3.23L194.48 4.99 M202.03 3.14L202.13 4.11" stroke="#7a5512" stroke-opacity=".75" stroke-width="1"/>
+  </g>
+</svg>

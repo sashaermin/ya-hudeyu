@@ -6,7 +6,7 @@
     <title>Я ХУдЕЮ — забота о себе каждый день</title>
     <meta
       name="description"
-      content="Питание, активность и вес в одном приложении для Android. Я ХУдЕЮ — скоро в бете."
+      content="Дневник питания, активности и веса для Android. Информация о выпуске и установке «Я ХУдЕЮ»."
     />
     <link rel="canonical" href="https://yahudeyu-app.ru/" />
     <meta property="og:locale" content="ru_RU" />
@@ -79,15 +79,15 @@
     <a class="skip" href="#main">К содержимому</a>
     <header class="header">
       <div class="wrap bar">
-        <a class="logo" href="/" aria-label="Я ХУдЕЮ — главная"
-          >Я ХУдЕЮ<span></span
-        ></a>
+        <a class="logo" href="/" aria-label="Я ХУдЕЮ — главная">
+          <span>Я ХУдЕЮ<img src="/assets/v12/brand/tape.svg" width="221" height="14" alt="" /></span>
+        </a>
         <nav aria-label="Основная навигация">
-          <a href="/#features">Возможности</a
-          ><a href="/#how">Как это работает</a><a href="/#screens">Скриншоты</a
+          <a href="/#features">Функции</a
+          ><a href="/#how">Как начать</a><a href="/#screens">Макеты</a
           ><a href="/#faq">Вопросы</a>
         </nav>
-        <a class="button small" href="/download/">Скачать</a
+        <a class="button small" href="/download/" data-release-label="Загрузка">О загрузке</a
         ><button
           class="theme"
           type="button"
@@ -109,44 +109,28 @@
     <main id="main">
       <section class="wrap hero">
         <div>
-          <p class="eyebrow">ПРИЛОЖЕНИЕ ДЛЯ ANDROID</p>
-          <h1>Забота о себе начинается с маленьких шагов</h1>
+          <h1>Питание, активность и вес</h1>
           <p class="lead">
-            Питание, активность и вес — в одном месте. Дневник работает без
-            интернета.
+            Еда, вода и тренировки в одном дневнике. Записи доступны офлайн.
           </p>
           <div class="actions">
-            <a class="button" href="/download/">Скачать для Android</a
-            ><a class="button secondary" href="#how">Как это работает</a>
+            <a class="button" href="/download/" data-release-label="Скачать для Android">О загрузке</a>
+            <a class="button secondary" href="#how">Как начать</a>
           </div>
-          <p class="muted"><span data-version>Скоро в бете</span> · Android</p>
+          <p class="muted" data-version>Скоро для Android</p>
         </div>
         <div class="hero-art">
-          <div class="phone">
-            <img
-              class="theme-image"
-              data-screen="01"
-              src="/assets/v12/screens/01_light.webp"
-              width="384"
-              height="1152"
-              alt="Макет экрана Сегодня"
-            />
-          </div>
           <img
             class="cat"
             src="/assets/v12/mascot/01_today_happy.webp"
-            width="600"
-            height="600"
-            alt="Котик-помощник в фиолетовом худи"
-          /><span class="mock">макет</span>
+            width="477"
+            height="480"
+            alt=""
+          />
         </div>
       </section>
       <section class="section wrap" id="features">
-        <p class="eyebrow">ВСЁ РЯДОМ</p>
-        <h2>На пути к цели — в своём ритме</h2>
-        <p class="intro">
-          Всё необходимое для заботы о себе, без лишней сложности.
-        </p>
+        <h2>Возможности</h2>
         <div class="grid">
           <article class="card feature">
             <img
@@ -157,7 +141,7 @@
               loading="lazy"
             />
             <h3>Питание</h3>
-            <p>Дневник питания и база продуктов офлайн.</p>
+            <p>Ручные записи и поиск по локальной базе.</p>
           </article>
           <article class="card feature">
             <img
@@ -212,7 +196,7 @@
               loading="lazy"
             />
             <h3>Помощник-котик</h3>
-            <p>Поддержка и подсказки без искусственного интеллекта.</p>
+            <p>Подсказки и команды для записей в дневнике.</p>
           </article>
         </div>
         <div class="privacy-note card">
@@ -267,9 +251,11 @@
         </ol>
       </section>
       <section class="section wrap" id="screens">
-        <p class="eyebrow">ВЗГЛЯНИТЕ БЛИЖЕ</p>
-        <h2>Всё по своим местам</h2>
-        <p class="intro">Макеты показывают утверждённый дизайн экранов.</p>
+        <h2>Макеты экранов</h2>
+        <p class="intro">
+          Дизайн-макеты с примером данных. Макет «Сегодня» показывает раннюю
+          компоновку, до переноса котика к кольцам целей.
+        </p>
         <div
           class="gallery-tools"
           role="group"
@@ -288,15 +274,15 @@
               class="screen"
               href="/assets/v12/screens/01_light.webp"
               data-screen="01"
-              aria-label="Увеличить макет: Сегодня"
+              aria-label="Увеличить ранний макет: Сегодня"
               ><img
                 src="/assets/v12/screens/01_light.webp"
                 width="384"
                 height="1152"
-                alt="Макет экрана Сегодня"
+                alt="Ранний макет экрана Сегодня"
                 loading="lazy"
             /></a>
-            <figcaption>Сегодня · макет</figcaption>
+            <figcaption>Сегодня · ранний макет</figcaption>
           </figure>
           <figure>
             <a
@@ -363,15 +349,15 @@
       <section class="section wrap" id="download">
         <div class="download card">
           <div>
-            <p class="eyebrow" data-version>Скоро в бете</p>
-            <h2>Ваш путь начинается здесь</h2>
-            <p data-release-status>
-              Приложение готовится к выпуску. Здесь появятся версия, размер и
+            <h2>Приложение для Android</h2>
+            <p class="muted" data-version>Скоро для Android</p>
+            <p data-release-status role="status">
+              Приложение готовится к выпуску. После публикации здесь появится
               ссылка на APK.
             </p>
             <div data-release-details></div>
             <a class="button" data-apk hidden>Скачать APK</a
-            ><a class="button" href="/download/">О загрузке и установке</a>
+            ><a class="button secondary" href="/download/">О загрузке и установке</a>
             <span data-contact="release" class="contact-note"
               >Контакт для вопросов о выпуске появится позже</span
             >
@@ -380,7 +366,6 @@
         </div>
       </section>
       <section class="section wrap" id="faq">
-        <p class="eyebrow">ЕСТЬ ВОПРОСЫ?</p>
         <h2>Частые вопросы</h2>
         <div class="faq-grid">
           <div class="faq-group">
@@ -395,8 +380,8 @@
               <summary>Нужен ли интернет?</summary>
               <p>
                 Еду, воду, вес и тренировки можно записывать офлайн. Интернет
-                нужен для поиска в глобальной базе продуктов, онлайн-карт,
-                синхронизации и совместного доступа.
+                нужен для глобального поиска продуктов, онлайн-карт, функций
+                Google Drive и сетевого совместного доступа.
               </p>
             </details>
           </div>
@@ -412,37 +397,83 @@
             </details>
           </div>
           <div class="faq-group">
-            <h3>Данные и приватность</h3>
+            <h3>Данные и резервные копии</h3>
             <details>
-              <summary>Где хранятся данные?</summary>
+              <summary>Где хранятся мои записи?</summary>
               <p>
-                Данные хранятся на устройстве. Перенести их можно через
-                резервную копию, напрямую между телефонами или с помощью
-                синхронизации через Google.
+                На телефоне. Синхронизация и облачные копии через Google Drive
+                подключаются по желанию. Подробнее о том, какие данные могут
+                передаваться, — на <a href="/privacy/">странице конфиденциальности</a>.
               </p>
             </details>
             <details>
-              <summary>Можно ли подключить Health Connect?</summary>
+              <summary>Как сохранить резервную копию?</summary>
               <p>
-                Да, подключение необязательно; доступ к данным предоставляется
-                отдельно.
+                Откройте «Ещё → Резервные копии» и сохраните файл копии в
+                выбранное место. Для файловой копии аккаунт Google не нужен.
+              </p>
+            </details>
+            <details>
+              <summary>Что произойдёт при восстановлении из файла?</summary>
+              <p>
+                В разделе «Резервные копии» выберите файл и подтвердите
+                восстановление. Записи на телефоне заменятся данными из файла.
+                Перед заменой приложение создаёт страховочную копию.
+              </p>
+            </details>
+            <details>
+              <summary>Как перенести данные на другой телефон?</summary>
+              <p>
+                Откройте «Ещё → Перенос данных» на обоих телефонах. На старом
+                выберите отправку, на новом — получение. Проверьте код на
+                обоих устройствах, а на новом телефоне подтвердите замену
+                после просмотра данных. Также можно восстановить копию из
+                файла или подключить синхронизацию с тем же аккаунтом Google.
+                Разрешения Android на новом телефоне нужно выдать заново.
+              </p>
+            </details>
+            <details>
+              <summary>Чем синхронизация отличается от копии?</summary>
+              <p>
+                Синхронизация через Google Drive объединяет изменения с разных
+                телефонов. Резервная копия хранит данные на момент её создания.
+              </p>
+            </details>
+            <details>
+              <summary>Нужен ли Health Connect?</summary>
+              <p>
+                Подключение по желанию. Health Connect может передавать,
+                например, шаги, вес и сон от других приложений. Разрешения на
+                чтение и запись задаются отдельно для каждого типа данных.
+                Ручной ввод доступен без подключения.
               </p>
             </details>
           </div>
           <div class="faq-group">
             <h3>Установка и обновления</h3>
             <details>
-              <summary>Когда можно скачать приложение?</summary>
+              <summary>Где проверить доступность APK?</summary>
               <p>
-                Актуальный статус и ссылка на APK после выпуска — на
+                Статус выпуска и ссылка на файл после публикации находятся на
                 <a href="/download/">странице загрузки</a>.
               </p>
             </details>
             <details>
-              <summary>Как установить APK?</summary>
+              <summary>Как установить приложение?</summary>
               <p>
-                Скачайте файл с этой страницы, разрешите установку для
-                выбранного приложения и откройте файл.
+                Проверьте доступность APK на странице загрузки и следуйте
+                <a href="/download/#install">инструкции по установке</a>.
+                Если Android запросит разрешение, выдайте его приложению, из
+                которого открываете файл.
+              </p>
+            </details>
+            <details>
+              <summary>Как обновить приложение и сохранить записи?</summary>
+              <p>
+                Сохраните резервную копию, затем установите новый официальный APK
+                поверх текущей версии. Для обновления Android требует ту же
+                подпись приложения. История выпусков — на
+                <a href="/download/#releases">странице загрузки</a>.
               </p>
             </details>
           </div>
@@ -459,7 +490,9 @@
     </dialog>
     <footer>
       <div class="wrap footer">
-        <a class="logo" href="/">Я ХУдЕЮ<span></span></a>
+        <a class="logo" href="/" aria-label="Я ХУдЕЮ — главная">
+          <span>Я ХУдЕЮ<img src="/assets/v12/brand/tape.svg" width="221" height="14" alt="" /></span>
+        </a>
         <p>Маленькие шаги к большим изменениям.</p>
         <div>
           <a href="/privacy/">Конфиденциальность</a
@@ -475,7 +508,7 @@
           <a href="/assets/v12/fonts/Manrope-OFL.txt">Manrope</a>,
           <a href="/assets/v12/fonts/PlayfairDisplay-OFL.txt"
             >Playfair Display</a
-          >. <span data-version>Скоро в бете</span>
+          >. <span data-version>Скоро для Android</span>
         </p>
       </div>
     </footer>

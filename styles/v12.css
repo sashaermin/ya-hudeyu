@@ -7,7 +7,13 @@
 @font-face {
   font-family: Manrope;
   src: url("/assets/v12/fonts/manrope_semibold.woff2") format("woff2");
-  font-weight: 600 900;
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: Manrope;
+  src: url("/assets/v12/fonts/manrope_bold.woff2") format("woff2");
+  font-weight: 700;
   font-display: swap;
 }
 @font-face {
@@ -42,7 +48,7 @@
 }
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 90px;
+  scroll-padding-top: 80px;
 }
 body {
   margin: 0;
@@ -124,29 +130,28 @@ p {
   }
 }
 .bar {
-  min-height: 78px;
+  min-height: 64px;
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
 }
 .logo {
-  display: inline-block;
-  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   width: max-content;
   max-width: 100%;
   font:
-    700 27px/1 Playfair,
+    700 27px/1.1 Playfair,
     Georgia,
     serif;
   text-decoration: none;
   white-space: nowrap;
 }
-.logo span {
-  display: block;
-  height: 4px;
-  background: #e9ab28;
-  border-radius: 10px;
-  margin-top: 5px;
+.logo img {
+  inline-size: 0;
+  min-inline-size: 100%;
+  margin-top: -0.12em;
 }
 .bar nav {
   display: flex;
@@ -156,6 +161,11 @@ p {
   font-weight: 600;
 }
 .bar nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
   text-decoration: none;
 }
 .bar nav a:hover {
@@ -175,8 +185,8 @@ p {
   border: 1px solid transparent;
 }
 .button.small {
-  min-height: 48px;
-  padding: 10px 18px;
+  min-height: 44px;
+  padding: 8px 16px;
   font-size: 14px;
 }
 .secondary {
@@ -187,8 +197,8 @@ p {
 .theme,
 .chip,
 #close-viewer {
-  min-width: 48px;
-  min-height: 48px;
+  min-width: 44px;
+  min-height: 44px;
   border: 1px solid var(--line);
   border-radius: 50%;
   background: var(--surface);
@@ -196,12 +206,11 @@ p {
   font-size: 22px;
 }
 .hero {
-  min-height: 620px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
   align-items: center;
-  gap: 50px;
-  padding-block: 64px;
+  gap: clamp(24px, 5vw, 64px);
+  padding-block: clamp(28px, 5vw, 64px);
 }
 .eyebrow {
   font-size: 12px;
@@ -227,34 +236,11 @@ p {
   font-size: 14px;
 }
 .hero-art {
-  position: relative;
   display: grid;
   place-items: center;
-  min-height: 560px;
-}
-.phone {
-  width: 225px;
-  border: 6px solid var(--surface);
-  border-radius: 30px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  transform: rotate(3deg);
 }
 .cat {
-  position: absolute;
-  width: 260px;
-  left: 4%;
-  bottom: 0;
-  filter: drop-shadow(0 12px 16px #261b3530);
-}
-.mock {
-  position: absolute;
-  right: 12%;
-  bottom: 8%;
-  background: var(--surface);
-  padding: 5px 14px;
-  border-radius: 999px;
-  font-size: 13px;
+  width: min(100%, 360px);
 }
 .section {
   padding-block: 72px;
@@ -274,11 +260,21 @@ p {
   box-shadow: var(--shadow);
   padding: 28px;
 }
+.feature {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  column-gap: 14px;
+  align-content: start;
+  padding: 20px;
+}
 .feature img {
-  width: 72px;
-  height: 72px;
+  grid-row: span 2;
+  width: 44px;
+  height: 44px;
   object-fit: contain;
-  margin-bottom: 18px;
+}
+.feature h3 {
+  margin-bottom: 3px;
 }
 .feature p,
 .steps p {
@@ -298,10 +294,10 @@ p {
   font-weight: 700;
 }
 .steps img {
-  width: 96px;
-  height: 96px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .steps {
   list-style: none;
@@ -411,6 +407,20 @@ footer {
 .prose li {
   margin: 12px 0;
 }
+.privacy section + section {
+  border-top: 1px solid var(--line);
+}
+.privacy section h2 {
+  font: 700 1.375rem/1.35 Manrope, system-ui, sans-serif;
+  letter-spacing: normal;
+  margin: 22px 0 10px;
+}
+.privacy ul {
+  padding-inline-start: 1.3em;
+}
+.privacy li {
+  margin: 8px 0;
+}
 .release h2 {
   margin-top: 0;
 }
@@ -457,69 +467,77 @@ dialog img {
   }
 }
 @media (max-width: 800px) {
+  html {
+    scroll-padding-top: 108px;
+  }
+  .header {
+    backdrop-filter: none;
+  }
   .bar {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto 48px;
-    padding-block: 12px;
+    grid-template-columns: minmax(0, 1fr) auto 44px;
+    gap: 0 8px;
+    padding-top: 4px;
   }
   .bar nav {
     order: 3;
-    display: grid;
     grid-column: 1 / -1;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    width: 100%;
-    gap: 2px 16px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0 4px;
     margin: 0;
   }
-  .bar .small {
-    margin-left: auto;
-  }
   .hero {
-    grid-template-columns: 1fr;
-    gap: 15px;
-    padding-block: 48px;
-  }
-  .hero-art {
-    min-height: 500px;
+    gap: 20px;
   }
   .cat {
-    left: 12%;
-    width: 220px;
+    width: min(100%, 240px);
   }
   .grid,
   .steps {
     grid-template-columns: repeat(2, 1fr);
   }
-  .download img {
-    width: 180px;
-  }
   .section {
-    padding-block: 52px;
+    padding-block: 40px;
   }
 }
 @media (max-width: 520px) {
   .wrap {
     width: calc(100% - 32px);
   }
-  .bar nav {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
   .logo {
     font-size: 23px;
   }
   .bar .small {
     font-size: 12px;
+    padding-inline: 12px;
+  }
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding-block: 22px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 8vw, 40px);
+    margin-bottom: 12px;
+  }
+  .hero .lead {
+    font-size: 16px;
+  }
+  .hero .actions {
+    gap: 8px;
+    margin: 16px 0 8px;
+  }
+  .hero .actions .button {
+    min-height: 44px;
     padding: 8px 12px;
+    font-size: 14px;
   }
-  .hero-art {
-    min-height: 440px;
-  }
-  .phone {
-    width: 175px;
+  .hero .muted {
+    margin-bottom: 0;
   }
   .cat {
-    left: 0;
-    width: 175px;
+    width: 132px;
   }
   .grid,
   .steps,
@@ -527,12 +545,19 @@ dialog img {
   .download {
     grid-template-columns: 1fr;
   }
-  .download img {
-    width: 180px;
-    margin: auto;
-  }
   .card {
-    padding: 22px;
+    padding: 16px;
+  }
+  .grid,
+  .steps {
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .feature h3 {
+    font-size: 17px;
+  }
+  .feature p {
+    font-size: 14px;
   }
   .gallery figure {
     flex-basis: 190px;
@@ -554,12 +579,6 @@ dialog img {
   }
 }
 
-.logo span {
-  background:
-    repeating-linear-gradient(90deg, transparent 0 6px, var(--surface) 6px 7px)
-      top / 100% 2px no-repeat,
-    #e9ab28;
-}
 .theme:not([data-ready]) {
   visibility: hidden;
 }
@@ -567,10 +586,8 @@ dialog img {
   display: grid;
   place-items: center;
 }
-.bar nav a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
+.theme[aria-pressed="true"] {
+  border-color: var(--primary);
 }
 .button:hover {
   text-decoration: underline;
@@ -597,12 +614,6 @@ dialog img {
 [data-releases] ul {
   margin-top: 0;
 }
-@media (max-width: 800px) {
-  html {
-    scroll-padding-top: 154px;
-  }
-}
-
 .prose h1 {
   font-size: clamp(27px, 5.8vw, 64px);
   overflow-wrap: anywhere;
@@ -612,15 +623,6 @@ dialog img {
 main > section[id] {
   content-visibility: auto;
   contain-intrinsic-block-size: auto 640px;
-}
-
-@media (max-width: 800px) {
-  .header {
-    backdrop-filter: none;
-  }
-  .hero-art .cat {
-    filter: none;
-  }
 }
 
 .install-figures {

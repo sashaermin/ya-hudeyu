@@ -34,9 +34,6 @@ function updateGallery(theme) {
 function updateTheme() {
   const theme = currentTheme();
   themeButton.setAttribute("aria-pressed", String(theme === "dark"));
-  document.querySelectorAll(".theme-image").forEach((image) => {
-    image.src = screenUrl(image.dataset.screen, theme);
-  });
   updateGallery(galleryOverride || theme);
 }
 
@@ -135,15 +132,25 @@ function element(tag, value) {
   return node;
 }
 
+function setReleaseVersion(label) {
+  document.querySelectorAll("[data-version], [data-release-title]")
+    .forEach((node) => { node.textContent = label; });
+}
+
+function setReleaseStatus(label) {
+  document.querySelectorAll("[data-release-status]")
+    .forEach((node) => { node.textContent = label; });
+}
+
 function renderReleases(releases) {
   const latest = releases[0];
-  document
-    .querySelectorAll("[data-version], [data-release-title]")
-    .forEach((node) => {
-      node.textContent = `Версия ${latest.version}`;
-    });
-  document.querySelectorAll("[data-release-status]").forEach((node) => {
-    node.textContent = "Доступна для Android";
+  setReleaseVersion(`Версия ${latest.version}`);
+  setReleaseStatus("Приложение доступно для Android.");
+  document.querySelectorAll("[data-release-label]").forEach((link) => {
+    link.textContent = link.dataset.releaseLabel;
+  });
+  document.querySelectorAll("[data-release-default]").forEach((node) => {
+    node.hidden = true;
   });
   document.querySelectorAll("[data-release-details]").forEach((node) => {
     const list = element("dl");
@@ -199,11 +206,14 @@ fetch("/releases.json")
   .then((releases) => {
     if (!Array.isArray(releases) || !releases.every(validRelease))
       throw new Error("Invalid release manifest");
+    const versions = new Set(releases.map(({ version }) => version.trim()));
+    if (versions.size !== releases.length)
+      throw new Error("Duplicate release versions");
+    // Stable sort keeps the publisher's order for releases on the same day.
+    releases.sort((a, b) => b.date.localeCompare(a.date));
     if (releases.length) renderReleases(releases);
   })
   .catch(() => {
-    document.querySelectorAll("[data-release-status]").forEach((node) => {
-      node.textContent =
-        "Не удалось загрузить информацию о выпуске. Попробуйте обновить страницу.";
-    });
+    setReleaseVersion("Статус выпуска недоступен");
+    setReleaseStatus("Не удалось загрузить информацию о выпуске. Попробуйте обновить страницу.");
   });

@@ -1,34 +1,27 @@
 # Website v1.2 verification
 
-Verified website source [`fc04d52e365be46110b1f7291f3f34d60be9aa69`](https://github.com/sashaermin/ya-hudeyu/commit/fc04d52e365be46110b1f7291f3f34d60be9aa69). The APK manifest is empty and the support email is unset.
+The design and release-state update follows the approved Android v1.2 package and the implementation at [`c6ffc1f31e793dd7ac3c64bcbbb000fe929b26f8`](https://github.com/sashaermin/ya-hudeyu-android/commit/c6ffc1f31e793dd7ac3c64bcbbb000fe929b26f8). The tracked APK manifest is empty and the support email is unset.
 
-## Android source and design comparison
+## Brand and Android source comparison
 
-Reviewed the Android design package and source at `fffcc56603b6f93b00a29ebcd34defc885dfd1c8`.
+- The header, footer and social card use Playfair Display Bold with the curved measuring tape from `HudeyuWordmark.kt`. Android draws it in Compose Canvas, so the website uses live text and an SVG port of the same path, violet edge, yellow gradient and unnumbered ticks. The site favicon combines the Android `mipmap-xxxhdpi` launcher foreground with its approved gradient and a web mask.
+- The six feature WebPs and three mascot WebPs are byte-identical to Android's `ds_icon_*` and `ds_mascot_*` resources. The existing Playfair and Manrope 400/600 fonts match sampled Android glyph outlines and advances. The site now also serves the Android Manrope 700 font as WOFF2.
+- Light and dark backgrounds, surfaces, divider, text and focus colours follow `HudeyuTokens.kt`. Cards, round controls and the main action use the app's design roles adapted for the web. The buttons use the approved darker violet for text contrast.
+- The design package's D-19 direction and `TodayScreen.kt` put the mascot above the goal rings. The approved reference directory still contains the earlier Today mockup. The site shows the canonical mascot on the landing page and labels the retained Today gallery image as an early mockup. The gallery awaits approved, current app screenshots.
+- The privacy and FAQ copy were checked against `HelpContent.kt`, `MoreScreen.kt`, `TransferScreen.kt`, `BackupManager.kt`, `CloudBackupManager.kt`, `CloudSyncManager.kt`, `AssistantScreen.kt`, the Android manifest and build configuration. They cover local storage, file restore and its safety copy, direct transfer, optional Google Drive, Health Connect permissions, online product lookups, maps and Android speech recognition.
+- The installation guide uses two Russian Android 14 settings images from [capture run 43012180362](https://github.com/sashaermin/ya-hudeyu/actions/runs/43012180362). The two published WebPs were converted from the 720 × 1280 artifact PNGs. The guide notes that settings labels and placement may differ by device. The Android source declares `minSdk = 26` (Android 8.0).
 
-- Design: light blush and dark indigo surfaces, violet actions, Playfair Display headings, Manrope body text, and matching geometry in both themes. Compared the site hero and gallery with the approved paired app mockups. The artwork uses the canonical mascot, soft 3D feature icons and launcher foreground/gradient. Gallery images are explicitly labelled «макет». Primary controls use the dark violet from the design palette behind white labels for contrast.
-- FAQ and feature claims: `ui/more/HelpContent.kt`, `nutrition/FoodSearch.kt`, `nutrition/OpenFoodFactsClient.kt`, `trackers/WaterTrackerStore.kt`, `location/WorkoutTrackingService.kt`, `ui/medication/MedicationScreen.kt` and `assistant/AssistantParser.kt` distinguish offline logging from online lookups, optional sync and GPS permissions. The progress description uses the app FAQ's forecast language.
-- Privacy: `AndroidManifest.xml`, `backup/BackupManager.kt`, `sync/CloudSyncManager.kt`, `sync/CloudBackupManager.kt` and the in-app help support local storage, optional Google Drive, file copies, transfer and user-controlled Health Connect permissions. The site also discloses the optional Android speech service and online lookups, including USDA FoodData Central when a build configures its key. This was a source review of the Android app. No device acceptance was performed.
-- The installation guide follows [Google's Pixel help](https://support.google.com/pixelphone/answer/7391672?hl=ru). The two WebP images match the PNGs from the [Android 14 emulator capture](https://github.com/sashaermin/ya-hudeyu/actions/runs/42996397870). They show the installation source list and the Chrome permission switch in English, with Russian captions. `app/build.gradle.kts` declares `minSdk = 26` (Android 8.0).
+## Targeted browser verification
 
-## Browser verification
+- Playwright with headless Chromium 143.0.7499.0 passed 24 route, width and theme combinations at 320, 375, 768 and 1440 px. Checks covered reflow, font and image loading, wordmark bounds, 44 px header targets and gallery labels. At 375 px the header measured 93 px versus 143 px previously. The homepage hero measured 410 px versus 1,107 px, and the first feature card measured 106 px versus 224 px.
+- Twelve axe-core 4.11.1 scans at 375 and 1440 px found zero WCAG 2.0/2.1 A/AA violations. Keyboard checks covered the skip link, mobile navigation and sticky-header anchor offset, gallery open, Escape and focus return, and FAQ disclosure. The theme persisted after reload, and the gallery theme could be selected independently. This covers automated checks and targeted keyboard interactions.
+- Twenty-four release-state checks covered eight manifest variants on all three pages. The valid fixture checked unsorted dates and the publisher's order within a day. The empty, invalid and unavailable cases left APK actions hidden. Shared status and link labels update across pages. The home and download pages display the latest APK and metadata when the manifest is valid. The privacy page links to the download page. See the [manifest contract](RELEASES.md).
+- [Mobile first-screen renders](renders/v12-polish-mobile.webp) cover all three pages in both themes. [Desktop first-screen renders](renders/v12-polish-desktop.webp) cover the homepage in both themes. The previous 18 full-page renders remain in [the earlier checkpoint](https://github.com/sashaermin/ya-hudeyu/tree/0173d6ca070493d724958b7efd056688ce52ad1e/docs/renders).
 
-The [18 full-page renders](renders/) cover the home, download and privacy pages at 375, 768 and 1440 px in both themes. They were recovered from local commit `60463eee931434467a3b5a8b969966a0231d6ba9`, whose site files match the verified source. All 18 were checked for their expected widths and reviewed visually, including the installation figures.
+## Hosted Lighthouse
 
-Playwright in headless Chromium 143.0.7499.0 passed all 24 route, width and theme combinations, including 320 px, with reflow, image and font checks. Twelve axe-core 4.11.1 scans at 375 and 1440 px found zero WCAG 2.0/2.1 A/AA violations. Keyboard checks passed for the skip link, gallery open, Escape and focus return, and FAQ disclosure. The theme choice persisted after reload, and the gallery theme could be selected independently. Accessibility coverage consists of these automated scans and keyboard checks.
-
-Twelve manifest checks covered six scenarios on the home and download pages. The empty manifest hid APK actions. An intercepted four-release fixture exposed the latest APK and metadata, three homepage entries and the full download history. Invalid dates, an invalid manifest shape, non-HTTPS URLs and an unavailable manifest left APK actions hidden. The tracked `releases.json` remains empty.
-
-Lighthouse 13.0.3 audited the verified source on a local static server in hosted Chrome. The passing [GitHub Actions attempt](https://github.com/sashaermin/ya-hudeyu/actions/runs/42997260373/attempts/2) applies to this documentation and render update because the site files are identical. Categories are scored out of 100.
-
-| Page | Performance | Accessibility | Best practices | SEO |
-| --- | ---: | ---: | ---: | ---: |
-| Home | 99 | 100 | 100 | 100 |
-| Download | 100 | 100 | 100 | 100 |
-| Privacy | 100 | 100 | 100 | 100 |
-
-The [first hosted attempt](https://github.com/sashaermin/ya-hudeyu/actions/runs/42997260373/attempts/1) scored 74 for home performance with 1,250 ms total blocking time. The passing attempt measured 0 ms total blocking time and zero layout shift on all three pages. These are lab results for the branch source.
+The previous source revision [`fc04d52e`](https://github.com/sashaermin/ya-hudeyu/commit/fc04d52e365be46110b1f7291f3f34d60be9aa69) measured 99/100/100 for mobile performance on home, download and privacy, with 100 in each other category on the [passing attempt](https://github.com/sashaermin/ya-hudeyu/actions/runs/42997260373/attempts/2). That run is historical because this update changes site files. The branch's Lighthouse workflow will check the updated source once on push.
 
 ## Release dependencies
 
-The owner needs to provide the support address and a signed APK with its [release metadata](RELEASES.md). Device installation and update verification requires that signed build. The gallery uses labelled design mockups pending approved app screenshots.
+The owner needs to provide the support email and a signed APK with release metadata. Installation and update verification on a device remains pending that build. Approved current app screenshots can replace the gallery mockups when available.
