@@ -34,9 +34,24 @@
       media="(prefers-color-scheme: dark)"
     />
     <link rel="icon" href="/assets/v12/favicon.png" />
+    <link rel="stylesheet" href="/styles/v12.css" />
     <link
       rel="preload"
       href="/assets/v12/fonts/manrope_regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/v12/fonts/playfair_display_bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/v12/fonts/manrope_semibold.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -48,7 +63,6 @@
           document.documentElement.dataset.theme = saved;
       } catch {}
     </script>
-    <link rel="stylesheet" href="/styles/v12.css" />
     <script src="/scripts/v12.js" defer></script>
     <script type="application/ld+json">
       {
@@ -79,7 +93,6 @@
           type="button"
           aria-label="Тёмная тема"
           aria-pressed="false"
-          hidden
         >
           <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
             <path

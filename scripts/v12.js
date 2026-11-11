@@ -41,7 +41,7 @@ function updateTheme() {
 }
 
 updateTheme();
-themeButton.hidden = false;
+themeButton.dataset.ready = "";
 themeButton.addEventListener("click", () => {
   root.dataset.theme = currentTheme() === "dark" ? "light" : "dark";
   try {
