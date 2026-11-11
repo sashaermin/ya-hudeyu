@@ -603,3 +603,18 @@ dialog img {
   font-size: clamp(27px, 5.8vw, 64px);
   overflow-wrap: anywhere;
 }
+
+/* Delay layout for the homepage sections until they approach the viewport. */
+main > section[id] {
+  content-visibility: auto;
+  contain-intrinsic-block-size: auto 640px;
+}
+
+@media (max-width: 800px) {
+  .header {
+    backdrop-filter: none;
+  }
+  .hero-art .cat {
+    filter: none;
+  }
+}
